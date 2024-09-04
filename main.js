@@ -13,9 +13,10 @@ export function setCookieWithExpireHour(cname, cvalue, exhour) {
     d.setTime(d.getTime() + (exhour * 60 * 60 * 1000));
     let expires = "expires=" + d.toUTCString();
     
-    // Replace 'example.com' with your domain name
+    // Set domain to ulbi.ac.id to allow subdomains access
     let domain = "domain=.ulbi.ac.id"; 
   
     document.cookie = cname + "=" + cvalue + ";" + expires + ";" + domain + ";path=/";
   }
+  
   
