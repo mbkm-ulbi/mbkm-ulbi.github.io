@@ -9,7 +9,7 @@ function loginUlbi() {
     redirect('https://login.ulbi.ac.id');
 }
 
-export function setCookieWithExpireHour(cname, cvalue, exhour) {
+function setCookieWithExpireHour(cname, cvalue, exhour) {
     const d = new Date();
     d.setTime(d.getTime() + (exhour * 60 * 60 * 1000));
     let expires = "expires=" + d.toUTCString();
@@ -18,7 +18,8 @@ export function setCookieWithExpireHour(cname, cvalue, exhour) {
     let domain = "domain=.ulbi.ac.id"; 
   
     document.cookie = cname + "=" + cvalue + ";" + expires + ";" + domain + ";path=/";
-  }
+}
+
 
 function updateLoginButton() {
   let token = getCookie("login");
@@ -27,12 +28,15 @@ function updateLoginButton() {
     loginButton.textContent = "Logout";
     loginButton.id = "logout";
     loginButton.onclick = function() {
+      console.log('Logout button clicked');
       logout();
     }
   } 
 }
 
+
 function logout() {
+  console.log('Executing logout function');
   // Hapus cookie login
   document.cookie = "loginToken=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/; domain=.ulbi.ac.id;";
   console.log("Cookie loginToken dihapus");
