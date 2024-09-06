@@ -2,53 +2,53 @@ import { onClick } from 'https://cdn.jsdelivr.net/gh/jscroot/lib@0.0.4/element.j
 import { redirect } from 'https://cdn.jsdelivr.net/gh/jscroot/lib@0.0.4/url.js';
 import { getCookie } from 'https://cdn.jsdelivr.net/gh/jscroot/lib@0.0.4/cookie.js';
 
-onClick('loginulbi', loginUlbi);
+// Fungsi untuk login
 function loginUlbi() {
-  console.log('loginulbi');
+  console.log('Login button clicked');
   setCookieWithExpireHour('redirect', window.location.href, 1);
-    redirect('https://login.ulbi.ac.id');
+  redirect('https://login.ulbi.ac.id');
 }
 
+// Fungsi untuk set cookie dengan expire dalam jam
 function setCookieWithExpireHour(cname, cvalue, exhour) {
-    const d = new Date();
-    d.setTime(d.getTime() + (exhour * 60 * 60 * 1000));
-    let expires = "expires=" + d.toUTCString();
-    
-    // Set domain to ulbi.ac.id to allow subdomains access
-    let domain = "domain=.ulbi.ac.id"; 
-  
-    document.cookie = cname + "=" + cvalue + ";" + expires + ";" + domain + ";path=/";
+  const d = new Date();
+  d.setTime(d.getTime() + (exhour * 60 * 60 * 1000));
+  let expires = "expires=" + d.toUTCString();
+  document.cookie = `${cname}=${cvalue};${expires};domain=.ulbi.ac.id;path=/`;
 }
 
-
-function updateLoginButton() {
-  let token = getCookie("login");
-  let loginButton = document.getElementById("loginulbi");
-  if (token !== "") {
-    loginButton.textContent = "Logout";
-    loginButton.id = "logout";
-    loginButton.onclick = function() {
-      console.log('Logout button clicked');
-      logout();
-    }
-  } 
-}
-
+// Fungsi untuk delete cookie
 function deleteCookie(name) {
-  document.cookie = name + '=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/; domain=.ulbi.ac.id;';
-  document.cookie = name + '=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/';
+  document.cookie = `${name}=; expires=Thu, 01 Jan 1970 00:00:00 UTC; domain=.ulbi.ac.id;path=/`;
+  document.cookie = `${name}=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/`;
 }
 
+// Fungsi untuk logout
 function logout() {
-  console.log('Executing logout function');
-  // Hapus cookie login
-  deleteCookie("login");
-  console.log("Cookie loginToken dihapus");
-  
-  // Redirect ke halaman utama
+  console.log('Logout button clicked');
+  deleteCookie('login');
+  console.log("Cookie 'login' deleted");
   window.location.href = "/";
 }
 
+// Fungsi untuk update button login/logout
+function updateLoginButton() {
+  let token = getCookie("login");
+  let loginButton = document.getElementById("loginulbi");
+  let logoutButton = document.getElementById("logoutulbi");
+
+  if (token) {
+    loginButton.hidden = true;
+    logoutButton.hidden = false;
+    onClick('logoutulbi', logout); // Bind fungsi logout untuk logout button
+  } else {
+    loginButton.hidden = false;
+    logoutButton.hidden = true;
+    onClick('loginulbi', loginUlbi); // Bind fungsi login untuk login button
+  }
+}
+
+// Inisialisasi fungsi updateLoginButton saat window onload
 window.onload = function() {
   updateLoginButton();
 };

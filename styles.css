@@ -74,7 +74,7 @@ nav ul li a:hover::after {
     background: #fff;
 }
 
-#loginulbi {
+#loginulbi, #logoutulbi {
     background-color: #002f87; 
     color: white;
     padding: 10px 20px;
@@ -88,7 +88,7 @@ nav ul li a:hover::after {
     transition: background-color 0.3s ease;
 }
 
-#loginulbi:hover {
+#loginulbi:hover, #logoutulbi:hover {
     background-color: #001a5b;
 }
 
