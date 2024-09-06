@@ -51,7 +51,7 @@ function updateLoginButton() {
   }
 }
 
-// Inisialisasi fungsi updateLoginButton saat halaman dimuat
-window.onload = function() {
+// Tunggu sampai seluruh dokumen HTML dimuat
+document.addEventListener("DOMContentLoaded", function() {
   updateLoginButton();
-};
+});
