@@ -4,63 +4,54 @@ import { getCookie } from 'https://cdn.jsdelivr.net/gh/jscroot/lib@0.0.4/cookie.
 
 // Fungsi untuk login
 function loginUlbi() {
-  console.log('Login button clicked');
+  console.log('Tombol login diklik');
   setCookieWithExpireHour('redirect', window.location.href, 1);
   redirect('https://login.ulbi.ac.id');
 }
 
-// Fungsi untuk set cookie dengan expire dalam jam
+// Fungsi untuk mengatur cookie dengan batas waktu dalam jam
 function setCookieWithExpireHour(cname, cvalue, exhour) {
   const d = new Date();
   d.setTime(d.getTime() + (exhour * 60 * 60 * 1000));
   let expires = "expires=" + d.toUTCString();
   document.cookie = `${cname}=${cvalue};${expires};domain=.ulbi.ac.id;path=/`;
-  console.log(`Cookie set: ${cname}=${cvalue}`);
+  console.log(`Cookie disetel: ${cname}=${cvalue}`);
 }
 
-// Fungsi untuk delete cookie
+// Fungsi untuk menghapus cookie
 function deleteCookie(name) {
   document.cookie = `${name}=; expires=Thu, 01 Jan 1970 00:00:00 UTC; domain=.ulbi.ac.id;path=/`;
   document.cookie = `${name}=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/`;
-  console.log(`Cookie deleted: ${name}`);
+  console.log(`Cookie dihapus: ${name}`);
 }
 
 // Fungsi untuk logout
 function logout() {
-  console.log('Logout button clicked');
+  console.log('Tombol logout diklik');
   deleteCookie('login');
   deleteCookie('redirect');
   window.location.href = "/";
 }
 
-// Fungsi untuk update button login/logout
+// Fungsi untuk memperbarui tombol login/logout
 function updateLoginButton() {
   let token = getCookie("login");
   let loginButton = document.getElementById("loginulbi");
-  let logoutButton = document.getElementById("logoutulbi");
-
-  console.log("Memperbarui visibilitas tombol. Token:", token);
-
-  if (loginButton) {
-    // Jika token ada, maka tombol login dihide
-    loginButton.hidden = !!token;
-  }
-  
-  if (logoutButton) {
-    // Jika token tidak ada, maka tombol logout dihide
-    logoutButton.hidden = !token;
-  }
 
   if (token) {
-    console.log("User is logged in. Binding logout function.");
-    onClick('logoutulbi', logout); // Bind fungsi logout untuk logout button
+    // Jika ada token, ubah teks tombol menjadi "Logout"
+    loginButton.textContent = "Logout";
+    loginButton.onclick = logout;
+    console.log("Pengguna sudah login. Tombol logout diaktifkan.");
   } else {
-    console.log("User is not logged in. Binding login function.");
-    onClick('loginulbi', loginUlbi); // Bind fungsi login untuk login button
+    // Jika tidak ada token, ubah teks tombol menjadi "Login"
+    loginButton.textContent = "Login";
+    loginButton.onclick = loginUlbi;
+    console.log("Pengguna belum login. Tombol login diaktifkan.");
   }
 }
 
-// Inisialisasi fungsi updateLoginButton saat window onload
+// Inisialisasi fungsi updateLoginButton saat halaman dimuat
 window.onload = function() {
   updateLoginButton();
 };
