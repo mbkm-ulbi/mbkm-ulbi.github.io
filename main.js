@@ -43,12 +43,14 @@ function updateLoginButton() {
   console.log("Memperbarui visibilitas tombol. Token:", token);
 
   if (token) {
-    loginButton.hidden = true;
-    logoutButton.hidden = false;
-    onClick('logoutulbi', logout); // Bind fungsi logout untuk logout button
+    if (loginButton) loginButton.hidden = true;
+    if (logoutButton) {
+      logoutButton.hidden = false;
+      onClick('logoutulbi', logout); // Bind fungsi logout untuk logout button
+    }
   } else {
-    loginButton.hidden = false;
-    logoutButton.hidden = true;
+    if (loginButton) loginButton.hidden = false;
+    if (logoutButton) logoutButton.hidden = true;
     onClick('loginulbi', loginUlbi); // Bind fungsi login untuk login button
   }
 }
