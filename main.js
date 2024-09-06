@@ -33,7 +33,10 @@ function updateLoginButton() {
 }
 
 function logout() {
-  document.cookie = "loginToken=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+  // Hapus cookie login
+  document.cookie = "loginToken=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/; domain=.ulbi.ac.id;";
+  
+  // Redirect ke halaman utama
   window.location.href = "/";
 }
 
