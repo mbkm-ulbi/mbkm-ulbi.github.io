@@ -28,6 +28,9 @@ function logout() {
   console.log('Logout button clicked');
   deleteCookie('login');
   console.log("Cookie 'login' deleted");
+
+  // Hapus cookie redirect
+  deleteCookie('redirect');
   window.location.href = "/";
 }
 
@@ -36,6 +39,8 @@ function updateLoginButton() {
   let token = getCookie("login");
   let loginButton = document.getElementById("loginulbi");
   let logoutButton = document.getElementById("logoutulbi");
+
+  console.log("Memperbarui visibilitas tombol. Token:", token);
 
   if (token) {
     loginButton.hidden = true;
