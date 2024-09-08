@@ -1,0 +1,2509 @@
+@import url("https://fonts.googleapis.com/css2?family=Open Sans:wght@400;600;700");
+@import url("https://api.fontshare.com/css?f[]=open sans@400,600,700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500");
+@import url("https://api.fontshare.com/css?f[]=inter@400,500&display=swap");
+
+p,
+ol,
+ul {
+  margin: 0px;
+}
+
+button {
+  padding: 0px;
+}
+
+ol,
+ul {
+  padding-inline-start: 1.5em;
+}
+
+input {
+  background-image: none;
+  background-color: transparent;
+}
+
+.common-42,
+.lowongan-mahasiswa-top-left-border,
+.lowongan-mahasiswa-bottom-right-border {
+  position: absolute;
+  right: 0px;
+  bottom: 0px;
+}
+
+.common-39,
+.lowongan-mahasiswa-frame-4,
+.lowongan-mahasiswa-frame-5,
+.lowongan-mahasiswa-frame-7,
+.lowongan-mahasiswa-frame-8,
+.lowongan-mahasiswa-pagination,
+.lowongan-mahasiswa-page-item-1,
+.lowongan-mahasiswa-page-item-2,
+.lowongan-mahasiswa-page-item-3,
+.lowongan-mahasiswa-page-item-4,
+.lowongan-mahasiswa-page-item-5,
+.lowongan-mahasiswa-page-item-6,
+.lowongan-mahasiswa-frame-40,
+.lowongan-mahasiswa-frame-44 {
+  border-style: solid;
+  border-color: lightgray;
+}
+
+.common-40,
+.lowongan-mahasiswa-frame-9,
+.lowongan-mahasiswa-frame-14,
+.lowongan-mahasiswa-frame-19,
+.lowongan-mahasiswa-frame-24,
+.lowongan-mahasiswa-frame-29,
+.lowongan-mahasiswa-frame-34 {
+  border-style: solid;
+  border-color: whitesmoke;
+}
+
+.common-41,
+.lowongan-mahasiswa-frame-13,
+.lowongan-mahasiswa-frame-18,
+.lowongan-mahasiswa-frame-23,
+.lowongan-mahasiswa-frame-28,
+.lowongan-mahasiswa-frame-33,
+.lowongan-mahasiswa-frame-38,
+.lowongan-mahasiswa-frame-45 {
+  border-style: solid;
+  border-color: darkorange;
+}
+
+.common-22,
+.lowongan-mahasiswa-t-frame,
+.lowongan-mahasiswa-tt-versi-123beta-mbkm-ulbi {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.common-23,
+.lowongan-mahasiswa-t-tampilkan-filter-solar-alt-arrow-down-outline,
+.lowongan-mahasiswa-tt-semua-lowongan-tstatus-frame-4status-frame,
+.lowongan-mahasiswa-t-semua-lowongan-tstatus-frame-4status,
+.lowongan-mahasiswa-tt-frame-75frame-75frame-75frame-75frame-75frame-75frame,
+.lowongan-mahasiswa-t-diposting-2hari-yang-lalu-frame,
+.lowongan-mahasiswa-tt-solar-user-bold-duotone-10kandidat-mendaftar-tframe-4frame,
+.lowongan-mahasiswa-t-diposting-2hari-yang-lalu-frame-1,
+.lowongan-mahasiswa-tt-solar-user-bold-duotone-10kandidat-mendaftar-tframe-4frame-1,
+.lowongan-mahasiswa-t-diposting-2hari-yang-lalu-frame-2,
+.lowongan-mahasiswa-tt-solar-user-bold-duotone-10kandidat-mendaftar-tframe-4frame-2,
+.lowongan-mahasiswa-t-diposting-2hari-yang-lalu-frame-3,
+.lowongan-mahasiswa-tt-solar-user-bold-duotone-10kandidat-mendaftar-tframe-4frame-3,
+.lowongan-mahasiswa-t-diposting-2hari-yang-lalu-frame-4,
+.lowongan-mahasiswa-tt-solar-user-bold-duotone-10kandidat-mendaftar-tframe-4frame-4,
+.lowongan-mahasiswa-t-diposting-2hari-yang-lalu-frame-5,
+.lowongan-mahasiswa-tt-solar-user-bold-duotone-10kandidat-mendaftar-tframe-4frame-5,
+.lowongan-mahasiswa-t-frame-4frame-6 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.common-24,
+.lowongan-mahasiswa-t-diposting-2hari-yang-lalu-frame-6,
+.lowongan-mahasiswa-t-images-1tglobal-finance-accounting-internship-ttsolar-buildings-bold-pt-pos-indonesia-tsolar-map-point-bold-bandung-jawa-barat-tsolar-calendar-bold-duotone-batas-akhir-pendaftaran-06september {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  flex-wrap: wrap;
+}
+
+.common-25,
+.lowongan-mahasiswa-component,
+.lowongan-mahasiswa-t-line-1 {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+}
+
+.common-26,
+.lowongan-mahasiswa-t-frame-102tframe,
+.lowongan-mahasiswa-t-angela-alegna-nim,
+.lowongan-mahasiswa-tt-solar-user-hands-bold-kandidat-tsolar-medal-star-bold-penilaian-tsolar-documents-bold-laporan,
+.lowongan-mahasiswa-tt-solar-settings-bold-pengaturan-tsolar-question-square-bold-bantuan,
+.lowongan-mahasiswa-tt-solar-buildings-bold-duotone-pt-pos-indonesia-tsolar-map-point-bold-duotone-bandung-jawa-barat,
+.lowongan-mahasiswa-tt-solar-buildings-bold-duotone-pt-pos-indonesia-tsolar-map-point-bold-duotone-bandung-jawa-barat-1,
+.lowongan-mahasiswa-tt-solar-buildings-bold-duotone-pt-pos-indonesia-tsolar-map-point-bold-duotone-bandung-jawa-barat-2,
+.lowongan-mahasiswa-tt-solar-buildings-bold-duotone-pt-pos-indonesia-tsolar-map-point-bold-duotone-bandung-jawa-barat-3,
+.lowongan-mahasiswa-tt-solar-buildings-bold-duotone-pt-pos-indonesia-tsolar-map-point-bold-duotone-bandung-jawa-barat-4,
+.lowongan-mahasiswa-tt-solar-buildings-bold-duotone-pt-pos-indonesia-tsolar-map-point-bold-duotone-bandung-jawa-barat-5,
+.lowongan-mahasiswa-t-global-finance-accounting-internship-ttsolar-buildings-bold-pt-pos-indonesia-tsolar-map-point-bold-bandung-jawa-barat-tsolar-calendar-bold-duotone-batas-akhir-pendaftaran-06september {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.common-27,
+.lowongan-mahasiswa-t-avvxsejdplsg-8kycc-2lfwocc_wkorqptbjq_udcqwg-wl-aq-vf-9yktzv-4img-7bzw-1vludufmlde-5x-9zmny-jfl-3ebm-49sb-8jdimx-6ppptysrvrmffiwc-6w4ltbyswzghzhku-9zpxlzdmztjyxgedtyjebtja-34lopcm_y-283dwdm-8te-0z-8qwut-1z-4ylkgyw-56i-w,
+.lowongan-mahasiswa-t-solar-home-smile-angle-bold-beranda,
+.lowongan-mahasiswa-t-solar-user-hands-bold-kandidat,
+.lowongan-mahasiswa-t-solar-medal-star-bold-penilaian,
+.lowongan-mahasiswa-t-solar-settings-bold-pengaturan,
+.lowongan-mahasiswa-t-solar-map-point-bold-duotone-bandung-jawa-barat,
+.lowongan-mahasiswa-t-solar-user-bold-duotone-10kandidat-mendaftar,
+.lowongan-mahasiswa-t-frame-4frame,
+.lowongan-mahasiswa-t-solar-map-point-bold-duotone-bandung-jawa-barat-1,
+.lowongan-mahasiswa-t-solar-user-bold-duotone-10kandidat-mendaftar-1,
+.lowongan-mahasiswa-t-frame-4frame-1,
+.lowongan-mahasiswa-t-solar-map-point-bold-duotone-bandung-jawa-barat-2,
+.lowongan-mahasiswa-t-solar-user-bold-duotone-10kandidat-mendaftar-2,
+.lowongan-mahasiswa-t-frame-4frame-2,
+.lowongan-mahasiswa-t-solar-map-point-bold-duotone-bandung-jawa-barat-3,
+.lowongan-mahasiswa-t-solar-user-bold-duotone-10kandidat-mendaftar-3,
+.lowongan-mahasiswa-t-frame-4frame-3,
+.lowongan-mahasiswa-t-solar-map-point-bold-duotone-bandung-jawa-barat-4,
+.lowongan-mahasiswa-t-solar-user-bold-duotone-10kandidat-mendaftar-4,
+.lowongan-mahasiswa-t-frame-4frame-4,
+.lowongan-mahasiswa-t-solar-map-point-bold-duotone-bandung-jawa-barat-5,
+.lowongan-mahasiswa-t-solar-user-bold-duotone-10kandidat-mendaftar-5,
+.lowongan-mahasiswa-t-frame-4frame-5,
+.lowongan-mahasiswa-t-solar-map-point-bold-bandung-jawa-barat,
+.lowongan-mahasiswa-frame-45 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.common-28,
+.lowongan-mahasiswa-t-menampilkan-4lowongan-pagination,
+.lowongan-mahasiswa-t-solar-calendar-bold-duotone-batas-akhir-pendaftaran-06september,
+.lowongan-mahasiswa-t-solar-calendar-bold-duotone-batas-akhir-pendaftaran-06september-1,
+.lowongan-mahasiswa-t-solar-calendar-bold-duotone-batas-akhir-pendaftaran-06september-2,
+.lowongan-mahasiswa-t-solar-calendar-bold-duotone-batas-akhir-pendaftaran-06september-3,
+.lowongan-mahasiswa-t-solar-calendar-bold-duotone-batas-akhir-pendaftaran-06september-4,
+.lowongan-mahasiswa-t-solar-calendar-bold-duotone-batas-akhir-pendaftaran-06september-5,
+.lowongan-mahasiswa-t-solar-calendar-bold-duotone-batas-akhir-pendaftaran-06september-6 {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.common-29,
+.lowongan-mahasiswa-frame-10,
+.lowongan-mahasiswa-frame-15,
+.lowongan-mahasiswa-frame-20,
+.lowongan-mahasiswa-frame-25,
+.lowongan-mahasiswa-frame-30,
+.lowongan-mahasiswa-frame-35,
+.lowongan-mahasiswa-frame-44 {
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.common-30,
+.lowongan-mahasiswa-frame-11,
+.lowongan-mahasiswa-frame-16,
+.lowongan-mahasiswa-frame-21,
+.lowongan-mahasiswa-frame-26,
+.lowongan-mahasiswa-frame-31,
+.lowongan-mahasiswa-frame-36,
+.lowongan-mahasiswa-frame-40 {
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+.common-31,
+.lowongan-mahasiswa-t-status-frame,
+.lowongan-mahasiswa-frame-9,
+.lowongan-mahasiswa-frame-14,
+.lowongan-mahasiswa-frame-19,
+.lowongan-mahasiswa-frame-24,
+.lowongan-mahasiswa-frame-29,
+.lowongan-mahasiswa-frame-34 {
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.common-32,
+.lowongan-mahasiswa-t-4tangela-alegna-nim,
+.lowongan-mahasiswa-tt-solar-home-smile-angle-bold-beranda,
+.lowongan-mahasiswa-tt-frame-1 {
+  display: flex;
+  align-items: flex-end;
+}
+
+.common-33,
+.lowongan-mahasiswa-ttt-solar-user-hands-bold-kandidat-tsolar-medal-star-bold-penilaian-tsolar-documents-bold-laporan,
+.lowongan-mahasiswa-t-solar-documents-bold-laporan,
+.lowongan-mahasiswa-frame-1,
+.lowongan-mahasiswa-ttt-solar-settings-bold-pengaturan-tsolar-question-square-bold-bantuan,
+.lowongan-mahasiswa-t-solar-question-square-bold-bantuan,
+.lowongan-mahasiswa-t-frame-2,
+.lowongan-mahasiswa-cari-berdasarkan-perusahaan-pekerjaan-program-studi,
+.lowongan-mahasiswa-wrapper,
+.lowongan-mahasiswa-t-solar-buildings-bold-duotone-pt-pos-indonesia,
+.lowongan-mahasiswa-t-solar-buildings-bold-duotone-pt-pos-indonesia-1,
+.lowongan-mahasiswa-t-solar-buildings-bold-duotone-pt-pos-indonesia-2,
+.lowongan-mahasiswa-t-solar-buildings-bold-duotone-pt-pos-indonesia-3,
+.lowongan-mahasiswa-t-solar-buildings-bold-duotone-pt-pos-indonesia-4,
+.lowongan-mahasiswa-t-solar-buildings-bold-duotone-pt-pos-indonesia-5,
+.lowongan-mahasiswa-t-solar-buildings-bold-pt-pos-indonesia,
+.lowongan-mahasiswa-as-aglobal-finance-accounting-intern-at-eiger-your-mission-is-to-support-our-finance-and-accounting-team-in-various-functions-including-financial-analysis-reporting-and-compliance-you-will-gain-practical-experience-in-managing-financial-data-contributing-to-budgeting-processes-and-ensuring-accurate-financial-records-this-internship-offers-aunique-opportunity-to-develop-your-skills-and-knowledge-in-aglobal-retail-environment-preparing-you-for-asuccessful-career-in-finance-and-accounting-what-you-ll-need-to-success-final-semester-students-or-recently-completed-adegree-in-accounting-or-arelated-field-strong-analytical-skills-with-the-ability-to-interpret-financial-data-someone-who-is-confident-proactive-attitude-enthusiasm-for-learning-and-communicative-in-conveying-something-orally-or-in-writing-work-placement-at-the-head-office-of-kab-bandung-west-java-interest-in-the-retail-industry-and-eiger-sbrand-kompetensi-yang-akan-dikembangkan-administrasi-komunikasi-analisis-data-kerjasama-tim-pengelolaan-waktu-pemahaman-lingkungan-bisnis-problem-solving-analisis-keuangan-keahlian-teknologi-kemampuan-beradaptasi-operasional-kriteria-akademik-mahasiswa-perguruan-tinggi-aktif-minimal-semester-6program-studi-yang-diutamakan-akuntansi-dan-perpajakan-ekonomi {
+  display: flex;
+  align-items: center;
+}
+
+.common-34,
+.lowongan-mahasiswa-wrapper-1,
+.lowongan-mahasiswa-wrapper-2,
+.lowongan-mahasiswa-wrapper-3,
+.lowongan-mahasiswa-wrapper-4,
+.lowongan-mahasiswa-wrapper-5,
+.lowongan-mahasiswa-wrapper-6,
+.lowongan-mahasiswa-wrapper-7 {
+  display: flex;
+  align-items: flex-start;
+}
+
+.common-35,
+.lowongan-mahasiswa-frame-4,
+.lowongan-mahasiswa-frame-6 {
+  flex-direction: column;
+  justify-content: center;
+}
+
+.common-36,
+.lowongan-mahasiswa-frame,
+.lowongan-mahasiswa-t-frame-75frame-75frame-75frame-75frame-75frame,
+.lowongan-mahasiswa-tt-solar-buildings-bold-pt-pos-indonesia-tsolar-map-point-bold-bandung-jawa-barat {
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.common-37,
+.lowongan-mahasiswa-pagination,
+.lowongan-mahasiswa-frame-42 {
+  flex-direction: column;
+  align-items: center;
+}
+
+.common-38,
+.lowongan-mahasiswa-frame-3,
+.lowongan-mahasiswa-frame-7,
+.lowongan-mahasiswa-frame-8,
+.lowongan-mahasiswa-t-page-item-page-item-page-item-page-item-page-item-page-item-page-item,
+.lowongan-mahasiswa-page-item,
+.lowongan-mahasiswa-page-item-1,
+.lowongan-mahasiswa-page-item-2,
+.lowongan-mahasiswa-page-item-3,
+.lowongan-mahasiswa-page-item-4,
+.lowongan-mahasiswa-page-item-5,
+.lowongan-mahasiswa-page-item-6,
+.lowongan-mahasiswa-frame-12,
+.lowongan-mahasiswa-frame-13,
+.lowongan-mahasiswa-frame-17,
+.lowongan-mahasiswa-frame-18,
+.lowongan-mahasiswa-frame-22,
+.lowongan-mahasiswa-frame-23,
+.lowongan-mahasiswa-frame-27,
+.lowongan-mahasiswa-frame-28,
+.lowongan-mahasiswa-frame-32,
+.lowongan-mahasiswa-frame-33,
+.lowongan-mahasiswa-frame-37,
+.lowongan-mahasiswa-frame-38,
+.lowongan-mahasiswa-frame-41 {
+  justify-content: center;
+  align-items: center;
+}
+
+.common-15,
+.lowongan-mahasiswa-frame-4,
+.lowongan-mahasiswa-status-1,
+.lowongan-mahasiswa-semua-1 {
+  color: slategray;
+  font-size: 12px;
+}
+
+.common-16,
+.lowongan-mahasiswa-aktif,
+.lowongan-mahasiswa-aktif-1,
+.lowongan-mahasiswa-aktif-2,
+.lowongan-mahasiswa-aktif-3,
+.lowongan-mahasiswa-aktif-4,
+.lowongan-mahasiswa-aktif-5 {
+  color: limegreen;
+  font-size: 12px;
+}
+
+.common-17,
+.lowongan-mahasiswa-diposting-2hari-yang-lalu-6,
+.lowongan-mahasiswa-batas-akhir-pendaftaran-06september-6 {
+  color: slategray;
+  font-size: 10px;
+}
+
+.common-18,
+.lowongan-mahasiswa-simpan,
+.lowongan-mahasiswa-simpan-1,
+.lowongan-mahasiswa-simpan-2,
+.lowongan-mahasiswa-simpan-3,
+.lowongan-mahasiswa-simpan-4,
+.lowongan-mahasiswa-simpan-5,
+.lowongan-mahasiswa-simpan-6 {
+  color: darkorange;
+  text-align: center;
+}
+
+.common-19,
+.lowongan-mahasiswa-frame,
+.lowongan-mahasiswa-deskripsi-pekerjaan {
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.common-20,
+.lowongan-mahasiswa-cari,
+.lowongan-mahasiswa-global-finance-accounting-internship,
+.lowongan-mahasiswa-global-finance-accounting-internship-1,
+.lowongan-mahasiswa-global-finance-accounting-internship-2,
+.lowongan-mahasiswa-global-finance-accounting-internship-3,
+.lowongan-mahasiswa-global-finance-accounting-internship-4,
+.lowongan-mahasiswa-global-finance-accounting-internship-5,
+.lowongan-mahasiswa-t-frame-4frame-6 {
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.common-21,
+.lowongan-mahasiswa-t-frame-4frame,
+.lowongan-mahasiswa-t-frame-4frame-1,
+.lowongan-mahasiswa-t-frame-4frame-2,
+.lowongan-mahasiswa-t-frame-4frame-3,
+.lowongan-mahasiswa-t-frame-4frame-4,
+.lowongan-mahasiswa-t-frame-4frame-5 {
+  font-size: 14px;
+  text-align: center;
+}
+
+.common-1,
+.lowongan-mahasiswa-pagination,
+.lowongan-mahasiswa-frame-9,
+.lowongan-mahasiswa-frame-14,
+.lowongan-mahasiswa-frame-19,
+.lowongan-mahasiswa-frame-24,
+.lowongan-mahasiswa-frame-29,
+.lowongan-mahasiswa-frame-34,
+.lowongan-mahasiswa-frame-42 {
+  display: flex;
+  width: 100%;
+  height: 100%;
+}
+
+.common-2,
+.lowongan-mahasiswa-page-item-2,
+.lowongan-mahasiswa-page-item-3 {
+  display: flex;
+  height: 33px;
+}
+
+.common-3,
+.lowongan-mahasiswa-lowongan-mahasiswa,
+.lowongan-mahasiswa-frame-4 {
+  display: flex;
+  background-color: whitesmoke;
+}
+
+.common-4,
+.lowongan-mahasiswa-frame,
+.lowongan-mahasiswa-frame-3,
+.lowongan-mahasiswa-frame-5,
+.lowongan-mahasiswa-frame-6,
+.lowongan-mahasiswa-frame-7,
+.lowongan-mahasiswa-frame-8,
+.lowongan-mahasiswa-page-item,
+.lowongan-mahasiswa-page-item-1,
+.lowongan-mahasiswa-page-item-4,
+.lowongan-mahasiswa-page-item-5,
+.lowongan-mahasiswa-page-item-6,
+.lowongan-mahasiswa-frame-11,
+.lowongan-mahasiswa-frame-13,
+.lowongan-mahasiswa-frame-16,
+.lowongan-mahasiswa-frame-18,
+.lowongan-mahasiswa-frame-21,
+.lowongan-mahasiswa-frame-23,
+.lowongan-mahasiswa-frame-26,
+.lowongan-mahasiswa-frame-28,
+.lowongan-mahasiswa-frame-31,
+.lowongan-mahasiswa-frame-33,
+.lowongan-mahasiswa-frame-36,
+.lowongan-mahasiswa-frame-38,
+.lowongan-mahasiswa-frame-40,
+.lowongan-mahasiswa-frame-43,
+.lowongan-mahasiswa-frame-44 {
+  display: flex;
+  background-color: white;
+}
+
+.common-5,
+.lowongan-mahasiswa-lowongan-saya,
+.lowongan-mahasiswa-frame-2,
+.lowongan-mahasiswa-frame-10,
+.lowongan-mahasiswa-frame-15,
+.lowongan-mahasiswa-frame-20,
+.lowongan-mahasiswa-frame-25,
+.lowongan-mahasiswa-frame-30,
+.lowongan-mahasiswa-frame-35 {
+  display: flex;
+  background-color: midnightblue;
+}
+
+.common-6,
+.lowongan-mahasiswa-frame-12,
+.lowongan-mahasiswa-frame-17,
+.lowongan-mahasiswa-frame-22,
+.lowongan-mahasiswa-frame-27,
+.lowongan-mahasiswa-frame-32,
+.lowongan-mahasiswa-frame-37,
+.lowongan-mahasiswa-frame-41 {
+  display: flex;
+  background-color: #32cd3219;
+}
+
+.common-7,
+.lowongan-mahasiswa-t-status-frame,
+.lowongan-mahasiswa-t-page-item-page-item-page-item-page-item-page-item-page-item-page-item,
+.lowongan-mahasiswa-t-frame-75frame-75frame-75frame-75frame-75frame,
+.lowongan-mahasiswa-tt-solar-buildings-bold-pt-pos-indonesia-tsolar-map-point-bold-bandung-jawa-barat {
+  display: flex;
+  color: slategray;
+}
+
+.common-8,
+.lowongan-mahasiswa-status-indicator,
+.lowongan-mahasiswa-ellipse,
+.lowongan-mahasiswa-ellipse-1,
+.lowongan-mahasiswa-ellipse-2,
+.lowongan-mahasiswa-ellipse-3,
+.lowongan-mahasiswa-ellipse-4,
+.lowongan-mahasiswa-ellipse-5,
+.lowongan-mahasiswa-ellipse-6 {
+  width: 8px;
+  height: 8px;
+}
+
+.common-9,
+.lowongan-mahasiswa-solar-home-smile-angle-bold,
+.lowongan-mahasiswa-solar-case-round-bold,
+.lowongan-mahasiswa-solar-user-hands-bold,
+.lowongan-mahasiswa-solar-medal-star-bold,
+.lowongan-mahasiswa-solar-documents-bold,
+.lowongan-mahasiswa-solar-logout-3bold,
+.lowongan-mahasiswa-solar-settings-bold,
+.lowongan-mahasiswa-solar-question-square-bold,
+.lowongan-mahasiswa-solar-bell-bold,
+.lowongan-mahasiswa-solar-alt-arrow-down-outline,
+.lowongan-mahasiswa-solar-alt-arrow-down-outline-1,
+.lowongan-mahasiswa-solar-alt-arrow-down-outline-2 {
+  width: 24px;
+  height: 24px;
+}
+
+.common-10,
+.lowongan-mahasiswa-chevron-left,
+.lowongan-mahasiswa-chevron-right {
+  width: 20px;
+  height: 20px;
+}
+
+.common-11,
+.lowongan-mahasiswa-images,
+.lowongan-mahasiswa-images-1,
+.lowongan-mahasiswa-images-2,
+.lowongan-mahasiswa-images-3,
+.lowongan-mahasiswa-images-4,
+.lowongan-mahasiswa-images-5,
+.lowongan-mahasiswa-images-6 {
+  width: 100px;
+  height: 100px;
+}
+
+.common-12,
+.lowongan-mahasiswa-solar-buildings-bold-duotone,
+.lowongan-mahasiswa-solar-map-point-bold-duotone,
+.lowongan-mahasiswa-solar-calendar-bold-duotone,
+.lowongan-mahasiswa-solar-buildings-bold-duotone-1,
+.lowongan-mahasiswa-solar-map-point-bold-duotone-1,
+.lowongan-mahasiswa-solar-calendar-bold-duotone-1,
+.lowongan-mahasiswa-solar-buildings-bold-duotone-2,
+.lowongan-mahasiswa-solar-map-point-bold-duotone-2,
+.lowongan-mahasiswa-solar-calendar-bold-duotone-2,
+.lowongan-mahasiswa-solar-buildings-bold-duotone-3,
+.lowongan-mahasiswa-solar-map-point-bold-duotone-3,
+.lowongan-mahasiswa-solar-calendar-bold-duotone-3,
+.lowongan-mahasiswa-solar-buildings-bold-duotone-4,
+.lowongan-mahasiswa-solar-map-point-bold-duotone-4,
+.lowongan-mahasiswa-solar-calendar-bold-duotone-4,
+.lowongan-mahasiswa-solar-buildings-bold-duotone-5,
+.lowongan-mahasiswa-solar-map-point-bold-duotone-5,
+.lowongan-mahasiswa-solar-calendar-bold-duotone-5,
+.lowongan-mahasiswa-solar-buildings-bold,
+.lowongan-mahasiswa-solar-map-point-bold,
+.lowongan-mahasiswa-solar-calendar-bold-duotone-6 {
+  width: 12px;
+  height: 12px;
+}
+
+.common-13,
+.lowongan-mahasiswa-solar-user-bold-duotone,
+.lowongan-mahasiswa-solar-user-bold-duotone-1,
+.lowongan-mahasiswa-solar-user-bold-duotone-2,
+.lowongan-mahasiswa-solar-user-bold-duotone-3,
+.lowongan-mahasiswa-solar-user-bold-duotone-4,
+.lowongan-mahasiswa-solar-user-bold-duotone-5 {
+  width: 14px;
+  height: 14px;
+}
+
+.common-14,
+.lowongan-mahasiswa-cari,
+.lowongan-mahasiswa-detail,
+.lowongan-mahasiswa-detail-1,
+.lowongan-mahasiswa-detail-2,
+.lowongan-mahasiswa-detail-3,
+.lowongan-mahasiswa-detail-4,
+.lowongan-mahasiswa-detail-5,
+.lowongan-mahasiswa-selengkapnya {
+  background-color: darkorange;
+  color: white;
+}
+
+.lowongan-mahasiswa-lowongan-mahasiswa {
+  flex-direction: column;
+  padding-bottom: 77px;
+  width: 100%;
+}
+
+.lowongan-mahasiswa-tt-frame-102tframe-132ttframe-90ttframe {
+  flex-direction: column;
+  flex-grow: 1;
+  display: flex;
+  font-family: "Open Sans", ui-sans-serif, system-ui, sans-serif;
+  line-height: 1.5;
+  letter-spacing: 0em;
+  text-transform: capitalize;
+}
+
+.lowongan-mahasiswa-t-frame-102tframe {
+  z-index: 0;
+}
+
+.lowongan-mahasiswa-frame {
+  row-gap: 20px;
+  padding-bottom: 104px;
+  padding-left: 24px;
+  padding-right: 24px;
+  padding-top: 24px;
+  z-index: 2;
+  filter: drop-shadow(0px 4px 2px rgba(0, 0, 0, 0.25));
+  color: gray;
+}
+
+.lowongan-mahasiswa-t-avvxsejdplsg-8kycc-2lfwocc_wkorqptbjq_udcqwg-wl-aq-vf-9yktzv-4img-7bzw-1vludufmlde-5x-9zmny-jfl-3ebm-49sb-8jdimx-6ppptysrvrmffiwc-6w4ltbyswzghzhku-9zpxlzdmztjyxgedtyjebtja-34lopcm_y-283dwdm-8te-0z-8qwut-1z-4ylkgyw-56i-w {
+  align-self: stretch;
+}
+
+.lowongan-mahasiswa-a-vv-xs-ej-dp-lsg-8kyc-c2l-fwo-cc_w-ko-rq-ptb-jq_u-dcq-wg-wl-aq-vf-9yktzv-4img-7bzw-1vludufmlde-5x-9zmny-jfl-3ebm-49sb-8jdimx-6ppptysrvrmffiwc-6w4ltbyswzghzhku-9zpxlzdmztjyxgedtyjebtja-34lopcm_y-283dwdm-8te-0z-8qwut-1z-4ylkgyw-56i-w {
+  background-image: url(public/assets/a-vv-xs-ej-dp-lsg-8kyc-c2l-fwo-cc_w-ko-rq-ptb-jq_u-dcq-wg-wl-aq-vf-9yktzv-4img-7bzw-1vludufmlde-5x-9zmny-jfl-3ebm-49sb-8jdimx-6ppptysrvrmffiwc-6w4ltbyswzghzhku-9zpxlzdmztjyxgedtyjebtja-34lopcm_y-283dwdm-8te-0z-8qwut-1z-4ylkgyw-56i-w.png);
+  background-size: 100% 100%;
+  background-position: 0px 0px;
+  background-repeat: no-repeat;
+  max-width: 100%;
+  max-height: 100%;
+  width: 150px;
+  height: 55px;
+  flex-shrink: 0;
+}
+
+.lowongan-mahasiswa-t-line {
+  align-self: stretch;
+  max-width: 268px;
+  padding-top: 3px;
+}
+
+.lowongan-mahasiswa-line {
+  height: 1px;
+  flex-shrink: 0;
+}
+
+.lowongan-mahasiswa-t-4tangela-alegna-nim {
+  column-gap: 10px;
+  padding-top: 4px;
+}
+
+.lowongan-mahasiswa-component {
+  align-items: flex-end;
+  background-image: url(public/assets/component.png);
+  background-position: center;
+  background-size: cover;
+  width: 48px;
+  height: 48px;
+  padding-bottom: 3px;
+  padding-left: 37px;
+  padding-right: 3px;
+  padding-top: 37px;
+  flex-shrink: 0;
+}
+
+.lowongan-mahasiswa-status-indicator {
+  border-bottom-left-radius: 99px;
+  border-bottom-right-radius: 99px;
+  background-color: limegreen;
+  border-top-left-radius: 99px;
+  border-top-right-radius: 99px;
+  box-shadow: inset 2px 2px 4px 1px rgba(0, 0, 0, 0.05);
+  position: relative;
+  flex-shrink: 0;
+}
+
+.lowongan-mahasiswa-top-left-border {
+  box-shadow: 2px 2px 0 0 rgba(255, 255, 255, 1);
+  top: 0px;
+  left: 0px;
+  border-top-left-radius: 99px;
+  border-top-right-radius: 99px;
+  border-bottom-left-radius: 99px;
+}
+
+.lowongan-mahasiswa-bottom-right-border {
+  box-shadow: -2px -2px 0 0 rgba(255, 255, 255, 1);
+  left: -2px;
+  top: -2px;
+  border-bottom-right-radius: 99px;
+}
+
+.lowongan-mahasiswa-t-angela-alegna-nim {
+  row-gap: 4px;
+  align-self: stretch;
+  text-align: center;
+}
+
+.lowongan-mahasiswa-angela-alegna {
+  font-weight: 700;
+}
+
+.lowongan-mahasiswa-nim {
+  font-size: 12px;
+}
+
+.lowongan-mahasiswa-tt-solar-home-smile-angle-bold-beranda {
+  padding-left: 8px;
+  padding-right: 8px;
+  padding-top: 12px;
+}
+
+.lowongan-mahasiswa-t-solar-home-smile-angle-bold-beranda {
+  column-gap: 8px;
+}
+
+.lowongan-mahasiswa-solar-home-smile-angle-bold {
+  flex-shrink: 0;
+}
+
+.lowongan-mahasiswa-beranda {
+  font-weight: 700;
+}
+
+.lowongan-mahasiswa-lowongan-saya {
+  border-bottom-left-radius: 8px;
+  border-bottom-right-radius: 8px;
+  align-items: center;
+  column-gap: 8px;
+  align-self: stretch;
+  padding-bottom: 8px;
+  padding-left: 8px;
+  padding-right: 158px;
+  padding-top: 8px;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+}
+
+.lowongan-mahasiswa-solar-case-round-bold {
+  flex-shrink: 0;
+}
+
+.lowongan-mahasiswa-lowongan {
+  color: white;
+}
+
+.lowongan-mahasiswa-ttt-solar-user-hands-bold-kandidat-tsolar-medal-star-bold-penilaian-tsolar-documents-bold-laporan {
+  padding-left: 8px;
+  padding-right: 8px;
+}
+
+.lowongan-mahasiswa-tt-solar-user-hands-bold-kandidat-tsolar-medal-star-bold-penilaian-tsolar-documents-bold-laporan {
+  row-gap: 28px;
+}
+
+.lowongan-mahasiswa-t-solar-user-hands-bold-kandidat {
+  column-gap: 8px;
+  padding-right: 2px;
+}
+
+.lowongan-mahasiswa-solar-user-hands-bold {
+  flex-shrink: 0;
+}
+
+.lowongan-mahasiswa-t-solar-medal-star-bold-penilaian {
+  column-gap: 8px;
+}
+
+.lowongan-mahasiswa-solar-medal-star-bold {
+  flex-shrink: 0;
+}
+
+.lowongan-mahasiswa-t-solar-documents-bold-laporan {
+  column-gap: 8px;
+}
+
+.lowongan-mahasiswa-solar-documents-bold {
+  flex-shrink: 0;
+}
+
+.lowongan-mahasiswa-t-frame {
+  padding-top: 296px;
+}
+
+.lowongan-mahasiswa-frame-1 {
+  border-bottom-left-radius: 8px;
+  border-bottom-right-radius: 8px;
+  background-color: red;
+  column-gap: 8px;
+  padding-bottom: 8px;
+  padding-left: 8px;
+  padding-right: 179px;
+  padding-top: 8px;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+}
+
+.lowongan-mahasiswa-solar-logout-3bold {
+  flex-shrink: 0;
+}
+
+.lowongan-mahasiswa-logout {
+  color: white;
+  font-weight: 700;
+}
+
+.lowongan-mahasiswa-ttt-solar-settings-bold-pengaturan-tsolar-question-square-bold-bantuan {
+  padding-left: 8px;
+  padding-right: 8px;
+}
+
+.lowongan-mahasiswa-tt-solar-settings-bold-pengaturan-tsolar-question-square-bold-bantuan {
+  row-gap: 28px;
+}
+
+.lowongan-mahasiswa-t-solar-settings-bold-pengaturan {
+  column-gap: 8px;
+}
+
+.lowongan-mahasiswa-solar-settings-bold {
+  flex-shrink: 0;
+}
+
+.lowongan-mahasiswa-t-solar-question-square-bold-bantuan {
+  column-gap: 8px;
+}
+
+.lowongan-mahasiswa-solar-question-square-bold {
+  flex-shrink: 0;
+}
+
+.lowongan-mahasiswa-t-line-1 {
+  align-self: stretch;
+  max-width: 268px;
+  padding-top: 11px;
+}
+
+.lowongan-mahasiswa-line-1 {
+  height: 1px;
+  flex-shrink: 0;
+}
+
+.lowongan-mahasiswa-tt-versi-123beta-mbkm-ulbi {
+  align-self: stretch;
+  padding-top: 12px;
+}
+
+.lowongan-mahasiswa-versi-123beta-mbkm-ulbi {
+  text-align: center;
+  padding-right: 14px;
+}
+
+.lowongan-mahasiswa-t-frame-1 {
+  align-self: stretch;
+  height: 0px;
+  padding-left: 4px;
+  z-index: 1;
+  flex-shrink: 0;
+}
+
+.lowongan-mahasiswa-frame-2 {
+  border-style: solid;
+  border-color: orangered;
+  border-bottom-width: 8px;
+  align-items: center;
+  margin-top: -1080px;
+  height: 96px;
+  padding-bottom: 20px;
+  padding-left: 24px;
+  padding-right: 24px;
+  padding-top: 28px;
+  justify-content: flex-end;
+  flex-shrink: 0;
+}
+
+.lowongan-mahasiswa-frame-3 {
+  border-bottom-left-radius: 8px;
+  border-bottom-right-radius: 8px;
+  column-gap: 8px;
+  padding-bottom: 8px;
+  padding-left: 8px;
+  padding-right: 8px;
+  padding-top: 8px;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+}
+
+.lowongan-mahasiswa-solar-bell-bold {
+  flex-shrink: 0;
+}
+
+.lowongan-mahasiswa-notifikasi {
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.lowongan-mahasiswa-solar-alt-arrow-down-bold {
+  width: 16px;
+  height: 16px;
+  flex-shrink: 0;
+}
+
+.lowongan-mahasiswa-tt-frame {
+  height: 0px;
+  padding-left: 24px;
+  padding-right: 24px;
+  flex-shrink: 0;
+}
+
+.lowongan-mahasiswa-t-frame-2 {
+  margin-top: -960px;
+  height: 141px;
+  padding-left: 320px;
+  justify-content: flex-end;
+  flex-shrink: 0;
+}
+
+.lowongan-mahasiswa-frame-4 {
+  border-top-width: 1px;
+  border-bottom-width: 1px;
+  border-left-width: 1px;
+  border-right-width: 1px;
+  border-bottom-left-radius: 8px;
+  border-bottom-right-radius: 8px;
+  row-gap: 4px;
+  flex-grow: 1;
+  padding-bottom: 15px;
+  padding-left: 15px;
+  padding-right: 15px;
+  padding-top: 15px;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+  filter: drop-shadow(0px 1px 2px rgba(12, 12, 13, 0.05));
+}
+
+.lowongan-mahasiswa-cari-berdasarkan-perusahaan-pekerjaan-program-studi {
+  font-weight: 700;
+}
+
+.lowongan-mahasiswa-frame-5 {
+  border-top-width: 1px;
+  border-bottom-width: 1px;
+  border-left-width: 1px;
+  border-right-width: 1px;
+  border-bottom-left-radius: 8px;
+  border-bottom-right-radius: 8px;
+  align-items: center;
+  padding-bottom: 7px;
+  padding-left: 15px;
+  padding-right: 15px;
+  padding-top: 7px;
+  justify-content: space-between;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+  flex-wrap: wrap;
+}
+
+.lowongan-mahasiswa-silahkan-ketik-pencarian-anda-disini {
+  display: flex;
+  outline: none;
+  width: 203px;
+}
+
+.lowongan-mahasiswa-cari {
+  border-bottom-left-radius: 8px;
+  border-bottom-right-radius: 8px;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+  padding-left: 24px;
+  padding-right: 24px;
+  padding-top: 8px;
+  padding-bottom: 8px;
+}
+
+.lowongan-mahasiswa-t-tampilkan-filter-solar-alt-arrow-down-outline {
+  row-gap: 8px;
+  column-gap: 8px;
+  padding-top: 6px;
+}
+
+.lowongan-mahasiswa-tampilkan-filter {
+  font-weight: 600;
+}
+
+.lowongan-mahasiswa-solar-alt-arrow-down-outline {
+  flex-shrink: 0;
+}
+
+.lowongan-mahasiswa-tt-frame-1 {
+  height: 568px;
+  padding-left: 24px;
+  padding-right: 24px;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.lowongan-mahasiswa-frame-6 {
+  row-gap: 23px;
+  filter: drop-shadow(0px 1px 2px rgba(12, 12, 13, 0.1)),
+    drop-shadow(0px 1px 2px rgba(12, 12, 13, 0.05));
+  border-bottom-left-radius: 8px;
+  border-bottom-right-radius: 8px;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+  padding-left: 24px;
+  padding-right: 24px;
+  padding-top: 24px;
+  padding-bottom: 36px;
+  margin-left: 320px;
+  flex-grow: 1;
+}
+
+.lowongan-mahasiswa-tt-semua-lowongan-tstatus-frame-4status-frame {
+  row-gap: 8px;
+  column-gap: 8px;
+  padding-right: 0.5px;
+}
+
+.lowongan-mahasiswa-t-semua-lowongan-tstatus-frame-4status {
+  row-gap: 9px;
+  column-gap: 24px;
+  flex-grow: 1;
+}
+
+.lowongan-mahasiswa-semua-lowongan {
+  width: 829px;
+  font-weight: 700;
+  flex-shrink: 0;
+}
+
+.lowongan-mahasiswa-t-status-frame {
+  row-gap: 8px;
+  column-gap: 8px;
+  font-size: 12px;
+}
+
+.lowongan-mahasiswa-status {
+  font-weight: 700;
+}
+
+.lowongan-mahasiswa-frame-7 {
+  border-top-width: 1px;
+  border-bottom-width: 1px;
+  border-left-width: 1px;
+  border-right-width: 1px;
+  border-bottom-left-radius: 8px;
+  border-bottom-right-radius: 8px;
+  column-gap: 113px;
+  align-self: stretch;
+  padding-bottom: 7px;
+  padding-left: 15px;
+  padding-right: 15px;
+  padding-top: 7px;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+}
+
+.lowongan-mahasiswa-semua {
+  font-weight: 600;
+}
+
+.lowongan-mahasiswa-solar-alt-arrow-down-outline-1 {
+  flex-shrink: 0;
+}
+
+.lowongan-mahasiswa-status-1 {
+  font-weight: 700;
+}
+
+.lowongan-mahasiswa-frame-8 {
+  border-top-width: 1px;
+  border-bottom-width: 1px;
+  border-left-width: 1px;
+  border-right-width: 1px;
+  border-bottom-left-radius: 8px;
+  border-bottom-right-radius: 8px;
+  column-gap: 104px;
+  align-self: stretch;
+  padding-bottom: 7px;
+  padding-left: 15px;
+  padding-right: 15px;
+  padding-top: 7px;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+}
+
+.lowongan-mahasiswa-semua-1 {
+  font-weight: 600;
+}
+
+.lowongan-mahasiswa-solar-alt-arrow-down-outline-2 {
+  flex-shrink: 0;
+}
+
+.lowongan-mahasiswa-line-2 {
+  height: 1px;
+  flex-shrink: 0;
+}
+
+.lowongan-mahasiswa-line-3 {
+  height: 1px;
+  flex-shrink: 0;
+}
+
+.lowongan-mahasiswa-t-menampilkan-4lowongan-pagination {
+  row-gap: 11px;
+  column-gap: 80px;
+  justify-content: space-between;
+  font-size: 14px;
+}
+
+.lowongan-mahasiswa-menampilkan-4lowongan {
+  font-weight: 600;
+}
+
+.lowongan-mahasiswa-wrapper {
+  border-bottom-left-radius: 4px;
+  border-bottom-right-radius: 4px;
+  border-top-left-radius: 4px;
+  border-top-right-radius: 4px;
+}
+
+.lowongan-mahasiswa-pagination {
+  border-top-width: 1px;
+  border-bottom-width: 1px;
+  border-left-width: 1px;
+  border-right-width: 1px;
+  border-bottom-left-radius: 4px;
+  border-bottom-right-radius: 4px;
+  overflow: clip;
+  border-top-left-radius: 4px;
+  border-top-right-radius: 4px;
+  flex-shrink: 0;
+}
+
+.lowongan-mahasiswa-t-page-item-page-item-page-item-page-item-page-item-page-item-page-item {
+  font-family: Inter, ui-sans-serif, system-ui, sans-serif;
+  text-align: center;
+  font-weight: 500;
+}
+
+.lowongan-mahasiswa-page-item {
+  padding-bottom: 6.5px;
+  padding-left: 12px;
+  padding-right: 12px;
+  padding-top: 6.5px;
+}
+
+.lowongan-mahasiswa-chevron-left {
+  text-align: center;
+  flex-shrink: 0;
+}
+
+.lowongan-mahasiswa-page-item-1 {
+  border-top-width: 1px;
+  border-bottom-width: 1px;
+  border-left-width: 1px;
+  border-right-width: 1px;
+  padding-bottom: 5px;
+  padding-left: 11px;
+  padding-right: 11px;
+  padding-top: 5px;
+}
+
+.lowongan-mahasiswa-text {
+  text-align: center;
+}
+
+.lowongan-mahasiswa-page-item-2 {
+  border-top-width: 1px;
+  border-bottom-width: 1px;
+  border-left-width: 1px;
+  border-right-width: 1px;
+  background-color: midnightblue;
+  width: 33px;
+  padding-bottom: 5px;
+  padding-left: 11px;
+  padding-right: 11px;
+  padding-top: 5px;
+  flex-shrink: 0;
+}
+
+.lowongan-mahasiswa-text-1 {
+  color: white;
+  text-align: center;
+}
+
+.lowongan-mahasiswa-page-item-3 {
+  border-top-width: 1px;
+  border-bottom-width: 1px;
+  border-left-width: 1px;
+  border-right-width: 1px;
+  background-color: white;
+  width: 34px;
+  padding-bottom: 5px;
+  padding-left: 11px;
+  padding-right: 11px;
+  padding-top: 5px;
+  flex-shrink: 0;
+}
+
+.lowongan-mahasiswa-text-2 {
+  text-align: center;
+}
+
+.lowongan-mahasiswa-page-item-4 {
+  border-top-width: 1px;
+  border-bottom-width: 1px;
+  border-left-width: 1px;
+  border-right-width: 1px;
+  padding-bottom: 5px;
+  padding-left: 11px;
+  padding-right: 11px;
+  padding-top: 5px;
+}
+
+.lowongan-mahasiswa-text-3 {
+  text-align: center;
+}
+
+.lowongan-mahasiswa-page-item-5 {
+  border-top-width: 1px;
+  border-bottom-width: 1px;
+  border-left-width: 1px;
+  border-right-width: 1px;
+  padding-bottom: 5px;
+  padding-left: 11px;
+  padding-right: 11px;
+  padding-top: 5px;
+}
+
+.lowongan-mahasiswa-text-4 {
+  text-align: center;
+}
+
+.lowongan-mahasiswa-page-item-6 {
+  border-top-width: 1px;
+  border-bottom-width: 1px;
+  border-left-width: 1px;
+  border-right-width: 1px;
+  padding-bottom: 5.5px;
+  padding-left: 11px;
+  padding-right: 11px;
+  padding-top: 5.5px;
+}
+
+.lowongan-mahasiswa-chevron-right {
+  text-align: center;
+  flex-shrink: 0;
+}
+
+.lowongan-mahasiswa-tt-frame-75frame-75frame-75frame-75frame-75frame-75frame {
+  row-gap: 24px;
+  column-gap: 24px;
+  padding-right: 0.5px;
+}
+
+.lowongan-mahasiswa-t-frame-75frame-75frame-75frame-75frame-75frame {
+  row-gap: 24px;
+}
+
+.lowongan-mahasiswa-wrapper-1 {
+  border-bottom-left-radius: 8px;
+  border-bottom-right-radius: 8px;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+}
+
+.lowongan-mahasiswa-frame-9 {
+  border-top-width: 1px;
+  border-bottom-width: 1px;
+  border-left-width: 1px;
+  border-right-width: 1px;
+  border-bottom-left-radius: 8px;
+  border-bottom-right-radius: 8px;
+  overflow: clip;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+  flex-shrink: 0;
+}
+
+.lowongan-mahasiswa-frame-10 {
+  border-bottom-left-radius: 8px;
+  padding-bottom: 35px;
+  padding-left: 10px;
+  padding-right: 10px;
+  padding-top: 35px;
+  border-top-left-radius: 8px;
+}
+
+.lowongan-mahasiswa-images {
+  object-fit: cover;
+  object-position: center;
+  flex-shrink: 0;
+}
+
+.lowongan-mahasiswa-frame-11 {
+  border-bottom-right-radius: 8px;
+  row-gap: 4px;
+  padding-bottom: 16px;
+  padding-left: 16px;
+  padding-right: 16px;
+  padding-top: 16px;
+  border-top-right-radius: 8px;
+}
+
+.lowongan-mahasiswa-diposting-2hari-yang-lalu {
+  width: 536px;
+  font-size: 10px;
+  flex-shrink: 0;
+}
+
+.lowongan-mahasiswa-frame-12 {
+  border-bottom-left-radius: 50px;
+  border-bottom-right-radius: 50px;
+  column-gap: 4px;
+  padding-bottom: 2px;
+  padding-left: 8px;
+  padding-right: 8px;
+  padding-top: 2px;
+  border-top-left-radius: 50px;
+  border-top-right-radius: 50px;
+}
+
+.lowongan-mahasiswa-ellipse {
+  flex-shrink: 0;
+}
+
+.lowongan-mahasiswa-global-finance-accounting-internship {
+  align-self: stretch;
+}
+
+.lowongan-mahasiswa-tt-solar-buildings-bold-duotone-pt-pos-indonesia-tsolar-map-point-bold-duotone-bandung-jawa-barat {
+  row-gap: 4px;
+  font-size: 10px;
+}
+
+.lowongan-mahasiswa-t-solar-buildings-bold-duotone-pt-pos-indonesia {
+  column-gap: 4px;
+}
+
+.lowongan-mahasiswa-solar-buildings-bold-duotone {
+  flex-shrink: 0;
+}
+
+.lowongan-mahasiswa-t-solar-map-point-bold-duotone-bandung-jawa-barat {
+  column-gap: 4px;
+}
+
+.lowongan-mahasiswa-solar-map-point-bold-duotone {
+  flex-shrink: 0;
+}
+
+.lowongan-mahasiswa-t-solar-calendar-bold-duotone-batas-akhir-pendaftaran-06september {
+  row-gap: 4px;
+  column-gap: 4px;
+}
+
+.lowongan-mahasiswa-solar-calendar-bold-duotone {
+  flex-shrink: 0;
+}
+
+.lowongan-mahasiswa-batas-akhir-pendaftaran-06september {
+  font-size: 10px;
+}
+
+.lowongan-mahasiswa-tt-solar-user-bold-duotone-10kandidat-mendaftar-tframe-4frame {
+  row-gap: 9px;
+  column-gap: 221px;
+  font-weight: 700;
+}
+
+.lowongan-mahasiswa-t-solar-user-bold-duotone-10kandidat-mendaftar {
+  column-gap: 8px;
+}
+
+.lowongan-mahasiswa-solar-user-bold-duotone {
+  flex-shrink: 0;
+}
+
+.lowongan-mahasiswa-kandidat-mendaftar {
+  font-size: 12px;
+}
+
+.lowongan-mahasiswa-t-frame-4frame {
+  column-gap: 8px;
+}
+
+.lowongan-mahasiswa-frame-13 {
+  border-top-width: 1px;
+  border-bottom-width: 1px;
+  border-left-width: 1px;
+  border-right-width: 1px;
+  border-bottom-left-radius: 8px;
+  border-bottom-right-radius: 8px;
+  padding-bottom: 3px;
+  padding-left: 23px;
+  padding-right: 23px;
+  padding-top: 3px;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+}
+
+.lowongan-mahasiswa-detail {
+  border-bottom-left-radius: 8px;
+  border-bottom-right-radius: 8px;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+  padding-left: 29px;
+  padding-right: 29px;
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+.lowongan-mahasiswa-wrapper-2 {
+  border-bottom-left-radius: 8px;
+  border-bottom-right-radius: 8px;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+}
+
+.lowongan-mahasiswa-frame-14 {
+  border-top-width: 1px;
+  border-bottom-width: 1px;
+  border-left-width: 1px;
+  border-right-width: 1px;
+  border-bottom-left-radius: 8px;
+  border-bottom-right-radius: 8px;
+  overflow: clip;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+  flex-shrink: 0;
+}
+
+.lowongan-mahasiswa-frame-15 {
+  border-bottom-left-radius: 8px;
+  padding-bottom: 35px;
+  padding-left: 10px;
+  padding-right: 10px;
+  padding-top: 35px;
+  border-top-left-radius: 8px;
+}
+
+.lowongan-mahasiswa-images-1 {
+  object-fit: cover;
+  object-position: center;
+  flex-shrink: 0;
+}
+
+.lowongan-mahasiswa-frame-16 {
+  border-bottom-right-radius: 8px;
+  row-gap: 4px;
+  padding-bottom: 16px;
+  padding-left: 16px;
+  padding-right: 16px;
+  padding-top: 16px;
+  border-top-right-radius: 8px;
+}
+
+.lowongan-mahasiswa-diposting-2hari-yang-lalu-1 {
+  width: 536px;
+  font-size: 10px;
+  flex-shrink: 0;
+}
+
+.lowongan-mahasiswa-frame-17 {
+  border-bottom-left-radius: 50px;
+  border-bottom-right-radius: 50px;
+  column-gap: 4px;
+  padding-bottom: 2px;
+  padding-left: 8px;
+  padding-right: 8px;
+  padding-top: 2px;
+  border-top-left-radius: 50px;
+  border-top-right-radius: 50px;
+}
+
+.lowongan-mahasiswa-ellipse-1 {
+  flex-shrink: 0;
+}
+
+.lowongan-mahasiswa-global-finance-accounting-internship-1 {
+  align-self: stretch;
+}
+
+.lowongan-mahasiswa-tt-solar-buildings-bold-duotone-pt-pos-indonesia-tsolar-map-point-bold-duotone-bandung-jawa-barat-1 {
+  row-gap: 4px;
+  font-size: 10px;
+}
+
+.lowongan-mahasiswa-t-solar-buildings-bold-duotone-pt-pos-indonesia-1 {
+  column-gap: 4px;
+}
+
+.lowongan-mahasiswa-solar-buildings-bold-duotone-1 {
+  flex-shrink: 0;
+}
+
+.lowongan-mahasiswa-t-solar-map-point-bold-duotone-bandung-jawa-barat-1 {
+  column-gap: 4px;
+}
+
+.lowongan-mahasiswa-solar-map-point-bold-duotone-1 {
+  flex-shrink: 0;
+}
+
+.lowongan-mahasiswa-t-solar-calendar-bold-duotone-batas-akhir-pendaftaran-06september-1 {
+  row-gap: 4px;
+  column-gap: 4px;
+}
+
+.lowongan-mahasiswa-solar-calendar-bold-duotone-1 {
+  flex-shrink: 0;
+}
+
+.lowongan-mahasiswa-batas-akhir-pendaftaran-06september-1 {
+  font-size: 10px;
+}
+
+.lowongan-mahasiswa-tt-solar-user-bold-duotone-10kandidat-mendaftar-tframe-4frame-1 {
+  row-gap: 9px;
+  column-gap: 221px;
+  font-weight: 700;
+}
+
+.lowongan-mahasiswa-t-solar-user-bold-duotone-10kandidat-mendaftar-1 {
+  column-gap: 8px;
+}
+
+.lowongan-mahasiswa-solar-user-bold-duotone-1 {
+  flex-shrink: 0;
+}
+
+.lowongan-mahasiswa-kandidat-mendaftar-1 {
+  font-size: 12px;
+}
+
+.lowongan-mahasiswa-t-frame-4frame-1 {
+  column-gap: 8px;
+}
+
+.lowongan-mahasiswa-frame-18 {
+  border-top-width: 1px;
+  border-bottom-width: 1px;
+  border-left-width: 1px;
+  border-right-width: 1px;
+  border-bottom-left-radius: 8px;
+  border-bottom-right-radius: 8px;
+  padding-bottom: 3px;
+  padding-left: 23px;
+  padding-right: 23px;
+  padding-top: 3px;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+}
+
+.lowongan-mahasiswa-detail-1 {
+  border-bottom-left-radius: 8px;
+  border-bottom-right-radius: 8px;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+  padding-left: 29px;
+  padding-right: 29px;
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+.lowongan-mahasiswa-wrapper-3 {
+  border-bottom-left-radius: 8px;
+  border-bottom-right-radius: 8px;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+}
+
+.lowongan-mahasiswa-frame-19 {
+  border-top-width: 1px;
+  border-bottom-width: 1px;
+  border-left-width: 1px;
+  border-right-width: 1px;
+  border-bottom-left-radius: 8px;
+  border-bottom-right-radius: 8px;
+  overflow: clip;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+  flex-shrink: 0;
+}
+
+.lowongan-mahasiswa-frame-20 {
+  border-bottom-left-radius: 8px;
+  padding-bottom: 35px;
+  padding-left: 10px;
+  padding-right: 10px;
+  padding-top: 35px;
+  border-top-left-radius: 8px;
+}
+
+.lowongan-mahasiswa-images-2 {
+  object-fit: cover;
+  object-position: center;
+  flex-shrink: 0;
+}
+
+.lowongan-mahasiswa-frame-21 {
+  border-bottom-right-radius: 8px;
+  row-gap: 4px;
+  padding-bottom: 16px;
+  padding-left: 16px;
+  padding-right: 16px;
+  padding-top: 16px;
+  border-top-right-radius: 8px;
+}
+
+.lowongan-mahasiswa-diposting-2hari-yang-lalu-2 {
+  width: 536px;
+  font-size: 10px;
+  flex-shrink: 0;
+}
+
+.lowongan-mahasiswa-frame-22 {
+  border-bottom-left-radius: 50px;
+  border-bottom-right-radius: 50px;
+  column-gap: 4px;
+  padding-bottom: 2px;
+  padding-left: 8px;
+  padding-right: 8px;
+  padding-top: 2px;
+  border-top-left-radius: 50px;
+  border-top-right-radius: 50px;
+}
+
+.lowongan-mahasiswa-ellipse-2 {
+  flex-shrink: 0;
+}
+
+.lowongan-mahasiswa-global-finance-accounting-internship-2 {
+  align-self: stretch;
+}
+
+.lowongan-mahasiswa-tt-solar-buildings-bold-duotone-pt-pos-indonesia-tsolar-map-point-bold-duotone-bandung-jawa-barat-2 {
+  row-gap: 4px;
+  font-size: 10px;
+}
+
+.lowongan-mahasiswa-t-solar-buildings-bold-duotone-pt-pos-indonesia-2 {
+  column-gap: 4px;
+}
+
+.lowongan-mahasiswa-solar-buildings-bold-duotone-2 {
+  flex-shrink: 0;
+}
+
+.lowongan-mahasiswa-t-solar-map-point-bold-duotone-bandung-jawa-barat-2 {
+  column-gap: 4px;
+}
+
+.lowongan-mahasiswa-solar-map-point-bold-duotone-2 {
+  flex-shrink: 0;
+}
+
+.lowongan-mahasiswa-t-solar-calendar-bold-duotone-batas-akhir-pendaftaran-06september-2 {
+  row-gap: 4px;
+  column-gap: 4px;
+}
+
+.lowongan-mahasiswa-solar-calendar-bold-duotone-2 {
+  flex-shrink: 0;
+}
+
+.lowongan-mahasiswa-batas-akhir-pendaftaran-06september-2 {
+  font-size: 10px;
+}
+
+.lowongan-mahasiswa-tt-solar-user-bold-duotone-10kandidat-mendaftar-tframe-4frame-2 {
+  row-gap: 9px;
+  column-gap: 221px;
+  font-weight: 700;
+}
+
+.lowongan-mahasiswa-t-solar-user-bold-duotone-10kandidat-mendaftar-2 {
+  column-gap: 8px;
+}
+
+.lowongan-mahasiswa-solar-user-bold-duotone-2 {
+  flex-shrink: 0;
+}
+
+.lowongan-mahasiswa-kandidat-mendaftar-2 {
+  font-size: 12px;
+}
+
+.lowongan-mahasiswa-t-frame-4frame-2 {
+  column-gap: 8px;
+}
+
+.lowongan-mahasiswa-frame-23 {
+  border-top-width: 1px;
+  border-bottom-width: 1px;
+  border-left-width: 1px;
+  border-right-width: 1px;
+  border-bottom-left-radius: 8px;
+  border-bottom-right-radius: 8px;
+  padding-bottom: 3px;
+  padding-left: 23px;
+  padding-right: 23px;
+  padding-top: 3px;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+}
+
+.lowongan-mahasiswa-detail-2 {
+  border-bottom-left-radius: 8px;
+  border-bottom-right-radius: 8px;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+  padding-left: 29px;
+  padding-right: 29px;
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+.lowongan-mahasiswa-wrapper-4 {
+  border-bottom-left-radius: 8px;
+  border-bottom-right-radius: 8px;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+}
+
+.lowongan-mahasiswa-frame-24 {
+  border-top-width: 1px;
+  border-bottom-width: 1px;
+  border-left-width: 1px;
+  border-right-width: 1px;
+  border-bottom-left-radius: 8px;
+  border-bottom-right-radius: 8px;
+  overflow: clip;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+  flex-shrink: 0;
+}
+
+.lowongan-mahasiswa-frame-25 {
+  border-bottom-left-radius: 8px;
+  padding-bottom: 35px;
+  padding-left: 10px;
+  padding-right: 10px;
+  padding-top: 35px;
+  border-top-left-radius: 8px;
+}
+
+.lowongan-mahasiswa-images-3 {
+  object-fit: cover;
+  object-position: center;
+  flex-shrink: 0;
+}
+
+.lowongan-mahasiswa-frame-26 {
+  border-bottom-right-radius: 8px;
+  row-gap: 4px;
+  padding-bottom: 16px;
+  padding-left: 16px;
+  padding-right: 16px;
+  padding-top: 16px;
+  border-top-right-radius: 8px;
+}
+
+.lowongan-mahasiswa-diposting-2hari-yang-lalu-3 {
+  width: 536px;
+  font-size: 10px;
+  flex-shrink: 0;
+}
+
+.lowongan-mahasiswa-frame-27 {
+  border-bottom-left-radius: 50px;
+  border-bottom-right-radius: 50px;
+  column-gap: 4px;
+  padding-bottom: 2px;
+  padding-left: 8px;
+  padding-right: 8px;
+  padding-top: 2px;
+  border-top-left-radius: 50px;
+  border-top-right-radius: 50px;
+}
+
+.lowongan-mahasiswa-ellipse-3 {
+  flex-shrink: 0;
+}
+
+.lowongan-mahasiswa-global-finance-accounting-internship-3 {
+  align-self: stretch;
+}
+
+.lowongan-mahasiswa-tt-solar-buildings-bold-duotone-pt-pos-indonesia-tsolar-map-point-bold-duotone-bandung-jawa-barat-3 {
+  row-gap: 4px;
+  font-size: 10px;
+}
+
+.lowongan-mahasiswa-t-solar-buildings-bold-duotone-pt-pos-indonesia-3 {
+  column-gap: 4px;
+}
+
+.lowongan-mahasiswa-solar-buildings-bold-duotone-3 {
+  flex-shrink: 0;
+}
+
+.lowongan-mahasiswa-t-solar-map-point-bold-duotone-bandung-jawa-barat-3 {
+  column-gap: 4px;
+}
+
+.lowongan-mahasiswa-solar-map-point-bold-duotone-3 {
+  flex-shrink: 0;
+}
+
+.lowongan-mahasiswa-t-solar-calendar-bold-duotone-batas-akhir-pendaftaran-06september-3 {
+  row-gap: 4px;
+  column-gap: 4px;
+}
+
+.lowongan-mahasiswa-solar-calendar-bold-duotone-3 {
+  flex-shrink: 0;
+}
+
+.lowongan-mahasiswa-batas-akhir-pendaftaran-06september-3 {
+  font-size: 10px;
+}
+
+.lowongan-mahasiswa-tt-solar-user-bold-duotone-10kandidat-mendaftar-tframe-4frame-3 {
+  row-gap: 9px;
+  column-gap: 221px;
+  font-weight: 700;
+}
+
+.lowongan-mahasiswa-t-solar-user-bold-duotone-10kandidat-mendaftar-3 {
+  column-gap: 8px;
+}
+
+.lowongan-mahasiswa-solar-user-bold-duotone-3 {
+  flex-shrink: 0;
+}
+
+.lowongan-mahasiswa-kandidat-mendaftar-3 {
+  font-size: 12px;
+}
+
+.lowongan-mahasiswa-t-frame-4frame-3 {
+  column-gap: 8px;
+}
+
+.lowongan-mahasiswa-frame-28 {
+  border-top-width: 1px;
+  border-bottom-width: 1px;
+  border-left-width: 1px;
+  border-right-width: 1px;
+  border-bottom-left-radius: 8px;
+  border-bottom-right-radius: 8px;
+  padding-bottom: 3px;
+  padding-left: 23px;
+  padding-right: 23px;
+  padding-top: 3px;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+}
+
+.lowongan-mahasiswa-detail-3 {
+  border-bottom-left-radius: 8px;
+  border-bottom-right-radius: 8px;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+  padding-left: 29px;
+  padding-right: 29px;
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+.lowongan-mahasiswa-wrapper-5 {
+  border-bottom-left-radius: 8px;
+  border-bottom-right-radius: 8px;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+}
+
+.lowongan-mahasiswa-frame-29 {
+  border-top-width: 1px;
+  border-bottom-width: 1px;
+  border-left-width: 1px;
+  border-right-width: 1px;
+  border-bottom-left-radius: 8px;
+  border-bottom-right-radius: 8px;
+  overflow: clip;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+  flex-shrink: 0;
+}
+
+.lowongan-mahasiswa-frame-30 {
+  border-bottom-left-radius: 8px;
+  padding-bottom: 35px;
+  padding-left: 10px;
+  padding-right: 10px;
+  padding-top: 35px;
+  border-top-left-radius: 8px;
+}
+
+.lowongan-mahasiswa-images-4 {
+  object-fit: cover;
+  object-position: center;
+  flex-shrink: 0;
+}
+
+.lowongan-mahasiswa-frame-31 {
+  border-bottom-right-radius: 8px;
+  row-gap: 4px;
+  padding-bottom: 16px;
+  padding-left: 16px;
+  padding-right: 16px;
+  padding-top: 16px;
+  border-top-right-radius: 8px;
+}
+
+.lowongan-mahasiswa-diposting-2hari-yang-lalu-4 {
+  width: 536px;
+  font-size: 10px;
+  flex-shrink: 0;
+}
+
+.lowongan-mahasiswa-frame-32 {
+  border-bottom-left-radius: 50px;
+  border-bottom-right-radius: 50px;
+  column-gap: 4px;
+  padding-bottom: 2px;
+  padding-left: 8px;
+  padding-right: 8px;
+  padding-top: 2px;
+  border-top-left-radius: 50px;
+  border-top-right-radius: 50px;
+}
+
+.lowongan-mahasiswa-ellipse-4 {
+  flex-shrink: 0;
+}
+
+.lowongan-mahasiswa-global-finance-accounting-internship-4 {
+  align-self: stretch;
+}
+
+.lowongan-mahasiswa-tt-solar-buildings-bold-duotone-pt-pos-indonesia-tsolar-map-point-bold-duotone-bandung-jawa-barat-4 {
+  row-gap: 4px;
+  font-size: 10px;
+}
+
+.lowongan-mahasiswa-t-solar-buildings-bold-duotone-pt-pos-indonesia-4 {
+  column-gap: 4px;
+}
+
+.lowongan-mahasiswa-solar-buildings-bold-duotone-4 {
+  flex-shrink: 0;
+}
+
+.lowongan-mahasiswa-t-solar-map-point-bold-duotone-bandung-jawa-barat-4 {
+  column-gap: 4px;
+}
+
+.lowongan-mahasiswa-solar-map-point-bold-duotone-4 {
+  flex-shrink: 0;
+}
+
+.lowongan-mahasiswa-t-solar-calendar-bold-duotone-batas-akhir-pendaftaran-06september-4 {
+  row-gap: 4px;
+  column-gap: 4px;
+}
+
+.lowongan-mahasiswa-solar-calendar-bold-duotone-4 {
+  flex-shrink: 0;
+}
+
+.lowongan-mahasiswa-batas-akhir-pendaftaran-06september-4 {
+  font-size: 10px;
+}
+
+.lowongan-mahasiswa-tt-solar-user-bold-duotone-10kandidat-mendaftar-tframe-4frame-4 {
+  row-gap: 9px;
+  column-gap: 221px;
+  font-weight: 700;
+}
+
+.lowongan-mahasiswa-t-solar-user-bold-duotone-10kandidat-mendaftar-4 {
+  column-gap: 8px;
+}
+
+.lowongan-mahasiswa-solar-user-bold-duotone-4 {
+  flex-shrink: 0;
+}
+
+.lowongan-mahasiswa-kandidat-mendaftar-4 {
+  font-size: 12px;
+}
+
+.lowongan-mahasiswa-t-frame-4frame-4 {
+  column-gap: 8px;
+}
+
+.lowongan-mahasiswa-frame-33 {
+  border-top-width: 1px;
+  border-bottom-width: 1px;
+  border-left-width: 1px;
+  border-right-width: 1px;
+  border-bottom-left-radius: 8px;
+  border-bottom-right-radius: 8px;
+  padding-bottom: 3px;
+  padding-left: 23px;
+  padding-right: 23px;
+  padding-top: 3px;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+}
+
+.lowongan-mahasiswa-detail-4 {
+  border-bottom-left-radius: 8px;
+  border-bottom-right-radius: 8px;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+  padding-left: 29px;
+  padding-right: 29px;
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+.lowongan-mahasiswa-wrapper-6 {
+  border-bottom-left-radius: 8px;
+  border-bottom-right-radius: 8px;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+}
+
+.lowongan-mahasiswa-frame-34 {
+  border-top-width: 1px;
+  border-bottom-width: 1px;
+  border-left-width: 1px;
+  border-right-width: 1px;
+  border-bottom-left-radius: 8px;
+  border-bottom-right-radius: 8px;
+  overflow: clip;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+  flex-shrink: 0;
+}
+
+.lowongan-mahasiswa-frame-35 {
+  border-bottom-left-radius: 8px;
+  padding-bottom: 35px;
+  padding-left: 10px;
+  padding-right: 10px;
+  padding-top: 35px;
+  border-top-left-radius: 8px;
+}
+
+.lowongan-mahasiswa-images-5 {
+  object-fit: cover;
+  object-position: center;
+  flex-shrink: 0;
+}
+
+.lowongan-mahasiswa-frame-36 {
+  border-bottom-right-radius: 8px;
+  row-gap: 4px;
+  padding-bottom: 16px;
+  padding-left: 16px;
+  padding-right: 16px;
+  padding-top: 16px;
+  border-top-right-radius: 8px;
+}
+
+.lowongan-mahasiswa-diposting-2hari-yang-lalu-5 {
+  width: 536px;
+  font-size: 10px;
+  flex-shrink: 0;
+}
+
+.lowongan-mahasiswa-frame-37 {
+  border-bottom-left-radius: 50px;
+  border-bottom-right-radius: 50px;
+  column-gap: 4px;
+  padding-bottom: 2px;
+  padding-left: 8px;
+  padding-right: 8px;
+  padding-top: 2px;
+  border-top-left-radius: 50px;
+  border-top-right-radius: 50px;
+}
+
+.lowongan-mahasiswa-ellipse-5 {
+  flex-shrink: 0;
+}
+
+.lowongan-mahasiswa-global-finance-accounting-internship-5 {
+  align-self: stretch;
+}
+
+.lowongan-mahasiswa-tt-solar-buildings-bold-duotone-pt-pos-indonesia-tsolar-map-point-bold-duotone-bandung-jawa-barat-5 {
+  row-gap: 4px;
+  font-size: 10px;
+}
+
+.lowongan-mahasiswa-t-solar-buildings-bold-duotone-pt-pos-indonesia-5 {
+  column-gap: 4px;
+}
+
+.lowongan-mahasiswa-solar-buildings-bold-duotone-5 {
+  flex-shrink: 0;
+}
+
+.lowongan-mahasiswa-t-solar-map-point-bold-duotone-bandung-jawa-barat-5 {
+  column-gap: 4px;
+}
+
+.lowongan-mahasiswa-solar-map-point-bold-duotone-5 {
+  flex-shrink: 0;
+}
+
+.lowongan-mahasiswa-t-solar-calendar-bold-duotone-batas-akhir-pendaftaran-06september-5 {
+  row-gap: 4px;
+  column-gap: 4px;
+}
+
+.lowongan-mahasiswa-solar-calendar-bold-duotone-5 {
+  flex-shrink: 0;
+}
+
+.lowongan-mahasiswa-batas-akhir-pendaftaran-06september-5 {
+  font-size: 10px;
+}
+
+.lowongan-mahasiswa-tt-solar-user-bold-duotone-10kandidat-mendaftar-tframe-4frame-5 {
+  row-gap: 9px;
+  column-gap: 221px;
+  font-weight: 700;
+}
+
+.lowongan-mahasiswa-t-solar-user-bold-duotone-10kandidat-mendaftar-5 {
+  column-gap: 8px;
+}
+
+.lowongan-mahasiswa-solar-user-bold-duotone-5 {
+  flex-shrink: 0;
+}
+
+.lowongan-mahasiswa-kandidat-mendaftar-5 {
+  font-size: 12px;
+}
+
+.lowongan-mahasiswa-t-frame-4frame-5 {
+  column-gap: 8px;
+}
+
+.lowongan-mahasiswa-frame-38 {
+  border-top-width: 1px;
+  border-bottom-width: 1px;
+  border-left-width: 1px;
+  border-right-width: 1px;
+  border-bottom-left-radius: 8px;
+  border-bottom-right-radius: 8px;
+  padding-bottom: 3px;
+  padding-left: 23px;
+  padding-right: 23px;
+  padding-top: 3px;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+}
+
+.lowongan-mahasiswa-detail-5 {
+  border-bottom-left-radius: 8px;
+  border-bottom-right-radius: 8px;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+  padding-left: 29px;
+  padding-right: 29px;
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+.lowongan-mahasiswa-frame-39 {
+  border-style: solid;
+  border-color: gainsboro;
+  border-top-width: 1px;
+  border-bottom-width: 1px;
+  border-left-width: 1px;
+  border-right-width: 1px;
+  border-bottom-left-radius: 8px;
+  border-bottom-right-radius: 8px;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+  filter: drop-shadow(0px 1px 2px rgba(12, 12, 13, 0.1)),
+    drop-shadow(0px 1px 2px rgba(12, 12, 13, 0.05));
+  font-size: 12px;
+}
+
+.lowongan-mahasiswa-frame-40 {
+  border-bottom-width: 1px;
+  row-gap: 8px;
+  padding-bottom: 15px;
+  padding-left: 16px;
+  padding-right: 16px;
+  padding-top: 16px;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+}
+
+.lowongan-mahasiswa-diposting-2hari-yang-lalu-6 {
+  width: 634px;
+  flex-shrink: 0;
+}
+
+.lowongan-mahasiswa-frame-41 {
+  border-bottom-left-radius: 50px;
+  border-bottom-right-radius: 50px;
+  column-gap: 4px;
+  padding-bottom: 2px;
+  padding-left: 8px;
+  padding-right: 8px;
+  padding-top: 2px;
+  border-top-left-radius: 50px;
+  border-top-right-radius: 50px;
+}
+
+.lowongan-mahasiswa-ellipse-6 {
+  flex-shrink: 0;
+}
+
+.lowongan-mahasiswa-tersedia {
+  color: limegreen;
+}
+
+.lowongan-mahasiswa-t-images-1tglobal-finance-accounting-internship-ttsolar-buildings-bold-pt-pos-indonesia-tsolar-map-point-bold-bandung-jawa-barat-tsolar-calendar-bold-duotone-batas-akhir-pendaftaran-06september {
+  row-gap: 8px;
+  column-gap: 8px;
+}
+
+.lowongan-mahasiswa-images-6 {
+  object-fit: cover;
+  object-position: center;
+  flex-shrink: 0;
+}
+
+.lowongan-mahasiswa-t-global-finance-accounting-internship-ttsolar-buildings-bold-pt-pos-indonesia-tsolar-map-point-bold-bandung-jawa-barat-tsolar-calendar-bold-duotone-batas-akhir-pendaftaran-06september {
+  row-gap: 2.5px;
+}
+
+.lowongan-mahasiswa-global-finance-accounting-internship-6 {
+  align-self: stretch;
+  font-size: 24px;
+  font-weight: 700;
+}
+
+.lowongan-mahasiswa-tt-solar-buildings-bold-pt-pos-indonesia-tsolar-map-point-bold-bandung-jawa-barat {
+  row-gap: 4px;
+  padding-top: 3px;
+}
+
+.lowongan-mahasiswa-t-solar-buildings-bold-pt-pos-indonesia {
+  column-gap: 4px;
+}
+
+.lowongan-mahasiswa-solar-buildings-bold {
+  flex-shrink: 0;
+}
+
+.lowongan-mahasiswa-pt-pos-indonesia-6 {
+  line-height: 1;
+}
+
+.lowongan-mahasiswa-t-solar-map-point-bold-bandung-jawa-barat {
+  column-gap: 4px;
+}
+
+.lowongan-mahasiswa-solar-map-point-bold {
+  flex-shrink: 0;
+}
+
+.lowongan-mahasiswa-t-solar-calendar-bold-duotone-batas-akhir-pendaftaran-06september-6 {
+  row-gap: 4px;
+  column-gap: 4px;
+}
+
+.lowongan-mahasiswa-solar-calendar-bold-duotone-6 {
+  flex-shrink: 0;
+}
+
+.lowongan-mahasiswa-wrapper-7 {
+  align-self: stretch;
+  height: 911px;
+  max-width: 742px;
+  flex-shrink: 0;
+}
+
+.lowongan-mahasiswa-frame-42 {
+  overflow: clip;
+  background-color: white;
+  row-gap: 4px;
+  padding-left: 16px;
+  padding-right: 16px;
+  padding-top: 16px;
+  flex-shrink: 0;
+}
+
+.lowongan-mahasiswa-component-1 {
+  object-fit: cover;
+  object-position: center;
+  width: 419px;
+  height: 419px;
+  filter: drop-shadow(4px 4px 5px rgba(0, 0, 0, 0.15));
+  flex-shrink: 0;
+}
+
+.lowongan-mahasiswa-deskripsi-pekerjaan {
+  align-self: stretch;
+}
+
+.lowongan-mahasiswa-frame-43 {
+  border-bottom-left-radius: 8px;
+  border-bottom-right-radius: 8px;
+  align-items: center;
+  width: 710px;
+  padding-bottom: 8px;
+  padding-left: 16px;
+  padding-right: 16px;
+  padding-top: 8px;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+}
+
+.lowongan-mahasiswa-as-aglobal-finance-accounting-intern-at-eiger-your-mission-is-to-support-our-finance-and-accounting-team-in-various-functions-including-financial-analysis-reporting-and-compliance-you-will-gain-practical-experience-in-managing-financial-data-contributing-to-budgeting-processes-and-ensuring-accurate-financial-records-this-internship-offers-aunique-opportunity-to-develop-your-skills-and-knowledge-in-aglobal-retail-environment-preparing-you-for-asuccessful-career-in-finance-and-accounting-what-you-ll-need-to-success-final-semester-students-or-recently-completed-adegree-in-accounting-or-arelated-field-strong-analytical-skills-with-the-ability-to-interpret-financial-data-someone-who-is-confident-proactive-attitude-enthusiasm-for-learning-and-communicative-in-conveying-something-orally-or-in-writing-work-placement-at-the-head-office-of-kab-bandung-west-java-interest-in-the-retail-industry-and-eiger-sbrand-kompetensi-yang-akan-dikembangkan-administrasi-komunikasi-analisis-data-kerjasama-tim-pengelolaan-waktu-pemahaman-lingkungan-bisnis-problem-solving-analisis-keuangan-keahlian-teknologi-kemampuan-beradaptasi-operasional-kriteria-akademik-mahasiswa-perguruan-tinggi-aktif-minimal-semester-6program-studi-yang-diutamakan-akuntansi-dan-perpajakan-ekonomi {
+  flex-grow: 1;
+  height: 576px;
+}
+
+.lowongan-mahasiswa-spacer {
+  height: 18px;
+}
+
+.lowongan-mahasiswa-spacer-1 {
+  height: 18px;
+}
+
+.lowongan-mahasiswa-list {
+  list-style-type: decimal;
+}
+
+.lowongan-mahasiswa-list-1 {
+  list-style-type: disc;
+}
+
+.lowongan-mahasiswa-spacer-2 {
+  height: 18px;
+}
+
+.lowongan-mahasiswa-list-2 {
+  list-style-type: decimal;
+}
+
+.lowongan-mahasiswa-list-3 {
+  list-style-type: disc;
+}
+
+.lowongan-mahasiswa-frame-44 {
+  border-top-width: 1px;
+  border-bottom-left-radius: 8px;
+  border-bottom-right-radius: 8px;
+  padding-bottom: 16px;
+  padding-left: 16px;
+  padding-right: 16px;
+  padding-top: 15px;
+}
+
+.lowongan-mahasiswa-t-frame-4frame-6 {
+  row-gap: 8px;
+  column-gap: 8px;
+  text-align: center;
+}
+
+.lowongan-mahasiswa-frame-45 {
+  border-top-width: 1px;
+  border-bottom-width: 1px;
+  border-left-width: 1px;
+  border-right-width: 1px;
+  border-bottom-left-radius: 8px;
+  border-bottom-right-radius: 8px;
+  padding-bottom: 3px;
+  padding-left: 148px;
+  padding-right: 148px;
+  padding-top: 3px;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+}
+
+.lowongan-mahasiswa-selengkapnya {
+  border-bottom-left-radius: 8px;
+  border-bottom-right-radius: 8px;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+  padding-left: 153px;
+  padding-right: 153px;
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+.lowongan-mahasiswa-silahkan-ketik-pencarian-anda-disini::placeholder {
+  text-transform: capitalize;
+  color: #6b7280;
+}
+
+.lowongan-mahasiswa-silahkan-ketik-pencarian-anda-disini:focus-within {
+  box-shadow: 0 0 4px #1e40af;
+}
+@media (min-width: 1914px) {
+  .lowongan-mahasiswa-frame-5 {
+    flex-wrap: nowrap;
+  }
+  .lowongan-mahasiswa-t-tampilkan-filter-solar-alt-arrow-down-outline {
+    flex-wrap: nowrap;
+  }
+  .lowongan-mahasiswa-tt-semua-lowongan-tstatus-frame-4status-frame {
+    flex-wrap: nowrap;
+  }
+  .lowongan-mahasiswa-t-semua-lowongan-tstatus-frame-4status {
+    flex-wrap: nowrap;
+  }
+  .lowongan-mahasiswa-t-status-frame {
+    flex-wrap: nowrap;
+  }
+  .lowongan-mahasiswa-t-menampilkan-4lowongan-pagination {
+    flex-wrap: nowrap;
+  }
+  .lowongan-mahasiswa-tt-frame-75frame-75frame-75frame-75frame-75frame-75frame {
+    flex-wrap: nowrap;
+  }
+  .lowongan-mahasiswa-frame-9 {
+    flex-wrap: nowrap;
+  }
+  .lowongan-mahasiswa-t-diposting-2hari-yang-lalu-frame {
+    flex-wrap: nowrap;
+  }
+  .lowongan-mahasiswa-t-solar-calendar-bold-duotone-batas-akhir-pendaftaran-06september {
+    flex-wrap: nowrap;
+  }
+  .lowongan-mahasiswa-tt-solar-user-bold-duotone-10kandidat-mendaftar-tframe-4frame {
+    flex-wrap: nowrap;
+  }
+  .lowongan-mahasiswa-frame-14 {
+    flex-wrap: nowrap;
+  }
+  .lowongan-mahasiswa-t-diposting-2hari-yang-lalu-frame-1 {
+    flex-wrap: nowrap;
+  }
+  .lowongan-mahasiswa-t-solar-calendar-bold-duotone-batas-akhir-pendaftaran-06september-1 {
+    flex-wrap: nowrap;
+  }
+  .lowongan-mahasiswa-tt-solar-user-bold-duotone-10kandidat-mendaftar-tframe-4frame-1 {
+    flex-wrap: nowrap;
+  }
+  .lowongan-mahasiswa-frame-19 {
+    flex-wrap: nowrap;
+  }
+  .lowongan-mahasiswa-t-diposting-2hari-yang-lalu-frame-2 {
+    flex-wrap: nowrap;
+  }
+  .lowongan-mahasiswa-t-solar-calendar-bold-duotone-batas-akhir-pendaftaran-06september-2 {
+    flex-wrap: nowrap;
+  }
+  .lowongan-mahasiswa-tt-solar-user-bold-duotone-10kandidat-mendaftar-tframe-4frame-2 {
+    flex-wrap: nowrap;
+  }
+  .lowongan-mahasiswa-frame-24 {
+    flex-wrap: nowrap;
+  }
+  .lowongan-mahasiswa-t-diposting-2hari-yang-lalu-frame-3 {
+    flex-wrap: nowrap;
+  }
+  .lowongan-mahasiswa-t-solar-calendar-bold-duotone-batas-akhir-pendaftaran-06september-3 {
+    flex-wrap: nowrap;
+  }
+  .lowongan-mahasiswa-tt-solar-user-bold-duotone-10kandidat-mendaftar-tframe-4frame-3 {
+    flex-wrap: nowrap;
+  }
+  .lowongan-mahasiswa-frame-29 {
+    flex-wrap: nowrap;
+  }
+  .lowongan-mahasiswa-t-diposting-2hari-yang-lalu-frame-4 {
+    flex-wrap: nowrap;
+  }
+  .lowongan-mahasiswa-t-solar-calendar-bold-duotone-batas-akhir-pendaftaran-06september-4 {
+    flex-wrap: nowrap;
+  }
+  .lowongan-mahasiswa-tt-solar-user-bold-duotone-10kandidat-mendaftar-tframe-4frame-4 {
+    flex-wrap: nowrap;
+  }
+  .lowongan-mahasiswa-frame-34 {
+    flex-wrap: nowrap;
+  }
+  .lowongan-mahasiswa-t-diposting-2hari-yang-lalu-frame-5 {
+    flex-wrap: nowrap;
+  }
+  .lowongan-mahasiswa-t-solar-calendar-bold-duotone-batas-akhir-pendaftaran-06september-5 {
+    flex-wrap: nowrap;
+  }
+  .lowongan-mahasiswa-tt-solar-user-bold-duotone-10kandidat-mendaftar-tframe-4frame-5 {
+    flex-wrap: nowrap;
+  }
+  .lowongan-mahasiswa-t-diposting-2hari-yang-lalu-frame-6 {
+    flex-wrap: nowrap;
+  }
+  .lowongan-mahasiswa-t-images-1tglobal-finance-accounting-internship-ttsolar-buildings-bold-pt-pos-indonesia-tsolar-map-point-bold-bandung-jawa-barat-tsolar-calendar-bold-duotone-batas-akhir-pendaftaran-06september {
+    flex-wrap: nowrap;
+  }
+  .lowongan-mahasiswa-t-solar-calendar-bold-duotone-batas-akhir-pendaftaran-06september-6 {
+    flex-wrap: nowrap;
+  }
+  .lowongan-mahasiswa-t-frame-4frame-6 {
+    flex-wrap: nowrap;
+  }
+}

@@ -1,0 +1,2051 @@
+@import url("https://fonts.googleapis.com/css2?family=Open Sans:wght@400;600;700");
+@import url("https://api.fontshare.com/css?f[]=open sans@400,600,700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=DM Sans:wght@400;500;600;700");
+@import url("https://api.fontshare.com/css?f[]=dm sans@400,500,600,700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Plus Jakarta Sans:wght@400;600;700");
+@import url("https://api.fontshare.com/css?f[]=plus jakarta sans@400,600,700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;700");
+@import url("https://api.fontshare.com/css?f[]=poppins@400,700&display=swap");
+
+p,
+ol,
+ul {
+  margin: 0px;
+}
+
+button {
+  padding: 0px;
+}
+
+ol,
+ul {
+  padding-inline-start: 1.5em;
+}
+
+input {
+  background-image: none;
+  background-color: transparent;
+}
+
+.common-45,
+.beranda-mitra-top-left-border,
+.beranda-mitra-bg-ellipse {
+  position: absolute;
+  top: 0px;
+  bottom: 0px;
+}
+
+.common-46,
+.beranda-mitra-bottom-right-border,
+.beranda-mitra-t-vector-2 {
+  position: absolute;
+  right: 0px;
+}
+
+.common-47,
+.beranda-mitra-t-bg-group-216ellipse-1ttt60ellipse-1t60ellipse,
+.beranda-mitra-t-bg-ellipse-1 {
+  position: relative;
+  z-index: 0;
+}
+
+.common-42,
+.beranda-mitra-jumlah-mitra,
+.beranda-mitra-jumlah-mitra-1,
+.beranda-mitra-jumlah-mitra-2,
+.beranda-mitra-jumlah-mitra-3,
+.beranda-mitra-jumlah-mitra-4,
+.beranda-mitra-magang,
+.beranda-mitra-kerja {
+  letter-spacing: -0.02em;
+  line-height: 24px;
+}
+
+.common-43,
+.beranda-mitra-persentase-penerimaan-magang,
+.beranda-mitra-data-pelamar-terbaru {
+  letter-spacing: -0.02em;
+  line-height: normal;
+}
+
+.common-44,
+.beranda-mitra-t-online_sales-tonline_sales-tonline_sales-tonline_sales-tonline_sales-tonline_sales-tonline_sales-tonline_sales-tonline_sales-tonline_sales-tonline_sales-tonline_sales,
+.beranda-mitra-text-3,
+.beranda-mitra-text-7 {
+  letter-spacing: 0.7px;
+  line-height: 21px;
+}
+
+.common-41,
+.beranda-mitra-component,
+.beranda-mitra-t-bg-group-216ellipse-1ttt60ellipse-1t60ellipse,
+.beranda-mitra-t-bg-ellipse,
+.beranda-mitra-t-bg-ellipse-2 {
+  background-position: center;
+  background-size: cover;
+}
+
+.common-39,
+.beranda-mitra-card-number,
+.beranda-mitra-card-number-1,
+.beranda-mitra-card-number-2,
+.beranda-mitra-card-number-3,
+.beranda-mitra-card-number-4,
+.beranda-mitra-frame-8,
+.beranda-mitra-frame-12,
+.beranda-mitra-frame-13 {
+  border-style: solid;
+  border-color: whitesmoke;
+}
+
+.common-40,
+.beranda-mitra-frame-3,
+.beranda-mitra-frame-4,
+.beranda-mitra-frame-5,
+.beranda-mitra-frame-6,
+.beranda-mitra-tables-cell,
+.beranda-mitra-tables-cell-1,
+.beranda-mitra-tables-cell-2,
+.beranda-mitra-tables-cell-3,
+.beranda-mitra-tables-cell-4,
+.beranda-mitra-tables-cell-5,
+.beranda-mitra-tables-cell-6,
+.beranda-mitra-tables-cell-7,
+.beranda-mitra-frame-9,
+.beranda-mitra-frame-10,
+.beranda-mitra-frame-11 {
+  border-style: solid;
+  border-color: gainsboro;
+}
+
+.common-24,
+.beranda-mitra-t-beranda,
+.beranda-mitra-t-frame-1,
+.beranda-mitra-tt-versi-123beta-mbkm-ulbi {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.common-25,
+.beranda-mitra-t-card-number-card-number-card-number-card-number-card-number,
+.beranda-mitra-tt-persentase-penerimaan-magang-frame-2134ttframe-1000003649frame-1000003650frame,
+.beranda-mitra-t-column_chart-7vector,
+.beranda-mitra-t-column_chart-7vector-1,
+.beranda-mitra-t-frame-637frame-645frame,
+.beranda-mitra-t-frame-1000003657frame,
+.beranda-mitra-t-ellipse-12tdavis-schleifer-melamar-sebagai-staff-akuntansi,
+.beranda-mitra-t-ellipse-12ttalan-press-melamar-sebagai-staff-akuntansi,
+.beranda-mitra-t-ellipse-12tchance-schleifer-melamar-sebagai-staff-akuntansi,
+.beranda-mitra-t-ellipse-12tarturo-schroeder-melamar-sebagai-staff-akuntansi,
+.beranda-mitra-t-ellipse-12tbradford-hughes-melamar-sebagai-staff-akuntansi,
+.beranda-mitra-t-ellipse-12tmarshall-holland-melamar-sebagai-staff-akuntansi,
+.beranda-mitra-t-ellipse-12tconnie-chavez-melamar-sebagai-staff-akuntansi,
+.beranda-mitra-t-ellipse-12tearl-bates-melamar-sebagai-staff-akuntansi {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.common-26,
+.beranda-mitra-component,
+.beranda-mitra-t-line-1,
+.beranda-mitra-tables-cell-4,
+.beranda-mitra-tables-cell-5,
+.beranda-mitra-tables-cell-6,
+.beranda-mitra-tables-cell-7,
+.beranda-mitra-t-frame-646frame {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+}
+
+.common-27,
+.beranda-mitra-t-ahmad-damha-pt-pos-indonesia,
+.beranda-mitra-tt-solar-case-round-bold-lowongan-tsolar-user-hands-bold-kandidat-tsolar-medal-star-bold-penilaian-tsolar-documents-bold-laporan,
+.beranda-mitra-tt-solar-settings-bold-pengaturan-tsolar-question-square-bold-bantuan,
+.beranda-mitra-t-persentase-penerimaan-magang-frame,
+.beranda-mitra-ttttt-bg-group-216ellipse-1ttt60ellipse-1t60ellipse-1tvector-25tvector-25ttcolumn_chart-7column_chart-7column_chart-7tvector,
+.beranda-mitra-t-column_chart-7column_chart-7column_chart,
+.beranda-mitra-tt-ellipse-12tdavis-schleifer-melamar-sebagai-staff-akuntansi-tellipse-12ttalan-press-melamar-sebagai-staff-akuntansi-tellipse-12tchance-schleifer-melamar-sebagai-staff-akuntansi-tellipse-12tarturo-schroeder-melamar-sebagai-staff-akuntansi,
+.beranda-mitra-tt-ellipse-12tbradford-hughes-melamar-sebagai-staff-akuntansi-tellipse-12tmarshall-holland-melamar-sebagai-staff-akuntansi-tellipse-12tconnie-chavez-melamar-sebagai-staff-akuntansi-tellipse-12tearl-bates-melamar-sebagai-staff-akuntansi {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.common-28,
+.beranda-mitra-tttt-bg-group-216ellipse-1ttt60ellipse-1t60ellipse-1tvector-25tvector,
+.beranda-mitra-ttt-tables-cell-tables-cell-tables-cell-tables-cell-ttables-cell-tables-cell-tables-cell-tables-cell-tframe-646frame-645frame {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.common-29,
+.beranda-mitra-tt-t60ellipse-1t60ellipse,
+.beranda-mitra-tt-frame-1000003649frame-1000003650frame {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+.common-30,
+.beranda-mitra-tt-frame-132tframe-102ttcard-number-card-number-card-number-card-number-card-number-tttpersentase-penerimaan-magang-frame-2134ttframe-1000003649frame-1000003650frame-2082tdata-pelamar-terbaru-ttframe-1000003657frame,
+.beranda-mitra-tt,
+.beranda-mitra-tt-frame-637frame-645frame,
+.beranda-mitra-tt-frame-1000003657frame {
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+}
+
+.common-31,
+.beranda-mitra-t-avvxsejdplsg-8kycc-2lfwocc_wkorqptbjq_udcqwg-wl-aq-vf-9yktzv-4img-7bzw-1vludufmlde-5x-9zmny-jfl-3ebm-49sb-8jdimx-6ppptysrvrmffiwc-6w4ltbyswzghzhku-9zpxlzdmztjyxgedtyjebtja-34lopcm_y-283dwdm-8te-0z-8qwut-1z-4ylkgyw-56i-w,
+.beranda-mitra-t-solar-case-round-bold-lowongan,
+.beranda-mitra-t-solar-settings-bold-pengaturan,
+.beranda-mitra-t-jumlah-mitra-solar-alt-arrow-right-bold,
+.beranda-mitra-t-jumlah-mitra-solar-alt-arrow-right-bold-1,
+.beranda-mitra-t-jumlah-mitra-solar-alt-arrow-right-bold-2,
+.beranda-mitra-t-jumlah-mitra-solar-alt-arrow-right-bold-3,
+.beranda-mitra-t-jumlah-mitra-solar-alt-arrow-right-bold-4,
+.beranda-mitra-ttt-bg-group-216ellipse-1ttt60ellipse-1t60ellipse,
+.beranda-mitra-t-online_sales-tonline_sales-tonline_sales-tonline_sales-tonline_sales-tonline_sales-tonline_sales-tonline_sales-tonline_sales-tonline_sales-tonline_sales-tonline_sales,
+.beranda-mitra-tt-tables-cell-tables-cell-tables-cell-tables-cell-ttables-cell-tables-cell-tables-cell-tables-cell {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.common-32,
+.beranda-mitra-t-bg-group-216ellipse-1ttt60ellipse-1t60ellipse,
+.beranda-mitra-t-t60ellipse,
+.beranda-mitra-t-frame-1000003649frame {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.common-33,
+.beranda-mitra-card-number,
+.beranda-mitra-card-number-1,
+.beranda-mitra-card-number-2,
+.beranda-mitra-card-number-3,
+.beranda-mitra-card-number-4,
+.beranda-mitra-frame-12,
+.beranda-mitra-frame-13 {
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+.common-34,
+.beranda-mitra-t-frame,
+.beranda-mitra-t-10tahmad-damha-pt-pos-indonesia,
+.beranda-mitra-tt-column_chart-7column_chart-7column_chart-7tvector,
+.beranda-mitra-wrapper {
+  display: flex;
+  align-items: flex-end;
+}
+
+.common-35,
+.beranda-mitra-beranda,
+.beranda-mitra-ttt-solar-case-round-bold-lowongan-tsolar-user-hands-bold-kandidat-tsolar-medal-star-bold-penilaian-tsolar-documents-bold-laporan,
+.beranda-mitra-t-solar-user-hands-bold-kandidat,
+.beranda-mitra-t-solar-medal-star-bold-penilaian,
+.beranda-mitra-t-solar-documents-bold-laporan,
+.beranda-mitra-frame-2,
+.beranda-mitra-ttt-solar-settings-bold-pengaturan-tsolar-question-square-bold-bantuan,
+.beranda-mitra-t-solar-question-square-bold-bantuan,
+.beranda-mitra-t-2decrease-from-target-arrow,
+.beranda-mitra-t-2decrease-from-target-arrow-1,
+.beranda-mitra-t-2decrease-from-target-arrow-2,
+.beranda-mitra-t-2decrease-from-target-arrow-3,
+.beranda-mitra-t-2decrease-from-target-arrow-4,
+.beranda-mitra-tt-bg-group-216ellipse-1ttt60ellipse-1t60ellipse {
+  display: flex;
+  align-items: center;
+}
+
+.common-36,
+.beranda-mitra-t-online_sales,
+.beranda-mitra-t-online_sales-1,
+.beranda-mitra-t-online_sales-2,
+.beranda-mitra-t-online_sales-3,
+.beranda-mitra-t-online_sales-4,
+.beranda-mitra-t-online_sales-5,
+.beranda-mitra-t-online_sales-6,
+.beranda-mitra-t-online_sales-7,
+.beranda-mitra-t-online_sales-8,
+.beranda-mitra-t-online_sales-9,
+.beranda-mitra-t-online_sales-10 {
+  flex-direction: column;
+  justify-content: center;
+}
+
+.common-37,
+.beranda-mitra-tt-card-number-card-number-card-number-card-number-card-number,
+.beranda-mitra-ttt-persentase-penerimaan-magang-frame-2134ttframe-1000003649frame-1000003650frame,
+.beranda-mitra-frame-3,
+.beranda-mitra-frame-8,
+.beranda-mitra-ttt-bg-ellipse-232625tbg-ellipse-232525ttbg-ellipse {
+  flex-direction: column;
+  align-items: center;
+}
+
+.common-38,
+.beranda-mitra-frame-4,
+.beranda-mitra-frame-5,
+.beranda-mitra-frame-6,
+.beranda-mitra-frame-7,
+.beranda-mitra-tttt-bg-ellipse-232625tbg-ellipse-232525ttbg-ellipse-232050ttttables-cell-tables-cell-tables-cell-tables-cell-ttables-cell-tables-cell-tables-cell-tables-cell-tframe-646frame-645frame,
+.beranda-mitra-frame-9,
+.beranda-mitra-frame-10,
+.beranda-mitra-frame-11 {
+  justify-content: center;
+  align-items: center;
+}
+
+.common-15,
+.beranda-mitra-component-1,
+.beranda-mitra-component-3,
+.beranda-mitra-component-5,
+.beranda-mitra-component-7,
+.beranda-mitra-component-9 {
+  color: slategray;
+  font-size: 28px;
+  font-weight: 700;
+}
+
+.common-16,
+.beranda-mitra-t-frame-646frame,
+.beranda-mitra-online_sales-17 {
+  color: slategray;
+  font-family: "Plus Jakarta Sans", ui-sans-serif, system-ui, sans-serif;
+  font-weight: 600;
+}
+
+.common-17,
+.beranda-mitra-magang,
+.beranda-mitra-kerja {
+  color: orangered;
+  font-family: "DM Sans", ui-sans-serif, system-ui, sans-serif;
+  font-weight: 700;
+}
+
+.common-18,
+.beranda-mitra-melamar-sebagai-staff-akuntansi,
+.beranda-mitra-melamar-sebagai-staff-akuntansi-1,
+.beranda-mitra-melamar-sebagai-staff-akuntansi-2,
+.beranda-mitra-melamar-sebagai-staff-akuntansi-3,
+.beranda-mitra-melamar-sebagai-staff-akuntansi-4,
+.beranda-mitra-melamar-sebagai-staff-akuntansi-5,
+.beranda-mitra-melamar-sebagai-staff-akuntansi-6,
+.beranda-mitra-melamar-sebagai-staff-akuntansi-7 {
+  color: slategray;
+  font-size: 12px;
+}
+
+.common-19,
+.beranda-mitra-beranda-1,
+.beranda-mitra-logout,
+.beranda-mitra-tt-bg-ellipse-232625tbg-ellipse-232525ttbg-ellipse {
+  color: white;
+  font-weight: 700;
+}
+
+.common-20,
+.beranda-mitra-component-2,
+.beranda-mitra-component-4,
+.beranda-mitra-component-6,
+.beranda-mitra-component-8,
+.beranda-mitra-component-10 {
+  color: orangered;
+  font-weight: 700;
+}
+
+.common-21,
+.beranda-mitra-persentase-penerimaan-magang,
+.beranda-mitra-data-pelamar-terbaru {
+  font-size: 24px;
+  font-weight: 700;
+}
+
+.common-22,
+.beranda-mitra-component-11,
+.beranda-mitra-tt-t60ellipse-1t60ellipse {
+  font-family: "Plus Jakarta Sans", ui-sans-serif, system-ui, sans-serif;
+  text-align: center;
+}
+
+.common-23,
+.beranda-mitra-text-4,
+.beranda-mitra-text-5,
+.beranda-mitra-text-6 {
+  font-weight: 500;
+  text-align: right;
+}
+
+.common-1,
+.beranda-mitra-ttt-bg-ellipse-232625tbg-ellipse-232525ttbg-ellipse,
+.beranda-mitra-tt-bg-ellipse-232625tbg-ellipse-232525ttbg-ellipse,
+.beranda-mitra-t-bg-ellipse,
+.beranda-mitra-t-bg-ellipse-2 {
+  display: flex;
+  width: 264px;
+  height: 264px;
+}
+
+.common-2,
+.beranda-mitra-frame-12,
+.beranda-mitra-frame-13 {
+  display: flex;
+  width: 768px;
+  background-color: white;
+}
+
+.common-3,
+.beranda-mitra-frame-1,
+.beranda-mitra-frame-3 {
+  display: flex;
+  background-color: white;
+  color: gray;
+}
+
+.common-4,
+.beranda-mitra-beranda-mitra,
+.beranda-mitra-frame-8 {
+  display: flex;
+  width: 100%;
+}
+
+.common-5,
+.beranda-mitra-t-online_sales,
+.beranda-mitra-t-online_sales-1,
+.beranda-mitra-t-online_sales-2,
+.beranda-mitra-t-online_sales-3,
+.beranda-mitra-t-online_sales-4,
+.beranda-mitra-t-online_sales-5,
+.beranda-mitra-t-online_sales-6,
+.beranda-mitra-t-online_sales-7,
+.beranda-mitra-t-online_sales-8,
+.beranda-mitra-t-online_sales-9,
+.beranda-mitra-t-online_sales-10 {
+  display: flex;
+  width: 65px;
+}
+
+.common-6,
+.beranda-mitra-t-bg-ellipse-1,
+.beranda-mitra-tt-bg-ellipse {
+  display: flex;
+  width: 0px;
+}
+
+.common-7,
+.beranda-mitra-tt-card-number-card-number-card-number-card-number-card-number,
+.beranda-mitra-ttt-persentase-penerimaan-magang-frame-2134ttframe-1000003649frame-1000003650frame {
+  display: flex;
+  height: 0px;
+}
+
+.common-8,
+.beranda-mitra-card-number,
+.beranda-mitra-card-number-1,
+.beranda-mitra-card-number-2,
+.beranda-mitra-card-number-3,
+.beranda-mitra-card-number-4,
+.beranda-mitra-frame-4,
+.beranda-mitra-frame-5,
+.beranda-mitra-frame-6,
+.beranda-mitra-frame-7,
+.beranda-mitra-tttt-bg-ellipse-232625tbg-ellipse-232525ttbg-ellipse-232050ttttables-cell-tables-cell-tables-cell-tables-cell-ttables-cell-tables-cell-tables-cell-tables-cell-tframe-646frame-645frame,
+.beranda-mitra-frame-9,
+.beranda-mitra-frame-10,
+.beranda-mitra-frame-11 {
+  display: flex;
+  background-color: white;
+}
+
+.common-9,
+.beranda-mitra-solar-home-smile-angle-bold,
+.beranda-mitra-solar-case-round-bold,
+.beranda-mitra-solar-user-hands-bold,
+.beranda-mitra-solar-medal-star-bold,
+.beranda-mitra-solar-documents-bold,
+.beranda-mitra-solar-logout-3bold,
+.beranda-mitra-solar-settings-bold,
+.beranda-mitra-solar-question-square-bold {
+  width: 24px;
+  height: 24px;
+}
+
+.common-10,
+.beranda-mitra-solar-alt-arrow-right-bold,
+.beranda-mitra-solar-alt-arrow-right-bold-1,
+.beranda-mitra-solar-alt-arrow-right-bold-2,
+.beranda-mitra-solar-alt-arrow-right-bold-3,
+.beranda-mitra-solar-alt-arrow-right-bold-4 {
+  width: 16px;
+  height: 16px;
+}
+
+.common-11,
+.beranda-mitra-arrow,
+.beranda-mitra-arrow-1,
+.beranda-mitra-arrow-2,
+.beranda-mitra-arrow-3,
+.beranda-mitra-arrow-4 {
+  width: 7.4px;
+  height: 11px;
+}
+
+.common-12,
+.beranda-mitra-ellipse-1,
+.beranda-mitra-ellipse-2 {
+  width: 12px;
+  height: 12px;
+}
+
+.common-13,
+.beranda-mitra-dot,
+.beranda-mitra-dot-1,
+.beranda-mitra-dot-2,
+.beranda-mitra-dot-3,
+.beranda-mitra-dot-4,
+.beranda-mitra-dot-5 {
+  width: 14px;
+  height: 14px;
+}
+
+.common-14,
+.beranda-mitra-ellipse-3,
+.beranda-mitra-ellipse-4,
+.beranda-mitra-ellipse-5,
+.beranda-mitra-ellipse-6,
+.beranda-mitra-ellipse-7,
+.beranda-mitra-ellipse-8,
+.beranda-mitra-ellipse-9,
+.beranda-mitra-ellipse-10 {
+  width: 40px;
+  height: 40px;
+}
+
+.beranda-mitra-beranda-mitra {
+  background-color: whitesmoke;
+  flex-direction: column;
+  padding-bottom: 88px;
+}
+
+.beranda-mitra-tt-frame-132tframe-102ttcard-number-card-number-card-number-card-number-card-number-tttpersentase-penerimaan-magang-frame-2134ttframe-1000003649frame-1000003650frame-2082tdata-pelamar-terbaru-ttframe-1000003657frame {
+  flex-grow: 1;
+  flex-wrap: wrap;
+  letter-spacing: 0em;
+}
+
+.beranda-mitra-t-frame-132tframe {
+  flex-grow: 1;
+}
+
+.beranda-mitra-frame {
+  border-style: solid;
+  border-color: orangered;
+  border-bottom-width: 8px;
+  background-color: midnightblue;
+  height: 96px;
+  flex-shrink: 0;
+}
+
+.beranda-mitra-t-frame {
+  height: 984px;
+  padding-right: 1604px;
+  flex-shrink: 0;
+}
+
+.beranda-mitra-frame-1 {
+  align-items: flex-start;
+  row-gap: 20px;
+  flex-direction: column;
+  height: 1080px;
+  padding-bottom: 104px;
+  padding-left: 24px;
+  padding-right: 24px;
+  padding-top: 24px;
+  filter: drop-shadow(0px 4px 2px rgba(0, 0, 0, 0.25));
+  font-family: "Open Sans", ui-sans-serif, system-ui, sans-serif;
+  font-size: 14px;
+  line-height: 1.5;
+  font-weight: 600;
+  text-transform: capitalize;
+}
+
+.beranda-mitra-t-avvxsejdplsg-8kycc-2lfwocc_wkorqptbjq_udcqwg-wl-aq-vf-9yktzv-4img-7bzw-1vludufmlde-5x-9zmny-jfl-3ebm-49sb-8jdimx-6ppptysrvrmffiwc-6w4ltbyswzghzhku-9zpxlzdmztjyxgedtyjebtja-34lopcm_y-283dwdm-8te-0z-8qwut-1z-4ylkgyw-56i-w {
+  align-self: stretch;
+}
+
+.beranda-mitra-a-vv-xs-ej-dp-lsg-8kyc-c2l-fwo-cc_w-ko-rq-ptb-jq_u-dcq-wg-wl-aq-vf-9yktzv-4img-7bzw-1vludufmlde-5x-9zmny-jfl-3ebm-49sb-8jdimx-6ppptysrvrmffiwc-6w4ltbyswzghzhku-9zpxlzdmztjyxgedtyjebtja-34lopcm_y-283dwdm-8te-0z-8qwut-1z-4ylkgyw-56i-w {
+  background-image: url(public/assets/a-vv-xs-ej-dp-lsg-8kyc-c2l-fwo-cc_w-ko-rq-ptb-jq_u-dcq-wg-wl-aq-vf-9yktzv-4img-7bzw-1vludufmlde-5x-9zmny-jfl-3ebm-49sb-8jdimx-6ppptysrvrmffiwc-6w4ltbyswzghzhku-9zpxlzdmztjyxgedtyjebtja-34lopcm_y-283dwdm-8te-0z-8qwut-1z-4ylkgyw-56i-w.png);
+  background-size: 100% 100%;
+  background-position: 0px 0px;
+  background-repeat: no-repeat;
+  max-width: 100%;
+  max-height: 100%;
+  width: 150px;
+  height: 55px;
+  flex-shrink: 0;
+}
+
+.beranda-mitra-t-line {
+  align-self: stretch;
+  max-width: 268px;
+  padding-top: 3px;
+}
+
+.beranda-mitra-line {
+  height: 1px;
+  flex-shrink: 0;
+}
+
+.beranda-mitra-t-10tahmad-damha-pt-pos-indonesia {
+  column-gap: 10px;
+  padding-top: 4px;
+}
+
+.beranda-mitra-component {
+  align-items: flex-end;
+  background-image: url(public/assets/component.png);
+  width: 48px;
+  height: 48px;
+  padding-bottom: 3px;
+  padding-left: 37px;
+  padding-right: 3px;
+  padding-top: 37px;
+  flex-shrink: 0;
+}
+
+.beranda-mitra-status-indicator {
+  border-bottom-left-radius: 99px;
+  border-bottom-right-radius: 99px;
+  background-color: limegreen;
+  width: 8px;
+  height: 8px;
+  border-top-left-radius: 99px;
+  border-top-right-radius: 99px;
+  box-shadow: inset 2px 2px 4px 1px rgba(0, 0, 0, 0.05);
+  position: relative;
+  flex-shrink: 0;
+}
+
+.beranda-mitra-top-left-border {
+  box-shadow: 2px 2px 0 0 rgba(255, 255, 255, 1);
+  left: 0px;
+  right: 0px;
+  border-top-left-radius: 99px;
+  border-top-right-radius: 99px;
+  border-bottom-left-radius: 99px;
+}
+
+.beranda-mitra-bottom-right-border {
+  box-shadow: -2px -2px 0 0 rgba(255, 255, 255, 1);
+  left: -2px;
+  top: -2px;
+  bottom: 0px;
+  border-bottom-right-radius: 99px;
+}
+
+.beranda-mitra-t-ahmad-damha-pt-pos-indonesia {
+  row-gap: 4px;
+  align-self: stretch;
+  text-align: center;
+}
+
+.beranda-mitra-ahmad-damha {
+  font-weight: 700;
+}
+
+.beranda-mitra-pt-pos-indonesia {
+  font-size: 12px;
+}
+
+.beranda-mitra-t-beranda {
+  padding-top: 4px;
+}
+
+.beranda-mitra-beranda {
+  border-bottom-left-radius: 8px;
+  border-bottom-right-radius: 8px;
+  background-color: midnightblue;
+  column-gap: 8px;
+  padding-bottom: 8px;
+  padding-left: 8px;
+  padding-right: 168px;
+  padding-top: 8px;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+}
+
+.beranda-mitra-solar-home-smile-angle-bold {
+  flex-shrink: 0;
+}
+
+.beranda-mitra-ttt-solar-case-round-bold-lowongan-tsolar-user-hands-bold-kandidat-tsolar-medal-star-bold-penilaian-tsolar-documents-bold-laporan {
+  padding-left: 8px;
+  padding-right: 8px;
+}
+
+.beranda-mitra-tt-solar-case-round-bold-lowongan-tsolar-user-hands-bold-kandidat-tsolar-medal-star-bold-penilaian-tsolar-documents-bold-laporan {
+  row-gap: 28px;
+}
+
+.beranda-mitra-t-solar-case-round-bold-lowongan {
+  column-gap: 8px;
+}
+
+.beranda-mitra-solar-case-round-bold {
+  flex-shrink: 0;
+}
+
+.beranda-mitra-t-solar-user-hands-bold-kandidat {
+  column-gap: 8px;
+}
+
+.beranda-mitra-solar-user-hands-bold {
+  flex-shrink: 0;
+}
+
+.beranda-mitra-t-solar-medal-star-bold-penilaian {
+  column-gap: 8px;
+}
+
+.beranda-mitra-solar-medal-star-bold {
+  flex-shrink: 0;
+}
+
+.beranda-mitra-t-solar-documents-bold-laporan {
+  column-gap: 8px;
+}
+
+.beranda-mitra-solar-documents-bold {
+  flex-shrink: 0;
+}
+
+.beranda-mitra-t-frame-1 {
+  padding-top: 296px;
+}
+
+.beranda-mitra-frame-2 {
+  border-bottom-left-radius: 8px;
+  border-bottom-right-radius: 8px;
+  background-color: red;
+  column-gap: 8px;
+  padding-bottom: 8px;
+  padding-left: 8px;
+  padding-right: 179px;
+  padding-top: 8px;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+  text-align: left;
+}
+
+.beranda-mitra-solar-logout-3bold {
+  flex-shrink: 0;
+}
+
+.beranda-mitra-ttt-solar-settings-bold-pengaturan-tsolar-question-square-bold-bantuan {
+  padding-left: 8px;
+  padding-right: 8px;
+}
+
+.beranda-mitra-tt-solar-settings-bold-pengaturan-tsolar-question-square-bold-bantuan {
+  row-gap: 28px;
+}
+
+.beranda-mitra-t-solar-settings-bold-pengaturan {
+  column-gap: 8px;
+}
+
+.beranda-mitra-solar-settings-bold {
+  flex-shrink: 0;
+}
+
+.beranda-mitra-t-solar-question-square-bold-bantuan {
+  column-gap: 8px;
+}
+
+.beranda-mitra-solar-question-square-bold {
+  flex-shrink: 0;
+}
+
+.beranda-mitra-t-line-1 {
+  align-self: stretch;
+  max-width: 268px;
+  padding-top: 11px;
+}
+
+.beranda-mitra-line-1 {
+  height: 1px;
+  flex-shrink: 0;
+}
+
+.beranda-mitra-tt-versi-123beta-mbkm-ulbi {
+  align-self: stretch;
+  padding-top: 12px;
+}
+
+.beranda-mitra-versi-123beta-mbkm-ulbi {
+  text-align: center;
+  padding-right: 14px;
+}
+
+.beranda-mitra-tt-card-number-card-number-card-number-card-number-card-number {
+  padding-right: 20px;
+}
+
+.beranda-mitra-t-card-number-card-number-card-number-card-number-card-number {
+  row-gap: 25px;
+  margin-top: -960px;
+  column-gap: 25px;
+  height: 132px;
+  font-family: "DM Sans", ui-sans-serif, system-ui, sans-serif;
+  flex-shrink: 0;
+}
+
+.beranda-mitra-card-number {
+  border-top-width: 1px;
+  border-bottom-width: 1px;
+  border-left-width: 1px;
+  border-right-width: 1px;
+  border-bottom-left-radius: 8px;
+  border-bottom-right-radius: 8px;
+  row-gap: 10px;
+  padding-bottom: 23px;
+  padding-left: 23px;
+  padding-right: 23px;
+  padding-top: 23px;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+}
+
+.beranda-mitra-t-jumlah-mitra-solar-alt-arrow-right-bold {
+  column-gap: 100px;
+}
+
+.beranda-mitra-jumlah-mitra {
+  color: orangered;
+}
+
+.beranda-mitra-solar-alt-arrow-right-bold {
+  flex-shrink: 0;
+}
+
+.beranda-mitra-component-1 {
+  align-self: stretch;
+  line-height: 24px;
+}
+
+.beranda-mitra-t-2decrease-from-target-arrow {
+  column-gap: 4px;
+  font-size: 12px;
+  line-height: normal;
+}
+
+.beranda-mitra-decrease-from-target {
+  color: slategray;
+}
+
+.beranda-mitra-arrow {
+  flex-shrink: 0;
+}
+
+.beranda-mitra-card-number-1 {
+  border-top-width: 1px;
+  border-bottom-width: 1px;
+  border-left-width: 1px;
+  border-right-width: 1px;
+  border-bottom-left-radius: 8px;
+  border-bottom-right-radius: 8px;
+  row-gap: 10px;
+  padding-bottom: 23px;
+  padding-left: 23px;
+  padding-right: 23px;
+  padding-top: 23px;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+}
+
+.beranda-mitra-t-jumlah-mitra-solar-alt-arrow-right-bold-1 {
+  column-gap: 103px;
+}
+
+.beranda-mitra-jumlah-mitra-1 {
+  color: orangered;
+}
+
+.beranda-mitra-solar-alt-arrow-right-bold-1 {
+  flex-shrink: 0;
+}
+
+.beranda-mitra-component-3 {
+  align-self: stretch;
+  line-height: 24px;
+}
+
+.beranda-mitra-t-2decrease-from-target-arrow-1 {
+  column-gap: 4px;
+  font-size: 12px;
+  line-height: normal;
+}
+
+.beranda-mitra-decrease-from-target-1 {
+  color: slategray;
+}
+
+.beranda-mitra-arrow-1 {
+  flex-shrink: 0;
+}
+
+.beranda-mitra-card-number-2 {
+  border-top-width: 1px;
+  border-bottom-width: 1px;
+  border-left-width: 1px;
+  border-right-width: 1px;
+  border-bottom-left-radius: 8px;
+  border-bottom-right-radius: 8px;
+  row-gap: 10px;
+  padding-bottom: 23px;
+  padding-left: 23px;
+  padding-right: 23px;
+  padding-top: 23px;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+}
+
+.beranda-mitra-t-jumlah-mitra-solar-alt-arrow-right-bold-2 {
+  column-gap: 112px;
+}
+
+.beranda-mitra-jumlah-mitra-2 {
+  color: orangered;
+}
+
+.beranda-mitra-solar-alt-arrow-right-bold-2 {
+  flex-shrink: 0;
+}
+
+.beranda-mitra-component-5 {
+  align-self: stretch;
+  line-height: 24px;
+}
+
+.beranda-mitra-t-2decrease-from-target-arrow-2 {
+  column-gap: 4px;
+  font-size: 12px;
+  line-height: normal;
+}
+
+.beranda-mitra-decrease-from-target-2 {
+  color: slategray;
+}
+
+.beranda-mitra-arrow-2 {
+  flex-shrink: 0;
+}
+
+.beranda-mitra-card-number-3 {
+  border-top-width: 1px;
+  border-bottom-width: 1px;
+  border-left-width: 1px;
+  border-right-width: 1px;
+  border-bottom-left-radius: 8px;
+  border-bottom-right-radius: 8px;
+  row-gap: 10px;
+  padding-bottom: 23px;
+  padding-left: 23px;
+  padding-right: 23px;
+  padding-top: 23px;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+}
+
+.beranda-mitra-t-jumlah-mitra-solar-alt-arrow-right-bold-3 {
+  column-gap: 123px;
+}
+
+.beranda-mitra-jumlah-mitra-3 {
+  color: orangered;
+}
+
+.beranda-mitra-solar-alt-arrow-right-bold-3 {
+  flex-shrink: 0;
+}
+
+.beranda-mitra-component-7 {
+  align-self: stretch;
+  line-height: 24px;
+}
+
+.beranda-mitra-t-2decrease-from-target-arrow-3 {
+  column-gap: 4px;
+  font-size: 12px;
+  line-height: normal;
+}
+
+.beranda-mitra-decrease-from-target-3 {
+  color: slategray;
+}
+
+.beranda-mitra-arrow-3 {
+  flex-shrink: 0;
+}
+
+.beranda-mitra-card-number-4 {
+  border-top-width: 1px;
+  border-bottom-width: 1px;
+  border-left-width: 1px;
+  border-right-width: 1px;
+  border-bottom-left-radius: 8px;
+  border-bottom-right-radius: 8px;
+  row-gap: 10px;
+  padding-bottom: 23px;
+  padding-left: 23px;
+  padding-right: 23px;
+  padding-top: 23px;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+}
+
+.beranda-mitra-t-jumlah-mitra-solar-alt-arrow-right-bold-4 {
+  column-gap: 140px;
+}
+
+.beranda-mitra-jumlah-mitra-4 {
+  color: orangered;
+}
+
+.beranda-mitra-solar-alt-arrow-right-bold-4 {
+  flex-shrink: 0;
+}
+
+.beranda-mitra-component-9 {
+  align-self: stretch;
+  line-height: 24px;
+}
+
+.beranda-mitra-t-2decrease-from-target-arrow-4 {
+  column-gap: 4px;
+  font-size: 12px;
+  line-height: normal;
+}
+
+.beranda-mitra-decrease-from-target-4 {
+  color: slategray;
+}
+
+.beranda-mitra-arrow-4 {
+  flex-shrink: 0;
+}
+
+.beranda-mitra-ttt-persentase-penerimaan-magang-frame-2134ttframe-1000003649frame-1000003650frame {
+  padding-right: 20px;
+}
+
+.beranda-mitra-tt-persentase-penerimaan-magang-frame-2134ttframe-1000003649frame-1000003650frame {
+  row-gap: 24px;
+  margin-top: -804px;
+  column-gap: 24px;
+  height: 498px;
+  font-size: 14px;
+  flex-shrink: 0;
+}
+
+.beranda-mitra-t-persentase-penerimaan-magang-frame {
+  row-gap: 24px;
+  font-family: "DM Sans", ui-sans-serif, system-ui, sans-serif;
+}
+
+.beranda-mitra-frame-3 {
+  border-top-width: 1px;
+  border-bottom-width: 1px;
+  border-left-width: 1px;
+  border-right-width: 1px;
+  border-bottom-left-radius: 8px;
+  border-bottom-right-radius: 8px;
+  row-gap: 4.5px;
+  padding-bottom: 11px;
+  padding-left: 23px;
+  padding-right: 23px;
+  padding-top: 27px;
+  justify-content: flex-end;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+  font-weight: 600;
+}
+
+.beranda-mitra-tt-column_chart-7vector-25tcolumn_chart-7vector {
+  row-gap: 57px;
+  flex-direction: column;
+  display: flex;
+  font-size: 12px;
+  line-height: 20px;
+  font-weight: 500;
+}
+
+.beranda-mitra-t-column_chart-7vector {
+  row-gap: 0.5px;
+  column-gap: 10px;
+  max-width: 837px;
+}
+
+.beranda-mitra-vector {
+  flex-grow: 1;
+  height: 1px;
+}
+
+.beranda-mitra-t-column_chart-7vector-1 {
+  row-gap: 0.5px;
+  column-gap: 10px;
+  max-width: 837px;
+}
+
+.beranda-mitra-column_chart-1 {
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+}
+
+.beranda-mitra-vector-1 {
+  flex-grow: 1;
+  height: 1px;
+}
+
+.beranda-mitra-tt {
+  padding-top: 14px;
+}
+
+.beranda-mitra-component-11 {
+  font-size: 12px;
+  line-height: 20px;
+  padding-right: 109px;
+}
+
+.beranda-mitra-ttttt-bg-group-216ellipse-1ttt60ellipse-1t60ellipse-1tvector-25tvector-25ttcolumn_chart-7column_chart-7column_chart-7tvector {
+  z-index: 0;
+  font-size: 12px;
+  line-height: 20px;
+}
+
+.beranda-mitra-tttt-bg-group-216ellipse-1ttt60ellipse-1t60ellipse-1tvector-25tvector {
+  padding-left: 26px;
+  z-index: 2;
+}
+
+.beranda-mitra-tt-bg-group-216ellipse-1ttt60ellipse-1t60ellipse {
+  padding-right: 26px;
+}
+
+.beranda-mitra-t-bg-group-216ellipse-1ttt60ellipse-1t60ellipse {
+  padding-bottom: 12px;
+  padding-left: 569px;
+  padding-right: 100px;
+  padding-top: 13px;
+  background-image: url(public/assets/Group.svg);
+}
+
+.beranda-mitra-ellipse {
+  width: 12px;
+  height: 7.5px;
+  z-index: 2;
+  left: calc(50% + -3.77px + -56.56px);
+  top: 0px;
+  position: absolute;
+  flex-shrink: 0;
+}
+
+.beranda-mitra-tt-t60ellipse-1t60ellipse {
+  row-gap: 83px;
+  z-index: 3;
+}
+
+.beranda-mitra-t-60ellipse {
+  text-align: center;
+}
+
+.beranda-mitra-ellipse-1 {
+  flex-shrink: 0;
+}
+
+.beranda-mitra-t-60ellipse-1 {
+  padding-right: 37px;
+}
+
+.beranda-mitra-component-13 {
+  text-align: center;
+}
+
+.beranda-mitra-ellipse-2 {
+  text-align: center;
+  flex-shrink: 0;
+}
+
+.beranda-mitra-t-vector {
+  align-self: stretch;
+  height: 0px;
+  max-width: 811px;
+  padding-left: 5px;
+  flex-shrink: 0;
+}
+
+.beranda-mitra-vector-2 {
+  margin-top: -147.18px;
+  height: 1px;
+  flex-shrink: 0;
+}
+
+.beranda-mitra-t-vector-1 {
+  align-self: stretch;
+  height: 0px;
+  max-width: 811px;
+  flex-shrink: 0;
+}
+
+.beranda-mitra-vector-3 {
+  margin-top: -69.93px;
+  height: 1px;
+  flex-shrink: 0;
+}
+
+.beranda-mitra-tt-column_chart-7column_chart-7column_chart-7tvector {
+  height: 17px;
+  z-index: 1;
+  position: relative;
+  flex-shrink: 0;
+}
+
+.beranda-mitra-t-column_chart-7column_chart-7column_chart {
+  row-gap: 14px;
+  height: 175px;
+  justify-content: space-between;
+  z-index: 1;
+  font-weight: 500;
+}
+
+.beranda-mitra-column_chart-2 {
+  width: 21px;
+  height: 20px;
+  flex-shrink: 0;
+}
+
+.beranda-mitra-t-vector-2 {
+  height: 1px;
+  max-width: 818px;
+  z-index: 2;
+  left: 19px;
+  top: calc(50% + -0.5px + -1.59px);
+}
+
+.beranda-mitra-vector-4 {
+  height: 1px;
+  flex-shrink: 0;
+}
+
+.beranda-mitra-t-online_sales-tonline_sales-tonline_sales-tonline_sales-tonline_sales-tonline_sales-tonline_sales-tonline_sales-tonline_sales-tonline_sales-tonline_sales-tonline_sales {
+  padding-top: 3.5px;
+  text-align: center;
+}
+
+.beranda-mitra-online_sales {
+  width: 120px;
+  flex-shrink: 0;
+}
+
+.beranda-mitra-t-online_sales {
+  max-width: 65px;
+  flex-shrink: 0;
+}
+
+.beranda-mitra-online_sales-1 {
+  text-align: center;
+}
+
+.beranda-mitra-t-online_sales-1 {
+  max-width: 65px;
+  flex-shrink: 0;
+}
+
+.beranda-mitra-online_sales-2 {
+  text-align: center;
+}
+
+.beranda-mitra-t-online_sales-2 {
+  max-width: 65px;
+  flex-shrink: 0;
+}
+
+.beranda-mitra-online_sales-3 {
+  text-align: center;
+}
+
+.beranda-mitra-t-online_sales-3 {
+  max-width: 65px;
+  flex-shrink: 0;
+}
+
+.beranda-mitra-online_sales-4 {
+  text-align: center;
+}
+
+.beranda-mitra-t-online_sales-4 {
+  max-width: 65px;
+  flex-shrink: 0;
+}
+
+.beranda-mitra-online_sales-5 {
+  text-align: center;
+}
+
+.beranda-mitra-t-online_sales-5 {
+  max-width: 65px;
+  flex-shrink: 0;
+}
+
+.beranda-mitra-online_sales-6 {
+  text-align: center;
+}
+
+.beranda-mitra-t-online_sales-6 {
+  max-width: 65px;
+  flex-shrink: 0;
+}
+
+.beranda-mitra-online_sales-7 {
+  text-align: center;
+}
+
+.beranda-mitra-t-online_sales-7 {
+  max-width: 65px;
+  flex-shrink: 0;
+}
+
+.beranda-mitra-online_sales-8 {
+  text-align: center;
+}
+
+.beranda-mitra-t-online_sales-8 {
+  max-width: 65px;
+  flex-shrink: 0;
+}
+
+.beranda-mitra-online_sales-9 {
+  text-align: center;
+}
+
+.beranda-mitra-t-online_sales-9 {
+  max-width: 65px;
+  flex-shrink: 0;
+}
+
+.beranda-mitra-online_sales-10 {
+  text-align: center;
+}
+
+.beranda-mitra-t-online_sales-10 {
+  max-width: 65px;
+  flex-shrink: 0;
+}
+
+.beranda-mitra-online_sales-11 {
+  text-align: center;
+}
+
+.beranda-mitra-tt-frame-637frame-645frame {
+  padding-top: 7.5px;
+}
+
+.beranda-mitra-t-frame-637frame-645frame {
+  row-gap: 8px;
+  column-gap: 8px;
+  line-height: 17px;
+}
+
+.beranda-mitra-frame-4 {
+  border-top-width: 1px;
+  border-bottom-width: 1px;
+  border-left-width: 1px;
+  border-right-width: 1px;
+  border-bottom-left-radius: 4px;
+  border-bottom-right-radius: 4px;
+  column-gap: 8px;
+  padding-bottom: 7px;
+  padding-left: 22px;
+  padding-right: 22px;
+  padding-top: 7px;
+  border-top-left-radius: 4px;
+  border-top-right-radius: 4px;
+}
+
+.beranda-mitra-dot {
+  flex-shrink: 0;
+}
+
+.beranda-mitra-frame-5 {
+  border-top-width: 1px;
+  border-bottom-width: 1px;
+  border-left-width: 1px;
+  border-right-width: 1px;
+  border-bottom-left-radius: 4px;
+  border-bottom-right-radius: 4px;
+  column-gap: 8px;
+  padding-bottom: 7px;
+  padding-left: 25px;
+  padding-right: 25px;
+  padding-top: 7px;
+  border-top-left-radius: 4px;
+  border-top-right-radius: 4px;
+}
+
+.beranda-mitra-dot-1 {
+  flex-shrink: 0;
+}
+
+.beranda-mitra-frame-6 {
+  border-top-width: 1px;
+  border-bottom-width: 1px;
+  border-left-width: 1px;
+  border-right-width: 1px;
+  border-bottom-left-radius: 4px;
+  border-bottom-right-radius: 4px;
+  column-gap: 8px;
+  padding-bottom: 7px;
+  padding-left: 28px;
+  padding-right: 28px;
+  padding-top: 7px;
+  border-top-left-radius: 4px;
+  border-top-right-radius: 4px;
+}
+
+.beranda-mitra-dot-2 {
+  flex-shrink: 0;
+}
+
+.beranda-mitra-tt-frame-1000003649frame-1000003650frame {
+  row-gap: 25px;
+}
+
+.beranda-mitra-t-frame-1000003649frame {
+  row-gap: 12px;
+  column-gap: 12px;
+  flex-wrap: wrap;
+  font-family: "Open Sans", ui-sans-serif, system-ui, sans-serif;
+  line-height: 1.5;
+  text-align: center;
+  font-weight: 700;
+}
+
+.beranda-mitra-filter {
+  color: white;
+  background-color: midnightblue;
+  border-bottom-left-radius: 4px;
+  border-bottom-right-radius: 4px;
+  border-top-left-radius: 4px;
+  border-top-right-radius: 4px;
+  padding-left: 22px;
+  padding-right: 22px;
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+.beranda-mitra-frame-7 {
+  border-style: solid;
+  border-color: midnightblue;
+  border-top-width: 1px;
+  border-bottom-width: 1px;
+  border-left-width: 1px;
+  border-right-width: 1px;
+  border-bottom-left-radius: 4px;
+  border-bottom-right-radius: 4px;
+  padding-bottom: 3px;
+  padding-left: 31px;
+  padding-right: 31px;
+  padding-top: 3px;
+  border-top-left-radius: 4px;
+  border-top-right-radius: 4px;
+}
+
+.beranda-mitra-filter-1 {
+  color: midnightblue;
+  text-align: center;
+}
+
+.beranda-mitra-wrapper {
+  border-bottom-left-radius: 8px;
+  border-bottom-right-radius: 8px;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+  filter: drop-shadow(0px 1px 1px rgba(0, 0, 0, 0.08));
+}
+
+.beranda-mitra-frame-8 {
+  border-top-width: 1px;
+  border-bottom-width: 1px;
+  border-left-width: 1px;
+  border-right-width: 1px;
+  border-bottom-left-radius: 8px;
+  border-bottom-right-radius: 8px;
+  overflow: clip;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+  height: 100%;
+  flex-shrink: 0;
+}
+
+.beranda-mitra-tttt-bg-ellipse-232625tbg-ellipse-232525ttbg-ellipse-232050ttttables-cell-tables-cell-tables-cell-tables-cell-ttables-cell-tables-cell-tables-cell-tables-cell-tframe-646frame-645frame {
+  flex-wrap: wrap;
+  row-gap: 24px;
+  column-gap: 24px;
+  padding-left: 24px;
+  padding-right: 24px;
+  padding-top: 44px;
+  padding-bottom: 44px;
+}
+
+.beranda-mitra-ttt-bg-ellipse-232625tbg-ellipse-232525ttbg-ellipse {
+  flex-shrink: 0;
+}
+
+.beranda-mitra-tt-bg-ellipse-232625tbg-ellipse-232525ttbg-ellipse {
+  align-items: center;
+  justify-content: space-between;
+  font-family: "Plus Jakarta Sans", ui-sans-serif, system-ui, sans-serif;
+  line-height: 23px;
+  flex-shrink: 0;
+}
+
+.beranda-mitra-t-bg-ellipse {
+  align-items: flex-end;
+  padding-bottom: 72px;
+  padding-left: 59px;
+  padding-right: 173px;
+  padding-top: 169px;
+  z-index: 0;
+  background-image: url(public/assets/Ellipse.svg);
+  flex-shrink: 0;
+}
+
+.beranda-mitra-component-14 {
+  z-index: 2;
+}
+
+.beranda-mitra-t-bg-ellipse-1 {
+  align-items: flex-start;
+  align-self: stretch;
+  padding-bottom: 71px;
+  padding-top: 71px;
+  flex-shrink: 0;
+}
+
+.beranda-mitra-bg-ellipse {
+  width: 264px;
+  height: 264px;
+  z-index: 0;
+  left: -263.91px;
+  flex-shrink: 0;
+}
+
+.beranda-mitra-component-15 {
+  margin-right: -206.95px;
+  z-index: 2;
+}
+
+.beranda-mitra-tt-bg-ellipse {
+  align-items: flex-end;
+  flex-direction: column;
+  flex-shrink: 0;
+}
+
+.beranda-mitra-t-bg-ellipse-2 {
+  align-items: center;
+  padding-bottom: 121px;
+  padding-left: 186px;
+  padding-right: 44px;
+  padding-top: 120px;
+  z-index: 0;
+  background-image: url(public/assets/Ellipse1.svg);
+  flex-shrink: 0;
+}
+
+.beranda-mitra-component-16 {
+  z-index: 2;
+}
+
+.beranda-mitra-ttt-tables-cell-tables-cell-tables-cell-tables-cell-ttables-cell-tables-cell-tables-cell-tables-cell-tframe-646frame-645frame {
+  row-gap: 8px;
+}
+
+.beranda-mitra-tt-tables-cell-tables-cell-tables-cell-tables-cell-ttables-cell-tables-cell-tables-cell-tables-cell {
+  column-gap: 0px;
+  font-family: "DM Sans", ui-sans-serif, system-ui, sans-serif;
+  color: gray;
+  line-height: 1.5;
+}
+
+.beranda-mitra-tables-cell {
+  border-bottom-width: 1px;
+  max-width: 157px;
+  padding-bottom: 16px;
+  padding-left: 16px;
+  padding-right: 16px;
+  padding-top: 16px;
+}
+
+.beranda-mitra-tables-cell-1 {
+  border-bottom-width: 1px;
+  max-width: 157px;
+  padding-bottom: 16px;
+  padding-left: 16px;
+  padding-right: 16px;
+  padding-top: 16px;
+}
+
+.beranda-mitra-tables-cell-2 {
+  border-bottom-width: 1px;
+  max-width: 157px;
+  padding-bottom: 16px;
+  padding-left: 16px;
+  padding-right: 16px;
+  padding-top: 16px;
+}
+
+.beranda-mitra-tables-cell-3 {
+  border-bottom-width: 1px;
+  max-width: 157px;
+  padding-bottom: 16px;
+  padding-left: 16px;
+  padding-right: 16px;
+  padding-top: 16px;
+}
+
+.beranda-mitra-text-3 {
+  font-weight: 600;
+}
+
+.beranda-mitra-t-tables-cell-tables-cell-tables-cell-tables-cell-1 {
+  text-align: right;
+}
+
+.beranda-mitra-tables-cell-4 {
+  border-bottom-width: 1px;
+  max-width: 157px;
+  padding-bottom: 16px;
+  padding-left: 16px;
+  padding-right: 16px;
+  padding-top: 17px;
+}
+
+.beranda-mitra-tables-cell-5 {
+  border-bottom-width: 1px;
+  max-width: 157px;
+  padding-bottom: 16px;
+  padding-left: 16px;
+  padding-right: 16px;
+  padding-top: 17px;
+}
+
+.beranda-mitra-tables-cell-6 {
+  border-bottom-width: 1px;
+  max-width: 157px;
+  padding-bottom: 16px;
+  padding-left: 16px;
+  padding-right: 16px;
+  padding-top: 17px;
+}
+
+.beranda-mitra-tables-cell-7 {
+  border-bottom-width: 1px;
+  max-width: 157px;
+  padding-bottom: 16px;
+  padding-left: 16px;
+  padding-right: 16px;
+  padding-top: 17px;
+}
+
+.beranda-mitra-text-7 {
+  font-weight: 700;
+  text-align: right;
+}
+
+.beranda-mitra-t-frame-646frame {
+  row-gap: 8px;
+  padding-top: 16px;
+  line-height: 17px;
+}
+
+.beranda-mitra-frame-9 {
+  border-top-width: 1px;
+  border-bottom-width: 1px;
+  border-left-width: 1px;
+  border-right-width: 1px;
+  border-bottom-left-radius: 4px;
+  border-bottom-right-radius: 4px;
+  column-gap: 8px;
+  padding-bottom: 7px;
+  padding-left: 109px;
+  padding-right: 109px;
+  padding-top: 7px;
+  border-top-left-radius: 4px;
+  border-top-right-radius: 4px;
+}
+
+.beranda-mitra-dot-3 {
+  flex-shrink: 0;
+}
+
+.beranda-mitra-frame-10 {
+  border-top-width: 1px;
+  border-bottom-width: 1px;
+  border-left-width: 1px;
+  border-right-width: 1px;
+  border-bottom-left-radius: 4px;
+  border-bottom-right-radius: 4px;
+  column-gap: 8px;
+  padding-bottom: 7px;
+  padding-left: 111px;
+  padding-right: 111px;
+  padding-top: 7px;
+  border-top-left-radius: 4px;
+  border-top-right-radius: 4px;
+}
+
+.beranda-mitra-dot-4 {
+  flex-shrink: 0;
+}
+
+.beranda-mitra-frame-11 {
+  border-top-width: 1px;
+  border-bottom-width: 1px;
+  border-left-width: 1px;
+  border-right-width: 1px;
+  border-bottom-left-radius: 4px;
+  border-bottom-right-radius: 4px;
+  column-gap: 8px;
+  align-self: stretch;
+  padding-bottom: 7px;
+  padding-left: 114px;
+  padding-right: 114px;
+  padding-top: 7px;
+  border-top-left-radius: 4px;
+  border-top-right-radius: 4px;
+}
+
+.beranda-mitra-dot-5 {
+  flex-shrink: 0;
+}
+
+.beranda-mitra-online_sales-17 {
+  line-height: 17px;
+}
+
+.beranda-mitra-t-data-pelamar-terbaru {
+  width: 1579px;
+  height: 0px;
+  padding-right: 20px;
+  flex-shrink: 0;
+}
+
+.beranda-mitra-data-pelamar-terbaru {
+  margin-bottom: -282px;
+  font-family: "DM Sans", ui-sans-serif, system-ui, sans-serif;
+}
+
+.beranda-mitra-tt-frame-1000003657frame {
+  height: 37px;
+  padding-right: 20px;
+}
+
+.beranda-mitra-t-frame-1000003657frame {
+  row-gap: 24px;
+  column-gap: 24px;
+  height: 264px;
+  font-family: Poppins, ui-sans-serif, system-ui, sans-serif;
+  line-height: normal;
+}
+
+.beranda-mitra-frame-12 {
+  border-top-width: 1px;
+  border-bottom-width: 1px;
+  border-left-width: 1px;
+  border-right-width: 1px;
+  border-bottom-left-radius: 8px;
+  border-bottom-right-radius: 8px;
+  row-gap: 8px;
+  padding-bottom: 23px;
+  padding-left: 23px;
+  padding-right: 23px;
+  padding-top: 23px;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+  flex-shrink: 0;
+}
+
+.beranda-mitra-magang {
+  align-self: stretch;
+}
+
+.beranda-mitra-tt-ellipse-12tdavis-schleifer-melamar-sebagai-staff-akuntansi-tellipse-12ttalan-press-melamar-sebagai-staff-akuntansi-tellipse-12tchance-schleifer-melamar-sebagai-staff-akuntansi-tellipse-12tarturo-schroeder-melamar-sebagai-staff-akuntansi {
+  row-gap: 8px;
+}
+
+.beranda-mitra-t-ellipse-12tdavis-schleifer-melamar-sebagai-staff-akuntansi {
+  row-gap: 12px;
+  column-gap: 12px;
+}
+
+.beranda-mitra-ellipse-3 {
+  flex-shrink: 0;
+}
+
+.beranda-mitra-t-davis-schleifer-melamar-sebagai-staff-akuntansi {
+  width: 668px;
+  flex-shrink: 0;
+}
+
+.beranda-mitra-davis-schleifer {
+  font-size: 14px;
+}
+
+.beranda-mitra-text-8 {
+  font-weight: 700;
+}
+
+.beranda-mitra-t-ellipse-12ttalan-press-melamar-sebagai-staff-akuntansi {
+  row-gap: 12px;
+  column-gap: 12px;
+}
+
+.beranda-mitra-ellipse-4 {
+  flex-shrink: 0;
+}
+
+.beranda-mitra-t-talan-press-melamar-sebagai-staff-akuntansi {
+  width: 668px;
+  flex-shrink: 0;
+}
+
+.beranda-mitra-talan-press {
+  font-size: 14px;
+}
+
+.beranda-mitra-text-9 {
+  font-weight: 700;
+}
+
+.beranda-mitra-t-ellipse-12tchance-schleifer-melamar-sebagai-staff-akuntansi {
+  row-gap: 12px;
+  column-gap: 12px;
+}
+
+.beranda-mitra-ellipse-5 {
+  flex-shrink: 0;
+}
+
+.beranda-mitra-t-chance-schleifer-melamar-sebagai-staff-akuntansi {
+  width: 668px;
+  flex-shrink: 0;
+}
+
+.beranda-mitra-chance-schleifer {
+  font-size: 14px;
+}
+
+.beranda-mitra-text-10 {
+  font-weight: 700;
+}
+
+.beranda-mitra-t-ellipse-12tarturo-schroeder-melamar-sebagai-staff-akuntansi {
+  row-gap: 12px;
+  column-gap: 12px;
+}
+
+.beranda-mitra-ellipse-6 {
+  flex-shrink: 0;
+}
+
+.beranda-mitra-t-arturo-schroeder-melamar-sebagai-staff-akuntansi {
+  width: 668px;
+  flex-shrink: 0;
+}
+
+.beranda-mitra-arturo-schroeder {
+  font-size: 14px;
+}
+
+.beranda-mitra-text-11 {
+  font-weight: 700;
+}
+
+.beranda-mitra-frame-13 {
+  border-top-width: 1px;
+  border-bottom-width: 1px;
+  border-left-width: 1px;
+  border-right-width: 1px;
+  border-bottom-left-radius: 8px;
+  border-bottom-right-radius: 8px;
+  row-gap: 8px;
+  padding-bottom: 23px;
+  padding-left: 23px;
+  padding-right: 23px;
+  padding-top: 23px;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+  flex-shrink: 0;
+}
+
+.beranda-mitra-kerja {
+  align-self: stretch;
+}
+
+.beranda-mitra-tt-ellipse-12tbradford-hughes-melamar-sebagai-staff-akuntansi-tellipse-12tmarshall-holland-melamar-sebagai-staff-akuntansi-tellipse-12tconnie-chavez-melamar-sebagai-staff-akuntansi-tellipse-12tearl-bates-melamar-sebagai-staff-akuntansi {
+  row-gap: 8px;
+}
+
+.beranda-mitra-t-ellipse-12tbradford-hughes-melamar-sebagai-staff-akuntansi {
+  row-gap: 12px;
+  column-gap: 12px;
+}
+
+.beranda-mitra-ellipse-7 {
+  flex-shrink: 0;
+}
+
+.beranda-mitra-t-bradford-hughes-melamar-sebagai-staff-akuntansi {
+  width: 668px;
+  flex-shrink: 0;
+}
+
+.beranda-mitra-bradford-hughes {
+  font-size: 14px;
+}
+
+.beranda-mitra-text-12 {
+  font-weight: 700;
+}
+
+.beranda-mitra-t-ellipse-12tmarshall-holland-melamar-sebagai-staff-akuntansi {
+  row-gap: 12px;
+  column-gap: 12px;
+}
+
+.beranda-mitra-ellipse-8 {
+  flex-shrink: 0;
+}
+
+.beranda-mitra-t-marshall-holland-melamar-sebagai-staff-akuntansi {
+  width: 668px;
+  flex-shrink: 0;
+}
+
+.beranda-mitra-marshall-holland {
+  font-size: 14px;
+}
+
+.beranda-mitra-text-13 {
+  font-weight: 700;
+}
+
+.beranda-mitra-t-ellipse-12tconnie-chavez-melamar-sebagai-staff-akuntansi {
+  row-gap: 12px;
+  column-gap: 12px;
+}
+
+.beranda-mitra-ellipse-9 {
+  flex-shrink: 0;
+}
+
+.beranda-mitra-t-connie-chavez-melamar-sebagai-staff-akuntansi {
+  width: 668px;
+  flex-shrink: 0;
+}
+
+.beranda-mitra-connie-chavez {
+  font-size: 14px;
+}
+
+.beranda-mitra-text-14 {
+  font-weight: 700;
+}
+
+.beranda-mitra-t-ellipse-12tearl-bates-melamar-sebagai-staff-akuntansi {
+  row-gap: 12px;
+  column-gap: 12px;
+}
+
+.beranda-mitra-ellipse-10 {
+  flex-shrink: 0;
+}
+
+.beranda-mitra-t-earl-bates-melamar-sebagai-staff-akuntansi {
+  width: 668px;
+  flex-shrink: 0;
+}
+
+.beranda-mitra-earl-bates {
+  font-size: 14px;
+}
+
+.beranda-mitra-text-15 {
+  font-weight: 700;
+}
+@media (min-width: 1910px) {
+  .beranda-mitra-tt-frame-132tframe-102ttcard-number-card-number-card-number-card-number-card-number-tttpersentase-penerimaan-magang-frame-2134ttframe-1000003649frame-1000003650frame-2082tdata-pelamar-terbaru-ttframe-1000003657frame {
+    flex-wrap: nowrap;
+  }
+  .beranda-mitra-t-card-number-card-number-card-number-card-number-card-number {
+    flex-wrap: nowrap;
+  }
+  .beranda-mitra-tt-persentase-penerimaan-magang-frame-2134ttframe-1000003649frame-1000003650frame {
+    flex-wrap: nowrap;
+  }
+  .beranda-mitra-t-column_chart-7vector {
+    flex-wrap: nowrap;
+  }
+  .beranda-mitra-t-column_chart-7vector-1 {
+    flex-wrap: nowrap;
+  }
+  .beranda-mitra-t-frame-637frame-645frame {
+    flex-wrap: nowrap;
+  }
+  .beranda-mitra-t-frame-1000003649frame {
+    flex-wrap: nowrap;
+  }
+  .beranda-mitra-tttt-bg-ellipse-232625tbg-ellipse-232525ttbg-ellipse-232050ttttables-cell-tables-cell-tables-cell-tables-cell-ttables-cell-tables-cell-tables-cell-tables-cell-tframe-646frame-645frame {
+    flex-wrap: nowrap;
+  }
+  .beranda-mitra-t-frame-1000003657frame {
+    flex-wrap: nowrap;
+  }
+  .beranda-mitra-t-ellipse-12tdavis-schleifer-melamar-sebagai-staff-akuntansi {
+    flex-wrap: nowrap;
+  }
+  .beranda-mitra-t-ellipse-12ttalan-press-melamar-sebagai-staff-akuntansi {
+    flex-wrap: nowrap;
+  }
+  .beranda-mitra-t-ellipse-12tchance-schleifer-melamar-sebagai-staff-akuntansi {
+    flex-wrap: nowrap;
+  }
+  .beranda-mitra-t-ellipse-12tarturo-schroeder-melamar-sebagai-staff-akuntansi {
+    flex-wrap: nowrap;
+  }
+  .beranda-mitra-t-ellipse-12tbradford-hughes-melamar-sebagai-staff-akuntansi {
+    flex-wrap: nowrap;
+  }
+  .beranda-mitra-t-ellipse-12tmarshall-holland-melamar-sebagai-staff-akuntansi {
+    flex-wrap: nowrap;
+  }
+  .beranda-mitra-t-ellipse-12tconnie-chavez-melamar-sebagai-staff-akuntansi {
+    flex-wrap: nowrap;
+  }
+  .beranda-mitra-t-ellipse-12tearl-bates-melamar-sebagai-staff-akuntansi {
+    flex-wrap: nowrap;
+  }
+}

@@ -1,0 +1,1086 @@
+@import url("https://fonts.googleapis.com/css2?family=Open Sans:wght@400;600;700");
+@import url("https://api.fontshare.com/css?f[]=open sans@400,600,700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=DM Sans:wght@400");
+@import url("https://api.fontshare.com/css?f[]=dm sans@400&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Lato:wght@400;700");
+@import url("https://api.fontshare.com/css?f[]=lato@400,700&display=swap");
+
+p,
+ol,
+ul {
+  margin: 0px;
+}
+
+button {
+  padding: 0px;
+}
+
+ol,
+ul {
+  padding-inline-start: 1.5em;
+}
+
+input {
+  background-image: none;
+  background-color: transparent;
+}
+
+.common-31,
+.frame-a-vv-xs-ej-dp-lsg-8kyc-c2l-fwo-cc_w-ko-rq-ptb-jq_u-dcq-wg-wl-aq-vf-9yktzv-4img-7bzw-1vludufmlde-5x-9zmny-jfl-3ebm-49sb-8jdimx-6ppptysrvrmffiwc-6w4ltbyswzghzhku-9zpxlzdmztjyxgedtyjebtja-34lopcm_y-283dwdm-8te-0z-8qwut-1z-4ylkgyw-56i-w,
+.frame-logo-ulbi_footer-png {
+  background-repeat: no-repeat;
+  background-position: 0px 0px;
+  background-size: 100% 100%;
+}
+
+.common-29,
+.frame-frame-1,
+.frame-frame-2,
+.frame-frame-3,
+.frame-frame-4,
+.frame-frame-5,
+.frame-frame-6 {
+  border-style: solid;
+  border-color: gainsboro;
+}
+
+.common-30,
+.frame-frame-7,
+.frame-frame-8 {
+  border-style: solid;
+  border-color: midnightblue;
+}
+
+.common-17,
+.frame-t-frame,
+.frame-t-frame-1,
+.frame-ttt-svg-penerimaan-mahasiswa-baru-admission-tttsvg-sistem-informasi-akademik-sip-tsvg-sistem-informasi-sumberdaya-terintegrasi-tsvg-asrama-kampus-kost {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.common-18,
+.frame-tt-silahkan-login-terlebih-dahulu-posting-lowongan-anda-langsung-dari-halaman-member-setiap-saat-dan-kapan-saja-anda-membutuhkan-talenta-terbaik-tinggal-mengisi-form-yang-telah-kami-sediakan-secara-online-mudah-dan-cepat-tframe-41tframe-42frame,
+.frame-t-logo-ulbi-wide-dark-2tbelum-memiliki-akun {
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  flex-wrap: wrap;
+}
+
+.common-19,
+.frame-t-silahkan-pilih-disini-solar-alt-arrow-down-bold,
+.frame-t-frame-32ingatkan-saya,
+.frame-t-lupa-password-frame,
+.frame-t-frame-4frame,
+.frame-t-heading-3lokasi-heading-3link-terkait,
+.frame-t-logoulbi_footer-png-ttyayasan-pendidikan-bhakti-pos-indonesia-ypbpi-jalan-sariasih-no-54sarijadi-bandung-40151jawa-barat-indonesia,
+.frame-ttt-item-link-facebook-titem-link-twitter-titem-link-youtube-titem-link-instagram-titem-link-tiktok-heading-3email {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.common-20,
+.frame-tt-logoulbi_footer-png-ttyayasan-pendidikan-bhakti-pos-indonesia-ypbpi-jalan-sariasih-no-54sarijadi-bandung-40151jawa-barat-indonesia-ttulbi-adalah-institusi-pendidikan-tinggi-yang-didirikan-oleh-yayasan-pendidikan-bhakti-pos-indonesia-ypbpi-ulbi-memiliki-visi-menjadi-perguruan-tinggi-vokasi-yang-unggul-secara-nasional-dalam-bidang-logistik-dan-manajemen-rantai-pasok-theading-3kontak-ttsvg-sekretariat-tsvg-humas,
+.frame-t-yayasan-pendidikan-bhakti-pos-indonesia-ypbpi-jalan-sariasih-no-54sarijadi-bandung-40151jawa-barat-indonesia,
+.frame-t-heading-3kontak-ttsvg-sekretariat-tsvg-humas,
+.frame-tt-svg-sekretariat-tsvg-humas,
+.frame-tt-svg-penerimaan-mahasiswa-baru-admission-tttsvg-sistem-informasi-akademik-sip-tsvg-sistem-informasi-sumberdaya-terintegrasi-tsvg-asrama-kampus-kost,
+.frame-ttt-svg-sistem-informasi-akademik-sip-tsvg-sistem-informasi-sumberdaya-terintegrasi-tsvg-asrama-kampus-kost,
+.frame-tt-svg-sistem-informasi-akademik-sip-tsvg-sistem-informasi-sumberdaya-terintegrasi,
+.frame-tt-svg-info-ulbi-ac-id-tsvg-humas-ulbi-ac-id {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.common-21,
+.frame-tt-yayasan-pendidikan-bhakti-pos-indonesia-ypbpi-jalan-sariasih-no-54sarijadi-bandung-40151jawa-barat-indonesia,
+.frame-t-item-link-facebook,
+.frame-t-item-link-twitter,
+.frame-t-item-link-youtube,
+.frame-t-item-link-instagram,
+.frame-t-item-link-tiktok {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.common-22,
+.frame-t-avvxsejdplsg-8kycc-2lfwocc_wkorqptbjq_udcqwg-wl-aq-vf-9yktzv-4img-7bzw-1vludufmlde-5x-9zmny-jfl-3ebm-49sb-8jdimx-6ppptysrvrmffiwc-6w4ltbyswzghzhku-9zpxlzdmztjyxgedtyjebtja-34lopcm_y-283dwdm-8te-0z-8qwut-1z-4ylkgyw-56i-w180ttentang-svg,
+.frame-t-tentang-svg,
+.frame-t-button-dark-svg-label-search-svg,
+.frame-t-svg-sekretariat,
+.frame-t-svg-penerimaan-mahasiswa-baru-admission,
+.frame-t-svg-sistem-informasi-sumberdaya-terintegrasi,
+.frame-ttt-svg-admission,
+.frame-t-svg-admission,
+.frame-tt-item-link-facebook-titem-link-twitter-titem-link-youtube-titem-link-instagram-titem-link-tiktok,
+.frame-t-svg-humas-ulbi-ac-id {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.common-23,
+.frame-tt-heading-3lokasi-heading-3link-terkait,
+.frame-tttt-logoulbi_footer-png-ttyayasan-pendidikan-bhakti-pos-indonesia-ypbpi-jalan-sariasih-no-54sarijadi-bandung-40151jawa-barat-indonesia-ttulbi-adalah-institusi-pendidikan-tinggi-yang-didirikan-oleh-yayasan-pendidikan-bhakti-pos-indonesia-ypbpi-ulbi-memiliki-visi-menjadi-perguruan-tinggi-vokasi-yang-unggul-secara-nasional-dalam-bidang-logistik-dan-manajemen-rantai-pasok-theading-3kontak-ttsvg-sekretariat-tsvg-humas-tttsvg-penerimaan-mahasiswa-baru-admission-tttsvg-sistem-informasi-akademik-sip-tsvg-sistem-informasi-sumberdaya-terintegrasi-tsvg-asrama-kampus-kost {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.common-24,
+.frame-wrapper-2,
+.frame-t-vector,
+.frame-footer,
+.frame-tt-ulbi-adalah-institusi-pendidikan-tinggi-yang-didirikan-oleh-yayasan-pendidikan-bhakti-pos-indonesia-ypbpi-ulbi-memiliki-visi-menjadi-perguruan-tinggi-vokasi-yang-unggul-secara-nasional-dalam-bidang-logistik-dan-manajemen-rantai-pasok-theading-3kontak-ttsvg-sekretariat-tsvg-humas,
+.frame-tttt-item-link-facebook-titem-link-twitter-titem-link-youtube-titem-link-instagram-titem-link-tiktok-heading-3email {
+  display: flex;
+  align-items: flex-end;
+}
+
+.common-25,
+.frame-t-svg-humas,
+.frame-t-svg-sistem-informasi-akademik-sip,
+.frame-t-svg-asrama-kampus-kost,
+.frame-tt-svg-admission,
+.frame-t-svg-info-ulbi-ac-id {
+  display: flex;
+  align-items: center;
+}
+
+.common-26,
+.frame-frame-9,
+.frame-t-footer-background {
+  flex-direction: column;
+  justify-content: flex-end;
+}
+
+.common-27,
+.frame-t-silahkan-login-terlebih-dahulu-posting-lowongan-anda-langsung-dari-halaman-member-setiap-saat-dan-kapan-saja-anda-membutuhkan-talenta-terbaik-tinggal-mengisi-form-yang-telah-kami-sediakan-secara-online-mudah-dan-cepat-tframe-41tframe,
+.frame-frame-1,
+.frame-frame-6 {
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.common-28,
+.frame-nav,
+.frame-t-62821200027166281311110194info-ulbi-ac-id-jl-sariasih-no-54sarijadi-sukasari-kota-bandung,
+.frame-frame-2,
+.frame-frame-7,
+.frame-frame-8,
+.frame-background {
+  justify-content: center;
+  align-items: center;
+}
+
+.common-12,
+.frame-silahkan-pilih-disini,
+.frame-silahkan-isi-disini,
+.frame-silahkan-isi-disini-1,
+.frame-ingatkan-saya {
+  color: gray;
+  font-size: 12px;
+}
+
+.common-13,
+.frame-masuk,
+.frame-very-good-works-are-waiting-for-you-sign-up-now {
+  color: white;
+  font-weight: 700;
+}
+
+.common-14,
+.frame-tentang,
+.frame-t-heading-3lokasi-heading-3link-terkait,
+.frame-heading-3kontak,
+.frame-heading-3email {
+  font-size: 15px;
+  font-weight: 700;
+}
+
+.common-15,
+.frame-silahkan-login-terlebih-dahulu,
+.frame-masuk-ke-akun-anda,
+.frame-belum-memiliki-akun {
+  font-size: 24px;
+  font-weight: 700;
+}
+
+.common-16,
+.frame-masuk-sebagai,
+.frame-email,
+.frame-password {
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.common-1,
+.frame-frame,
+.frame-frame-6 {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  background-color: white;
+}
+
+.common-2,
+.frame-wrapper,
+.frame-frame-9 {
+  display: flex;
+  width: 100%;
+}
+
+.common-3,
+.frame-t-silahkan-login-terlebih-dahulu-posting-lowongan-anda-langsung-dari-halaman-member-setiap-saat-dan-kapan-saja-anda-membutuhkan-talenta-terbaik-tinggal-mengisi-form-yang-telah-kami-sediakan-secara-online-mudah-dan-cepat-tframe-41tframe,
+.frame-frame-1,
+.frame-wrapper-1 {
+  display: flex;
+  width: 900px;
+}
+
+.common-4,
+.frame-nav,
+.frame-background {
+  display: flex;
+  background-color: orangered;
+}
+
+.common-5,
+.frame-header,
+.frame-frame-2,
+.frame-frame-3,
+.frame-frame-4,
+.frame-frame-7,
+.frame-frame-8 {
+  display: flex;
+  background-color: white;
+}
+
+.common-6,
+.frame-t-62821200027166281311110194info-ulbi-ac-id-jl-sariasih-no-54sarijadi-sukasari-kota-bandung,
+.frame-t-footer-background {
+  display: flex;
+  color: white;
+}
+
+.common-7,
+.frame-posting-lowongan-anda-langsung-dari-halaman-member-setiap-saat-dan-kapan-saja-anda-membutuhkan-talenta-terbaik-tinggal-mengisi-form-yang-telah-kami-sediakan-secara-online-mudah-dan-cepat,
+.frame-posting-lowongan-anda-langsung-dari-halaman-member-setiap-saat-dan-kapan-saja-anda-membutuhkan-talenta-terbaik-tinggal-mengisi-form-yang-telah-kami-sediakan-secara-online-mudah-dan-cepat-1 {
+  display: flex;
+  color: gray;
+}
+
+.common-8,
+.frame-a-vv-xs-ej-dp-lsg-8kyc-c2l-fwo-cc_w-ko-rq-ptb-jq_u-dcq-wg-wl-aq-vf-9yktzv-4img-7bzw-1vludufmlde-5x-9zmny-jfl-3ebm-49sb-8jdimx-6ppptysrvrmffiwc-6w4ltbyswzghzhku-9zpxlzdmztjyxgedtyjebtja-34lopcm_y-283dwdm-8te-0z-8qwut-1z-4ylkgyw-56i-w,
+.frame-logo-ulbi_footer-png {
+  width: 150px;
+  height: 55px;
+}
+
+.common-9,
+.frame-button-dark-svg,
+.frame-solar-alt-arrow-down-bold {
+  width: 16px;
+  height: 16px;
+}
+
+.common-10,
+.frame-sv-g1,
+.frame-sv-g2,
+.frame-sv-g3,
+.frame-sv-g4,
+.frame-sv-g5,
+.frame-sv-g6,
+.frame-sv-g7,
+.frame-sv-g8,
+.frame-sv-g9 {
+  width: 15px;
+  height: 15px;
+}
+
+.common-11,
+.frame-item-link-facebook,
+.frame-item-link-twitter,
+.frame-item-link-youtube,
+.frame-item-link-instagram,
+.frame-item-link-tiktok {
+  width: 22px;
+  height: 22px;
+}
+
+.frame-wrapper {
+  align-items: flex-start;
+}
+
+.frame-frame {
+  overflow: clip;
+  row-gap: 2px;
+  flex-direction: column;
+  font-family: "Open Sans", ui-sans-serif, system-ui, sans-serif;
+  letter-spacing: 0em;
+  flex-shrink: 0;
+}
+
+.frame-nav {
+  padding-bottom: 8px;
+  padding-left: 612px;
+  padding-right: 612px;
+  padding-top: 8px;
+}
+
+.frame-t-62821200027166281311110194info-ulbi-ac-id-jl-sariasih-no-54sarijadi-sukasari-kota-bandung {
+  row-gap: 9px;
+  column-gap: 24px;
+  flex-wrap: wrap;
+  font-size: 13px;
+  line-height: normal;
+}
+
+.frame-header {
+  align-items: center;
+  padding-bottom: 13px;
+  padding-left: 380px;
+  padding-right: 380px;
+  padding-top: 12px;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  filter: drop-shadow(0px 2px 4px rgba(0, 0, 0, 0.07));
+}
+
+.frame-t-avvxsejdplsg-8kycc-2lfwocc_wkorqptbjq_udcqwg-wl-aq-vf-9yktzv-4img-7bzw-1vludufmlde-5x-9zmny-jfl-3ebm-49sb-8jdimx-6ppptysrvrmffiwc-6w4ltbyswzghzhku-9zpxlzdmztjyxgedtyjebtja-34lopcm_y-283dwdm-8te-0z-8qwut-1z-4ylkgyw-56i-w180ttentang-svg {
+  column-gap: 60px;
+}
+
+.frame-a-vv-xs-ej-dp-lsg-8kyc-c2l-fwo-cc_w-ko-rq-ptb-jq_u-dcq-wg-wl-aq-vf-9yktzv-4img-7bzw-1vludufmlde-5x-9zmny-jfl-3ebm-49sb-8jdimx-6ppptysrvrmffiwc-6w4ltbyswzghzhku-9zpxlzdmztjyxgedtyjebtja-34lopcm_y-283dwdm-8te-0z-8qwut-1z-4ylkgyw-56i-w {
+  background-image: url(public/assets/a-vv-xs-ej-dp-lsg-8kyc-c2l-fwo-cc_w-ko-rq-ptb-jq_u-dcq-wg-wl-aq-vf-9yktzv-4img-7bzw-1vludufmlde-5x-9zmny-jfl-3ebm-49sb-8jdimx-6ppptysrvrmffiwc-6w4ltbyswzghzhku-9zpxlzdmztjyxgedtyjebtja-34lopcm_y-283dwdm-8te-0z-8qwut-1z-4ylkgyw-56i-w.png);
+  max-width: 100%;
+  max-height: 100%;
+  flex-shrink: 0;
+}
+
+.frame-tentang {
+  color: dimgray;
+  line-height: normal;
+}
+
+.frame-svg {
+  width: 20px;
+  height: 14px;
+  flex-shrink: 0;
+}
+
+.frame-t-button-dark-svg-label-search-svg {
+  column-gap: 12px;
+}
+
+.frame-button-dark-svg {
+  flex-shrink: 0;
+}
+
+.frame-label-search-svg {
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+}
+
+.frame-tt-silahkan-login-terlebih-dahulu-posting-lowongan-anda-langsung-dari-halaman-member-setiap-saat-dan-kapan-saja-anda-membutuhkan-talenta-terbaik-tinggal-mengisi-form-yang-telah-kami-sediakan-secara-online-mudah-dan-cepat-tframe-41tframe-42frame {
+  row-gap: 61px;
+  column-gap: 61px;
+  padding-left: 158px;
+  padding-right: 182px;
+  padding-top: 30px;
+}
+
+.frame-t-silahkan-login-terlebih-dahulu-posting-lowongan-anda-langsung-dari-halaman-member-setiap-saat-dan-kapan-saja-anda-membutuhkan-talenta-terbaik-tinggal-mengisi-form-yang-telah-kami-sediakan-secara-online-mudah-dan-cepat-tframe-41tframe {
+  row-gap: 4px;
+  line-height: 1.5;
+  text-transform: capitalize;
+  flex-shrink: 0;
+}
+
+.frame-silahkan-login-terlebih-dahulu {
+  align-self: stretch;
+}
+
+.frame-posting-lowongan-anda-langsung-dari-halaman-member-setiap-saat-dan-kapan-saja-anda-membutuhkan-talenta-terbaik-tinggal-mengisi-form-yang-telah-kami-sediakan-secara-online-mudah-dan-cepat {
+  align-self: stretch;
+  align-items: center;
+  font-size: 12px;
+}
+
+.frame-t-frame {
+  padding-top: 20px;
+}
+
+.frame-frame-1 {
+  border-top-width: 1px;
+  border-bottom-width: 1px;
+  border-left-width: 1px;
+  border-right-width: 1px;
+  border-bottom-left-radius: 8px;
+  border-bottom-right-radius: 8px;
+  background-color: white;
+  row-gap: 4px;
+  padding-bottom: 23px;
+  padding-left: 23px;
+  padding-right: 23px;
+  padding-top: 23px;
+  justify-content: center;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+  box-shadow: 0px 4px 4px -1px rgba(12, 12, 13, 0.1),
+    0px 4px 4px -1px rgba(12, 12, 13, 0.05);
+}
+
+.frame-masuk-ke-akun-anda {
+  align-self: stretch;
+}
+
+.frame-t-masuk-sebagai {
+  align-self: stretch;
+  max-width: 852px;
+  padding-top: 20px;
+}
+
+.frame-frame-2 {
+  border-top-width: 1px;
+  border-bottom-width: 1px;
+  border-left-width: 1px;
+  border-right-width: 1px;
+  border-bottom-left-radius: 8px;
+  border-bottom-right-radius: 8px;
+  padding-bottom: 7px;
+  padding-left: 15px;
+  padding-right: 15px;
+  padding-top: 7px;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+}
+
+.frame-t-silahkan-pilih-disini-solar-alt-arrow-down-bold {
+  row-gap: 8px;
+  column-gap: 696px;
+}
+
+.frame-solar-alt-arrow-down-bold {
+  flex-shrink: 0;
+}
+
+.frame-t-email {
+  align-self: stretch;
+  max-width: 852px;
+  padding-top: 20px;
+}
+
+.frame-frame-3 {
+  border-top-width: 1px;
+  border-bottom-width: 1px;
+  border-left-width: 1px;
+  border-right-width: 1px;
+  border-bottom-left-radius: 8px;
+  border-bottom-right-radius: 8px;
+  align-items: center;
+  align-self: stretch;
+  padding-bottom: 7px;
+  padding-left: 15px;
+  padding-right: 15px;
+  padding-top: 7px;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+}
+
+.frame-t-password {
+  align-self: stretch;
+  max-width: 852px;
+  padding-top: 20px;
+}
+
+.frame-frame-4 {
+  border-top-width: 1px;
+  border-bottom-width: 1px;
+  border-left-width: 1px;
+  border-right-width: 1px;
+  border-bottom-left-radius: 8px;
+  border-bottom-right-radius: 8px;
+  align-items: center;
+  align-self: stretch;
+  padding-bottom: 7px;
+  padding-left: 15px;
+  padding-right: 15px;
+  padding-top: 7px;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+}
+
+.frame-t-frame-32ingatkan-saya {
+  row-gap: 8px;
+  column-gap: 8px;
+  padding-top: 28px;
+}
+
+.frame-frame-5 {
+  border-top-width: 1px;
+  border-bottom-width: 1px;
+  border-left-width: 1px;
+  border-right-width: 1px;
+  border-bottom-left-radius: 4px;
+  border-bottom-right-radius: 4px;
+  background-color: white;
+  width: 24px;
+  height: 24px;
+  border-top-left-radius: 4px;
+  border-top-right-radius: 4px;
+  flex-shrink: 0;
+}
+
+.frame-ingatkan-saya {
+  width: 820px;
+  font-family: "DM Sans", ui-sans-serif, system-ui, sans-serif;
+  flex-shrink: 0;
+}
+
+.frame-t-lupa-password-frame {
+  row-gap: 11px;
+  column-gap: 644px;
+  padding-top: 28px;
+  font-size: 14px;
+}
+
+.frame-lupa-password {
+  color: midnightblue;
+  font-weight: 600;
+}
+
+.frame-masuk {
+  text-align: center;
+  text-transform: uppercase;
+  background-color: midnightblue;
+  border-bottom-left-radius: 8px;
+  border-bottom-right-radius: 8px;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+  padding-left: 24px;
+  padding-right: 24px;
+  padding-top: 8px;
+  padding-bottom: 8px;
+}
+
+.frame-t-frame-1 {
+  padding-top: 20px;
+}
+
+.frame-wrapper-1 {
+  border-bottom-left-radius: 8px;
+  border-bottom-right-radius: 8px;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+  align-items: center;
+}
+
+.frame-frame-6 {
+  border-top-width: 1px;
+  border-bottom-width: 1px;
+  border-left-width: 1px;
+  border-right-width: 1px;
+  border-bottom-left-radius: 8px;
+  border-bottom-right-radius: 8px;
+  overflow: clip;
+  row-gap: 12px;
+  padding-bottom: 23px;
+  padding-left: 23px;
+  padding-right: 23px;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+  box-shadow: 0px 4px 4px -1px rgba(12, 12, 13, 0.1),
+    0px 4px 4px -1px rgba(12, 12, 13, 0.05);
+  flex-shrink: 0;
+}
+
+.frame-t-belum-memiliki-akun {
+  width: 852px;
+  height: 0px;
+  flex-shrink: 0;
+}
+
+.frame-belum-memiliki-akun {
+  margin-bottom: -48px;
+}
+
+.frame-logo-ulbi-wide-dark {
+  background-image: url(public/assets/logo-ulbi-wide-dark-1.png);
+  opacity: 0.1;
+  background-size: 100% 201%;
+  background-position: 0px -147.01px;
+  background-repeat: no-repeat;
+  max-width: 100%;
+  max-height: 100%;
+  width: 142px;
+  height: 72px;
+  flex-shrink: 0;
+}
+
+.frame-posting-lowongan-anda-langsung-dari-halaman-member-setiap-saat-dan-kapan-saja-anda-membutuhkan-talenta-terbaik-tinggal-mengisi-form-yang-telah-kami-sediakan-secara-online-mudah-dan-cepat-1 {
+  align-self: stretch;
+  align-items: center;
+  font-size: 12px;
+}
+
+.frame-t-frame-4frame {
+  row-gap: 19px;
+  column-gap: 24px;
+  padding-top: 12px;
+  font-size: 14px;
+  color: midnightblue;
+  text-align: center;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.frame-frame-7 {
+  border-top-width: 1px;
+  border-bottom-width: 1px;
+  border-left-width: 1px;
+  border-right-width: 1px;
+  border-bottom-left-radius: 8px;
+  border-bottom-right-radius: 8px;
+  padding-bottom: 7px;
+  padding-left: 98px;
+  padding-right: 98px;
+  padding-top: 7px;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+}
+
+.frame-daftar-mahasiswa-alumni {
+  text-align: center;
+}
+
+.frame-frame-8 {
+  border-top-width: 1px;
+  border-bottom-width: 1px;
+  border-left-width: 1px;
+  border-right-width: 1px;
+  border-bottom-left-radius: 8px;
+  border-bottom-right-radius: 8px;
+  padding-bottom: 7px;
+  padding-left: 100px;
+  padding-right: 100px;
+  padding-top: 7px;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+}
+
+.frame-daftar-mitra-perusahaan {
+  text-align: center;
+}
+
+.frame-wrapper-2 {
+  border-bottom-left-radius: 15px;
+  border-bottom-right-radius: 15px;
+  align-self: stretch;
+  border-top-left-radius: 15px;
+  border-top-right-radius: 15px;
+  z-index: 0;
+}
+
+.frame-frame-9 {
+  border-bottom-left-radius: 15px;
+  border-bottom-right-radius: 15px;
+  overflow: clip;
+  align-items: flex-start;
+  background-color: midnightblue;
+  row-gap: 30px;
+  padding-bottom: 53px;
+  padding-left: 59px;
+  padding-right: 185px;
+  padding-top: 124px;
+  border-top-left-radius: 15px;
+  border-top-right-radius: 15px;
+  height: 100%;
+  position: relative;
+  flex-shrink: 0;
+}
+
+.frame-t-very-good-works-are-waiting-for-you-sign-up-now {
+  align-self: stretch;
+  max-width: 375px;
+  padding-left: 1px;
+}
+
+.frame-very-good-works-are-waiting-for-you-sign-up-now {
+  font-family: Lato, ui-sans-serif, system-ui, sans-serif;
+  font-size: 40px;
+  line-height: normal;
+}
+
+.frame-vector {
+  width: 2px;
+  flex-grow: 1;
+}
+
+.frame-t-vector {
+  align-self: stretch;
+  max-width: 375px;
+  padding-left: 1px;
+  padding-right: 304px;
+  padding-top: 230px;
+  z-index: 3;
+}
+
+.frame-vector-1 {
+  flex-grow: 1;
+  height: 2px;
+}
+
+.frame-woman {
+  background-image: url(public/assets/woman.png);
+  background-size: 118% 120%;
+  background-position: 0px 0px;
+  background-repeat: no-repeat;
+  max-width: 100%;
+  max-height: 100%;
+  width: 524px;
+  height: 492px;
+  z-index: 4;
+  bottom: 0px;
+  right: 0px;
+  position: absolute;
+  flex-shrink: 0;
+}
+
+.frame-logo-ulbi-wide-dark-1 {
+  object-fit: cover;
+  object-position: center;
+  height: 43px;
+  left: 251px;
+  right: 250px;
+  top: 57px;
+  position: absolute;
+  flex-shrink: 0;
+}
+
+.frame-t-footer-background {
+  padding-top: 359px;
+}
+
+.frame-footer {
+  background-color: black;
+  row-gap: 1.7px;
+  flex-direction: column;
+  padding-bottom: 117px;
+  padding-left: 265px;
+  padding-right: 499px;
+  padding-top: 51px;
+  font-size: 11px;
+}
+
+.frame-tt-heading-3lokasi-heading-3link-terkait {
+  align-items: center;
+  padding-left: 163px;
+  padding-right: 163px;
+}
+
+.frame-t-heading-3lokasi-heading-3link-terkait {
+  row-gap: 10px;
+  column-gap: 338px;
+  line-height: 20px;
+}
+
+.frame-tttt-logoulbi_footer-png-ttyayasan-pendidikan-bhakti-pos-indonesia-ypbpi-jalan-sariasih-no-54sarijadi-bandung-40151jawa-barat-indonesia-ttulbi-adalah-institusi-pendidikan-tinggi-yang-didirikan-oleh-yayasan-pendidikan-bhakti-pos-indonesia-ypbpi-ulbi-memiliki-visi-menjadi-perguruan-tinggi-vokasi-yang-unggul-secara-nasional-dalam-bidang-logistik-dan-manajemen-rantai-pasok-theading-3kontak-ttsvg-sekretariat-tsvg-humas-tttsvg-penerimaan-mahasiswa-baru-admission-tttsvg-sistem-informasi-akademik-sip-tsvg-sistem-informasi-sumberdaya-terintegrasi-tsvg-asrama-kampus-kost {
+  align-items: flex-end;
+  padding-top: 7.1px;
+}
+
+.frame-ttt-logoulbi_footer-png-ttyayasan-pendidikan-bhakti-pos-indonesia-ypbpi-jalan-sariasih-no-54sarijadi-bandung-40151jawa-barat-indonesia-ttulbi-adalah-institusi-pendidikan-tinggi-yang-didirikan-oleh-yayasan-pendidikan-bhakti-pos-indonesia-ypbpi-ulbi-memiliki-visi-menjadi-perguruan-tinggi-vokasi-yang-unggul-secara-nasional-dalam-bidang-logistik-dan-manajemen-rantai-pasok-theading-3kontak-ttsvg-sekretariat-tsvg-humas-tttsvg-penerimaan-mahasiswa-baru-admission-tttsvg-sistem-informasi-akademik-sip-tsvg-sistem-informasi-sumberdaya-terintegrasi-tsvg-asrama-kampus-kost {
+  align-items: flex-start;
+  row-gap: 35px;
+  column-gap: 35px;
+  justify-content: center;
+  flex-wrap: wrap;
+  display: flex;
+}
+
+.frame-tt-logoulbi_footer-png-ttyayasan-pendidikan-bhakti-pos-indonesia-ypbpi-jalan-sariasih-no-54sarijadi-bandung-40151jawa-barat-indonesia-ttulbi-adalah-institusi-pendidikan-tinggi-yang-didirikan-oleh-yayasan-pendidikan-bhakti-pos-indonesia-ypbpi-ulbi-memiliki-visi-menjadi-perguruan-tinggi-vokasi-yang-unggul-secara-nasional-dalam-bidang-logistik-dan-manajemen-rantai-pasok-theading-3kontak-ttsvg-sekretariat-tsvg-humas {
+  row-gap: 5.8px;
+}
+
+.frame-t-logoulbi_footer-png-ttyayasan-pendidikan-bhakti-pos-indonesia-ypbpi-jalan-sariasih-no-54sarijadi-bandung-40151jawa-barat-indonesia {
+  row-gap: 26px;
+  column-gap: 252px;
+}
+
+.frame-logo-ulbi_footer-png {
+  background-image: url(public/assets/logo-ulbi_footer-png.png);
+  max-width: 100%;
+  max-height: 100%;
+  flex-shrink: 0;
+}
+
+.frame-tt-yayasan-pendidikan-bhakti-pos-indonesia-ypbpi-jalan-sariasih-no-54sarijadi-bandung-40151jawa-barat-indonesia {
+  align-self: stretch;
+}
+
+.frame-t-yayasan-pendidikan-bhakti-pos-indonesia-ypbpi-jalan-sariasih-no-54sarijadi-bandung-40151jawa-barat-indonesia {
+  row-gap: 11px;
+  line-height: 20px;
+}
+
+.frame-tt-ulbi-adalah-institusi-pendidikan-tinggi-yang-didirikan-oleh-yayasan-pendidikan-bhakti-pos-indonesia-ypbpi-ulbi-memiliki-visi-menjadi-perguruan-tinggi-vokasi-yang-unggul-secara-nasional-dalam-bidang-logistik-dan-manajemen-rantai-pasok-theading-3kontak-ttsvg-sekretariat-tsvg-humas {
+  row-gap: 34px;
+  column-gap: 61px;
+  flex-wrap: wrap;
+}
+
+.frame-t-ulbi-adalah-institusi-pendidikan-tinggi-yang-didirikan-oleh-yayasan-pendidikan-bhakti-pos-indonesia-ypbpi-ulbi-memiliki-visi-menjadi-perguruan-tinggi-vokasi-yang-unggul-secara-nasional-dalam-bidang-logistik-dan-manajemen-rantai-pasok {
+  width: 340px;
+  padding-bottom: 1.4px;
+  flex-shrink: 0;
+}
+
+.frame-ulbi-adalah-institusi-pendidikan-tinggi-yang-didirikan-oleh-yayasan-pendidikan-bhakti-pos-indonesia-ypbpi-ulbi-memiliki-visi-menjadi-perguruan-tinggi-vokasi-yang-unggul-secara-nasional-dalam-bidang-logistik-dan-manajemen-rantai-pasok {
+  line-height: 17px;
+}
+
+.frame-t-heading-3kontak-ttsvg-sekretariat-tsvg-humas {
+  row-gap: 12px;
+}
+
+.frame-heading-3kontak {
+  line-height: 20px;
+}
+
+.frame-tt-svg-sekretariat-tsvg-humas {
+  row-gap: 1.7px;
+  line-height: 24px;
+}
+
+.frame-t-svg-sekretariat {
+  column-gap: 15px;
+}
+
+.frame-sv-g1 {
+  flex-shrink: 0;
+}
+
+.frame-t-svg-humas {
+  column-gap: 15px;
+}
+
+.frame-sv-g2 {
+  flex-shrink: 0;
+}
+
+.frame-ttt-svg-penerimaan-mahasiswa-baru-admission-tttsvg-sistem-informasi-akademik-sip-tsvg-sistem-informasi-sumberdaya-terintegrasi-tsvg-asrama-kampus-kost {
+  padding-top: 3.2px;
+}
+
+.frame-tt-svg-penerimaan-mahasiswa-baru-admission-tttsvg-sistem-informasi-akademik-sip-tsvg-sistem-informasi-sumberdaya-terintegrasi-tsvg-asrama-kampus-kost {
+  row-gap: 1.7px;
+  line-height: 24px;
+}
+
+.frame-t-svg-penerimaan-mahasiswa-baru-admission {
+  column-gap: 15px;
+  padding-right: 6px;
+}
+
+.frame-sv-g3 {
+  flex-shrink: 0;
+}
+
+.frame-ttt-svg-sistem-informasi-akademik-sip-tsvg-sistem-informasi-sumberdaya-terintegrasi-tsvg-asrama-kampus-kost {
+  row-gap: 1.7px;
+}
+
+.frame-tt-svg-sistem-informasi-akademik-sip-tsvg-sistem-informasi-sumberdaya-terintegrasi {
+  row-gap: 1.7px;
+}
+
+.frame-t-svg-sistem-informasi-akademik-sip {
+  column-gap: 15px;
+}
+
+.frame-sv-g4 {
+  flex-shrink: 0;
+}
+
+.frame-t-svg-sistem-informasi-sumberdaya-terintegrasi {
+  column-gap: 15px;
+}
+
+.frame-sv-g5 {
+  flex-shrink: 0;
+}
+
+.frame-t-svg-asrama-kampus-kost {
+  column-gap: 15px;
+}
+
+.frame-sv-g6 {
+  flex-shrink: 0;
+}
+
+.frame-ttt-svg-admission {
+  padding-left: 517px;
+  padding-right: 517px;
+}
+
+.frame-tt-svg-admission {
+  padding-right: 38px;
+}
+
+.frame-t-svg-admission {
+  column-gap: 15px;
+}
+
+.frame-sv-g7 {
+  flex-shrink: 0;
+}
+
+.frame-admission {
+  line-height: 24px;
+}
+
+.frame-tttt-item-link-facebook-titem-link-twitter-titem-link-youtube-titem-link-instagram-titem-link-tiktok-heading-3email {
+  padding-left: 115px;
+  padding-right: 598px;
+  padding-top: 5.9px;
+}
+
+.frame-ttt-item-link-facebook-titem-link-twitter-titem-link-youtube-titem-link-instagram-titem-link-tiktok-heading-3email {
+  row-gap: 10px;
+  column-gap: 232px;
+}
+
+.frame-tt-item-link-facebook-titem-link-twitter-titem-link-youtube-titem-link-instagram-titem-link-tiktok {
+  column-gap: 15px;
+}
+
+.frame-t-item-link-facebook {
+  padding-top: 1.2px;
+}
+
+.frame-item-link-facebook {
+  flex-shrink: 0;
+}
+
+.frame-t-item-link-twitter {
+  padding-top: 1.2px;
+}
+
+.frame-item-link-twitter {
+  flex-shrink: 0;
+}
+
+.frame-t-item-link-youtube {
+  padding-top: 1.2px;
+}
+
+.frame-item-link-youtube {
+  flex-shrink: 0;
+}
+
+.frame-t-item-link-instagram {
+  padding-top: 1.2px;
+}
+
+.frame-item-link-instagram {
+  flex-shrink: 0;
+}
+
+.frame-t-item-link-tiktok {
+  padding-top: 1.2px;
+}
+
+.frame-item-link-tiktok {
+  flex-shrink: 0;
+}
+
+.frame-heading-3email {
+  line-height: 20px;
+}
+
+.frame-tt-svg-info-ulbi-ac-id-tsvg-humas-ulbi-ac-id {
+  row-gap: 1.7px;
+  padding-left: 517px;
+  padding-right: 517px;
+  padding-top: 7.4px;
+  justify-content: flex-end;
+  line-height: 24px;
+}
+
+.frame-t-svg-info-ulbi-ac-id {
+  column-gap: 15px;
+}
+
+.frame-sv-g8 {
+  flex-shrink: 0;
+}
+
+.frame-t-svg-humas-ulbi-ac-id {
+  column-gap: 15px;
+}
+
+.frame-sv-g9 {
+  flex-shrink: 0;
+}
+
+.frame-background {
+  padding-bottom: 20px;
+  padding-left: 23px;
+  padding-right: 20px;
+  padding-top: 20px;
+}
+
+.frame-universitas-logistik-dan-bisnis-internasional-ulbi-all-rights-reserved {
+  text-align: center;
+  font-size: 12px;
+  line-height: normal;
+}
+@media (min-width: 1910px) {
+  .frame-t-62821200027166281311110194info-ulbi-ac-id-jl-sariasih-no-54sarijadi-sukasari-kota-bandung {
+    flex-wrap: nowrap;
+  }
+  .frame-header {
+    flex-wrap: nowrap;
+  }
+  .frame-tt-silahkan-login-terlebih-dahulu-posting-lowongan-anda-langsung-dari-halaman-member-setiap-saat-dan-kapan-saja-anda-membutuhkan-talenta-terbaik-tinggal-mengisi-form-yang-telah-kami-sediakan-secara-online-mudah-dan-cepat-tframe-41tframe-42frame {
+    flex-wrap: nowrap;
+  }
+  .frame-t-silahkan-pilih-disini-solar-alt-arrow-down-bold {
+    flex-wrap: nowrap;
+  }
+  .frame-t-frame-32ingatkan-saya {
+    flex-wrap: nowrap;
+  }
+  .frame-t-lupa-password-frame {
+    flex-wrap: nowrap;
+  }
+  .frame-t-logo-ulbi-wide-dark-2tbelum-memiliki-akun {
+    flex-wrap: nowrap;
+  }
+  .frame-t-frame-4frame {
+    flex-wrap: nowrap;
+  }
+  .frame-t-heading-3lokasi-heading-3link-terkait {
+    flex-wrap: nowrap;
+  }
+  .frame-ttt-logoulbi_footer-png-ttyayasan-pendidikan-bhakti-pos-indonesia-ypbpi-jalan-sariasih-no-54sarijadi-bandung-40151jawa-barat-indonesia-ttulbi-adalah-institusi-pendidikan-tinggi-yang-didirikan-oleh-yayasan-pendidikan-bhakti-pos-indonesia-ypbpi-ulbi-memiliki-visi-menjadi-perguruan-tinggi-vokasi-yang-unggul-secara-nasional-dalam-bidang-logistik-dan-manajemen-rantai-pasok-theading-3kontak-ttsvg-sekretariat-tsvg-humas-tttsvg-penerimaan-mahasiswa-baru-admission-tttsvg-sistem-informasi-akademik-sip-tsvg-sistem-informasi-sumberdaya-terintegrasi-tsvg-asrama-kampus-kost {
+    flex-wrap: nowrap;
+  }
+  .frame-t-logoulbi_footer-png-ttyayasan-pendidikan-bhakti-pos-indonesia-ypbpi-jalan-sariasih-no-54sarijadi-bandung-40151jawa-barat-indonesia {
+    flex-wrap: nowrap;
+  }
+  .frame-tt-ulbi-adalah-institusi-pendidikan-tinggi-yang-didirikan-oleh-yayasan-pendidikan-bhakti-pos-indonesia-ypbpi-ulbi-memiliki-visi-menjadi-perguruan-tinggi-vokasi-yang-unggul-secara-nasional-dalam-bidang-logistik-dan-manajemen-rantai-pasok-theading-3kontak-ttsvg-sekretariat-tsvg-humas {
+    flex-wrap: nowrap;
+  }
+  .frame-ttt-item-link-facebook-titem-link-twitter-titem-link-youtube-titem-link-instagram-titem-link-tiktok-heading-3email {
+    flex-wrap: nowrap;
+  }
+}
