@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <base href="https://mgt-dev.github.io/mbkm-fe/" />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Ini table page" />
+    <title>Table Page</title>
+    <link rel="icon" href="favicon.ico" />
+    <link rel="stylesheet" href="src/css/style.css" />
+    <script src="src/js/guard-auth.js" type="module"></script>
+    <script src="src/js/bundle-auth.js" type="module" defer blocking="render" fetchpriority="high"></script>
+    <script src="table/script.js" type="module" defer></script>
+  </head>
+
+  <body>
+    <auth-layout>
+      <!-- Content  -->
+      <div class="space-y-4">
+        <h1 class="text-lg font-bold">Table Page</h1>
+
+        <div class="mt-4 max-w-5xl">
+          <ui-table>
+            <table>
+              <thead>
+                <tr>
+                  <th width="1">Id</th>
+                  <th width="1">Image</th>
+                  <th class="text-left">Name</th>
+                  <th class="text-left">Abilities</th>
+                  <th width="1">Pokedex</th>
+                </tr>
+              </thead>
+              <tbody id="tableData">
+                <tr>
+                  <td colspan="99" class="text-center">
+                    <div class="bg-gray-200 h-12 animate-pulse rounded"></div>
+                  </td>
+                </tr>
+                <tr>
+                  <td colspan="99" class="text-center">
+                    <div class="bg-gray-200 h-12 animate-pulse rounded"></div>
+                  </td>
+                </tr>
+                <tr>
+                  <td colspan="99" class="text-center">
+                    <div class="bg-gray-200 h-12 animate-pulse rounded"></div>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </ui-table>
+          <ui-pagination id="paginationData" className="mt-4" data-pagination-count="16" data-pagination-limit="5" data-pagination-page="1"></ui-pagination>
+        </div>
+      </div>
+      <!-- End of content  -->
+    </auth-layout>
+  </body>
+</html>

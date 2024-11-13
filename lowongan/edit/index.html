@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <base href="https://mgt-dev.github.io/mbkm-fe/" />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="" />
+    <title>Lowongan</title>
+    <link rel="icon" href="favicon.ico" />
+    <link rel="stylesheet" href="src/css/style.css" />
+    <script src="src/js/guard-auth.js" type="module"></script>
+    <script src="src/js/bundle-auth.js" type="module" defer blocking="render" fetchpriority="high"></script>
+    <script src="lowongan/edit/script.js" type="module" defer></script>
+  </head>
+
+  <body>
+    <auth-layout>
+      <!-- Content  -->
+      <div class="space-y-4">
+        <div class="p-4 flex flex-col gap-4 rounded-md shadow-md">
+          <div class="flex justify-between items-center">
+            <div class="text-md font-bold">Detail Postingan</div>
+            <ui-button color="orange">EDIT</ui-button>
+          </div>
+          <div class="border-t border-gray-300 border-dashed"></div>
+          <div class="p-4 flex flex-col gap-2 text-xs rounded-md border border-gray-300">
+            <div class="flex justify-between items-center">
+              <div>Diposting 2 Hari Yang Lalu</div>
+              <div><ui-badge className="bg-green-600/25 text-green-600" dot>Aktif</ui-badge></div>
+            </div>
+            <div class="flex flex-row gap-2 justify-start items-center">
+              <div class="w-[120px] flex overflow-hidden rounded-l-lg">
+                <img class="object-center object-contain" src="src/images/dummy_pos_ind.png" height="[100px]" alt="image" />
+              </div>
+              <div class="flex flex-col justify-start gap-2">
+                <div class="text-sm font-semibold">Global Finance Accounting Internship</div>
+                <div class="flex justify-start items-center gap-2">
+                  <iconify-icon icon="solar:buildings-bold-duotone" height="22" class="text-ulbiOrange" noobserver></iconify-icon>
+                  <div>PT. Pos Indonesia</div>
+                </div>
+                <div class="flex justify-start items-center gap-2">
+                  <iconify-icon icon="solar:map-point-bold-duotone" height="22" class="text-ulbiOrange" noobserver></iconify-icon>
+                  <div>Bandung, Jawa Barat</div>
+                </div>
+              </div>
+            </div>
+            <div class="p-0 my-2 border-t border-gray-300"></div>
+            <div class="space-y-4">
+              <h1 class="font-bold">Deskripsi Pekerjaan</h1>
+              <p>
+                <span>As a Global Finance & Accounting Intern at EIGER</span>, your mission is to support our Finance and Accounting team in various functions,
+                including financial analysis, reporting, and compliance. You will gain practical experience in managing financial data, contributing to
+                budgeting processes, and ensuring accurate financial records.
+              </p>
+              <p>
+                This internship offers a unique opportunity to develop your skills and knowledge in a global retail environment, preparing you for a successful
+                career in finance and accounting.
+              </p>
+              <h2 class="font-bold">What You'll Need to Succeed</h2>
+              <ul>
+                <li>1. Final semester students or recently completed a degree in accounting or a related field.</li>
+                <li>2. Strong analytical skills with the ability to interpret financial data.</li>
+                <li>3. Someone who is confident, proactive, enthusiastic for learning, and communicative in conveying something orally or in writing.</li>
+                <li>4. Work placement at the Head Office of Kab. Bandung, West Java.</li>
+                <li>5. Interest in the retail industry and EIGER's brand.</li>
+              </ul>
+              <h2 class="font-bold">Kompetensi Yang Akan Dikembangkan</h2>
+              <ul>
+                <li>Administrasi</li>
+                <li>Komunikasi</li>
+                <li>Analisis Data</li>
+                <li>Kerjasama Tim</li>
+                <li>Pengelolaan Waktu</li>
+                <li>Pemahaman Lingkungan Bisnis</li>
+                <li>Problem Solving</li>
+                <li>Analisis Keuangan</li>
+                <li>Keahlian Teknologi</li>
+                <li>Kemampuan Beradaptasi</li>
+                <li>Operasional</li>
+              </ul>
+              <h2 class="font-bold">Kriteria Akademik</h2>
+              <p>Mahasiswa perguruan tinggi aktif, minimal semester 6.</p>
+              <h2 class="font-bold">Program studi yang diutamakan:</h2>
+              <ul>
+                <li>Akuntansi dan Perpajakan</li>
+                <li>Ekonomi</li>
+              </ul>
+              <h2 class="font-bold">Durasi</h2>
+              <p>3 Bulan</p>
+              <h2 class="font-bold">Jenis Pekerjaan</h2>
+              <p>Full Time</p>
+              <h2 class="font-bold">Benefit Yang Ditawarkan</h2>
+              <p>Gaji Pokok Per Bulan Rp.3.000.000</p>
+              <p>Tunjangan Kesehatan</p>
+              <p>Transportasi</p>
+              <h2 class="font-bold">Tipe Lowongan</h2>
+              <p>Umum</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- End of content  -->
+    </auth-layout>
+  </body>
+</html>

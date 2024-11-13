@@ -1,32 +1,23 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <base href="/" />
+    <base href="https://mgt-dev.github.io/mbkm-fe/" />
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="Ini landing page" />
-    <title>Landing Page</title>
+    <meta name="description" content="" />
+    <title>Lowongan</title>
     <link rel="icon" href="favicon.ico" />
     <link rel="stylesheet" href="src/css/style.css" />
-    <script src="src/js/bundle-public.js" type="module" defer blocking="render" fetchpriority="high"></script>
-    <script src="script.js" type="module" defer></script>
+    <script src="src/js/guard-auth.js" type="module"></script>
+    <script src="src/js/bundle-auth.js" type="module" defer blocking="render" fetchpriority="high"></script>
+    <script src="lowongan/script.js" type="module" defer></script>
   </head>
 
   <body>
-    <public-header></public-header>
-    <!-- Content  -->
-
-    <ui-carousel>
-      <a class="hover:opacity-90 duration-150" href="https://mmlog.ulbi.ac.id/p/jalur-regular.html">
-        <img src="src/images/dummy_banner_1.png" alt="Slide 1" />
-      </a>
-      <a class="hover:opacity-90 duration-150" href="https://admission.ulbi.ac.id/p/ikatan-dinas-dan-beasiswa-posind.html">
-        <img src="src/images/dummy_banner_2.png" alt="Slide 2">
-      </a>
-    </ui-carousel>
+    <auth-layout>
+      <!-- Content  -->   
     
-    <div class="mx-auto max-w-[90dvw] 2xl:max-w-7xl my-8 flex flex-col gap-8 text-gray-500">
-      <h2 class="text-3xl text-center font-bold text-black">Lowongan Magang</h2>
+    <div class="mx-auto max-w-[90dvw] 2xl:max-w-7xl my-8 flex flex-col gap-8 text-gray-500">      
       <form id="filter-form" class="p-4 flex flex-col gap-3 bg-gray-300/10 rounded-md border border-gray-300">
         <fo-label className="mt-1" for="keyword" label="Cari Berdasarkan Perusahaan, Pekerjaan dan Program Studi"></fo-label>
         <div class="relative -mt-3">
@@ -89,10 +80,29 @@
         <!--end of filter section-->
       </form>
     </form>  
-
-      <div id="totalLowonganMagang" class="text-sm font-semibold">Total: ... Lowongan Magang</div>
+      <div class="flex justify-between items-center">
+        <div id="totalLowonganMagang" class="text-sm font-semibold">Total: ... Lowongan Magang</div>
+        <div class="flex gap-3">
+          <div class="flex gap-3 items-center">
+            <fo-label for="select" label="Perusahaan"></fo-label>
+            <fo-select name="select" placeholder="Choose one..." clearable>
+              <option value="ptposindonesia">PT. Pos Indonesia</Inp></option>
+              <option value="pttelkom">PT. Telkom</option>
+            </fo-select>
+            <fo-error name="select"></fo-error>
+          </div>
+          <div class="flex gap-3 items-center">
+            <fo-label for="select" label="Matakuliah"></fo-label>
+            <fo-select name="select" placeholder="Choose one..." clearable>
+              <option value="semua">Semua</option>
+              <option value="finance">Finance</option>
+            </fo-select>
+            <fo-error name="select"></fo-error>
+          </div>
+        </div>
+      </div>      
       <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 -mt-6">
-        <div id="listLowonganMagang" class="flex flex-col gap-4 max-h-[500px] overflow-y-auto w-full pr-3">
+        <div id="listLowonganMagang" class="flex flex-col gap-4 max-h-[800px] overflow-y-auto w-full pr-3">
           <div class="flex-none w-full h-[200px] bg-gray-200 rounded animate-pulse"></div>
           <div class="flex-none w-full h-[200px] bg-gray-200 rounded animate-pulse"></div>
           <div class="flex-none w-full h-[200px] bg-gray-200 rounded animate-pulse"></div>
@@ -101,30 +111,7 @@
           <div class="flex-none w-full h-[500px] bg-gray-200 rounded animate-pulse"></div>
         </div>
       </div>
-
-      <div class="mt-16 p-4 rounded-md border border-gray-300 bg-[url('../../images/logo_ulbi_dark.png')] bg-no-repeat bg-right-top">
-        <div class="flex flex-col gap-3 bg-no-repeat bg-left-top bg-cover relative">
-          <div class="text-xl text-black font-bold">Would You Want To Join Us</div>
-          <div class="text-xs">
-            Posting lowongan Anda langsung dari halaman member. Setiap saat dan kapan saja Anda membutuhkan talenta terbaik tinggal mengisi form yang telah kami
-            sediakan secara online. Mudah dan cepat.
-          </div>
-          <div class="grid grid-cols-3 items-center gap-x-4">
-            <ui-button className="w-full" variant="outline_blue" href="register_student/">REGISTER JOB SEEKER</ui-button>
-            <ui-button className="w-full" variant="outline_blue" href="register_company/">REGISTER EMPLOYER</ui-button>
-            <ui-button className="w-full" variant="default" href="login/">LOGIN</ui-button>
-          </div>
-        </div>
-      </div>
-
-      <div class="flex justify-center text-3xl text-black font-bold">Artikel</div>
-      <div id="listArtikel" class="flex gap-4 overflow-x-auto">
-        <div class="flex-none w-[414px] h-[300px] bg-gray-200 rounded animate-pulse"></div>
-        <div class="flex-none w-[414px] h-[300px] bg-gray-200 rounded animate-pulse"></div>
-        <div class="flex-none w-[414px] h-[300px] bg-gray-200 rounded animate-pulse"></div>
-      </div>
-    </div>
-    <!-- End of content  -->
-    <public-footer></public-footer>
+      <!-- End of content  -->
+    </auth-layout>
   </body>
 </html>

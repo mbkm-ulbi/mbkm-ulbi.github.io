@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <base href="https://mgt-dev.github.io/mbkm-fe/" />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Beranda page" />
+    <title>Beranda</title>
+    <link rel="icon" href="favicon.ico" />
+    <link rel="stylesheet" href="src/css/style.css" />
+    <script src="src/js/guard-auth.js" type="module"></script>
+    <script src="src/js/bundle-auth.js" type="module" defer blocking="render" fetchpriority="high"></script>
+    <script src="beranda/script.js" type="module" defer></script>
+  </head>
+
+  <body>
+    <auth-layout>
+      <!-- Content  -->
+      <div class="space-y-4">
+        <div class="grid grid-cols-2 gap-4">
+          <div class="py-4 space-y-4 border border-gray-300 rounded-md shadow-md">
+            <div class="px-4 flex justify-between">
+              <div class="text-lg font-bold">Status Magang</div>
+              <iconify-icon icon="solar:info-circle-bold" class="text-orange-500" height="20"></iconify-icon>
+            </div>
+            <div class="border-t border-gray-300"></div>
+            <div class="px-4 text-xs text-gray-500">
+              <i>Penilaian akan muncul setelah laporan magang diterima</i>
+              <ui-button color="orange" href="lowongan/" className="mt-4">CARI DAN DAFTAR LOWONGAN</ui-button>
+            </div>
+          </div>
+          <div class="py-4 space-y-4 border border-gray-300 rounded-md shadow-md">
+            <div class="px-4 flex justify-between">
+              <div class="text-lg font-bold">Kelengkapan Profil</div>
+              <iconify-icon icon="solar:info-circle-bold" class="text-orange-500" height="20"></iconify-icon>
+            </div>
+            <div class="border-t border-gray-300"></div>
+            <div class="px-4 flex justify-between items-center">
+              <span class="text-lg">Mahasiswa</span>
+              <ui-button color="orange">Update Profile</ui-button>
+            </div>
+            <div class="px-4 grid grid-cols-3 gap-2 text-xs">
+              <div class="flex gap-2">
+                <iconify-icon icon="solar:check-circle-bold-duotone" class="text-green-500" height="16"></iconify-icon>
+                <span>Informasi Dasar</span>
+              </div>
+              <div class="flex gap-2">
+                <iconify-icon icon="solar:check-circle-bold-duotone" class="text-green-500" height="16"></iconify-icon>
+                <span>Upload CV</span>
+              </div>
+              <div class="flex gap-2">
+                <iconify-icon icon="solar:close-circle-bold-duotone" class="text-red-500" height="16"></iconify-icon>
+                <span>Upload KTM</span>
+              </div>
+              <div class="flex gap-2">
+                <iconify-icon icon="solar:close-circle-bold-duotone" class="text-red-500" height="16"></iconify-icon>
+                <span>Informasi Kontak</span>
+              </div>
+              <div class="flex gap-2">
+                <iconify-icon icon="solar:check-circle-bold-duotone" class="text-green-500" height="16"></iconify-icon>
+                <span>Upload Lamaran</span>
+              </div>
+              <div class="flex gap-2">
+                <iconify-icon icon="solar:close-circle-bold-duotone" class="text-red-500" height="16"></iconify-icon>
+                <span>Upload Foto Profil</span>
+              </div>
+            </div>
+          </div>
+          <div class="py-4 space-y-4 border border-gray-300 rounded-md shadow-md">
+            <div class="px-4 flex justify-between">
+              <div class="text-lg font-bold">Penilaian</div>
+              <iconify-icon icon="solar:info-circle-bold" class="text-orange-500" height="20"></iconify-icon>
+            </div>
+            <div class="border-t border-gray-300"></div>
+            <div class="px-4 text-xs text-gray-500">
+              <i>Penilaian akan muncul setelah laporan magang diterima</i>
+            </div>
+          </div>
+          <div class="py-4 space-y-4 border border-gray-300 rounded-md shadow-md">
+            <div class="px-4 flex justify-between">
+              <div class="text-lg font-bold">Laporan</div>
+              <iconify-icon icon="solar:info-circle-bold" class="text-orange-500" height="20"></iconify-icon>
+            </div>
+            <div class="border-t border-gray-300"></div>
+            <div class="px-4 text-xs text-gray-500">
+              <i>Penilaian akan muncul setelah laporan magang diterima</i>
+              <ui-button color="muted" className="mt-4">BUAT LAPORAN</ui-button>
+            </div>
+          </div>
+        </div>
+        <div class="py-4 space-y-4 border border-gray-300 rounded-md shadow-md">
+          <div class="px-4 flex justify-between">
+            <div class="text-lg font-bold">Notifikasi/Aktivitas</div>
+            <iconify-icon icon="solar:info-circle-bold" class="text-orange-500" height="20"></iconify-icon>
+          </div>
+          <div class="border-t border-gray-300"></div>
+          <div class="p-4 text-gray-500 text-xs text-center">
+            <iconify-icon icon="solar:notification-lines-remove-bold-duotone" height="48"></iconify-icon>
+            <p class="font-bold">Belum Ada Aktivitas Terakhir</p>
+            <p>Anda Akan Mendapatkan Pembaharuan Setelah Melakukan Lamaran Pada Lowongan Magang Yang Tersedia</p>
+          </div>
+        </div>
+      </div>
+      <!-- End of content  -->
+    </auth-layout>
+  </body>
+</html>

@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <base href="https://mgt-dev.github.io/mbkm-fe/" />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Ini login page" />
+    <title>Login Page</title>
+    <link rel="icon" href="favicon.ico" />
+    <link rel="stylesheet" href="src/css/style.css" />
+    <script src="src/js/guard-auth.js" type="module"></script>
+    <script src="src/js/bundle-auth.js" type="module" defer blocking="render" fetchpriority="high"></script>
+    <!-- <script src="penilaian/kandidat/script.js" type="module" defer></script> -->
+  </head>
+
+  <body>
+    <auth-layout>
+      <!-- Content  -->
+      <div class="space-y-4">
+        <div class="rounded-md shadow-md">
+          <div class="p-4 text-lg font-bold">Penilaian Kandidat</div>
+          <div class="border-b border-gray-300"></div>
+          <div class="p-4 flex gap-4">
+            <img src="src/images/dummy_foto_kandidat.png" width="[250px]" alt="kandidat-image" />
+            <div class="w-full">
+              <div class="pb-2 flex gap-96">
+                <div>
+                  <div class="text-xs font-bold">Nama Lengkap</div>
+                  <div class="text-md font-bold">Darmaji Setiaji Ngahiji</div>
+                </div>
+                <div>
+                  <div class="text-xs font-bold">NIM</div>
+                  <div class="text-xs">000000000123</div>
+                </div>
+              </div>
+              <div class="border-b border-dashed border-gray-300"></div>
+              <div class="pb-2 flex gap-14">
+                <div>
+                  <div class="pt-2 flex gap-16 text-xs">
+                    <div class="font-bold space-y-2">
+                      <div>Telepon</div>
+                      <div>Prodi</div>
+                      <div>Alamat</div>
+                    </div>
+                    <div class="space-y-2">
+                      <div>08123456789</div>
+                      <div>D3-Manajemen Bisnis</div>
+                      <div>Jl. Bersama Kamu Selamanya No. 123, Kota Apa Saja, Jawa Utara 40000</div>
+                    </div>
+                  </div>
+                </div>
+                <div class="pt-2 flex gap-16 text-xs">
+                  <div class="font-bold space-y-2">
+                    <div>Email</div>
+                    <div>IPK</div>
+                  </div>
+                  <div class="space-y-2">
+                    <div>darmaji@mail.com</div>
+                    <div>3.5</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="py-1 border-b border-dashed border-gray-300"></div>
+          <div>
+            <div class="p-4 text-md font-bold">Melamar Magang</div>
+            <div class="px-4 pb-2 flex gap-14">
+              <div>
+                <div class="pt-2 flex gap-16 text-xs">
+                  <div class="font-bold space-y-2">
+                    <div>Perusahaan</div>
+                    <div>Tanggal</div>
+                    <div>Alamat</div>
+                  </div>
+                  <div class="space-y-2">
+                    <div>PT. Pos Indonesia</div>
+                    <div>24 September 2024 - 14:35</div>
+                    <div>Jl. Bersama Kamu Selamanya No. 123, Kota Apa Saja, Jawa Utara 40000</div>
+                  </div>
+                </div>
+              </div>
+              <div class="pt-2 flex gap-16 text-xs">
+                <div class="font-bold space-y-2">
+                  <div>Posisi</div>
+                  <div>Masa Kerja</div>
+                </div>
+                <div class="space-y-2">
+                  <div>Staf Admin</div>
+                  <div>3 Bulan</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="py-1 border-b border-dashed border-gray-300"></div>
+          <div>
+            <div class="p-4 text-md font-bold">Selesai Magang</div>
+            <div class="px-4 pb-2 flex gap-14">
+              <div>
+                <div class="pt-2 flex gap-16 text-xs">
+                  <div class="font-bold space-y-2">
+                    <div>Perusahaan</div>
+                    <div>Tanggal</div>
+                    <div>Alamat</div>
+                  </div>
+                  <div class="space-y-2">
+                    <div>PT. Pos Indonesia</div>
+                    <div>24 September 2024 - 14:35</div>
+                    <div>Jl. Bersama Kamu Selamanya No. 123, Kota Apa Saja, Jawa Utara 40000</div>
+                  </div>
+                </div>
+              </div>
+              <div class="pt-2 flex gap-16 text-xs">
+                <div class="font-bold space-y-2">
+                  <div>Posisi</div>
+                  <div>Masa Kerja</div>
+                  <div>Periode</div>
+                </div>
+                <div class="space-y-2">
+                  <div>Staf Admin</div>
+                  <div>3 Bulan</div>
+                  <div>01 Juli - 30 September 2024</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="py-1 border-b border-dashed border-gray-300"></div>
+          <div class="p-4 text-md font-bold">Laporan Kandidat</div>
+          <div class="px-4 flex gap-4">
+            <div class="w-full">
+              <fo-uploaded
+                fileurl="https://google.com"
+                filename="Laporan Magang_Darmaji Setiadi Ngahiji_Juli_Agustus_September_2024.pdf"
+                className="mb-2"
+              ></fo-uploaded>
+              <fo-error name="fileUpload"></fo-error>
+            </div>
+            <ui-button className="w-max flex gap-2" data-dialog-trigger="lihat-laporan">
+              <iconify-icon icon="solar:documents-bold" height="22" class="text-white" noobserver></iconify-icon>
+              LIHAT LAPORAN
+            </ui-button>
+            <ui-dialog name="lihat-laporan">
+              <div class="flex flex-col text-center justify-center items-center gap-4">
+                <div class="pb-2 w-full flex justify-between items-center border-b border-gray-300">
+                  <div class="test-md font-bold">Laporan Magang</div>
+                  <div data-dialog-close><iconify-icon icon="solar:close-circle-bold" height="22" class="text-red-600" noobserver></iconify-icon></div>
+                </div>
+                <div class="w-full flex gap-4 text-justify">
+                  <img src="src/images/dummy_foto_kandidat.png" width="[250px]" alt="kandidat-image" />
+                  <div class="w-full">
+                    <div class="pb-2 flex gap-96">
+                      <div>
+                        <div class="text-xs font-bold">Nama Lengkap</div>
+                        <div class="text-md font-bold">Darmaji Setiaji Ngahiji</div>
+                      </div>
+                      <div>
+                        <div class="text-xs font-bold">NIM</div>
+                        <div class="text-xs">000000000123</div>
+                      </div>
+                    </div>
+                    <div class="border-b border-dashed border-gray-300"></div>
+                    <div class="pb-2 flex gap-14">
+                      <div>
+                        <div class="pt-2 flex gap-16 text-xs">
+                          <div class="font-bold space-y-2">
+                            <div>Telepon</div>
+                            <div>Prodi</div>
+                            <div>Alamat</div>
+                          </div>
+                          <div class="space-y-2">
+                            <div>08123456789</div>
+                            <div>D3-Manajemen Bisnis</div>
+                            <div>Jl. Bersama Kamu Selamanya No. 123, Kota Apa Saja, Jawa Utara 40000</div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="pt-2 flex gap-16 text-xs">
+                        <div class="font-bold space-y-2">
+                          <div>Email</div>
+                          <div>IPK</div>
+                        </div>
+                        <div class="space-y-2">
+                          <div>darmaji@mail.com</div>
+                          <div>3.5</div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="p-4 w-full h-[260px] flex flex-col overflow-scroll gap-2 border border-dashed border-gray-300 rounded-md text-xs text-justify">
+                  <h1 class="font-bold">LAPORAN KEGIATAN MAGANG MAHASISWA</h1>
+                  <div class="details">
+                    <p>Nama Mahasiswa: Ahmad Yusran</p>
+                    <p>NIM: 123456789</p>
+                    <p>Program Studi: Akuntansi</p>
+                    <p>Perusahaan: PT ABC Sejahtera</p>
+                    <p>Departemen: Keuangan</p>
+                    <p>Periode Magang: 1 Agustus 2024 – 31 Agustus 2024</p>
+                  </div>
+                  <h2 class="font-bold">RINCIAN KEGIATAN MAGANG</h2>
+                  <div class="activities">
+                    <h3>Senin, 1 Agustus 2024</h3>
+                    <ul>
+                      <li>Pengarahan Awal Dari Supervisor Terkait Tugas-Tugas Selama Magang.</li>
+                      <li>Pengenalan Software Akuntansi Yang Digunakan Oleh Perusahaan (Accurate).</li>
+                      <li>Memeriksa Kelengkapan Dokumen Untuk Pengajuan Reimbursement Karyawan.</li>
+                      <li>Menginput Data Transaksi Kas Kecil (Petty Cash) Ke Dalam Sistem.</li>
+                    </ul>
+                    <h3>Selasa, 2 Agustus 2024</h3>
+                    <ul>
+                      <li>Melakukan Pengarsipan Dokumen Keuangan Secara Manual Dan Digital.</li>
+                      <li>Mempersiapkan Pengajuan Dana Untuk Kebutuhan Operasional Perusahaan.</li>
+                      <li>Membantu Dalam Proses Rekonsiliasi Bank Harian Dengan Supervisor.</li>
+                      <li>Mengecek Bukti Transaksi Pembelian Barang Perusahaan.</li>
+                    </ul>
+                  </div>
+                </div>
+
+                <div class="mt-2 w-full flex justify-between items-center">
+                  <div class="flex gap-4 text-xs">
+                    <div class="flex gap-2 items-center">
+                      <iconify-icon icon="solar:check-circle-bold" height="22" class="text-green-500" noobserver></iconify-icon>
+                      <div>Selesai Dibuat Oleh Mahasiswa</div>
+                    </div>
+                    <div class="flex gap-2 items-center">
+                      <iconify-icon icon="solar:check-circle-bold" height="22" class="text-green-500" noobserver></iconify-icon>
+                      <div>Disetujui Oleh Perusahaan</div>
+                    </div>
+                    <div class="flex gap-2 items-center">
+                      <iconify-icon icon="solar:check-circle-bold" height="22" class="text-green-500" noobserver></iconify-icon>
+                      <div>Disetujui Oleh Dosen Wali</div>
+                    </div>
+                    <div class="flex gap-2 items-center">
+                      <iconify-icon icon="solar:check-circle-bold" height="22" class="text-green-500" noobserver></iconify-icon>
+                      <div>Disetujui Oleh Prodi</div>
+                    </div>
+                  </div>
+                  <ui-button className="w-max flex gap-2">
+                    <iconify-icon icon="solar:download-square-bold" height="22" class="text-white" noobserver></iconify-icon>
+                    DOWNLOAD
+                  </ui-button>
+                </div>
+              </div>
+            </ui-dialog>
+          </div>
+          <div class="py-1 border-b border-dashed border-gray-300"></div>
+          <div class="p-4 text-md font-bold">Penilaian Kandidat Oleh Perusahaan</div>
+          <div class="px-4 flex gap-4">
+            <div class="w-full">
+              <fo-label for="nilai" label="Pilih Nilai"></fo-label>
+              <fo-select name="nilai">
+                <option value="100" selected>100</option>
+                <option value="90">90</option>
+                <option value="80">80</option>
+              </fo-select>
+            </div>
+            <div class="w-full">
+              <fo-label for="nilaiA" label="Nilai"></fo-label>
+              <fo-input name="nilaiA" placeholder="A (Sangat Baik)" disabled></fo-input>
+            </div>
+          </div>
+          <div class="px-4 py-4 w-full">
+            <fo-label for="textArea" label="Catatan Penilaian"></fo-label>
+            <fo-textarea class="min-h-24" name="textArea" placeholder="Silahkan Ketik Disini.." value=""></fo-textarea>
+          </div>
+          <div class="px-4 pb-4 flex justify-end">
+            <ui-button color="orange" className="w-max flex gap-2" data-dialog-trigger="penilaian-kandidat">
+              <iconify-icon icon="solar:medal-star-bold" height="22" class="text-white" noobserver></iconify-icon>
+              BERI NILAI</ui-button
+            >
+            <ui-dialog name="penilaian-kandidat" className="w-[750px] h-[215px]">
+              <div class="flex flex-col text-center justify-center items-center gap-4">
+                <div class="test-md font-bold">Yakin untuk Memberikan Nilai Untuk Kandidat Ini?</div>
+                <div class="text-sm font-semibold">Postingan Anda Akan Kami Tinjau Maksimal 2x24 Jam</div>
+                <div class="text-xs">
+                  <p>Akun Perusahaan Anda Kini Dapat Melakukan Posting Lowongan Magang Pada Website MBKM ULBI</p>
+                  <p>Silahkan Masuk Menggunakan Akun Yang Telah Anda Buat Untuk Melakukan Posting Lowongan Magang</p>
+                </div>
+                <div class="flex gap-3">
+                  <ui-button variant="outline_red" data-dialog-close>BATAL</ui-button>
+                  <ui-button color="green" data-dialog-trigger="penilaian-berhasil">YAKIN</ui-button>
+                </div>
+              </div>
+            </ui-dialog>
+            <ui-dialog name="penilaian-berhasil" className="w-[750px] h-[320px]">
+              <div class="flex flex-col text-center justify-center items-center gap-3">
+                <div class="test-md font-bold">Berhasil</div>
+                <iconify-icon icon="solar:verified-check-bold-duotone" height="96" class="text-green-600" noobserver></iconify-icon>
+                <div class="text-sm font-semibold">Postingan Anda Akan Kami Tinjau Maksimal 2x24 Jam</div>
+                <div class="text-xs">
+                  <p>Akun Perusahaan Anda Kini Dapat Melakukan Posting Lowongan Magang Pada Website MBKM ULBI</p>
+                  <p>Silahkan Masuk Menggunakan Akun Yang Telah Anda Buat Untuk Melakukan Posting Lowongan Magang</p>
+                </div>
+                <div class="flex gap-3">
+                  <ui-button data-dialog-close>SELESAI</ui-button>
+                </div>
+              </div>
+            </ui-dialog>
+          </div>
+        </div>
+      </div>
+      <!-- End of content  -->
+    </auth-layout>
+  </body>
+</html>

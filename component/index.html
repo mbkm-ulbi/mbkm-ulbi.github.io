@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <base ="/" />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Ini component page" />
+    <title>Component Page</title>
+    <link rel="icon" href="favicon.ico" />
+    <link rel="stylesheet" href="src/css/style.css" />
+    <script src="src/js/guard-auth.js" type="module"></script>
+    <script src="src/js/bundle-auth.js" type="module" defer blocking="render" fetchpriority="high"></script>
+    <script src="component/script.js" type="module" defer></script>
+  </head>
+
+  <body>
+    <auth-layout>
+      <!-- Content  -->
+      <div class="space-y-4">
+        <h1 class="text-lg font-bold">Component</h1>
+
+        <div class="mt-4 flex items-center gap-2">
+          <div>
+            <ui-button data-dialog-trigger="dialog-test">Dialog</ui-button>
+            <ui-dialog name="dialog-test">
+              <div>Ini Content Modal</div>
+            </ui-dialog>
+          </div>
+          <div>
+            <ui-button data-popover-trigger="popover-test">Popover</ui-button>
+            <ui-popover name="popover-test" trigger="click" placement="bottom" className="mt-2">
+              <div>Ini Content Popover</div>
+            </ui-popover>
+          </div>
+        </div>
+
+        <div class="mt-4 max-w-5xl">
+          <h2 class="mb-1 font-bold">Editor</h2>
+          <fo-editor></fo-editor>
+          <div class="mt-2 flex justify-end">
+            <ui-button data-editor-save>Save</ui-button>
+          </div>
+        </div>
+      </div>
+      <!-- End of content  -->
+    </auth-layout>
+  </body>
+</html>

@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <base href="https://mgt-dev.github.io/mbkm-fe/" />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="" />
+    <title>Lowongan</title>
+    <link rel="icon" href="favicon.ico" />
+    <link rel="stylesheet" href="src/css/style.css" />
+    <script src="src/js/guard-auth.js" type="module"></script>
+    <script src="src/js/bundle-auth.js" type="module" defer blocking="render" fetchpriority="high"></script>
+    <script src="lowongan/script.js" type="module" defer></script>
+  </head>
+
+  <body>
+    <auth-layout>
+      <!-- Content  -->
+      <div class="space-y-4">
+        <div class="px-12 py-4 rounded-md shadow-md">
+          <div id="rekapLowonganMagang" class="flex justify-between">
+            <div class="flex items-center gap-2">
+              <iconify-icon icon="solar:case-round-bold" height="22" class="text-ulbiOrange" noobserver></iconify-icon>
+              <span class="text-lg text-ulbiBlue font-bold">Lowongan</span>
+            </div>
+            <div class="flex flex-col justify-center items-center">
+              <div class="text-xs text-gray-500 font-semibold">Total</div>
+              <div class="text-xl font-bold">...</div>
+            </div>
+            <div class="flex flex-col justify-center items-center">
+              <div class="text-xs text-gray-500 font-semibold">Diterima</div>
+              <div class="text-xl font-bold">...</div>
+            </div>
+            <div class="flex flex-col justify-center items-center">
+              <div class="text-xs text-gray-500 font-semibold">Ditinjau</div>
+              <div class="text-xl font-bold">...</div>
+            </div>
+            <div class="flex flex-col justify-center items-center">
+              <div class="text-xs text-gray-500 font-semibold">Ditolak</div>
+              <div class="text-xl font-bold">...</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="p-4 flex flex-col gap-4 rounded-md shadow-md">
+          <div class="flex justify-between items-center">
+            <div class="text-md font-bold">Semua Lowongan</div>
+            <div class="flex justify-end items-center gap-4 text-xs text-gray-500">
+              <div class="mb-2 font-semibold">Perusahaan:</div>
+              <fo-select>
+                <option>PT. Pos Indonesia</option>
+              </fo-select>
+              <div class="mb-2 font-semibold">Status Lowongan:</div>
+              <fo-select>
+                <option>Semua</option>
+                <option>Diterima</option>
+                <option>Ditinjau</option>
+                <option>Ditolak</option>
+              </fo-select>
+              <ui-button color="orange" className="flex gap-2" href="lowongan/create">
+                <iconify-icon icon="solar:add-circle-bold" height="22" class="text-white" noobserver></iconify-icon>
+                BUAT POSTINGAN BARU
+              </ui-button>
+            </div>
+          </div>
+          <div class="border-t border-gray-300 border-dashed"></div>
+          <div id="listLowonganMagang" class="grid grid-cols-2 gap-4 max-h-[500px] overflow-y-auto w-full pr-3">
+            <div class="flex-none w-full h-[200px] bg-gray-200 rounded animate-pulse"></div>
+            <div class="flex-none w-full h-[200px] bg-gray-200 rounded animate-pulse"></div>
+            <div class="flex-none w-full h-[200px] bg-gray-200 rounded animate-pulse"></div>
+            <div class="flex-none w-full h-[200px] bg-gray-200 rounded animate-pulse"></div>
+          </div>
+          <div class="border-t border-gray-300 border-dashed"></div>
+          <div class="flex justify-between">
+            <div id="totalLowonganMagang" class="text-sm font-semibold">Menampilkan ... Lowongan</div>
+            <div><ui-pagination /></div>
+          </div>
+        </div>
+        `
+      </div>
+      <!-- End of content  -->
+    </auth-layout>
+  </body>
+</html>
