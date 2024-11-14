@@ -8,10 +8,18 @@ export const dummyOptions = [{
     value: "dosen"
 }, {
     id:3,
-    label: "Karyawan",
-    value: "karyawan"
+    label: "Prodi",
+    value: "prodi"
 }, {
     id:4,
-    label: "Umum",
-    value: "umum"
+    label: "CDC",
+    value: "cdc"
+}, {
+    id: 5,
+    label: "Mitra Perusahaan",
+    value: "perusahaan"
+}, {
+    id: 6,
+    label: "Super Admin",
+    value: "superadmin"
 }]

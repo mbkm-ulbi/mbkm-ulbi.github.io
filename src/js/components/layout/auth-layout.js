@@ -1,7 +1,7 @@
 import { cn } from "../../libraries/tailwind.js";
 import { html, render } from "https://cdn.jsdelivr.net/npm/uhtml@4.5.11/+esm";
 import { slugUri } from "../../customs/settings.js";
-import { removeAuth } from "../../libraries/cookies.js";
+import { removeAuth, getAuth } from "../../libraries/cookies.js";
 import { capitalizeEachWord } from "../../libraries/utilities.js";
 
 /**
@@ -11,72 +11,100 @@ class AuthLayout extends HTMLElement {
   constructor() {
     super();
     this.content = Array.from(this.childNodes);
+    this.path = new URL(window.location.href).pathname.replace(slugUri, "/");
+    this.state = {
+      isMasterDataOpen: false, // State to track dropdown for "Master Data"
+      listNavSidebar: [
+        {
+          name: "Beranda",
+          href: `${slugUri}beranda/`,
+          icon: "solar:home-smile-angle-bold",
+          active: this.path.startsWith("/beranda/"),
+        },
+        {
+          name: "Lowongan",
+          href: `${slugUri}lowongan/`,
+          icon: "solar:case-round-bold",
+          active: this.path.startsWith("/lowongan/"),
+        },
+        {
+          name: "Kandidat",
+          href: `${slugUri}kandidat/`,
+          icon: "solar:user-hands-bold",
+          active: this.path.startsWith("/kandidat/"),
+        },
+        {
+          name: "Penilaian",
+          href: `${slugUri}penilaian/`,
+          icon: "solar:medal-star-bold",
+          active: this.path.startsWith("/penilaian/"),
+        },
+        {
+          name: "Laporan",
+          href: `${slugUri}laporan/`,
+          icon: "solar:documents-bold",
+          active: this.path.startsWith("/laporan/"),
+        },
+      ],
+    };
   }
 
-  connectedCallback() {
+  async connectedCallback() {
+    const auth = await getAuth();
+    const authParse = JSON.parse(auth)
+    console.log({ auth: JSON.parse(auth) });
+    if (authParse.role === "superadmin") {
+      //push new menu master data
+      let arr = [...this.state.listNavSidebar]
+      arr.push({
+              name: "Master Data",
+              href: `${slugUri}master-data/`,
+              icon: "solar:database-bold",
+              active: this.path.startsWith("/master-data/"),
+              hasChildren: true,  
+              children: [
+                {
+                    name: "Data User",
+                    href: `${slugUri}master-data/user/`,
+                    active: this.path.startsWith("/master-data/user/"),
+                },
+                {
+                    name: "Data Role",
+                    href: `${slugUri}master-data/role/`,
+                    active: this.path.startsWith("/master-data/role/"),
+                },
+                {
+                    name: "Data Lowongan",
+                    href: `${slugUri}master-data/lowongan/`,
+                    active: this.path.startsWith("/master-data/lowongan/"),
+                },
+                {
+                    name: "Data Laporan",
+                    href: `${slugUri}master-data/laporan/`,
+                    active: this.path.startsWith("/master-data/laporan/"),
+                },
+                {
+                    name: "Data Penilaian",
+                    href: `${slugUri}master-data/penilaian/`,
+                    active: this.path.startsWith("/master-data/penilaian/"),
+                },
+                {
+                    name: "Data Artikel",
+                    href: `${slugUri}master-data/artikel/`,
+                    active: this.path.startsWith("/master-data/artikel/"),
+                }]
+            })
+      this.state.listNavSidebar =  arr
+    }
+    this.renderTemplate();
+  }
+
+  toggleMasterDataDropdown() {
+    this.state.isMasterDataOpen = !this.state.isMasterDataOpen;
     this.renderTemplate();
   }
 
   sidebarTemplate() {
-    const path = new URL(window.location.href).pathname.replace(slugUri, "/");
-
-    const listNavSidebar = [
-      {
-        name: "Beranda",
-        href: `${slugUri}beranda/`,
-        icon: "solar:home-smile-angle-bold",
-        active: path.startsWith("/beranda/"),
-      },
-      {
-        name: "Lowongan",
-        href: `${slugUri}lowongan/`,
-        icon: "solar:case-round-bold",
-        active: path.startsWith("/lowongan/"),
-      },
-      {
-        name: "Kandidat",
-        href: `${slugUri}kandidat/`,
-        icon: "solar:user-hands-bold",
-        active: path.startsWith("/kandidat/"),
-      },
-      {
-        name: "Penilaian",
-        href: `${slugUri}penilaian/`,
-        icon: "solar:medal-star-bold",
-        active: path.startsWith("/penilaian/"),
-      },
-      {
-        name: "Laporan",
-        href: `${slugUri}laporan/`,
-        icon: "solar:documents-bold",
-        active: path.startsWith("/laporan/"),
-      },
-      {
-        name: "Component",
-        href: `${slugUri}component/`,
-        icon: "material-symbols:dashboard",
-        active: path.startsWith("/component/"),
-      },
-      {
-        name: "Form",
-        href: `${slugUri}form/`,
-        icon: "material-symbols:dashboard",
-        active: path.startsWith("/form/"),
-      },
-      {
-        name: "Table",
-        href: `${slugUri}table/`,
-        icon: "material-symbols:dashboard",
-        active: path.startsWith("/table/"),
-      },
-      {
-        name: "User",
-        href: `${slugUri}user/`,
-        icon: "material-symbols:dashboard",
-        active: path.startsWith("/user/"),
-      },
-    ];
-
     return html`
       <aside
         id="sidebar"
@@ -97,21 +125,61 @@ class AuthLayout extends HTMLElement {
           </div>
         </div>
         <nav class="px-6 grow flex flex-col gap-2 mt-4">
-          ${listNavSidebar.map(
-            (item) => html`
-              <a
-                href=${item.href}
-                class=${cn("group flex items-center gap-2 px-2 py-2 rounded-lg hover:bg-ulbiBlue duration-200", item.active && "active bg-ulbiBlue")}
-              >
-                <iconify-icon
-                  class="text-gray-600 group-hover:text-ulbiOrange group-[.active]:text-ulbiOrange duration-200"
-                  icon=${item.icon}
-                  width="24"
-                  noobserver
-                ></iconify-icon>
-                <span class="text-gray-600 font-semibold group-hover:text-white group-[.active]:text-white duration-200">${item.name}</span>
-              </a>
-            `
+          ${this.state.listNavSidebar.map((item) =>
+            item.hasChildren
+              ? html`
+                  <div class="flex flex-col">
+                    <button
+                      @click=${() => this.toggleMasterDataDropdown()}
+                      class=${cn("group flex items-center gap-2 px-2 py-2 rounded-lg hover:bg-ulbiBlue duration-200", item.active && "active bg-ulbiBlue")}
+                    >
+                      <iconify-icon
+                        class="text-gray-600 group-hover:text-ulbiOrange group-[.active]:text-ulbiOrange duration-200"
+                        icon=${item.icon}
+                        width="24"
+                        noobserver
+                      ></iconify-icon>
+                      <span class="text-gray-600 font-semibold group-hover:text-white group-[.active]:text-white duration-200">${item.name}</span>
+                      <iconify-icon
+                        icon="material-symbols:chevron-right-rounded"
+                        class=${cn("ml-auto transition-transform duration-200", this?.state.isMasterDataOpen ? "rotate-90" : "")}
+                      ></iconify-icon>
+                    </button>
+                    ${this?.state.isMasterDataOpen
+                      ? html`
+                          <div class="pl-8">
+                            ${item.children.map(
+                              (child) => html`
+                                <a
+                                  href=${child.href}
+                                  class=${cn(
+                                    "group flex items-center gap-2 px-2 py-2 rounded-lg hover:bg-ulbiOrange duration-200",
+                                    child.active && "active bg-ulbiOrange"
+                                  )}
+                                >
+                                  <span class="text-gray-600 font-semibold group-hover:text-white group-[.active]:text-white duration-200">${child.name}</span>
+                                </a>
+                              `
+                            )}
+                          </div>
+                        `
+                      : ""}
+                  </div>
+                `
+              : html`
+                  <a
+                    href=${item.href}
+                    class=${cn("group flex items-center gap-2 px-2 py-2 rounded-lg hover:bg-ulbiBlue duration-200", item.active && "active bg-ulbiBlue")}
+                  >
+                    <iconify-icon
+                      class="text-gray-600 group-hover:text-ulbiOrange group-[.active]:text-ulbiOrange duration-200"
+                      icon=${item.icon}
+                      width="24"
+                      noobserver
+                    ></iconify-icon>
+                    <span class="text-gray-600 font-semibold group-hover:text-white group-[.active]:text-white duration-200">${item.name}</span>
+                  </a>
+                `
           )}
         </nav>
         <div class="px-6 flex flex-col gap-2 mt-4">
@@ -134,7 +202,7 @@ class AuthLayout extends HTMLElement {
             href="pengaturan/"
             class=${cn(
               "group flex items-center gap-2 px-2 py-2 rounded-lg hover:bg-ulbiBlue duration-200",
-              path.startsWith("/pengaturan/") && "active bg-ulbiBlue"
+              this.path.startsWith("/pengaturan/") && "active bg-ulbiBlue"
             )}
           >
             <iconify-icon
@@ -149,7 +217,7 @@ class AuthLayout extends HTMLElement {
             href="bantuan/"
             class=${cn(
               "group flex items-center gap-2 px-2 py-2 rounded-lg hover:bg-ulbiBlue duration-200",
-              path.startsWith("/bantuan/") && "active bg-ulbiBlue"
+              this.path.startsWith("/bantuan/") && "active bg-ulbiBlue"
             )}
           >
             <iconify-icon
