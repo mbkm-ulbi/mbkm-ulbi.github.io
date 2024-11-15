@@ -1,3 +1,3 @@
 // settings.js dev-mode
-export const baseUrl = "/";
-export const slugUri = "/";
+export const baseUrl = "https://mbkm.ulbi.ac.id/";
+export const slugUri = "/mbkm-fe/";
