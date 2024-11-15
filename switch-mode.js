@@ -46,7 +46,7 @@ async function updateBaseUrl(isProduction) {
     const content = readFileSync(settingsPath, "utf-8");
 
     const newBaseUrl = isProduction ? "https://mbkm-ulbi.github.io/" : "/";
-    const newSlugUri = isProduction ? "/mbkm-fe/" : "/";
+    const newSlugUri = isProduction ? "/" : "/";
 
     const updatedContent = content
       .replace(/export const baseUrl = ".*?";/, `export const baseUrl = "${newBaseUrl}";`)

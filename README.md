@@ -52,10 +52,10 @@ tailwindcss -i ./src/css/raw/main.css -o ./src/css/minify/main.min.css --minify
 
 // settings.js dev-mode
 export const baseUrl = "/";
-export const slugUri = "/mbkm-fe/";
+export const slugUri = "/";
 // settings.js prod-mode
 export const baseUrl = "https://mbkm-ulbi.github.io/";
-export const slugUri = "/mbkm-fe/"
+export const slugUri = "/"
 ```
 
 ## Switch Mode
