@@ -48,13 +48,13 @@ tailwindcss -i ./src/css/raw/main.css -o ./src/css/minify/main.min.css --minify
 // each .html dev-mode
 <base href="/" />
 // each .html prod-mode
-<base href="https://mbkm.ulbi.ac.id/" />
+<base href="https://mbkm-ulbi.github.io/" />
 
 // settings.js dev-mode
 export const baseUrl = "/";
 export const slugUri = "/mbkm-fe/";
 // settings.js prod-mode
-export const baseUrl = "https://mbkm.ulbi.ac.id/";
+export const baseUrl = "https://mbkm-ulbi.github.io/";
 export const slugUri = "/mbkm-fe/"
 ```
 

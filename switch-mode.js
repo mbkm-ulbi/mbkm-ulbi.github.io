@@ -28,7 +28,7 @@ async function modifyBaseHref(isProduction) {
     filesArray.forEach((file) => {
       try {
         const content = readFileSync(file, "utf-8");
-        const newBaseHref = isProduction ? '<base href="https://mbkm.ulbi.ac.id/" />' : '<base href="/" />';
+        const newBaseHref = isProduction ? '<base href="https://mbkm-ulbi.github.io/" />' : '<base href="/" />';
         const updatedContent = content.replace(/<base href=".*?" \/>/, newBaseHref);
         writeFileSync(file, updatedContent, "utf-8");
       } catch (err) {
@@ -45,7 +45,7 @@ async function updateBaseUrl(isProduction) {
     const settingsPath = "./src/js/customs/settings.js";
     const content = readFileSync(settingsPath, "utf-8");
 
-    const newBaseUrl = isProduction ? "https://mbkm.ulbi.ac.id/" : "/";
+    const newBaseUrl = isProduction ? "https://mbkm-ulbi.github.io/" : "/";
     const newSlugUri = isProduction ? "/mbkm-fe/" : "/";
 
     const updatedContent = content
