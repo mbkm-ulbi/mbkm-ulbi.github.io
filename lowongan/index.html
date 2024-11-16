@@ -1,117 +1,27 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <base href="/" />
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="" />
-    <title>Lowongan</title>
-    <link rel="icon" href="favicon.ico" />
-    <link rel="stylesheet" href="src/css/style.css" />
-    <script src="src/js/guard-auth.js" type="module"></script>
-    <script src="src/js/bundle-auth.js" type="module" defer blocking="render" fetchpriority="high"></script>
-    <script src="lowongan/script.js" type="module" defer></script>
-  </head>
 
-  <body>
-    <auth-layout>
-      <!-- Content  -->   
-    
-    <div class="mx-auto max-w-[90dvw] 2xl:max-w-7xl my-8 flex flex-col gap-8 text-gray-500">      
-      <form id="filter-form" class="p-4 flex flex-col gap-3 bg-gray-300/10 rounded-md border border-gray-300">
-        <fo-label className="mt-1" for="keyword" label="Cari Berdasarkan Perusahaan, Pekerjaan dan Program Studi"></fo-label>
-        <div class="relative -mt-3">
-          <fo-input name="keyword" className="py-4" placeholder="Silahkan ketik pencarian Anda disini..."></fo-input>
-          <button type="submit" class="bg-orange-500 text-sm font-bold text-white px-4 py-2 rounded-md absolute top-1/2 right-2 transform -translate-y-1/2">
-            Cari
-          </button>
-        </div>
-        <div class="p-0 w-full">
-          <div id="filter-section" class="hidden my-4 text-xs transition-all duration-300">
-            <!-- Bagian filter -->
-            <div class="w-full grid grid-cols-3 gap-4">
-              <div>
-                <div class="mb-2 font-semibold">Periode:</div>
-                <fo-select className="w-full px-4 py-2">                 
-                  <option>Januari 2024</option>
-                  <option>Februari 2024</option>
-                  <option>Maret 2024</option>
-                </fo-select>
-              </div>
-              <div>
-                <div class="mb-2 font-semibold">Perusahaan:</div>
-                <fo-select className="w-full px-4 py-2">                  
-                  <option>PT. Pos Indonesia</option>
-                </fo-select>
-              </div>
-              <div>
-                <div class="mb-2 font-semibold">Matakuliah:</div>
-                <fo-select className="w-full px-4 py-2">                  
-                  <option>Accounting</option>
-                  <option>Marketing</option>
-                  <option>Finance</option>
-                </fo-select>
-              </div>
-            </div>    
-            <div class="w-full grid grid-cols-3 gap-4">
-              <div>
-                <div class="my-2 font-semibold">Kategori:</div>
-                <div class="flex flex-wrap items-center gap-3">
-                  <fo-checkbox name="umum" label="Umum" checked></fo-checkbox>
-                  <fo-checkbox name="privat" label="Privat"></fo-checkbox>      
-                </div>
-              </div>
-              <div>
-                <div class="my-2 font-semibold">Status:</div>
-                <div class="flex flex-wrap items-center gap-3">
-                  <fo-radio name="semua" value="semua" label="Semua" checked></fo-radio>
-                  <fo-radio name="tersedia" value="tersedia" label="Tersedia"></fo-radio>
-                  <fo-radio name="terbatas" value="terbatas" label="Terbatas"></fo-radio>
-                </div>
-              </div>
-            </div>
-          </div>                    
-        </div>
-        <!-- Tombol Toggle -->
-        <div class="flex justify-center items-center gap-2 font-semibold text-xs cursor-pointer" id="toggle-filter">
-          <iconify-icon icon="solar:alt-arrow-down-outline" class="text-gray-500" height="16"></iconify-icon>
-          <span id="toggle-text">Tampilkan Filter</span>
-        </div>
-        <!--end of filter section-->
-      </form>
-    </form>  
-      <div class="flex justify-between items-center">
-        <div id="totalLowonganMagang" class="text-sm font-semibold">Total: ... Lowongan Magang</div>
-        <div class="flex gap-3">
-          <div class="flex gap-3 items-center">
-            <fo-label for="select" label="Perusahaan"></fo-label>
-            <fo-select name="select" placeholder="Choose one..." clearable>
-              <option value="ptposindonesia">PT. Pos Indonesia</Inp></option>
-              <option value="pttelkom">PT. Telkom</option>
-            </fo-select>
-            <fo-error name="select"></fo-error>
-          </div>
-          <div class="flex gap-3 items-center">
-            <fo-label for="select" label="Matakuliah"></fo-label>
-            <fo-select name="select" placeholder="Choose one..." clearable>
-              <option value="semua">Semua</option>
-              <option value="finance">Finance</option>
-            </fo-select>
-            <fo-error name="select"></fo-error>
-          </div>
-        </div>
-      </div>      
-      <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 -mt-6">
-        <div id="listLowonganMagang" class="flex flex-col gap-4 max-h-[800px] overflow-y-auto w-full pr-3">
-          <div class="flex-none w-full h-[200px] bg-gray-200 rounded animate-pulse"></div>
-          <div class="flex-none w-full h-[200px] bg-gray-200 rounded animate-pulse"></div>
-          <div class="flex-none w-full h-[200px] bg-gray-200 rounded animate-pulse"></div>
-        </div>
-        <div id="detailLowonganMagang">
-          <div class="flex-none w-full h-[500px] bg-gray-200 rounded animate-pulse"></div>
-        </div>
-      </div>
-      <!-- End of content  -->
-    </auth-layout>
-  </body>
+<head>
+  <base href="/" />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="" />
+  <title>Lowongan</title>
+  <link rel="icon" href="favicon.ico" />
+  <link rel="stylesheet" href="src/css/style.css" />
+  <script src="src/js/guard-auth.js" type="module"></script>
+  <script src="src/js/bundle-auth.js" type="module" defer blocking="render" fetchpriority="high"></script>
+  <script src="lowongan/script.js" type="module" defer></script>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet" />
+</head>
+
+<body>
+  <auth-layout>
+    <!-- Content  -->
+    <div id="content-lowongan"></div>
+  
+    <!-- End of content  -->
+  </auth-layout>
+</body>
+
 </html>

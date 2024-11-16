@@ -1,156 +1,26 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <base href="/" />
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="Ini login page" />
-    <title>Login Page</title>
-    <link rel="icon" href="favicon.ico" />
-    <link rel="stylesheet" href="src/css/style.css" />
-    <script src="src/js/guard-auth.js" type="module"></script>
-    <script src="src/js/bundle-auth.js" type="module" defer blocking="render" fetchpriority="high"></script>
-    <script src="kandidat/script.js" type="module" defer></script>
-  </head>
 
-  <body>
-    <auth-layout>
-      <!-- Content  -->
-      <div class="space-y-4">
-        <div class="px-12 py-4 rounded-md shadow-md">
-          <div id="rekapJumlahKandidat" class="flex justify-between">
-            <div class="flex items-center gap-2">
-              <iconify-icon icon="solar:user-hands-bold" height="22" class="text-ulbiOrange" noobserver></iconify-icon>
-              <span class="text-lg text-ulbiBlue font-bold">Kandidat</span>
-            </div>
-            <div class="flex flex-col justify-center items-center">
-              <div class="text-xs text-gray-500 font-semibold">Total</div>
-              <div class="text-xl font-bold">...</div>
-            </div>
-            <div class="flex flex-col justify-center items-center">
-              <div class="text-xs text-gray-500 font-semibold">Aktif Magang</div>
-              <div class="text-xl font-bold">...</div>
-            </div>
-            <div class="flex flex-col justify-center items-center">
-              <div class="text-xs text-gray-500 font-semibold">Pelamar Magang</div>
-              <div class="text-xl font-bold">...</div>
-            </div>
-            <div class="flex flex-col justify-center items-center">
-              <div class="text-xs text-gray-500 font-semibold">Aktif Kerja</div>
-              <div class="text-xl font-bold">...</div>
-            </div>
-            <div class="flex flex-col justify-center items-center">
-              <div class="text-xs text-gray-500 font-semibold">Pelamar Kerja</div>
-              <div class="text-xl font-bold">...</div>
-            </div>
-            <div class="flex flex-col justify-center items-center">
-              <div class="text-xs text-gray-500 font-semibold">Selesai</div>
-              <div class="text-xl font-bold">...</div>
-            </div>
-          </div>
-        </div>
-        <div class="px-4 py-4 space-y-4 rounded-md shadow-md">
-          <div class="grid grid-cols-6 gap-2 text-xs">
-            <div>
-              <div class="mb-2 font-semibold">Nama</div>
-              <fo-select>
-                <option>Semua</option>
-              </fo-select>
-            </div>
-            <div>
-              <div class="mb-2 font-semibold">Perusahaan</div>
-              <fo-select>
-                <option>Semua</option>
-                <option>ULBI</option>
-                <option>PT. Pos Indonesia</option>
-                <option>Bank Negara Indonesia</option>
-              </fo-select>
-            </div>
-            <div>
-              <div class="mb-2 font-semibold">Tipe</div>
-              <fo-select>
-                <option>Semua</option>
-                <option>Magang</option>
-                <option>Kerja</option>
-              </fo-select>
-            </div>
-            <div>
-              <div class="mb-2 font-semibold">Prodi</div>
-              <fo-select>
-                <option>Semua</option>
-                <option>D3-Akuntansi</option>
-              </fo-select>
-            </div>
-            <div>
-              <div class="mb-2 font-semibold">Status</div>
-              <fo-select>
-                <option>Semua</option>
-                <option>Aktif</option>
-                <option>Melamar</option>
-                <option>Selesai</option>
-              </fo-select>
-            </div>
-            <div>
-              <div class="mb-2 font-semibold">Tanggal</div>
-              <fo-select>
-                <option>Terbaru</option>
-              </fo-select>
-            </div>
-          </div>
-          <div>
-            <ui-table>
-              <table>
-                <thead>
-                  <tr>
-                    <th>TANGGAL</th>
-                    <th>NAMA</th>
-                    <th>TIPE</th>
-                    <th>PERUSAHAAN</th>
-                    <th>POSISI</th>
-                    <th>PRODI</th>
-                    <th>STATUS</th>
-                    <th>ACTION</th>
-                  </tr>
-                </thead>
-                <tbody id="tabelKandidat">
-                  <tr>
-                    <td colspan="99" class="text-center">
-                      <div class="bg-gray-200 h-8 animate-pulse rounded"></div>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td colspan="99" class="text-center">
-                      <div class="bg-gray-200 h-8 animate-pulse rounded"></div>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td colspan="99" class="text-center">
-                      <div class="bg-gray-200 h-8 animate-pulse rounded"></div>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td colspan="99" class="text-center">
-                      <div class="bg-gray-200 h-8 animate-pulse rounded"></div>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td colspan="99" class="text-center">
-                      <div class="bg-gray-200 h-8 animate-pulse rounded"></div>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td colspan="99" class="text-center">
-                      <div class="bg-gray-200 h-8 animate-pulse rounded"></div>
-                    </td>
-                  </tr>
-                </tbody>
-              </table>
-            </ui-table>
-          </div>
-          <div><ui-pagination /></div>
-        </div>
-      </div>
-      <!-- End of content  -->
-    </auth-layout>
-  </body>
+<head>
+  <base href="/" />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Ini login page" />
+  <title>Login Page</title>
+  <link rel="icon" href="favicon.ico" />
+  <link rel="stylesheet" href="src/css/style.css" />
+  <script src="src/js/guard-auth.js" type="module"></script>
+  <script src="src/js/bundle-auth.js" type="module" defer blocking="render" fetchpriority="high"></script>
+  <script src="kandidat/script.js" type="module" defer></script>
+</head>
+
+<body>
+  <auth-layout>
+    <!-- Content  -->
+    <div id="content-kandidat"></div>
+   
+    <!-- End of content  -->
+  </auth-layout>
+</body>
+
 </html>
