@@ -207,7 +207,16 @@ func prepareEnvFile() error {
 
 func initPostgres() *gorm.DB {
 	// Konfigurasi koneksi database
-	dsn := "host=127.0.0.1 user=mongmx password=password_aman dbname=fiber_cms port=5432 sslmode=disable"
+	// dsn := "host=127.0.0.1 user=mongmx password=password_aman dbname=fiber_cms port=5432 sslmode=disable"
+	dsn := fmt.Sprintf(
+		"host=%s user=%s password=%s dbname=%s port=%s sslmode=%s",
+		os.Getenv("DB_HOST"),
+		os.Getenv("DB_USER"),
+		os.Getenv("DB_PASSWORD"),
+		os.Getenv("DB_NAME"),
+		os.Getenv("DB_PORT"),
+		os.Getenv("DB_SSLMODE"),
+	)
 
 	// Buka koneksi database menggunakan GORM
 	database, err := gorm.Open(postgres.Open(dsn), &gorm.Config{})
