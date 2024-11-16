@@ -1,8 +1,9 @@
 package auth
 
 import (
-	"github.com/google/uuid"
 	"time"
+
+	"github.com/google/uuid"
 )
 
 type model struct {
@@ -15,8 +16,19 @@ type model struct {
 
 type User struct {
 	model
-	Email string `json:"email"`
-	Auth  *Auth  `json:"-"`
+	Email            string `json:"email"`
+	Username         string `json:"username"`
+	Auth             *Auth  `json:"-"`
+	Name             string `json:"name"`
+	Role             string `json:"role"`
+	NIM              string `json:"nim"`
+	ProgramStudy     string `json:"program_study"`
+	Faculty          string `json:"faculty"`
+	Semester         string `json:"semester"`
+	ProfilePicture   string `json:"profile_picture"`
+	SocialMedia      string `json:"social_media"`
+	EmergencyContact string `json:"emergency_contact"`
+	Password         string `json:"-"`
 }
 
 type Auth struct {
@@ -34,4 +46,6 @@ type Topic struct {
 type Credentials struct {
 	Password string `json:"password"`
 	Email    string `json:"email"`
+	Username string `json:"username"`
+	Type     string `json:"type"`
 }

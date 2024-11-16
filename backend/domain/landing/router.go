@@ -1,102 +1,105 @@
 package landing
 
 import (
+	"encoding/json"
 	"fmt"
-	"os"
 	"time"
 
 	"github.com/gofiber/fiber/v2"
+	"github.com/mongmx/fiber-cms/models"
 	"gorm.io/gorm"
 )
 
 func Router(app *fiber.App, db *gorm.DB) {
 	repo := NewRepository(db)
 
-	// Upload banner
-	app.Post("/api/landing-page/upload-banner", func(c *fiber.Ctx) error {
-		// Parse multipart form
+	// GET /api/landing-page
+	app.Get("/api/landing-page", func(c *fiber.Ctx) error {
+		landing, err := repo.GetLandingPage()
+		if err != nil {
+			return c.Status(fiber.StatusNotFound).JSON(fiber.Map{"error": "Landing page not found"})
+		}
+
+		// Decode JSON strings
+		var header, filters, footer map[string]interface{}
+		json.Unmarshal([]byte(landing.Header), &header)
+		json.Unmarshal([]byte(landing.Filters), &filters)
+		json.Unmarshal([]byte(landing.Footer), &footer)
+
+		// Kembalikan data lengkap
+		return c.JSON(fiber.Map{
+			"header":  header,
+			"banner1": landing.Banner1,
+			"banner2": landing.Banner2,
+			"filters": filters,
+			"footer":  footer,
+		})
+	})
+
+	app.Put("/api/landing-page", func(c *fiber.Ctx) error {
+		repo := NewRepository(db)
 		form, err := c.MultipartForm()
 		if err != nil {
 			return c.Status(fiber.StatusBadRequest).JSON(fiber.Map{"error": "Failed to parse form data"})
 		}
 
-		// Ambil file
-		files := form.File["banner"]
-		if len(files) == 0 {
-			return c.Status(fiber.StatusBadRequest).JSON(fiber.Map{"error": "No file uploaded"})
+		// Handle upload banner
+		banner1 := ""
+		banner2 := ""
+		if files := form.File["banner1"]; len(files) > 0 {
+			file := files[0]
+			fileName := fmt.Sprintf("%d-%s", time.Now().Unix(), file.Filename)
+			filePath := fmt.Sprintf("./uploads/banners/%s", fileName)
+			if err := c.SaveFile(file, filePath); err != nil {
+				return c.Status(fiber.StatusInternalServerError).JSON(fiber.Map{"error": "Failed to upload banner1"})
+			}
+			banner1 = fmt.Sprintf("/uploads/banners/%s", fileName)
 		}
 
-		// Simpan file pertama (hanya mendukung satu file untuk sekarang)
-		file := files[0]
-		fileName := fmt.Sprintf("%d-%s", time.Now().Unix(), file.Filename)
-		filePath := fmt.Sprintf("./uploads/banners/%s", fileName)
-
-		// Simpan file ke folder lokal
-		if err := c.SaveFile(file, filePath); err != nil {
-			return c.Status(fiber.StatusInternalServerError).JSON(fiber.Map{"error": "Failed to save file"})
+		if files := form.File["banner2"]; len(files) > 0 {
+			file := files[0]
+			fileName := fmt.Sprintf("%d-%s", time.Now().Unix(), file.Filename)
+			filePath := fmt.Sprintf("./uploads/banners/%s", fileName)
+			if err := c.SaveFile(file, filePath); err != nil {
+				return c.Status(fiber.StatusInternalServerError).JSON(fiber.Map{"error": "Failed to upload banner2"})
+			}
+			banner2 = fmt.Sprintf("/uploads/banners/%s", fileName)
 		}
 
-		// Update database
-		bannerType := c.FormValue("type") // Tipe banner: banner1 atau banner2
-		if bannerType != "banner1" && bannerType != "banner2" {
-			return c.Status(fiber.StatusBadRequest).JSON(fiber.Map{"error": "Invalid banner type"})
-		}
+		// Ambil data dari form
+		header := c.FormValue("header")
+		filters := c.FormValue("filters")
+		footer := c.FormValue("footer")
 
 		// Ambil data landing dari database
 		landing, err := repo.GetLandingPage()
 		if err != nil {
-			return c.Status(fiber.StatusNotFound).JSON(fiber.Map{"error": "Landing page not found"})
+			// Jika tidak ada data, buat baru
+			landing = &models.Landing{}
 		}
 
-		// Update path banner di database
-		if bannerType == "banner1" {
-			landing.Banner1 = fmt.Sprintf("/uploads/banners/%s", fileName)
-		} else if bannerType == "banner2" {
-			landing.Banner2 = fmt.Sprintf("/uploads/banners/%s", fileName)
+		// Update data landing
+		if banner1 != "" {
+			landing.Banner1 = banner1
+		}
+		if banner2 != "" {
+			landing.Banner2 = banner2
+		}
+		if header != "" {
+			landing.Header = header
+		}
+		if filters != "" {
+			landing.Filters = filters
+		}
+		if footer != "" {
+			landing.Footer = footer
 		}
 
-		// Simpan perubahan ke database
+		// Simpan ke database
 		if err := repo.UpdateLandingPage(landing); err != nil {
-			return c.Status(fiber.StatusInternalServerError).JSON(fiber.Map{"error": "Failed to update banner"})
+			return c.Status(fiber.StatusInternalServerError).JSON(fiber.Map{"error": "Failed to update landing page"})
 		}
 
-		return c.JSON(fiber.Map{"message": "Banner uploaded successfully", "banner_url": fmt.Sprintf("/uploads/banners/%s", fileName)})
-	})
-
-	app.Delete("/api/landing-page/delete-banner", func(c *fiber.Ctx) error {
-		bannerType := c.Query("type") // banner1 atau banner2
-		if bannerType != "banner1" && bannerType != "banner2" {
-			return c.Status(fiber.StatusBadRequest).JSON(fiber.Map{"error": "Invalid banner type"})
-		}
-
-		// Ambil data landing
-		landing, err := repo.GetLandingPage()
-		if err != nil {
-			return c.Status(fiber.StatusNotFound).JSON(fiber.Map{"error": "Landing page not found"})
-		}
-
-		// Hapus file dari sistem
-		var filePath string
-		if bannerType == "banner1" {
-			filePath = landing.Banner1
-			landing.Banner1 = ""
-		} else if bannerType == "banner2" {
-			filePath = landing.Banner2
-			landing.Banner2 = ""
-		}
-
-		if filePath != "" {
-			err := os.Remove("." + filePath) // Pastikan path diawali dengan `./`
-			if err != nil {
-				return c.Status(fiber.StatusInternalServerError).JSON(fiber.Map{"error": "Failed to delete file"})
-			}
-		}
-
-		// Update database
-		if err := repo.UpdateLandingPage(landing); err != nil {
-			return c.Status(fiber.StatusInternalServerError).JSON(fiber.Map{"error": "Failed to update banner"})
-		}
-
-		return c.JSON(fiber.Map{"message": "Banner deleted successfully"})
+		return c.JSON(fiber.Map{"message": "Landing page updated successfully"})
 	})
 }

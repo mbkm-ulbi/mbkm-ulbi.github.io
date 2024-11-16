@@ -28,6 +28,7 @@ import (
 	"github.com/mongmx/fiber-cms/domain/articles"
 	"github.com/mongmx/fiber-cms/domain/auth"
 	"github.com/mongmx/fiber-cms/domain/jobs"
+	"github.com/mongmx/fiber-cms/domain/landing"
 	"github.com/mongmx/fiber-cms/domain/post"
 	"gorm.io/driver/postgres"
 	"gorm.io/gorm"
@@ -114,7 +115,7 @@ func mainApp() *fiber.App {
 	postgresDB := initPostgres()
 
 	// Migrasi model
-	err := postgresDB.AutoMigrate(&models.Job{}, &models.Article{})
+	err := postgresDB.AutoMigrate(&models.Job{}, &models.Article{}, &models.Landing{}, &models.User{})
 	if err != nil {
 		log.Fatal("Failed to migrate model:", err)
 	}
@@ -145,10 +146,10 @@ func mainApp() *fiber.App {
 	authUseCase := auth.NewUseCase(authRepo)
 	auth.Router(app, authUseCase)
 	post.Router(app)
-
 	// Masukkan `postgresDB` ke router jobs
 	jobs.Router(app, postgresDB)
 	articles.Router(app, postgresDB)
+	landing.Router(app, postgresDB)
 	app.Use(func(c *fiber.Ctx) error {
 		return c.Status(fiber.StatusNotFound).JSON(fiber.Map{"error": "Url Not Found"})
 	})

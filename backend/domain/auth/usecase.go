@@ -8,6 +8,8 @@ import (
 
 // UseCase - auth usecase APIs.
 type UseCase interface {
+	apiRegister(user *User) error
+	apilogin(cred Credentials, sessionToken string) error
 	register(user *User) error
 	login(cred Credentials, sessionToken string) error
 	profile(sessionToken string) (User, error)
@@ -37,8 +39,32 @@ func (u useCase) register(user *User) error {
 	return nil
 }
 
+func (u useCase) apiRegister(user *User) error {
+	user, err := u.repo.createApiUser(user)
+	if err != nil {
+		return err
+	}
+	return nil
+}
+
 func (u useCase) login(cred Credentials, sessionToken string) error {
 	user, err := u.repo.findUserByEmail(cred.Email)
+	if err != nil {
+		return err
+	}
+	err = bcrypt.CompareHashAndPassword([]byte(user.Auth.Secret), []byte(cred.Password))
+	if err != nil {
+		return err
+	}
+	err = u.repo.storeSessionUser(sessionToken, user)
+	if err != nil {
+		return err
+	}
+	return nil
+}
+
+func (u useCase) apilogin(cred Credentials, sessionToken string) error {
+	user, err := u.repo.apifindUserByEmail(cred.Email)
 	if err != nil {
 		return err
 	}

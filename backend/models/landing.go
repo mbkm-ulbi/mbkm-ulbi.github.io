@@ -2,6 +2,7 @@ package models
 
 type Landing struct {
 	ID        uint   `json:"id" gorm:"primaryKey"`
+	Header    string `json:"header" gorm:"type:text"`  // JSON string untuk header
 	Banner1   string `json:"banner1" gorm:"type:text"` // Path URL banner 1
 	Banner2   string `json:"banner2" gorm:"type:text"` // Path URL banner 2
 	Filters   string `json:"filters" gorm:"type:text"` // JSON string untuk kategori dan program
