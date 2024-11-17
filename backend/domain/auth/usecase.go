@@ -87,6 +87,14 @@ func (u useCase) profile(sessionToken string) (User, error) {
 	return user, nil
 }
 
+func (u useCase) apiProfile(sessionToken string) (User, error) {
+	user, err := u.repo.getSessionUser(sessionToken)
+	if err != nil {
+		return User{}, err
+	}
+	return user, nil
+}
+
 func (u useCase) validToken(c *fiber.Ctx) bool {
 	token := c.Locals("jwt").(*jwt.Token)
 	claims := token.Claims.(jwt.MapClaims)
