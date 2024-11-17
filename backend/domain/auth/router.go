@@ -20,6 +20,6 @@ func Router(app *fiber.App, u UseCase) {
 		app.Post("/api/register", h.apiRegister)
 		app.Post("/api/login", h.apiLogin)
 		app.Get("/api/logout", h.apiLogout)
-		app.Get("/api/profile", middleware.MustLogin(), h.apiProfile)
+		app.Get("/api/profile", h.apiProfile)
 	}
 }

@@ -22,6 +22,39 @@ func NewHandler(useCase UseCase) *Handler {
 	}
 }
 
+// func (h Handler) apiLogin(c *fiber.Ctx) error {
+// 	var cred Credentials
+
+// 	// Parse input data
+// 	err := c.BodyParser(&cred)
+// 	if err != nil {
+// 		return c.Status(fiber.StatusBadRequest).JSON(fiber.Map{"error": "Invalid input"})
+// 	}
+
+// 	// Validate user credentials
+// 	sess := c.Locals("session").(*session.Session)
+// 	sessionToken, ok := sess.Get("session_token").(string)
+// 	if !ok {
+// 		return c.Status(fiber.StatusForbidden).JSON(fiber.Map{"error": "Forbidden"})
+// 	}
+
+// 	err = h.useCase.apilogin(cred, sessionToken)
+// 	if err != nil {
+// 		return c.Status(fiber.StatusUnauthorized).JSON(fiber.Map{"error": "Invalid email or password"})
+// 	}
+
+// 	// Generate JWT token
+// 	token, err := h.jwtGenerate(&cred)
+// 	if err != nil {
+// 		return c.Status(fiber.StatusInternalServerError).JSON(fiber.Map{"error": "Failed to generate token"})
+// 	}
+
+// 	return c.Status(fiber.StatusOK).JSON(fiber.Map{
+// 		"message": "Login successful",
+// 		"token":   token,
+// 	})
+// }
+
 func (h Handler) apiLogin(c *fiber.Ctx) error {
 	var cred Credentials
 
@@ -32,19 +65,13 @@ func (h Handler) apiLogin(c *fiber.Ctx) error {
 	}
 
 	// Validate user credentials
-	sess := c.Locals("session").(*session.Session)
-	sessionToken, ok := sess.Get("session_token").(string)
-	if !ok {
-		return c.Status(fiber.StatusForbidden).JSON(fiber.Map{"error": "Forbidden"})
-	}
-
-	err = h.useCase.apilogin(cred, sessionToken)
+	user, err := h.useCase.apilogin(cred) // Validasi user dari database
 	if err != nil {
 		return c.Status(fiber.StatusUnauthorized).JSON(fiber.Map{"error": "Invalid email or password"})
 	}
 
 	// Generate JWT token
-	token, err := h.jwtGenerate(&cred)
+	token, err := h.jwtGenerate(user)
 	if err != nil {
 		return c.Status(fiber.StatusInternalServerError).JSON(fiber.Map{"error": "Failed to generate token"})
 	}
@@ -155,9 +182,25 @@ func (h Handler) apiRegister(c *fiber.Ctx) error {
 	})
 }
 
+// func (h Handler) apiProfile(c *fiber.Ctx) error {
+// 	// Ambil klaim user dari context
+// 	user := c.Locals("user").(jwt.MapClaims)
+
+// 	// Kembalikan informasi user
+// 	return c.JSON(fiber.Map{
+// 		"message": "User profile",
+// 		"user":    user,
+// 	})
+// }
+
 func (h Handler) apiProfile(c *fiber.Ctx) error {
 	// Ambil klaim user dari context
-	user := c.Locals("user").(jwt.MapClaims)
+	user, ok := c.Locals("user").(jwt.MapClaims)
+	if !ok {
+		return c.Status(fiber.StatusUnauthorized).JSON(fiber.Map{
+			"message": "Unauthorized",
+		})
+	}
 
 	// Kembalikan informasi user
 	return c.JSON(fiber.Map{

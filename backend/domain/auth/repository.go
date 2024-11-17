@@ -6,6 +6,8 @@ import (
 
 	"github.com/gofiber/storage/redis"
 	"github.com/google/uuid"
+	"github.com/mongmx/fiber-cms/models"
+	"golang.org/x/crypto/bcrypt"
 	"gorm.io/gorm"
 )
 
@@ -133,47 +135,63 @@ func (r repo) findUserByEmail(email string) (*User, error) {
 
 func (r repo) apifindUserByEmail(email string) (*User, error) {
 	// Struktur untuk memetakan hasil query
-	var queryUser struct {
-		ID       int64  `db:"id"`
-		UUID     string `db:"uuid"`
-		Email    string `db:"email"`
-		Password string `db:"password"`
-	}
+	// var queryUser struct {
+	// 	ID       int64  `db:"id"`
+	// 	UUID     string `db:"uuid"`
+	// 	Email    string `db:"email"`
+	// 	Password string `db:"password"`
+	// }
 
-	// Perbaiki query SQL
-	query := `
-		SELECT id, uuid, email, password 
-		FROM users 
-		WHERE email = $1
-	`
+	// // Perbaiki query SQL
+	// query := `
+	// 	SELECT id, uuid, email, password 
+	// 	FROM users 
+	// 	WHERE email = $1
+	// `
 
-	// Eksekusi query dan scan hasilnya
-	err := r.db.Raw(query, email).Scan(&queryUser).Error
+	// // Eksekusi query dan scan hasilnya
+	// err := r.db.Raw(query, email).Scan(&queryUser).Error
+	// if err != nil {
+	// 	return nil, err // Kembalikan error jika query gagal
+	// }
+
+	// // Konversi UUID dari string ke tipe UUID
+	// uid, err := uuid.Parse(queryUser.UUID)
+	// if err != nil {
+	// 	return nil, fmt.Errorf("failed to parse UUID: %w", err)
+	// }
+
+	// // Buat objek User
+	// u := &User{
+	// 	model: model{
+	// 		ID:   queryUser.ID,
+	// 		UUID: uid,
+	// 	},
+	// 	Email: queryUser.Email,
+	// 	Auth: &Auth{
+	// 		UserID: queryUser.ID,
+	// 		Type:   "email",
+	// 		Secret: queryUser.Password, // Password diambil dari query
+	// 	},
+	// }
+
+	// return u, nil
+
+	var user models.User
+
+	// Cari user berdasarkan email/username
+	err := u.db.Where("email = ? OR username = ?", cred.Email, cred.Username).First(&user).Error
 	if err != nil {
-		return nil, err // Kembalikan error jika query gagal
+		return nil, fmt.Errorf("user not found")
 	}
 
-	// Konversi UUID dari string ke tipe UUID
-	uid, err := uuid.Parse(queryUser.UUID)
+	// Validasi password
+	err = bcrypt.CompareHashAndPassword([]byte(user.Password), []byte(cred.Password))
 	if err != nil {
-		return nil, fmt.Errorf("failed to parse UUID: %w", err)
+		return nil, fmt.Errorf("invalid password")
 	}
 
-	// Buat objek User
-	u := &User{
-		model: model{
-			ID:   queryUser.ID,
-			UUID: uid,
-		},
-		Email: queryUser.Email,
-		Auth: &Auth{
-			UserID: queryUser.ID,
-			Type:   "email",
-			Secret: queryUser.Password, // Password diambil dari query
-		},
-	}
-
-	return u, nil
+å	return &user, nil
 }
 
 func (r repo) storeSessionUser(token string, user *User) error {
