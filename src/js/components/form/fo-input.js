@@ -6,7 +6,7 @@ import { html, render } from "https://cdn.jsdelivr.net/npm/uhtml@4.5.11/+esm";
  *
  * @attr {string} [name]
  * @attr {string} [value]
- * @attr {"text" | "password" | "number"} [type]
+ * @attr {"text" | "password" | "number" | "email"} [type]
  * @attr {boolean} [error]
  * @attr {boolean} [disabled]
  * @attr {number} [min]

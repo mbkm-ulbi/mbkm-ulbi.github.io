@@ -49,7 +49,7 @@ const fetchListLowongan = async () => {
             <div class="w-[120px] flex overflow-hidden rounded-l-lg">
               <img class="object-center object-contain" src=${item.picture} height="[100px]" alt="image" />
             </div>
-            <div class="p-4 flex flex-col gap-2 text-xs">
+            <div class="w-full p-4 flex flex-col gap-2 text-xs">
               <div class="flex justify-between items-center">
                 <div>Diposting 2 Hari Yang Lalu</div>
                 <div>
@@ -75,14 +75,14 @@ const fetchListLowongan = async () => {
                 <iconify-icon icon="solar:calendar-bold-duotone" height="22" class="text-ulbiOrange" noobserver></iconify-icon>
                 <div>Batas Akhir Pendaftaran: ${item.date}</div>
               </div>
-              <div class="flex justify-between items-center gap-2">
+              <div class="flex justify-between items-center gap-2 p-absolute">
                 <div class="flex justify-start items-center gap-2">
                   <iconify-icon icon="solar:user-bold-duotone" height="22" class="text-ulbiOrange" noobserver></iconify-icon>
                   <div class="font-semibold">${item.applicants} Kandidat Mendaftar</div>
                 </div>
                 <div class="flex gap-2">
-                  <ui-button variant="outline_orange" type="button" href="lowongan/kurasi">Detail</ui-button>
-                  <ui-button color="orange" type="button" href="lowongan/kurasi">Tinjau</ui-button>
+                  <ui-button variant="outline_orange" type="button" >Simpan</ui-button>
+                  <ui-button color="orange" type="button" href="lowongan/review">Detail</ui-button>
                 </div>
               </div>
             </div>
@@ -540,9 +540,9 @@ const renderSuperUser = ()=>{
                   class="border border-orange-500 text-orange-500 px-4 py-2 rounded-lg text-sm hover:bg-orange-100" href="lowongan/review">
                   Detail
                 </a>
-                <button class="bg-orange-500 text-white px-4 py-2 rounded-lg text-sm hover:bg-orange-600">
+                <a class="bg-orange-500 text-white px-4 py-2 rounded-lg text-sm hover:bg-orange-600" href="lowongan/kurasi">
                   Tinjau
-                </button>
+                </a>
               </div>
             </div>
           </div>
@@ -588,13 +588,13 @@ const renderSuperUser = ()=>{
                 </p>
               </div>
               <div class="absolute bottom-6 right-6 flex space-x-2">
-                <a
-                class="border border-orange-500 text-orange-500 px-4 py-2 rounded-lg text-sm hover:bg-orange-100" href="lowongan/review">
-                Detail
-              </a>
-                <button class="bg-orange-500 text-white px-4 py-2 rounded-lg text-sm hover:bg-orange-600">
+                 <a
+                  class="border border-orange-500 text-orange-500 px-4 py-2 rounded-lg text-sm hover:bg-orange-100" href="lowongan/review">
+                  Detail
+                </a>
+                <a class="bg-orange-500 text-white px-4 py-2 rounded-lg text-sm hover:bg-orange-600" href="lowongan/kurasi">
                   Tinjau
-                </button>
+                </a>
               </div>
             </div>
           </div>
@@ -641,12 +641,12 @@ const renderSuperUser = ()=>{
               </div>
               <div class="absolute bottom-6 right-6 flex space-x-2">
                 <a
-                class="border border-orange-500 text-orange-500 px-4 py-2 rounded-lg text-sm hover:bg-orange-100" href="lowongan/review">
-                Detail
-              </a>
-                <button class="bg-orange-500 text-white px-4 py-2 rounded-lg text-sm hover:bg-orange-600">
+                  class="border border-orange-500 text-orange-500 px-4 py-2 rounded-lg text-sm hover:bg-orange-100" href="lowongan/review">
+                  Detail
+                </a>
+                <a class="bg-orange-500 text-white px-4 py-2 rounded-lg text-sm hover:bg-orange-600" href="lowongan/kurasi">
                   Tinjau
-                </button>
+                </a>
               </div>
             </div>
           </div>
@@ -692,13 +692,13 @@ const renderSuperUser = ()=>{
                 </p>
               </div>
               <div class="absolute bottom-6 right-6 flex space-x-2">
-                <a
+               <a
                   class="border border-orange-500 text-orange-500 px-4 py-2 rounded-lg text-sm hover:bg-orange-100" href="lowongan/review">
                   Detail
                 </a>
-                <button class="bg-orange-500 text-white px-4 py-2 rounded-lg text-sm hover:bg-orange-600">
+                <a class="bg-orange-500 text-white px-4 py-2 rounded-lg text-sm hover:bg-orange-600" href="lowongan/kurasi">
                   Tinjau
-                </button>
+                </a>
               </div>
             </div>
           </div>

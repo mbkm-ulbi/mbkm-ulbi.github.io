@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <base href="/" />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="" />
+    <title>Lowongan</title>
+    <link rel="icon" href="favicon.ico" />
+    <link rel="stylesheet" href="src/css/style.css" />
+    <script src="src/js/guard-auth.js" type="module"></script>
+    <script src="src/js/bundle-auth.js" type="module" defer blocking="render" fetchpriority="high"></script>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet" />
+
+  </head>
+
+  <body>
+    <auth-layout>
+      <!-- Content  -->
+      <div class="space-y-4">
+        <div class="p-4 flex flex-col gap-4 rounded-md shadow-md">
+          <div class="flex justify-between items-center">
+            <div class="text-md font-bold">Formulir Lamaran</div>
+          </div>
+          <div class="border-t border-gray-300 border-dashed"></div>
+          <div class="space-y-12">
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-6">
+              <!-- Ubah menjadi lebih besar -->
+              <div class="col-span-1">
+                <div class="bg-white rounded-lg border flex p-4">
+                  <div class="flex-shrink-0">
+                   <img alt="Profile picture of a smiling person with a blue background" class="w-22 h-22 object-cover" height="100" src="src/images/dummy_foto_kandidat.png" width="100"/>
+                  </div>
+                  <div class="ml-4">
+                   <h2 class="text-lg font-semibold text-gray-800">
+                    Darmaji Setiaji Ngahiji
+                   </h2>
+                   <div class="flex items-center text-gray-600 mt-1 text-sm">
+                    <i class="fas fa-university text-orange-500 mr-2">
+                    </i>
+                    <span>
+                     D3 - Manajemen Bisnis
+                    </span>
+                   </div>
+                   <div class="flex items-center text-gray-600 mt-1 text-sm">
+                    <i class="fas fa-user text-orange-500 mr-2">
+                    </i>
+                    <span>
+                     NIM: 000000001
+                    </span>
+                   </div>
+                   <div class="flex items-center text-gray-600 mt-1 text-sm">
+                    <i class="fas fa-file-alt text-orange-500 mr-2">
+                    </i>
+                    <span>
+                     IPK 3.5
+                    </span>
+                   </div>
+                  </div>
+                 </div>
+              </div>
+              <!-- Ubah Menjadi lebih kecil -->
+              <div class="col-span-1">
+                <div class="relative flex items-center justify-center h-full">
+                  <div class="w-2.5 h-2.5 bg-orange-500 rounded-full"></div>
+                  <div class="border-t-2 border-dotted border-orange-500 flex-grow mx-2"></div>
+                  <div class="w-0 h-0 border-t-4 border-b-4 border-l-8 border-l-orange-500 border-t-transparent border-b-transparent"></div>
+              </div>
+              </div>
+              <!-- Ubah menjadi lebih besar -->
+              <div class="col-span-1">
+                <div class="bg-white rounded-lg border flex p-4">
+                  <div class="flex-shrink-0">
+                   <img alt="Profile picture of a smiling person with a blue background" class="w-22 h-22 object-cover" height="100" src="src/images/dummy_pos_ind.png" width="100"/>
+                  </div>
+                  <div class="ml-4">
+                   <h2 class="text-lg font-semibold text-gray-800">
+                    Global Finance Accounting
+                   </h2>
+                   <div class="flex items-center text-gray-600 mt-1 text-sm">
+                    <iconify-icon icon="solar:buildings-bold-duotone" class="text-ulbiOrange mr-2" noobserver></iconify-icon>
+
+                    <span>
+                      PT POS Indonesia
+                    </span>
+                   </div>
+                   <div class="flex items-center text-gray-600 mt-1 text-sm">
+                    <iconify-icon icon="solar:map-point-bold-duotone" class="text-ulbiOrange mr-2" noobserver></iconify-icon>
+
+                    </i>
+                    <span>
+                    Bandung
+                    </span>
+                   </div>
+                   <div class="flex items-center text-gray-600 mt-1 text-sm">
+                    <iconify-icon icon="solar:buildings-bold-duotone"  class="text-ulbiOrange mr-2" noobserver></iconify-icon>
+
+                    <span>
+                      Batas Akhir Pendaftaran: 06 September 2024
+                    </span>
+                   </div>
+                  </div>
+                 </div>
+              </div>
+            </div>
+          
+            <div class="border-b border-gray-900/10 pb-12">
+              <div class="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
+                <div class="col-span-full">
+                  <label for="about" class="block text-sm/6 font-medium text-gray-900">Email</label>
+                  <div class="mt-2">
+                    <fo-input type="email" id="email" name="email"></fo-input>
+                    <!-- <textarea id="about" name="about" rows="3" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm/6"></textarea> -->
+                  </div>
+                  <!-- <p class="mt-3 text-sm/6 text-gray-600">Write a few sentences about yourself.</p> -->
+                </div>
+                <div class="col-span-full">
+                  <label for="about" class="block text-sm/6 font-medium text-gray-900">No Telepon</label>
+                  <div class="mt-2">
+                    <fo-input type="number" id="telepon" name="telepon"></fo-input>
+                    <!-- <textarea id="about" name="about" rows="3" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm/6"></textarea> -->
+                  </div>
+                  <!-- <p class="mt-3 text-sm/6 text-gray-600">Write a few sentences about yourself.</p> -->
+                </div>
+                <div class="col-span-full">
+                  <label for="about" class="block text-sm/6 font-medium text-gray-900">Alamat</label>
+                  <div class="mt-2">
+                    <fo-textarea id="alamat" name="alamat"></fo-textarea>
+                    <!-- <textarea id="about" name="about" rows="3" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm/6"></textarea> -->
+                  </div>
+                  <!-- <p class="mt-3 text-sm/6 text-gray-600">Write a few sentences about yourself.</p> -->
+                </div>
+                <div class="col-span-full">
+                  <div class="grid grid-cols-1 sm:grid-cols-3 gap-6">
+                  <div class="col-span-1">
+                      <label for="cover-photo" class="block text-sm/6 font-medium text-gray-900">Upload KTM</label>
+                      <div class="mt-2 flex justify-center rounded-lg border border-dashed border-gray-900/25 px-6 py-10">
+                        <div class="text-center">
+                          <svg class="mx-auto size-12 text-gray-300" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" data-slot="icon">
+                            <path
+                              fill-rule="evenodd"
+                              d="M1.5 6a2.25 2.25 0 0 1 2.25-2.25h16.5A2.25 2.25 0 0 1 22.5 6v12a2.25 2.25 0 0 1-2.25 2.25H3.75A2.25 2.25 0 0 1 1.5 18V6ZM3 16.06V18c0 .414.336.75.75.75h16.5A.75.75 0 0 0 21 18v-1.94l-2.69-2.689a1.5 1.5 0 0 0-2.12 0l-.88.879.97.97a.75.75 0 1 1-1.06 1.06l-5.16-5.159a1.5 1.5 0 0 0-2.12 0L3 16.061Zm10.125-7.81a1.125 1.125 0 1 1 2.25 0 1.125 1.125 0 0 1-2.25 0Z"
+                              clip-rule="evenodd"
+                            />
+                          </svg>
+                          <div class="mt-4 text-sm/6 text-gray-600">
+                            <p class="pl-1">Silahkan drag and drop atau klik tombol di bawah ini untuk mengunggah logo perusahaan</p>
+                            <p class="text-xs/5 text-gray-600">Format: PNG, JPG, GIF up to 10MB</p>
+                          </div>
+                          <div class="flex justify-center mt-4">
+                            <label
+                              for="file-upload"
+                              class="w-[200px] px-8 py-2 text-sm focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-blue-600 disabled:pointer-events-none disabled:opacity-50 flex items-center justify-center rounded-md text-sm font-semibold transition-colors duration-150 border border-blue-700/80 hover:border-blue-600/60 focus-visible:ring-blue-600/80 hover:bg-blue-600 text-white bg-blue-800"
+                            >
+                              <span>Upload a file</span>
+                              <input id="file-upload" name="file-upload" type="file" class="sr-only" />
+                            </label>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  <div class="col-span-1">
+                      <label for="cover-photo" class="block text-sm/6 font-medium text-gray-900">Upload CV</label>
+                      <div class="mt-2 flex justify-center rounded-lg border border-dashed border-gray-900/25 px-6 py-10">
+                        <div class="text-center">
+                          <svg class="mx-auto size-12 text-gray-300" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" data-slot="icon">
+                            <path
+                              fill-rule="evenodd"
+                              d="M1.5 6a2.25 2.25 0 0 1 2.25-2.25h16.5A2.25 2.25 0 0 1 22.5 6v12a2.25 2.25 0 0 1-2.25 2.25H3.75A2.25 2.25 0 0 1 1.5 18V6ZM3 16.06V18c0 .414.336.75.75.75h16.5A.75.75 0 0 0 21 18v-1.94l-2.69-2.689a1.5 1.5 0 0 0-2.12 0l-.88.879.97.97a.75.75 0 1 1-1.06 1.06l-5.16-5.159a1.5 1.5 0 0 0-2.12 0L3 16.061Zm10.125-7.81a1.125 1.125 0 1 1 2.25 0 1.125 1.125 0 0 1-2.25 0Z"
+                              clip-rule="evenodd"
+                            />
+                          </svg>
+                          <div class="mt-4 text-sm/6 text-gray-600">
+                            <p class="pl-1">Silahkan drag and drop atau klik tombol di bawah ini untuk mengunggah logo perusahaan</p>
+                            <p class="text-xs/5 text-gray-600">Format: PNG, JPG, GIF up to 10MB</p>
+                          </div>
+                          <div class="flex justify-center mt-4">
+                            <label
+                              for="file-upload"
+                              class="w-[200px] px-8 py-2 text-sm focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-blue-600 disabled:pointer-events-none disabled:opacity-50 flex items-center justify-center rounded-md text-sm font-semibold transition-colors duration-150 border border-blue-700/80 hover:border-blue-600/60 focus-visible:ring-blue-600/80 hover:bg-blue-600 text-white bg-blue-800"
+                            >
+                              <span>Upload a file</span>
+                              <input id="file-upload" name="file-upload" type="file" class="sr-only" />
+                            </label>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  <div class="col-span-1">
+                      <label for="cover-photo" class="block text-sm/6 font-medium text-gray-900">Upload Surat Lamaran</label>
+                      <div class="mt-2 flex justify-center rounded-lg border border-dashed border-gray-900/25 px-6 py-10">
+                        <div class="text-center">
+                          <svg class="mx-auto size-12 text-gray-300" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" data-slot="icon">
+                            <path
+                              fill-rule="evenodd"
+                              d="M1.5 6a2.25 2.25 0 0 1 2.25-2.25h16.5A2.25 2.25 0 0 1 22.5 6v12a2.25 2.25 0 0 1-2.25 2.25H3.75A2.25 2.25 0 0 1 1.5 18V6ZM3 16.06V18c0 .414.336.75.75.75h16.5A.75.75 0 0 0 21 18v-1.94l-2.69-2.689a1.5 1.5 0 0 0-2.12 0l-.88.879.97.97a.75.75 0 1 1-1.06 1.06l-5.16-5.159a1.5 1.5 0 0 0-2.12 0L3 16.061Zm10.125-7.81a1.125 1.125 0 1 1 2.25 0 1.125 1.125 0 0 1-2.25 0Z"
+                              clip-rule="evenodd"
+                            />
+                          </svg>
+                          <div class="mt-4 text-sm/6 text-gray-600">
+                            <p class="pl-1">Silahkan drag and drop atau klik tombol di bawah ini untuk mengunggah logo perusahaan</p>
+                            <p class="text-xs/5 text-gray-600">Format: PNG, JPG, GIF up to 10MB</p>
+                          </div>
+                          <div class="flex justify-center mt-4">
+                            <label
+                              for="file-upload"
+                              class="w-[200px] px-8 py-2 text-sm focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-blue-600 disabled:pointer-events-none disabled:opacity-50 flex items-center justify-center rounded-md text-sm font-semibold transition-colors duration-150 border border-blue-700/80 hover:border-blue-600/60 focus-visible:ring-blue-600/80 hover:bg-blue-600 text-white bg-blue-800"
+                            >
+                              <span>Upload a file</span>
+                              <input id="file-upload" name="file-upload" type="file" class="sr-only" />
+                            </label>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+          <div class="flex justify-end gap-2">
+            <ui-button color="red" type="button">BATAL</ui-button>
+            <ui-button color="green" type="button" data-dialog-trigger="success">KIRIM</ui-button>
+            <ui-dialog name="success" className="w-[750px] h-[320px]">
+              <div class="flex flex-col text-center justify-center items-center gap-3">
+                <div class="test-md font-bold">Lamaran berhasil diajukan</div>
+                <iconify-icon icon="solar:verified-check-bold-duotone" height="96" class="text-green-600" noobserver></iconify-icon>
+                <div class="text-sm font-semibold">Lamaran anda akan kami tinjau maksimal 7x24 jam</div>
+                <div class="text-xs">
+                  <p>Lamaran yang anda ajukan akan melalui seleksi oleh dosen, prodi, CDC dan Perusahaan, dibutuhkan waktu hingga lamaran anda selesai ditinjau. anda akan mendapatkan informasi melalui notifikasi.</p>
+                </div>
+                <div class="flex gap-3">
+                  <ui-button id="btnSelesai">SELESAI</ui-button>
+                </div>
+              </div>
+            </ui-dialog>
+          </div>
+        </div>
+      </div>
+
+      <!-- End of content  -->
+    </auth-layout>
+  </body>
+</html>

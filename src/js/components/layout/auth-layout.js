@@ -12,7 +12,7 @@ class AuthLayout extends HTMLElement {
     super();
     this.content = Array.from(this.childNodes);
     this.path = new URL(window.location.href).pathname.replace(slugUri, "/");
-    this.state = {
+    this._state = {
       isMasterDataOpen: false, // State to track dropdown for "Master Data"
       listNavSidebar: [
         {
@@ -47,6 +47,13 @@ class AuthLayout extends HTMLElement {
         },
       ],
     };
+    this.state = new Proxy(this._state, {
+      set: (target, key, value) => {
+        target[key] = value;
+        this.renderTemplate(); // Re-render on state change
+        return true;
+      },
+    });
   }
 
   async connectedCallback() {
@@ -101,7 +108,14 @@ class AuthLayout extends HTMLElement {
 
   toggleMasterDataDropdown() {
     this.state.isMasterDataOpen = !this.state.isMasterDataOpen;
-    this.renderTemplate();
+    // this.renderTemplate();
+  }
+
+  handleLogout() {
+    console.log("Logout clicked"); // Debugging: Pastikan fungsi dipanggil
+    removeAuth(); // Menghapus cookie atau sesi
+    console.log("Authentication removed"); // Debugging: Konfirmasi sesi dihapus
+    window.location.href = "/login"; // Redirect ke halaman login
   }
 
   sidebarTemplate() {
@@ -193,7 +207,7 @@ class AuthLayout extends HTMLElement {
           <ui-popover name="popover-logout" trigger="click" placement="top" className="">
             <div class="text-sm">Mau keluar dari aplikasi ini?</div>
             <div class="flex items-center justify-end gap-2 mt-3">
-              <ui-button className="px-3 text-xs" color="red" id="logoutButton">Yes</ui-button>
+              <ui-button className="px-3 text-xs" color="red" @click=${this.handleLogout}>Yes</ui-button>
               <ui-button className="px-3 text-xs" variant="outline_blue" data-popover-close>No</ui-button>
             </div>
           </ui-popover>
@@ -316,12 +330,6 @@ class AuthLayout extends HTMLElement {
         const isSidebarOpen = sidebar.hasAttribute("data-open");
         if (isSidebarOpen) sidebar.removeAttribute("data-open");
       }
-    });
-
-    document.getElementById("logoutButton")?.addEventListener("click", async (event) => {
-      event.preventDefault();
-      await removeAuth();
-      window.location.assign(`${slugUri}login`);
     });
   }
 }

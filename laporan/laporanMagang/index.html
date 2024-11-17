@@ -63,37 +63,49 @@
           </div>
         </div>
 
-        <div class="p-4 w-full h-[260px] flex flex-col overflow-scroll gap-2 border border-dashed border-gray-300 rounded-md text-xs text-justify">
-          <h1 class="font-bold">LAPORAN KEGIATAN MAGANG MAHASISWA</h1>
-          <div class="details">
-            <p>Nama Mahasiswa: Ahmad Yusran</p>
-            <p>NIM: 123456789</p>
-            <p>Program Studi: Akuntansi</p>
-            <p>Perusahaan: PT ABC Sejahtera</p>
-            <p>Departemen: Keuangan</p>
-            <p>Periode Magang: 1 Agustus 2024 – 31 Agustus 2024</p>
+        <div class="p-4 w-full  h-[30rem] flex flex-col overflow-scroll gap-2 border border-dashed border-gray-300 rounded-md text-xs text-justify">
+          <h1 class="text-xl font-bold mb-4">LAPORAN KEGIATAN MAGANG MAHASISWA</h1>
+          <p class="mb-2"><span class="font-semibold">Nama Mahasiswa:</span> Ahmad Yusran</p>
+          <p class="mb-2"><span class="font-semibold">NIM:</span> 123456789</p>
+          <p class="mb-2"><span class="font-semibold">Program Studi:</span> Akuntansi</p>
+          <p class="mb-2"><span class="font-semibold">Perusahaan:</span> PT ABC Sejahtera</p>
+          <p class="mb-2"><span class="font-semibold">Departemen:</span> Keuangan</p>
+          <p class="mb-4"><span class="font-semibold">Periode Magang:</span> 1 Agustus 2024 – 31 Agustus 2024</p>
+  
+          <h2 class="text-lg font-bold mb-4">RINCIAN KEGIATAN MAGANG</h2>
+  
+          <div class="mb-6">
+              <p class="font-semibold mb-2">Hari/Tanggal: Senin, 1 Agustus 2024</p>
+              <ul class="list-disc list-inside">
+                  <li>Pengarahan Awal Dari Supervisor Terkait Tugas-Tugas Selama Magang.</li>
+                  <li>Pengenalan Software Akuntansi Yang Digunakan Oleh Perusahaan (Accurate).</li>
+                  <li>Memeriksa Kelengkapan Dokumen Untuk Pengajuan Reimbursement Karyawan.</li>
+                  <li>Menginput Data Transaksi Kas Kecil (Petty Cash) Ke Dalam Sistem.</li>
+              </ul>
           </div>
-          <h2 class="font-bold">RINCIAN KEGIATAN MAGANG</h2>
-          <div class="activities">
-            <h3>Senin, 1 Agustus 2024</h3>
-            <ul>
-              <li>Pengarahan Awal Dari Supervisor Terkait Tugas-Tugas Selama Magang.</li>
-              <li>Pengenalan Software Akuntansi Yang Digunakan Oleh Perusahaan (Accurate).</li>
-              <li>Memeriksa Kelengkapan Dokumen Untuk Pengajuan Reimbursement Karyawan.</li>
-              <li>Menginput Data Transaksi Kas Kecil (Petty Cash) Ke Dalam Sistem.</li>
-            </ul>
-            <h3>Selasa, 2 Agustus 2024</h3>
-            <ul>
-              <li>Melakukan Pengarsipan Dokumen Keuangan Secara Manual Dan Digital.</li>
-              <li>Mempersiapkan Pengajuan Dana Untuk Kebutuhan Operasional Perusahaan.</li>
-              <li>Membantu Dalam Proses Rekonsiliasi Bank Harian Dengan Supervisor.</li>
-              <li>Mengecek Bukti Transaksi Pembelian Barang Perusahaan.</li>
-            </ul>
+  
+          <div class="mb-6">
+              <p class="font-semibold mb-2">Hari/Tanggal: Selasa, 2 Agustus 2024</p>
+              <ul class="list-disc list-inside">
+                  <li>Melakukan Pengarsipan Dokumen Keuangan Secara Manual Dan Digital.</li>
+                  <li>Memproses Pengajuan Dana Untuk Kebutuhan Operasional Perusahaan.</li>
+                  <li>Membantu Dalam Proses Rekonsiliasi Bank Harian Dengan Supervisor.</li>
+                  <li>Mengecek Bukti Transaksi Pembelian Barang Perusahaan.</li>
+              </ul>
+          </div>
+  
+          <div class="mb-6">
+              <p class="font-semibold mb-2">Hari/Tanggal: Rabu, 3 Agustus 2024</p>
+              <ul class="list-disc list-inside">
+                  <li>Menyusun Laporan Pengeluaran Harian Dari Transaksi Kas Kecil.</li>
+                  <li>Menginput Data Transaksi Pemasukan Dari Customer Ke Dalam Sistem.</li>
+                  <li>Mengecek Dan Memastikan Kelengkapan Bukti Transaksi Pembayaran Vendor.</li>
+                  <li>Mendiskusikan Masalah Pada Sistem Pelaporan Keuangan Dengan Supervisor.</li>
+              </ul>
           </div>
         </div>
-
         <div class="mt-2 w-full flex flex-col gap-3 items-center">
-          <div class="w-full flex justify-between text-xs">
+          <div class="flex items-center justify-between space-x-12 p-4 text-xs">
             <div class="flex gap-2 items-center">
               <iconify-icon icon="solar:check-circle-bold" height="22" class="text-green-500" noobserver></iconify-icon>
               <div>Selesai Dibuat Oleh Mahasiswa</div>
@@ -110,13 +122,13 @@
               <iconify-icon icon="solar:danger-circle-bold" height="22" class="text-red-500" noobserver></iconify-icon>
               <div>Selesai Diperiksa Oleh Prodi</div>
             </div>
-          </div>
-          <div class="w-full flex justify-between">
+            <div class="flex gap-2 items-center">
             <ui-button className="w-max flex gap-2">
               <iconify-icon icon="solar:download-square-bold" height="22" class="text-white" noobserver></iconify-icon>
               DOWNLOAD
             </ui-button>
-            <div class="flex justify-end">
+            </div>
+            <div class="flex gap-2 items-center">
               <ui-button color="orange" data-dialog-trigger="setujui-laporan">SETUJUI LAPORAN</ui-button>
               <ui-dialog name="setujui-laporan" className="w-[750px] h-[215px]">
                 <div class="flex flex-col text-center justify-center items-center gap-4">

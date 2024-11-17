@@ -149,17 +149,8 @@ const fetchTabelKandidat = async () => {
                       <div class="font-bold">Alamat</div>
                       <div>Jl. Bersama Kamu Selamanya No. 123, Kota Apa Saja, Jawa Utara 40000</div>
                     </div>
-                    <div class="p-4 flex justify-between">
-                      <div class="flex gap-4">
-                        <ui-button color="orange" className="w-max flex gap-2">
-                          <iconify-icon icon="solar:letter-opened-bold" height="22" class="text-white" noobserver></iconify-icon>
-                          KIRIM EMAIL</ui-button
-                        >
-                        <ui-button color="green" className="w-max flex gap-2">
-                          <iconify-icon icon="ic:baseline-whatsapp" height="22" class="text-white" noobserver></iconify-icon>
-                          HUBUNGI</ui-button
-                        >
-                      </div>
+                    <div class="p-4 flex justify-end">
+                      
                       <ui-button className="w-max flex gap-2" data-dialog-close> SELESAIKAN MASA KERJA</ui-button>
                     </div>
                   </div>
