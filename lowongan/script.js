@@ -73,7 +73,7 @@ const fetchListLowongan = async () => {
               </div>
               <div class="flex justify-start items-center gap-2">
                 <iconify-icon icon="solar:calendar-bold-duotone" height="22" class="text-ulbiOrange" noobserver></iconify-icon>
-                <div>Batas Akhir Pendaftaran: ${item.date}</div>
+                <div>Waktu: ${item.date}</div>
               </div>
               <div class="flex justify-between items-center gap-2 p-absolute">
                 <div class="flex justify-start items-center gap-2">
@@ -81,8 +81,8 @@ const fetchListLowongan = async () => {
                   <div class="font-semibold">${item.applicants} Kandidat Mendaftar</div>
                 </div>
                 <div class="flex gap-2">
-                  <ui-button variant="outline_orange" type="button" >Simpan</ui-button>
-                  <ui-button color="orange" type="button" href="lowongan/review">Detail</ui-button>
+                  <ui-button variant="outline_orange" type="button">Simpan</ui-button>
+                  <ui-button color="orange" type="button" href=lowongan/review>Detail</ui-button>
                 </div>
               </div>
             </div>
@@ -108,57 +108,80 @@ const fetchListLowongan = async () => {
             <img class="object-center object-contain" src=${detail.picture} height="[100px]" alt="image" />
           </div>
           <div class="p-4 flex flex-col gap-1">
-            <div class="text-xl font-semibold">Global Finance Accounting Internship</div>
+            <div class="text-xl font-semibold">Dosen Tetap</div>
             <div class="flex justify-start items-center gap-2">
               <iconify-icon icon="solar:buildings-bold-duotone" height="22" class="text-ulbiOrange" noobserver></iconify-icon>
-              <div>PT. Pos Indonesia</div>
+              <div>${detail?.company}</div>
             </div>
             <div class="flex justify-start items-center gap-2">
               <iconify-icon icon="solar:map-point-bold-duotone" height="22" class="text-ulbiOrange" noobserver></iconify-icon>
-              <div>Bandung, Jawa Barat</div>
+              <div>${detail.location}</div>
             </div>
             <div class="flex justify-start items-center gap-2">
               <iconify-icon icon="solar:calendar-bold-duotone" height="22" class="text-ulbiOrange" noobserver></iconify-icon>
-              <div>Batas Akhir Pendaftaran: 6 September 2024</div>
+              <div>Waktu: ${detail.date}</div>
             </div>
           </div>
         </div>
         <div class="overflow-y-auto">
           <div>
-            <img class="block mx-auto" src="src/images/dummy_poster.png" alt="image" />
+            <img class="block mx-auto" src="src/images/dummy_aice.png" alt="image" />
           </div>
           <div class="space-y-3 m-3">
             <div>
               <fo-label label="Deskripsi Pekerjaan" className="text-sm text-gray-800"></fo-label>
-              <p class="mx-4">
-                As a Global Finance & Accounting Intern at EIGER, your mission is to support our finance and accounting team in various functions, including
-                financial analysis, reporting, and compliance. You will gain practical experience in managing financial data, contributing to budgeting
-                processes, and ensuring accurate financial records. This internship offers a unique opportunity to develop your skills and knowledge in a global
-                retail environment, preparing you for a successful career in finance and accounting. What you'll need to Success: Final semester students or
-                recently completed a degree in accounting or a related field. Strong analytical skills with the ability to interpret financial data. Someone who
-                is confident, proactive attitude, enthusiasm for learning and communicative in conveying something orally or in writing Work placement at the
-                Head Office of Kab. Bandung West Java. Interest in the retail industry and EIGER's brand. Kompetensi yang akan dikembangkan Administrasi
-                Komunikasi Analisis Data Kerjasama Tim Pengelolaan Waktu Pemahaman Lingkungan Bisnis Problem Solving Analisis Keuangan Keahlian Teknologi
-                Kemampuan Beradaptasi Operasional Kriteria Akademik Mahasiswa perguruan tinggi aktif minimal semester 6 Program studi yang diutamakan: Akuntansi
-                dan Perpajakan Ekonomi
+            </div>
+         <div class="max-w-3xl mx-auto p-6 mt-10">
+              <h1 class="text-2xl font-bold text-gray-800 mb-4">Universitas Logistik dan Bisnis Internasional</h1>
+              <p class="text-gray-700 mb-6">
+                Bekerjasama dengan <strong>PT. Alpen Food Industry</strong>, menyelenggarakan <strong>campus hiring</strong> (recruitment on campus) pada:
+              </p>
+
+              <div class="space-y-2 mb-6">
+                <div class="flex items-center">
+                  <span class="text-blue-500 mr-2">📅</span>
+                  <span><strong>Tanggal:</strong> Kamis, 28 November 2024</span>
+                </div>
+                <div class="flex items-center">
+                  <span class="text-blue-500 mr-2">🕙</span>
+                  <span><strong>Waktu:</strong> 10.00 WIB – Selesai</span>
+                </div>
+                <div class="flex items-center">
+                  <span class="text-blue-500 mr-2">📍</span>
+                  <span> <strong>Lokasi:</strong> Auditorium Lt 2, Universitas Logistik dan Bisnis Internasional, Jl. Sarisah No.54 Bandung </span>
+                </div>
+              </div>
+
+              <h2 class="text-lg font-semibold text-gray-800 mb-3">Untuk:</h2>
+              <ul class="list-disc list-inside text-gray-700 space-y-1 mb-6">
+                <li>Alumni ULBI</li>
+                <li>Mahasiswa/i tingkat akhir</li>
+                <li>Calon wisudawan ULBI</li>
+                <li>Terbuka untuk umum (<em>Gratis</em>)</li>
+              </ul>
+
+              <h2 class="text-lg font-semibold text-gray-800 mb-3">Agenda:</h2>
+              <ul class="list-disc list-inside text-gray-700 space-y-1 mb-6">
+                <li>Presentasi dari perusahaan</li>
+                <li>Psikotest/Interview</li>
+              </ul>
+
+              <h2 class="text-lg font-semibold text-gray-800 mb-3">Catatan:</h2>
+              <p class="text-gray-700 mb-4">Pelaksanaan campus hiring, harap membawa:</p>
+              <ul class="list-disc list-inside text-gray-700 space-y-1 mb-6">
+                <li>Alat tulis</li>
+                <li>Berpakaian rapi dan formal</li>
+              </ul>
+
+              <p class="text-gray-700 mb-4">
+                Daftar melalui form berikut ini:
+                <a href="https://bit.ly/registrasi_campushiring_aice" class="text-blue-600 underline" target="_blank">
+                  https://bit.ly/registrasi_campushiring_aice
+                </a>
               </p>
             </div>
-            <div>
-              <fo-label label="Durasi" className="text-sm text-gray-800"></fo-label>
-              <p class="mx-4">3 bulan</p>
-            </div>
-            <div>
-              <fo-label label="Jenis Pekerjaan" className="text-sm text-gray-800"></fo-label>
-              <p class="mx-4">Fulltime</p>
-            </div>
-            <div>
-              <fo-label label="Benefit Yang Ditawarkan" className="text-sm text-gray-800"></fo-label>
-              <p class="mx-4">Gaji pokok per bulan, tunjangan kesehatan</p>
-            </div>
-            <div>
-              <fo-label label="Tipe Lowongan" className="text-sm text-gray-800"></fo-label>
-              <p class="mx-4">Umum</p>
-            </div>
+           
+            
           </div>
         </div>
         <div class="p-4 flex flex-wrap justify-between border-t border-gray-300">
@@ -192,9 +215,9 @@ const fetchListLowongan = async () => {
                   </div>
                   <div class="flex justify-center items-center"><img src="src/images/red_arrow.png" width="[100px]" alt="kandidat-image" /></div>
                   <div class="h-[100px] w-[400px] flex gap-4 text-justify border border-gray-300 rounded-lg">
-                    <img src="src/images/dummy_pos_ind.png" alt="kandidat-image" />
+                    <img src="src/images/dummy_ulbi.png" alt="kandidat-image" />
                     <div class="pr-4 flex flex-col justify-evenly items-start">
-                      <div class="text-md font-semibold">Global Finance Accounting Internship</div>
+                      <div class="text-md font-semibold">Dosen Tetap</div>
                       <div class="flex justify-start items-center gap-2">
                         <iconify-icon icon="solar:buildings-bold-duotone" height="16" class="text-ulbiOrange" noobserver></iconify-icon>
                         <div>PT.Pos Indonesia</div>
@@ -205,7 +228,7 @@ const fetchListLowongan = async () => {
                       </div>
                       <div class="flex justify-start items-center gap-2">
                         <iconify-icon icon="solar:calendar-bold-duotone" height="16" class="text-ulbiOrange" noobserver></iconify-icon>
-                        <div>Batas Akhir Pendaftaran: 06 September 2024</div>
+                        <div>Batas Akhir Pendaftaran: 01 Desember 2024</div>
                       </div>
                     </div>
                   </div>
@@ -283,8 +306,6 @@ const fetchDetailLowongan = async (id) => {
 };
 //-----------------
 
-
-
 const filter = {
   keyword: "",
   periode: "",
@@ -305,38 +326,35 @@ if (form instanceof HTMLFormElement) {
 // show/hide filter
 
 document.addEventListener("DOMContentLoaded", async function () {
-  
-
-  const auth = await getAuth()
-  const parseAuth = JSON.parse(auth)
-  if((parseAuth.role === "superadmin" || parseAuth.role === "cdc" || parseAuth.role === "prodi" || parseAuth.role === "perusahaan")){
-    renderSuperUser()
+  const auth = await getAuth();
+  const parseAuth = JSON.parse(auth);
+  if (parseAuth.role === "superadmin" || parseAuth.role === "cdc" || parseAuth.role === "prodi" || parseAuth.role === "perusahaan") {
+    renderSuperUser();
   } else {
-    renderUser()
+    renderUser();
     fetchLowonganMagang();
     fetchListLowongan();
     const filterSection = document.getElementById("filter-section");
-  const toggleButton = document.getElementById("toggle-filter");
-  const icon = toggleButton.querySelector("iconify-icon");
-  const toggleText = document.getElementById("toggle-text");
+    const toggleButton = document.getElementById("toggle-filter");
+    const icon = toggleButton.querySelector("iconify-icon");
+    const toggleText = document.getElementById("toggle-text");
 
-  // Handle toggle visibility of the filter section
-  toggleButton.addEventListener("click", function () {
-    if (filterSection.classList.contains("hidden")) {
-      filterSection.classList.remove("hidden");
-      toggleText.textContent = "Tutup Filter";
-      icon.setAttribute("icon", "solar:alt-arrow-up-outline");
-    } else {
-      filterSection.classList.add("hidden");
-      toggleText.textContent = "Tampilkan Filter";
-      icon.setAttribute("icon", "solar:alt-arrow-down-outline");
-    }
-  });
+    // Handle toggle visibility of the filter section
+    toggleButton.addEventListener("click", function () {
+      if (filterSection.classList.contains("hidden")) {
+        filterSection.classList.remove("hidden");
+        toggleText.textContent = "Tutup Filter";
+        icon.setAttribute("icon", "solar:alt-arrow-up-outline");
+      } else {
+        filterSection.classList.add("hidden");
+        toggleText.textContent = "Tampilkan Filter";
+        icon.setAttribute("icon", "solar:alt-arrow-down-outline");
+      }
+    });
   }
 });
 
-
-const renderUser = ()=>{
+const renderUser = () => {
   const contentLowongan = document.getElementById("content-lowongan");
   render(
     contentLowongan,
@@ -437,281 +455,232 @@ const renderUser = ()=>{
       </div>
     </div>
     `
-  )
-}
+  );
+};
 
-const renderSuperUser = ()=>{
+const renderSuperUser = () => {
   const contentLowongan = document.getElementById("content-lowongan");
   render(
     contentLowongan,
     html`
-     <div class="px-12 py-4 rounded-md shadow-md">
-          <div id="rekapJumlahLowongan" class="flex justify-between">
-            <div class="flex items-center gap-2">
-              <iconify-icon icon="solar:user-hands-bold" height="22" class="text-ulbiOrange" noobserver></iconify-icon>
-              <span class="text-lg text-ulbiBlue font-bold">Lowongan</span>
-            </div>
-            <div class="flex flex-col justify-center items-center">
-              <div class="text-xs text-gray-500 font-semibold">Total</div>
-              <div class="text-xl font-bold">100</div>
-            </div>
-            <div class="flex flex-col justify-center items-center">
-              <div class="text-xs text-gray-500 font-semibold">Diterima</div>
-              <div class="text-xl font-bold">50</div>
-            </div>
-            <div class="flex flex-col justify-center items-center">
-              <div class="text-xs text-gray-500 font-semibold">Ditinjau</div>
-              <div class="text-xl font-bold">30</div>
-            </div>
-            <div class="flex flex-col justify-center items-center">
-              <div class="text-xs text-gray-500 font-semibold">Ditolak</div>
-              <div class="text-xl font-bold">20</div>
-            </div>
+      <div class="px-12 py-4 rounded-md shadow-md">
+        <div id="rekapJumlahLowongan" class="flex justify-between">
+          <div class="flex items-center gap-2">
+            <iconify-icon icon="solar:user-hands-bold" height="22" class="text-ulbiOrange" noobserver></iconify-icon>
+            <span class="text-lg text-ulbiBlue font-bold">Lowongan</span>
           </div>
-    </div>
-      <div class="container mx-auto mt-5">
-      <div class="bg-white p-6 rounded-lg shadow-md">
-        <div class="flex justify-between items-center mb-4">
-          <h1 class="text-xl font-semibold">Semua Lowongan</h1>
-          <a class="bg-orange-500 text-white px-4 py-2 rounded-lg cursor-pointer" href="lowongan/create">BUAT POSTINGAN BARU</a>
-        </div>
-        <div class="flex space-x-4 mb-4">
-          <div class="flex-1">
-            <label class="block text-sm font-medium text-gray-700" for="company">Perusahaan</label>
-            <fo-select
-              
-              id="company">
-              <option>PT POS Indonesia</option>
-            </fo-select>
+          <div class="flex flex-col justify-center items-center">
+            <div class="text-xs text-gray-500 font-semibold">Total</div>
+            <div class="text-xl font-bold">100</div>
           </div>
-          <div class="flex-1">
-            <label class="block text-sm font-medium text-gray-700" for="status">Status Lowongan</label>
-            <fo-select
-              
-              id="status">
-              <option>Semua</option>
-            </fo-select>
+          <div class="flex flex-col justify-center items-center">
+            <div class="text-xs text-gray-500 font-semibold">Diterima</div>
+            <div class="text-xl font-bold">50</div>
           </div>
-        </div>
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-          <div class="bg-white rounded-lg shadow-md flex">
-            <div class="p-6 rounded-l-lg flex items-center justify-center"
-              style="background-image: url('src/images/dummy_pos_ind.png'); background-size: cover; background-position: center; width: 180px; height: 100%;">
-            </div>
-
-            <div class="p-6 flex-1 relative">
-              <div class="flex justify-between items-center">
-                <p class="text-gray-500 text-sm">
-                  Diposting 2 Hari Yang Lalu
-                </p>
-                <div class="bg-green-100 text-green-600 px-3 py-1 rounded-full text-xs">
-                  <iconify-icon class="fas fa-circle mr-1">
-                  </iconify-icon>
-                  Aktif
-                </div>
-              </div>
-              <h2 class="text-xl font-semibold mt-2">
-                Global Finance Accounting Internship
-              </h2>
-              <div class="mt-4">
-                <p class="flex items-center text-gray-700 text-sm">
-                  <iconify-icon class="fas fa-building mr-2 text-red-500">
-                  </iconify-icon>
-                  PT POS Indonesia
-                </p>
-                <p class="flex items-center text-gray-700 text-sm mt-2">
-                  <iconify-icon class="fas fa-map-marker-alt mr-2 text-red-500">
-                  </iconify-icon>
-                  Bandung, Jawa Barat
-                </p>
-                <p class="flex items-center text-gray-700 text-sm mt-2">
-                  <iconify-icon class="fas fa-calendar-alt mr-2 text-red-500">
-                  </iconify-icon>
-                  Batas Akhir Pendaftaran: 06 September 2024
-                </p>
-                <p class="flex items-center text-gray-700 text-sm mt-2">
-                  <iconify-icon class="fas fa-user-friends mr-2 text-red-500">
-                  </iconify-icon>
-                  Postingan Dari Mitra/Perusahaan
-                </p>
-              </div>
-              <div class="absolute bottom-6 right-6 flex space-x-2">
-                <a
-                  class="border border-orange-500 text-orange-500 px-4 py-2 rounded-lg text-sm hover:bg-orange-100" href="lowongan/review">
-                  Detail
-                </a>
-                <a class="bg-orange-500 text-white px-4 py-2 rounded-lg text-sm hover:bg-orange-600" href="lowongan/kurasi">
-                  Tinjau
-                </a>
-              </div>
-            </div>
+          <div class="flex flex-col justify-center items-center">
+            <div class="text-xs text-gray-500 font-semibold">Ditinjau</div>
+            <div class="text-xl font-bold">30</div>
           </div>
-          <div class="bg-white rounded-lg shadow-md flex">
-            <div class="p-6 rounded-l-lg flex items-center justify-center"
-              style="background-image: url('src/images/dummy_pos_ind.png'); background-size: cover; background-position: center; width: 180px; height: 100%;">
-            </div>
-
-            <div class="p-6 flex-1 relative">
-              <div class="flex justify-between items-center">
-                <p class="text-gray-500 text-sm">
-                  Diposting 2 Hari Yang Lalu
-                </p>
-                <div class="bg-yellow-100 text-yellow-600 px-3 py-1 rounded-full text-xs">
-                  <iconify-icon class="fas fa-circle mr-1">
-                  </iconify-icon>
-                  Perlu Ditinjau
-                </div>
-              </div>
-              <h2 class="text-xl font-semibold mt-2">
-                Global Finance Accounting Internship
-              </h2>
-              <div class="mt-4">
-                <p class="flex items-center text-gray-700 text-sm">
-                  <iconify-icon class="fas fa-building mr-2 text-red-500">
-                  </iconify-icon>
-                  PT POS Indonesia
-                </p>
-                <p class="flex items-center text-gray-700 text-sm mt-2">
-                  <iconify-icon class="fas fa-map-marker-alt mr-2 text-red-500">
-                  </iconify-icon>
-                  Bandung, Jawa Barat
-                </p>
-                <p class="flex items-center text-gray-700 text-sm mt-2">
-                  <iconify-icon class="fas fa-calendar-alt mr-2 text-red-500">
-                  </iconify-icon>
-                  Batas Akhir Pendaftaran: 06 September 2024
-                </p>
-                <p class="flex items-center text-gray-700 text-sm mt-2">
-                  <iconify-icon class="fas fa-user-friends mr-2 text-red-500">
-                  </iconify-icon>
-                  Postingan Dari Mitra/Perusahaan
-                </p>
-              </div>
-              <div class="absolute bottom-6 right-6 flex space-x-2">
-                 <a
-                  class="border border-orange-500 text-orange-500 px-4 py-2 rounded-lg text-sm hover:bg-orange-100" href="lowongan/review">
-                  Detail
-                </a>
-                <a class="bg-orange-500 text-white px-4 py-2 rounded-lg text-sm hover:bg-orange-600" href="lowongan/kurasi">
-                  Tinjau
-                </a>
-              </div>
-            </div>
-          </div>
-          <div class="bg-white rounded-lg shadow-md flex">
-            <div class="p-6 rounded-l-lg flex items-center justify-center"
-              style="background-image: url('src/images/dummy_pos_ind.png'); background-size: cover; background-position: center; width: 180px; height: 100%;">
-            </div>
-
-            <div class="p-6 flex-1 relative">
-              <div class="flex justify-between items-center">
-                <p class="text-gray-500 text-sm">
-                  Diposting 2 Hari Yang Lalu
-                </p>
-                <div class="bg-red-100 text-red-500  px-3 py-1 rounded-full text-xs">
-                  <iconify-icon class="fas fa-circle mr-1">
-                  </iconify-icon>
-                  Ditolak
-                </div>
-              </div>
-              <h2 class="text-xl font-semibold mt-2">
-                Global Finance Accounting Internship
-              </h2>
-              <div class="mt-4">
-                <p class="flex items-center text-gray-700 text-sm">
-                  <iconify-icon class="fas fa-building mr-2 text-red-500">
-                  </iconify-icon>
-                  PT POS Indonesia
-                </p>
-                <p class="flex items-center text-gray-700 text-sm mt-2">
-                  <iconify-icon class="fas fa-map-marker-alt mr-2 text-red-500">
-                  </iconify-icon>
-                  Bandung, Jawa Barat
-                </p>
-                <p class="flex items-center text-gray-700 text-sm mt-2">
-                  <iconify-icon class="fas fa-calendar-alt mr-2 text-red-500">
-                  </iconify-icon>
-                  Batas Akhir Pendaftaran: 06 September 2024
-                </p>
-                <p class="flex items-center text-gray-700 text-sm mt-2">
-                  <iconify-icon class="fas fa-user-friends mr-2 text-red-500">
-                  </iconify-icon>
-                  Postingan Dari Mitra/Perusahaan
-                </p>
-              </div>
-              <div class="absolute bottom-6 right-6 flex space-x-2">
-                <a
-                  class="border border-orange-500 text-orange-500 px-4 py-2 rounded-lg text-sm hover:bg-orange-100" href="lowongan/review">
-                  Detail
-                </a>
-                <a class="bg-orange-500 text-white px-4 py-2 rounded-lg text-sm hover:bg-orange-600" href="lowongan/kurasi">
-                  Tinjau
-                </a>
-              </div>
-            </div>
-          </div>
-          <div class="bg-white rounded-lg shadow-md flex">
-            <div class="p-6 rounded-l-lg flex items-center justify-center"
-              style="background-image: url('src/images/dummy_pos_ind.png'); background-size: cover; background-position: center; width: 180px; height: 100%;">
-            </div>
-
-            <div class="p-6 flex-1 relative">
-              <div class="flex justify-between items-center">
-                <p class="text-gray-500 text-sm">
-                  Diposting 2 Hari Yang Lalu
-                </p>
-                <div class="bg-yellow-100 text-yellow-600 px-3 py-1 rounded-full text-xs">
-                  <iconify-icon class="fas fa-circle mr-1">
-                  </iconify-icon>
-                  Perlu Ditinjau
-                </div>
-              </div>
-              <h2 class="text-xl font-semibold mt-2">
-                Global Finance Accounting Internship
-              </h2>
-              <div class="mt-4">
-                <p class="flex items-center text-gray-700 text-sm">
-                  <iconify-icon class="fas fa-building mr-2 text-red-500">
-                  </iconify-icon>
-                  PT POS Indonesia
-                </p>
-                <p class="flex items-center text-gray-700 text-sm mt-2">
-                  <iconify-icon class="fas fa-map-marker-alt mr-2 text-red-500">
-                  </iconify-icon>
-                  Bandung, Jawa Barat
-                </p>
-                <p class="flex items-center text-gray-700 text-sm mt-2">
-                  <iconify-icon class="fas fa-calendar-alt mr-2 text-red-500">
-                  </iconify-icon>
-                  Batas Akhir Pendaftaran: 06 September 2024
-                </p>
-                <p class="flex items-center text-gray-700 text-sm mt-2">
-                  <iconify-icon class="fas fa-user-friends mr-2 text-red-500">
-                  </iconify-icon>
-                  Postingan Dari Mitra/Perusahaan
-                </p>
-              </div>
-              <div class="absolute bottom-6 right-6 flex space-x-2">
-               <a
-                  class="border border-orange-500 text-orange-500 px-4 py-2 rounded-lg text-sm hover:bg-orange-100" href="lowongan/review">
-                  Detail
-                </a>
-                <a class="bg-orange-500 text-white px-4 py-2 rounded-lg text-sm hover:bg-orange-600" href="lowongan/kurasi">
-                  Tinjau
-                </a>
-              </div>
-            </div>
-          </div>
-
-        </div>
-        <div class="mt-4 flex justify-between items-center">
-          <p class="text-sm text-gray-500">Menampilkan 20 Lowongan</p>
-          <div class="flex space-x-2">
-            <ui-pagination data-pagination-count="20" data-pagination-limit="10" data-pagination-page="1"></ui-pagination>
+          <div class="flex flex-col justify-center items-center">
+            <div class="text-xs text-gray-500 font-semibold">Ditolak</div>
+            <div class="text-xl font-bold">20</div>
           </div>
         </div>
       </div>
-    </div>
+      <div class="container mx-auto mt-5">
+        <div class="bg-white p-6 rounded-lg shadow-md">
+          <div class="flex justify-between items-center mb-4">
+            <h1 class="text-xl font-semibold">Semua Lowongan</h1>
+            <a class="bg-orange-500 text-white px-4 py-2 rounded-lg cursor-pointer" href="lowongan/create">BUAT POSTINGAN BARU</a>
+          </div>
+          <div class="flex space-x-4 mb-4">
+            <div class="flex-1">
+              <label class="block text-sm font-medium text-gray-700" for="company">Perusahaan</label>
+              <fo-select id="company">
+                <option>ULBI</option>
+              </fo-select>
+            </div>
+            <div class="flex-1">
+              <label class="block text-sm font-medium text-gray-700" for="status">Status Lowongan</label>
+              <fo-select id="status">
+                <option>Semua</option>
+              </fo-select>
+            </div>
+          </div>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div class="bg-white rounded-lg shadow-md flex">
+              <div
+                class="p-6 rounded-l-lg flex items-center justify-center"
+              >
+              <img class="object-center object-contain" src='src/images/dummy_ulbi.png' height="[100px]" alt="image" />
+              
+              </div>
+
+              <div class="p-6 flex-1 relative">
+                <div class="flex justify-between items-center">
+                  <p class="text-gray-500 text-sm">Diposting 2 Hari Yang Lalu</p>
+                  <div class="bg-green-100 text-green-600 px-3 py-1 rounded-full text-xs">
+                    <iconify-icon class="fas fa-circle mr-1"> </iconify-icon>
+                    Aktif
+                  </div>
+                </div>
+                <h2 class="text-xl font-semibold mt-2">Dosen Tetap</h2>
+                <div class="mt-4">
+                  <p class="flex items-center text-gray-700 text-sm">
+                    <iconify-icon class="fas fa-building mr-2 text-red-500"> </iconify-icon>
+                    ULBI
+                  </p>
+                  <p class="flex items-center text-gray-700 text-sm mt-2">
+                    <iconify-icon class="fas fa-map-marker-alt mr-2 text-red-500"> </iconify-icon>
+                    Bandung, Jawa Barat
+                  </p>
+                  <p class="flex items-center text-gray-700 text-sm mt-2">
+                    <iconify-icon class="fas fa-calendar-alt mr-2 text-red-500"> </iconify-icon>
+                    Batas Akhir Pendaftaran: 01 Desember 2024
+                  </p>
+                  <p class="flex items-center text-gray-700 text-sm mt-2">
+                    <iconify-icon class="fas fa-user-friends mr-2 text-red-500"> </iconify-icon>
+                    Postingan Dari Mitra/Perusahaan
+                  </p>
+                </div>
+                <div class="absolute bottom-6 right-6 flex space-x-2">
+                  <a class="border border-orange-500 text-orange-500 px-4 py-2 rounded-lg text-sm hover:bg-orange-100" href="lowongan/review"> Detail </a>
+                  <a class="bg-orange-500 text-white px-4 py-2 rounded-lg text-sm hover:bg-orange-600" href="lowongan/kurasi"> Tinjau </a>
+                </div>
+              </div>
+            </div>
+            <div class="bg-white rounded-lg shadow-md flex">
+             <div
+                class="p-6 rounded-l-lg flex items-center justify-center"
+              >
+              <img class="object-center object-contain" src='src/images/dummy_ulbi.png' height="[100px]" alt="image" />
+              
+              </div>
+
+              <div class="p-6 flex-1 relative">
+                <div class="flex justify-between items-center">
+                  <p class="text-gray-500 text-sm">Diposting 2 Hari Yang Lalu</p>
+                  <div class="bg-yellow-100 text-yellow-600 px-3 py-1 rounded-full text-xs">
+                    <iconify-icon class="fas fa-circle mr-1"> </iconify-icon>
+                    Perlu Ditinjau
+                  </div>
+                </div>
+                <h2 class="text-xl font-semibold mt-2">Dosen Tetap</h2>
+                <div class="mt-4">
+                  <p class="flex items-center text-gray-700 text-sm">
+                    <iconify-icon class="fas fa-building mr-2 text-red-500"> </iconify-icon>
+                    ULBI
+                  </p>
+                  <p class="flex items-center text-gray-700 text-sm mt-2">
+                    <iconify-icon class="fas fa-map-marker-alt mr-2 text-red-500"> </iconify-icon>
+                    Bandung, Jawa Barat
+                  </p>
+                  <p class="flex items-center text-gray-700 text-sm mt-2">
+                    <iconify-icon class="fas fa-calendar-alt mr-2 text-red-500"> </iconify-icon>
+                    Batas Akhir Pendaftaran: 01 Desember 2024
+                  </p>
+                  <p class="flex items-center text-gray-700 text-sm mt-2">
+                    <iconify-icon class="fas fa-user-friends mr-2 text-red-500"> </iconify-icon>
+                    Postingan Dari Mitra/Perusahaan
+                  </p>
+                </div>
+                <div class="absolute bottom-6 right-6 flex space-x-2">
+                  <a class="border border-orange-500 text-orange-500 px-4 py-2 rounded-lg text-sm hover:bg-orange-100" href="lowongan/review"> Detail </a>
+                  <a class="bg-orange-500 text-white px-4 py-2 rounded-lg text-sm hover:bg-orange-600" href="lowongan/kurasi"> Tinjau </a>
+                </div>
+              </div>
+            </div>
+            <div class="bg-white rounded-lg shadow-md flex">
+              <div
+                class="p-6 rounded-l-lg flex items-center justify-center"
+              >
+              <img class="object-center object-contain" src='src/images/dummy_ulbi.png' height="[100px]" alt="image" />
+              
+              </div>
+
+              <div class="p-6 flex-1 relative">
+                <div class="flex justify-between items-center">
+                  <p class="text-gray-500 text-sm">Diposting 2 Hari Yang Lalu</p>
+                  <div class="bg-red-100 text-red-500  px-3 py-1 rounded-full text-xs">
+                    <iconify-icon class="fas fa-circle mr-1"> </iconify-icon>
+                    Ditolak
+                  </div>
+                </div>
+                <h2 class="text-xl font-semibold mt-2">Dosen Tetap</h2>
+                <div class="mt-4">
+                  <p class="flex items-center text-gray-700 text-sm">
+                    <iconify-icon class="fas fa-building mr-2 text-red-500"> </iconify-icon>
+                    ULBI
+                  </p>
+                  <p class="flex items-center text-gray-700 text-sm mt-2">
+                    <iconify-icon class="fas fa-map-marker-alt mr-2 text-red-500"> </iconify-icon>
+                    Bandung, Jawa Barat
+                  </p>
+                  <p class="flex items-center text-gray-700 text-sm mt-2">
+                    <iconify-icon class="fas fa-calendar-alt mr-2 text-red-500"> </iconify-icon>
+                    Batas Akhir Pendaftaran: 01 Desember 2024
+                  </p>
+                  <p class="flex items-center text-gray-700 text-sm mt-2">
+                    <iconify-icon class="fas fa-user-friends mr-2 text-red-500"> </iconify-icon>
+                    Postingan Dari Mitra/Perusahaan
+                  </p>
+                </div>
+                <div class="absolute bottom-6 right-6 flex space-x-2">
+                  <a class="border border-orange-500 text-orange-500 px-4 py-2 rounded-lg text-sm hover:bg-orange-100" href="lowongan/review"> Detail </a>
+                  <a class="bg-orange-500 text-white px-4 py-2 rounded-lg text-sm hover:bg-orange-600" href="lowongan/kurasi"> Tinjau </a>
+                </div>
+              </div>
+            </div>
+            <div class="bg-white rounded-lg shadow-md flex">
+              <div
+                class="p-6 rounded-l-lg flex items-center justify-center"
+              >
+              <img class="object-center object-contain" src='src/images/dummy_ulbi.png' height="[100px]" alt="image" />
+              
+              </div>
+
+              <div class="p-6 flex-1 relative">
+                <div class="flex justify-between items-center">
+                  <p class="text-gray-500 text-sm">Diposting 2 Hari Yang Lalu</p>
+                  <div class="bg-yellow-100 text-yellow-600 px-3 py-1 rounded-full text-xs">
+                    <iconify-icon class="fas fa-circle mr-1"> </iconify-icon>
+                    Perlu Ditinjau
+                  </div>
+                </div>
+                <h2 class="text-xl font-semibold mt-2">Dosen Tetap</h2>
+                <div class="mt-4">
+                  <p class="flex items-center text-gray-700 text-sm">
+                    <iconify-icon class="fas fa-building mr-2 text-red-500"> </iconify-icon>
+                    ULBI
+                  </p>
+                  <p class="flex items-center text-gray-700 text-sm mt-2">
+                    <iconify-icon class="fas fa-map-marker-alt mr-2 text-red-500"> </iconify-icon>
+                    Bandung, Jawa Barat
+                  </p>
+                  <p class="flex items-center text-gray-700 text-sm mt-2">
+                    <iconify-icon class="fas fa-calendar-alt mr-2 text-red-500"> </iconify-icon>
+                    Batas Akhir Pendaftaran: 01 Desember 2024
+                  </p>
+                  <p class="flex items-center text-gray-700 text-sm mt-2">
+                    <iconify-icon class="fas fa-user-friends mr-2 text-red-500"> </iconify-icon>
+                    Postingan Dari Mitra/Perusahaan
+                  </p>
+                </div>
+                <div class="absolute bottom-6 right-6 flex space-x-2">
+                  <a class="border border-orange-500 text-orange-500 px-4 py-2 rounded-lg text-sm hover:bg-orange-100" href="lowongan/review"> Detail </a>
+                  <a class="bg-orange-500 text-white px-4 py-2 rounded-lg text-sm hover:bg-orange-600" href="lowongan/kurasi"> Tinjau </a>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="mt-4 flex justify-between items-center">
+            <p class="text-sm text-gray-500">Menampilkan 20 Lowongan</p>
+            <div class="flex space-x-2">
+              <ui-pagination data-pagination-count="20" data-pagination-limit="10" data-pagination-page="1"></ui-pagination>
+            </div>
+          </div>
+        </div>
+      </div>
     `
-  )
-}
+  );
+};

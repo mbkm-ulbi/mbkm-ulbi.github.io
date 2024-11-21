@@ -358,7 +358,7 @@ const fetchNewData = () => {
                     alt="Company logo"
                     class="w-10 h-10 rounded-full"
                     height="40"
-                    src="https://storage.googleapis.com/a1aa/image/UDRaapR0ngYTC5djI3MqCBHLCdZOJlveOWwlVS91HYKScl4JA.jpg"
+                    src=${company.images}
                     width="40"
                   />
                   <div class="ml-4">

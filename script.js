@@ -40,7 +40,7 @@ const fetchListLowongan = async () => {
               </div>
               <div class="flex justify-start items-center gap-2">
                 <iconify-icon icon="solar:calendar-bold-duotone" height="22" class="text-ulbiOrange" noobserver></iconify-icon>
-                <div>Batas Akhir Pendaftaran: ${item.date}</div>
+                <div>Waktu: ${item.date}</div>
               </div>
               <div class="flex justify-between items-center gap-2">
                 <div class="flex justify-start items-center gap-2">
@@ -75,10 +75,10 @@ const fetchListLowongan = async () => {
             <img class="object-center object-contain" src=${detail.picture} height="[100px]" alt="image" />
           </div>
           <div class="p-4 flex flex-col gap-1">
-            <div class="text-xl font-semibold">Global Finance Accounting Internship</div>
+            <div class="text-xl font-semibold">${detail.title}</div>
             <div class="flex justify-start items-center gap-2">
               <iconify-icon icon="solar:buildings-bold-duotone" height="22" class="text-ulbiOrange" noobserver></iconify-icon>
-              <div>PT. Pos Indonesia</div>
+              <div>${detail.company}</div>
             </div>
             <div class="flex justify-start items-center gap-2">
               <iconify-icon icon="solar:map-point-bold-duotone" height="22" class="text-ulbiOrange" noobserver></iconify-icon>
@@ -86,29 +86,66 @@ const fetchListLowongan = async () => {
             </div>
             <div class="flex justify-start items-center gap-2">
               <iconify-icon icon="solar:calendar-bold-duotone" height="22" class="text-ulbiOrange" noobserver></iconify-icon>
-              <div>Batas Akhir Pendaftaran: 6 September 2024</div>
+              <div>Waktu: ${detail.date}</div>
             </div>
           </div>
         </div>
         <div class="overflow-y-auto">
           <div>
-            <img class="block mx-auto" src="src/images/dummy_poster.png" alt="image" />
+            <img class="block mx-auto" src="src/images/dummy_aice.png" alt="image" />
           </div>
           <div class="space-y-3 m-3">
             <div>
               <fo-label label="Deskripsi Pekerjaan" className="text-sm text-gray-800"></fo-label>
-              <p class="mx-4">
-                As a Global Finance & Accounting Intern at EIGER, your mission is to support our finance and accounting team in various functions, including
-                financial analysis, reporting, and compliance. You will gain practical experience in managing financial data, contributing to budgeting
-                processes, and ensuring accurate financial records. This internship offers a unique opportunity to develop your skills and knowledge in a global
-                retail environment, preparing you for a successful career in finance and accounting. What you'll need to Success: Final semester students or
-                recently completed a degree in accounting or a related field. Strong analytical skills with the ability to interpret financial data. Someone who
-                is confident, proactive attitude, enthusiasm for learning and communicative in conveying something orally or in writing Work placement at the
-                Head Office of Kab. Bandung West Java. Interest in the retail industry and EIGER's brand. Kompetensi yang akan dikembangkan Administrasi
-                Komunikasi Analisis Data Kerjasama Tim Pengelolaan Waktu Pemahaman Lingkungan Bisnis Problem Solving Analisis Keuangan Keahlian Teknologi
-                Kemampuan Beradaptasi Operasional Kriteria Akademik Mahasiswa perguruan tinggi aktif minimal semester 6 Program studi yang diutamakan: Akuntansi
-                dan Perpajakan Ekonomi
-              </p>
+                <div class="mt-5">
+                <h1 class="text-2xl font-bold text-gray-800 mb-4">Universitas Logistik dan Bisnis Internasional</h1>
+                <p class="text-gray-700 mb-6">
+                  Bekerjasama dengan <strong>PT. Alpen Food Industry</strong>, menyelenggarakan <strong>campus hiring</strong> (recruitment on campus) pada:
+                </p>
+  
+                <div class="space-y-2 mb-6">
+                  <div class="flex items-center">
+                    <span class="text-blue-500 mr-2">📅</span>
+                    <span><strong>Tanggal:</strong> Kamis, 28 November 2024</span>
+                  </div>
+                  <div class="flex items-center">
+                    <span class="text-blue-500 mr-2">🕙</span>
+                    <span><strong>Waktu:</strong> 10.00 WIB – Selesai</span>
+                  </div>
+                  <div class="flex items-center">
+                    <span class="text-blue-500 mr-2">📍</span>
+                    <span> <strong>Lokasi:</strong> Auditorium Lt 2, Universitas Logistik dan Bisnis Internasional, Jl. Sarisah No.54 Bandung </span>
+                  </div>
+                </div>
+  
+                <h2 class="text-lg font-semibold text-gray-800 mb-3">Untuk:</h2>
+                <ul class="list-disc list-inside text-gray-700 space-y-1 mb-6">
+                  <li>Alumni ULBI</li>
+                  <li>Mahasiswa/i tingkat akhir</li>
+                  <li>Calon wisudawan ULBI</li>
+                  <li>Terbuka untuk umum (<em>Gratis</em>)</li>
+                </ul>
+  
+                <h2 class="text-lg font-semibold text-gray-800 mb-3">Agenda:</h2>
+                <ul class="list-disc list-inside text-gray-700 space-y-1 mb-6">
+                  <li>Presentasi dari perusahaan</li>
+                  <li>Psikotest/Interview</li>
+                </ul>
+  
+                <h2 class="text-lg font-semibold text-gray-800 mb-3">Catatan:</h2>
+                <p class="text-gray-700 mb-4">Pelaksanaan campus hiring, harap membawa:</p>
+                <ul class="list-disc list-inside text-gray-700 space-y-1 mb-6">
+                  <li>Alat tulis</li>
+                  <li>Berpakaian rapi dan formal</li>
+                </ul>
+  
+                <p class="text-gray-700 mb-4">
+                  Daftar melalui form berikut ini:
+                  <a href="https://bit.ly/registrasi_campushiring_aice" class="text-blue-600 underline" target="_blank">
+                    https://bit.ly/registrasi_campushiring_aice
+                  </a>
+                </p>
+              </div>
             </div>
             <div>
               <fo-label label="Durasi" className="text-sm text-gray-800"></fo-label>

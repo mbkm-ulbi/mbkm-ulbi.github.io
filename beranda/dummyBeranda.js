@@ -56,73 +56,97 @@ export const dummyDataNew = [{
   label: "Lowongan",
   companys: [{
       name: "PT POS Indonesia",
-      position: "Akuntan"
+      position: "Akuntan",
+      images: "src/images/dummy_ulbi.png"
   }, {
       name: "PT TIKI",
-      position: "IT Support"
+      position: "IT Support",
+      images: "src/images/dummy_ulbi.png"
   }, {
       name: "PT JNE",
-      position: "Customer Service"
+      position: "Customer Service",
+      images: "src/images/dummy_ulbi.png"
   }, {
       name: "PT J&T",
-      position: "Marketing"
+      position: "Marketing",
+      images: "src/images/dummy_ulbi.png"
   }, {
       name: "PT Wahana",
-      position: "Driver"
+      position: "Driver",
+      images: "src/images/dummy_ulbi.png"
   }]
 }, {
   label: "Mitra Perusahaan",
   companys: [{
       name: "PT POS Indonesia",
-      position: "Akuntan"
+      position: "Akuntan",
+      images: "src/images/dummy_ulbi.png"
   }, {
       name: "PT TIKI",
-      position: "IT Support"
+      position: "IT Support",
+      images: "src/images/dummy_ulbi.png"
   }, {
       name: "PT JNE",
-      position: "Customer Service"
+      position: "Customer Service",
+      images: "src/images/dummy_ulbi.png"
   }, {
       name: "PT J&T",
-      position: "Marketing"
+      position: "Marketing",
+      images: "src/images/dummy_ulbi.png"
   }, {
       name: "PT Wahana",
-      position: "Driver"
+      position: "Driver",
+      images: "src/images/dummy_ulbi.png"
   }]
 }, {
   label: "Mahasiswa",
   companys: [{
-      name: "PT POS Indonesia",
-      position: "Akuntan"
+      name: "Abdul Rozak",
+      position: "Akuntan",
+      images: "https://avatar.iran.liara.run/public/21"
+
   }, {
-      name: "PT TIKI",
-      position: "IT Support"
+      name: "Ade Setiawan",
+      position: "IT Support",
+       images: "https://avatar.iran.liara.run/public/1"
   }, {
-      name: "PT JNE",
-      position: "Customer Service"
+      name: "Dina",
+      position: "Customer Service",
+      images: "https://avatar.iran.liara.run/public/2"
+
   }, {
-      name: "PT J&T",
-      position: "Marketing"
+      name: "Siti",
+      position: "Marketing",
+      images: "https://avatar.iran.liara.run/public/3"
   }, {
-      name: "PT Wahana",
-      position: "Driver"
+      name: "Dewi",
+      position: "Driver",
+      images: "https://avatar.iran.liara.run/public/4"
   }]
 }, {
   label: "Alumni",
   companys: [{
-      name: "PT POS Indonesia",
-      position: "Akuntan"
+      name: "Abdul Rozak",
+      position: "Akuntan",
+      images: "https://avatar.iran.liara.run/public/5"
+
   }, {
-      name: "PT TIKI",
-      position: "IT Support"
+      name: "Dadang",
+      position: "IT Support",
+      images: "https://avatar.iran.liara.run/public/6"
   }, {
-      name: "PT JNE",
-      position: "Customer Service"
+      name: "Sean",
+      position: "Customer Service",
+      images: "https://avatar.iran.liara.run/public/7"
   }, {
-      name: "PT J&T",
-      position: "Marketing"
+      name: "Wawan Setiawan", 
+      position: "Marketing",
+      images: "https://avatar.iran.liara.run/public/8"
   }, {
-      name: "PT Wahana",
-      position: "Driver"
+      name: "Dewi",
+      position: "Driver",
+      images: "https://avatar.iran.liara.run/public/9"
+
   }]
 }]
 
