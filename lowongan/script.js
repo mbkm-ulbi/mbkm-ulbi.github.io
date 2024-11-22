@@ -254,7 +254,7 @@ const fetchListLowongan = async () => {
                 </div>
                 <div class="px-4 mb-4 w-full grid grid-cols-3 gap-4">
                   <div>
-                    <fo-label label="Upload KTM"></fo-label>
+                    <fo-label label="Upload DHS"></fo-label>
                     <fo-file name="fileUpload" accept="application/pdf"></fo-file>
                     <fo-error name="fileUpload"></fo-error>
                   </div>

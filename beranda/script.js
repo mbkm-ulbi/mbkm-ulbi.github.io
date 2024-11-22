@@ -188,7 +188,7 @@ const renderUser = () =>{
             </div>
             <div class="flex gap-2">
               <iconify-icon icon="solar:close-circle-bold-duotone" class="text-red-500" height="16"></iconify-icon>
-              <span>Upload KTM</span>
+              <span>Upload DHS</span>
             </div>
             <div class="flex gap-2">
               <iconify-icon icon="solar:close-circle-bold-duotone" class="text-red-500" height="16"></iconify-icon>
