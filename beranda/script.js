@@ -1,5 +1,5 @@
 import { html, render } from "https://cdn.jsdelivr.net/npm/uhtml@4.5.11/+esm";
-import { getAuth, getFlashMessage } from "../src/js/libraries/cookies.js";
+import { getAuth, getFlashMessage, getUserInfo } from "../src/js/libraries/cookies.js";
 import { toast } from "../src/js/libraries/notify.js";
 import { listPenilaian, dummy, dummyDataNew } from "./dummyBeranda.js";
 
@@ -95,7 +95,7 @@ const renderSuperAdmin =  () =>{
             <!-- Card 5 -->
             <div class="bg-white rounded-lg shadow p-6 flex-1">
                 <div class="flex justify-between items-center">
-                    <span class="text-orange-500 font-semibold">Jumlah Penerimaan</span>
+                    <span class="text-orange-500 font-semibold">Jumlah Aktif Magang</span>
                     <iconify-icon icon="solar:alt-arrow-right-bold" class="text-orange-500" height="20"></iconify-icon>
                 </div>
                 <div class="mt-4 text-4xl font-bold text-gray-700">6,500</div>
@@ -376,9 +376,8 @@ const fetchNewData = () => {
 };
 
 document.addEventListener("DOMContentLoaded", async()=>{
-  const auth = await getAuth()
-  const parseAuth = JSON.parse(auth)
-  if(parseAuth.role === "superadmin" || parseAuth.role === "cdc" || parseAuth.role === "prodi" || parseAuth.role === "perusahaan" || parseAuth.role === "dosen"){
+  const auth = await getUserInfo()
+  if(auth.role === "superadmin" || auth.role === "cdc" || auth.role === "prodi" || auth.role === "perusahaan" || auth.role === "dosen"){
     renderSuperAdmin()
     fetchJurusan()
     fetchNewData()
