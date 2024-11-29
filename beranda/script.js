@@ -377,7 +377,7 @@ const fetchNewData = () => {
 
 document.addEventListener("DOMContentLoaded", async()=>{
   const auth = await getUserInfo()
-  if(auth.role === "superadmin" || auth.role === "cdc" || auth.role === "prodi" || auth.role === "perusahaan" || auth.role === "dosen"){
+  if(auth.role === "superadmin" || auth.role === "cdc" || auth.role === "prodi" || auth.role === "mitra" || auth.role === "dosen"){
     renderSuperAdmin()
     fetchJurusan()
     fetchNewData()

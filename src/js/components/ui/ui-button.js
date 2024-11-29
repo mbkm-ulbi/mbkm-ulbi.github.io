@@ -37,7 +37,11 @@ class UIButton extends HTMLElement {
 
   handleClick() {
     const href = this.getAttribute("href");
-    if (href) window.location.assign(`${slugUri}${href}`);
+    if (href){
+      // const link = document.createElement('a');
+      const query = `${slugUri}${href}`
+     location.href = query
+    } 
   }
 
   renderTemplate() {

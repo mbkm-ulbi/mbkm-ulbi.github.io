@@ -1,263 +1,241 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <base href="/" />
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="" />
-    <title>Register Company</title>
-    <link rel="icon" href="favicon.ico" />
-    <link rel="stylesheet" href="src/css/style.css" />
-    <script src="src/js/guard-public.js" type="module"></script>
-    <script src="src/js/bundle-public.js" type="module" defer blocking="render" fetchpriority="high"></script>
-    <script src="register_company/script.js" type="module" defer></script>
-  </head>
 
-  <body>
-    <public-header></public-header>
-    <!-- Content  -->
-    <div class="space-y-8 m-4 gap-8">
-      <div class="h-24 grid grid-cols-3 text-xs text-gray-300 justify-between items-center gap-3">
-        <div class="p-4 h-full flex rounded-md border border-gray-300 shadow-sm gap-3 justify-center items-center">
-          <div><iconify-icon icon="solar:case-round-bold-duotone" width="48" class="text-ulbiOrange" id="case-icon"></iconify-icon></div>
-          <div class="flex flex-col">
-            <div class="text-ulbiOrange font-semibold">Publish Lowongan</div>
-            <div>
-              Posting Lowongan Anda Langsung Dari Halaman Member. Setiap Saat Dan Kapan Saja Anda Membutuhkan Talenta Terbaik Tinggal Mengisi Form Yang Telah
-              Kami Sediakan Secara Online. Mudah Dan Cepat.
-            </div>
-          </div>
-        </div>
-        <div class="p-4 h-full flex rounded-md border border-gray-300 shadow-sm gap-3 justify-center items-center">
-          <div><iconify-icon icon="solar:monitor-smartphone-bold-duotone" width="48" class="text-ulbiOrange" id="case-icon"></iconify-icon></div>
-          <div class="flex flex-col">
-            <div class="text-ulbiOrange font-semibold">Pantau Pelamar</div>
-            <div>
-              Anda Akan Dengan Mudah Memantau Pelamar Dari Lowongan Yang Anda Publish. Termasuk Notifikasi Via Email Untuk Laporan Mingguan Dari Lowongan Anda.
-            </div>
-          </div>
-        </div>
-        <div class="p-4 h-full flex rounded-md border border-gray-300 shadow-sm gap-3 justify-center items-center">
-          <div><iconify-icon icon="solar:file-download-bold-duotone" width="48" class="text-ulbiOrange" id="case-icon" noobserver></iconify-icon></div>
-          <div class="flex flex-col">
-            <div class="text-ulbiOrange font-semibold">Download Lowongan</div>
-            <div>
-              Merekap Data Pelamar Menjadi Begitu Mudah. Tinggal Download Dalam Format Excel Atau Versi PDF Untuk Tiap CV Individual Agar Anda Bisa Olah Untuk
-              Tahap Selanjutnya
-            </div>
+<head>
+  <base href="/" />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="" />
+  <title>Register Company</title>
+  <link rel="icon" href="favicon.ico" />
+  <link rel="stylesheet" href="src/css/style.css" />
+  <script src="src/js/guard-public.js" type="module"></script>
+  <script src="src/js/bundle-public.js" type="module" defer blocking="render" fetchpriority="high"></script>
+  <script src="register_company/script.js" type="module" defer></script>
+</head>
+
+<body>
+  <public-header></public-header>
+  <!-- Content  -->
+  <div class="space-y-8 m-4 gap-8">
+    <div class="h-24 grid grid-cols-3 text-xs text-gray-300 justify-between items-center gap-3">
+      <div class="p-4 h-full flex rounded-md border border-gray-300 shadow-sm gap-3 justify-center items-center">
+        <div><iconify-icon icon="solar:case-round-bold-duotone" width="48" class="text-ulbiOrange"
+            id="case-icon"></iconify-icon></div>
+        <div class="flex flex-col">
+          <div class="text-ulbiOrange font-semibold">Publish Lowongan</div>
+          <div>
+            Posting Lowongan Anda Langsung Dari Halaman Member. Setiap Saat Dan Kapan Saja Anda Membutuhkan Talenta
+            Terbaik Tinggal Mengisi Form Yang Telah
+            Kami Sediakan Secara Online. Mudah Dan Cepat.
           </div>
         </div>
       </div>
-
-      <div class="mb-4">
-        <ul
-          class="flex flex-wrap justify-center gap-24 -mb-px text-sm font-medium text-center"
-          id="default-styled-tab"
-          data-tabs-toggle="#default-styled-tab-content"
-          data-tabs-active-classes="text-purple-600 hover:text-purple-600 dark:text-purple-500 dark:hover:text-purple-500 border-purple-600 dark:border-purple-500"
-          data-tabs-inactive-classes="dark:border-transparent text-gray-500 hover:text-gray-600 dark:text-gray-400 border-gray-100 hover:border-gray-300 dark:border-gray-700 dark:hover:text-gray-300"
-          role="tablist"
-        >
-          <li class="me-2" role="presentation">
-            <button
-              class="p-4 flex flex-col justify-center items-center"
-              id="register-styled-tab"
-              data-tabs-target="#styled-register"
-              type="button"
-              role="tab"
-              aria-controls="register"
-              aria-selected="true"
-            >
-              <div><iconify-icon icon="solar:login-3-bold-duotone" width="24" id="case-icon"></iconify-icon></div>
-              <div>Pendaftaran Akun</div>
-            </button>
-          </li>
-          <li class="me-2" role="presentation">
-            <button
-              class="p-4 flex flex-col justify-center items-center"
-              id="confirmation-styled-tab"
-              data-tabs-target="#styled-confirmation"
-              type="button"
-              role="tab"
-              aria-controls="confirmation"
-              aria-selected="false"
-            >
-              <div><iconify-icon icon="solar:letter-bold-duotone" width="24" id="case-icon"></iconify-icon></div>
-              <div>Konfirmasi Pendaftaran</div>
-            </button>
-          </li>
-          <li class="me-2" role="presentation">
-            <button
-              class="p-4 flex flex-col justify-center items-center"
-              id="profile-styled-tab"
-              data-tabs-target="#styled-profile"
-              type="button"
-              role="tab"
-              aria-controls="profile"
-              aria-selected="false"
-            >
-              <div><iconify-icon icon="solar:buildings-3-bold-duotone" width="24" id="case-icon"></iconify-icon></div>
-              <div>Informasi Perusahaan</div>
-            </button>
-          </li>
-          <li role="presentation">
-            <button
-              class="p-4 flex flex-col justify-center items-center"
-              id="additional-styled-tab"
-              data-tabs-target="#styled-additional"
-              type="button"
-              role="tab"
-              aria-controls="additional"
-              aria-selected="false"
-            >
-              <div><iconify-icon icon="solar:documents-bold-duotone" width="24" id="case-icon"></iconify-icon></div>
-              <div>Informasi Tambahan</div>
-            </button>
-          </li>
-        </ul>
+      <div class="p-4 h-full flex rounded-md border border-gray-300 shadow-sm gap-3 justify-center items-center">
+        <div><iconify-icon icon="solar:monitor-smartphone-bold-duotone" width="48" class="text-ulbiOrange"
+            id="case-icon"></iconify-icon></div>
+        <div class="flex flex-col">
+          <div class="text-ulbiOrange font-semibold">Pantau Pelamar</div>
+          <div>
+            Anda Akan Dengan Mudah Memantau Pelamar Dari Lowongan Yang Anda Publish. Termasuk Notifikasi Via Email Untuk
+            Laporan Mingguan Dari Lowongan Anda.
+          </div>
+        </div>
       </div>
-      <!-- Tab content -->
-      <div id="default-styled-tab-content">
-        <div class="mx-16 p-4 rounded-lg" id="styled-register" role="tabpanel" aria-labelledby="register-tab">
-          <div class="text-xl font-bold">Pendaftaran Akun</div>
-          <div class="flex justify-center">
-            <form id="register-form" class="w-full my-4 space-y-4">
-              <div>
-                <fo-label for="username" label="Username"></fo-label>
-                <fo-input name="username" value="" placeholder="Silahkan isi disini"></fo-input>
-                <fo-error name="username"></fo-error>
-              </div>
-              <div>
-                <fo-label for="password" label="Password"></fo-label>
-                <fo-input name="password" type="password" value="" placeholder="Silahkan isi disini"></fo-input>
-                <fo-error name="password"></fo-error>
-              </div>
-              <div>
-                <fo-label for="passwordConfirmation" label="Konfirmasi Password"></fo-label>
-                <fo-input name="passwordConfirmation" type="password" value="" placeholder="Silahkan konfirmasi password"></fo-input>
-                <fo-error name="password"></fo-error>
-              </div>
-              <div>
-                <fo-label for="email" label="Email"></fo-label>
-                <fo-input name="email" value="" placeholder="Contoh:namaanda@mail.com"></fo-input>
-                <fo-error name="password"></fo-error>
-              </div>             
-            </form>            
+      <div class="p-4 h-full flex rounded-md border border-gray-300 shadow-sm gap-3 justify-center items-center">
+        <div><iconify-icon icon="solar:file-download-bold-duotone" width="48" class="text-ulbiOrange" id="case-icon"
+            noobserver></iconify-icon></div>
+        <div class="flex flex-col">
+          <div class="text-ulbiOrange font-semibold">Download Lowongan</div>
+          <div>
+            Merekap Data Pelamar Menjadi Begitu Mudah. Tinggal Download Dalam Format Excel Atau Versi PDF Untuk Tiap CV
+            Individual Agar Anda Bisa Olah Untuk
+            Tahap Selanjutnya
           </div>
-          <div class="mt-4 flex justify-end gap-4">      
-            <ui-button type="button" data-tab-target="1">Selanjutnya</ui-button>
-          </div>
-        </div>
-        <div class="hidden mx-16 p-4 rounded-lg" id="styled-confirmation" role="tabpanel" aria-labelledby="confirmation-tab">
-          <div class="text-xl font-bold">Konfirmasi Pendaftaran</div>
-          <div class="text-xs">Silahkan Isi Kode Verifikasi Yang Telah Kami Kirimkan Melalui Email Anda</div>
-          <div class="flex justify-center">
-            <form id="register-form" class="w-full my-4 space-y-4">
-              <div>
-                <fo-label for="verificationCode" label="Kode Verifikasi"></fo-label>
-                <fo-input name="verificationCode" value="" placeholder="Masukan 6 Digit Kode Verifikasi"></fo-input>
-                <fo-error name="verificationCode"></fo-error>
-              </div>              
-            </form>            
-          </div>
-          <div class="text-sm font-semibold">Kirim Ulang Kode Verifikasi <span class="text-blue-800">04:30</span></div>
-          <div class="mt-4 flex justify-between gap-4">
-            <ui-button type="button" data-tab-target="0">Sebelumnya</ui-button>
-            <ui-button type="button" data-tab-target="2">Selanjutnya</ui-button>
-          </div>
-        </div>        
-        </div>
-        <div class="hidden mx-16 p-4 rounded-lg" id="styled-profile" role="tabpanel" aria-labelledby="profile-tab">
-          <div class="text-xl font-bold">Informasi Perusahaan</div>
-          <div class="flex justify-center">            
-            <form id="register-form" class="w-full my-4 space-y-4">
-              <div>
-                <fo-label for="companyName" label="Nama Perusahaan"></fo-label>
-                <fo-input name="companyName" value="" placeholder="Silahkan isi disini"></fo-input>
-                <fo-error name="companyName"></fo-error>
-              </div>
-              <div>
-                <fo-label for="businessField" label="Bidang Usaha"></fo-label>
-                <fo-input name="businessField" value="" placeholder="Silahkan isi disini"></fo-input>
-                <fo-error name="businessField"></fo-error>
-              </div>
-              <div>
-                <fo-label for="companyAddress" label="Alamat Perusahaan"></fo-label>
-                <fo-input name="companyAddress" value="" placeholder="Contoh: Jalan No. Kode Pos"></fo-input>
-                <fo-error name="companyAddress"></fo-error>
-              </div>
-              <div>
-                <fo-label for="companySize" label="Ukuran Perusahaan"></fo-label>
-                <fo-input name="companySize" value="" placeholder="Contoh: 100-500 karyawan"></fo-input>
-                <fo-error name="companySize"></fo-error>
-              </div>
-              <div></div>
-                <fo-label for="companyWebsite" label="Website Perusahaan"></fo-label>
-                <fo-input name="companyWebsite" value="" placeholder="Contoh:websiteanda.com"></fo-input>
-                <fo-error name="companyWebsite"></fo-error>
-              </div>
-              <div class="grid grid-cols-3 gap-4">
-                <div class="col-span-1">
-                  <fo-label label="Upload Foto Profil"></fo-label>
-                  <fo-uploaded fileurl="https://google.com" filename="" className="mb-2 min-h-24"></fo-uploaded>
-                  <fo-file name="fileUpload" accept="application/pdf"></fo-file>
-                  <fo-error name="fileUpload"></fo-error>
-                </div>
-                <div class="col-span-2">
-                  <fo-label for="deskripsi" label="Deskripsi Singkat Profil"></fo-label>
-                  <fo-textarea
-                    className="min-h-24"
-                    name="textArea"
-                    placeholder="Silahkan isi disini"
-                    value="."
-              ></fo-textarea>
-              <div></div>
-              <fo-error name="textArea"></fo-error>
-                </div>
-              </div>        
-            </form>  
-            <div class="mt-4 flex justify-between gap-4">
-              <ui-button type="button" data-tab-target="1">Sebelumnya</ui-button>
-              <ui-button type="button" data-tab-target="3">Selanjutnya</ui-button>
-            </div>      
-          </div>
-            
-          
-        </div>
-        <div class="hidden mx-16 p-4 rounded-lg" id="styled-additional" role="tabpanel" aria-labelledby="additional-tab">
-          <div class="text-xl font-bold">Informasi Tambahan</div>
-          <div class="flex justify-center">
-            <form id="register-form" class="w-full my-4 space-y-4">
-              <div>
-                <fo-label for="fullName" label="Nama Lengkap"></fo-label>
-                <fo-input name="fullName" value="" placeholder="Silahkan isi disini"></fo-input>
-                <fo-error name="fullName"></fo-error>
-              </div>
-              <div>
-                <fo-label for="position" label="Jabatan"></fo-label>
-                <fo-input name="position" value="" placeholder="Silahkan isi disini"></fo-input>
-                <fo-error name="position"></fo-error>
-              </div>
-              <div>
-                <fo-label for="email" label="Email"></fo-label>
-                <fo-input name="email" value="" placeholder="Silahkan isi disini"></fo-input>
-                <fo-error name="email"></fo-error>
-              </div>
-              <div>
-                <fo-label for="phoneNumber" label="Nomor Telepon"></fo-label>
-                <fo-input name="phoneNumber" value="" placeholder="Silahkan isi disini"></fo-input>
-                <fo-error name="phoneNumber"></fo-error>
-              </div>         
-              <div class="mt-4 flex justify-between gap-4">
-                <ui-button type="button" data-tab-target="2">Sebelumnya</ui-button>
-                <ui-button type="submit" href="">Buat Akun</ui-button>
-              </div> 
-            </form>
-            
         </div>
       </div>
     </div>
-    <!-- End of content  -->
-    <public-footer></public-footer>
-  </body>
+
+    <div class="mb-4">
+      <ul class="flex flex-wrap justify-center gap-24 -mb-px text-sm font-medium text-center" id="default-styled-tab"
+        data-tabs-toggle="#default-styled-tab-content"
+        data-tabs-active-classes="text-purple-600 hover:text-purple-600 dark:text-purple-500 dark:hover:text-purple-500 border-purple-600 dark:border-purple-500"
+        data-tabs-inactive-classes="dark:border-transparent text-gray-500 hover:text-gray-600 dark:text-gray-400 border-gray-100 hover:border-gray-300 dark:border-gray-700 dark:hover:text-gray-300"
+        role="tablist">
+        <li class="me-2" role="presentation">
+          <button class="p-4 flex flex-col justify-center items-center" id="register-styled-tab"
+            data-tabs-target="#styled-register" type="button" role="tab" aria-controls="register" aria-selected="true">
+            <div><iconify-icon icon="solar:login-3-bold-duotone" width="24" id="case-icon"></iconify-icon></div>
+            <div>Pendaftaran Akun</div>
+          </button>
+        </li>
+        <li class="me-2" role="presentation">
+          <button class="p-4 flex flex-col justify-center items-center" id="confirmation-styled-tab"
+            data-tabs-target="#styled-confirmation" type="button" role="tab" aria-controls="confirmation"
+            aria-selected="false">
+            <div><iconify-icon icon="solar:letter-bold-duotone" width="24" id="case-icon"></iconify-icon></div>
+            <div>Konfirmasi Pendaftaran</div>
+          </button>
+        </li>
+        <li class="me-2" role="presentation">
+          <button class="p-4 flex flex-col justify-center items-center" id="profile-styled-tab"
+            data-tabs-target="#styled-profile" type="button" role="tab" aria-controls="profile" aria-selected="false">
+            <div><iconify-icon icon="solar:buildings-3-bold-duotone" width="24" id="case-icon"></iconify-icon></div>
+            <div>Informasi Perusahaan</div>
+          </button>
+        </li>
+        <li role="presentation">
+          <button class="p-4 flex flex-col justify-center items-center" id="additional-styled-tab"
+            data-tabs-target="#styled-additional" type="button" role="tab" aria-controls="additional"
+            aria-selected="false">
+            <div><iconify-icon icon="solar:documents-bold-duotone" width="24" id="case-icon"></iconify-icon></div>
+            <div>Informasi Tambahan</div>
+          </button>
+        </li>
+      </ul>
+    </div>
+    <!-- Tab content -->
+    <div id="default-styled-tab-content">
+      <div class="mx-16 p-4 rounded-lg" id="styled-register" role="tabpanel" aria-labelledby="register-tab">
+        <div class="text-xl font-bold">Pendaftaran Akun</div>
+        <div class="flex justify-center">
+
+          <form id="register-form-1" class="w-full my-4 space-y-4">
+            <div>
+              <fo-label for="username" label="Username"></fo-label>
+              <fo-input name="username" value="" placeholder="Silahkan isi disini"></fo-input>
+              <fo-error name="username"></fo-error>
+            </div>
+            <div>
+              <fo-label for="password" label="Password"></fo-label>
+              <fo-input name="password" type="password" value="" placeholder="Silahkan isi disini"></fo-input>
+              <fo-error name="password"></fo-error>
+            </div>
+            <div>
+              <fo-label for="passwordConfirmation" label="Konfirmasi Password"></fo-label>
+              <fo-input name="passwordConfirmation" type="password" value=""
+                placeholder="Silahkan konfirmasi password"></fo-input>
+              <fo-error name="password"></fo-error>
+            </div>
+            <div>
+              <fo-label for="email" label="Email"></fo-label>
+              <fo-input name="email" value="" placeholder="Contoh:namaanda@mail.com"></fo-input>
+              <fo-error name="email"></fo-error>
+            </div>
+            <div class="mt-4 flex justify-end gap-4">
+              <ui-button type="submit" data-tab-target="1">Selanjutnya</ui-button>
+            </div>
+          </form>
+        </div>
+      </div>
+      <div class="hidden mx-16 p-4 rounded-lg" id="styled-confirmation" role="tabpanel"
+        aria-labelledby="confirmation-tab">
+        <div class="text-xl font-bold">Konfirmasi Pendaftaran</div>
+        <div class="text-xs">Silahkan Isi Kode Verifikasi Yang Telah Kami Kirimkan Melalui Email Anda</div>
+        <div class="flex justify-center">
+          <form id="register-form-2" class="w-full my-4 space-y-4">
+            <div>
+              <fo-label for="verificationCode" label="Kode Verifikasi"></fo-label>
+              <fo-input name="verificationCode" value="" placeholder="Masukan 6 Digit Kode Verifikasi"></fo-input>
+              <fo-error name="verificationCode"></fo-error>
+            </div>
+            <div class="text-sm font-semibold">Kirim Ulang Kode Verifikasi <span class="text-blue-800">04:30</span>
+            </div>
+            <div class="mt-4 flex justify-between gap-4">
+              <ui-button type="button" data-tab-target="0">Sebelumnya</ui-button>
+              <ui-button type="submit" data-tab-target="2">Selanjutnya</ui-button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+    <div class="hidden mx-16 p-4 rounded-lg" id="styled-profile" role="tabpanel" aria-labelledby="profile-tab">
+      <div class="text-xl font-bold">Informasi Perusahaan</div>
+      <div class="flex justify-center">
+        <form id="register-form-3" class="w-full my-4 space-y-4">
+          <div>
+            <fo-label for="companyName" label="Nama Perusahaan"></fo-label>
+            <fo-input name="companyName" value="" placeholder="Silahkan isi disini"></fo-input>
+            <fo-error name="companyName"></fo-error>
+          </div>
+          <div>
+            <fo-label for="businessField" label="Bidang Usaha"></fo-label>
+            <fo-input name="businessField" value="" placeholder="Silahkan isi disini"></fo-input>
+            <fo-error name="businessField"></fo-error>
+          </div>
+          <div>
+            <fo-label for="companyAddress" label="Alamat Perusahaan"></fo-label>
+            <fo-input name="companyAddress" value="" placeholder="Contoh: Jalan No. Kode Pos"></fo-input>
+            <fo-error name="companyAddress"></fo-error>
+          </div>
+          <div>
+            <fo-label for="companySize" label="Ukuran Perusahaan"></fo-label>
+            <fo-input name="companySize" value="" placeholder="Contoh: 100-500 karyawan"></fo-input>
+            <fo-error name="companySize"></fo-error>
+          </div>
+          <div></div>
+          <fo-label for="companyWebsite" label="Website Perusahaan"></fo-label>
+          <fo-input name="companyWebsite" value="" placeholder="Contoh:websiteanda.com"></fo-input>
+          <fo-error name="companyWebsite"></fo-error>
+          </di>
+          <div class="grid grid-cols-3 gap-4">
+            <div class="col-span-1">
+              <fo-label label="Upload Logo Perusahaan"></fo-label>
+              <fo-file name="companyLogo" accept="image/*"></fo-file>
+              <fo-error name="companyLogo"></fo-error>
+            </div>
+            <div class="col-span-2">
+              <fo-label for="companyDescription" label="Deskripsi Singkat Profil"></fo-label>
+              <fo-textarea className="min-h-24" name="companyDescription" placeholder="Silahkan isi disini"
+              ></fo-textarea>
+              <div></div>
+              <fo-error name="companyDescription"></fo-error>
+            </div>
+          </div>
+          <div class="mt-4 flex justify-between gap-4">
+            <ui-button type="button" data-tab-target="1">Sebelumnya</ui-button>
+            <ui-button type="submit" data-tab-target="3">Selanjutnya</ui-button>
+          </div>   
+        </form>
+      </div>
+
+
+    </div>
+    <div class="hidden mx-16 p-4 rounded-lg" id="styled-additional" role="tabpanel" aria-labelledby="additional-tab">
+      <div class="text-xl font-bold">Informasi Tambahan</div>
+      <div class="flex justify-center">
+        <form id="register-form-4" class="w-full my-4 space-y-4">
+          <div>
+            <fo-label for="fullName" label="Nama Lengkap"></fo-label>
+            <fo-input name="fullName" value="" placeholder="Silahkan isi disini"></fo-input>
+            <fo-error name="fullName"></fo-error>
+          </div>
+          <div>
+            <fo-label for="position" label="Jabatan"></fo-label>
+            <fo-input name="position" value="" placeholder="Silahkan isi disini"></fo-input>
+            <fo-error name="position"></fo-error>
+          </div>
+          <!-- <div>
+            <fo-label for="email" label="Email"></fo-label>
+            <fo-input name="email" value="" placeholder="Silahkan isi disini"></fo-input>
+            <fo-error name="email"></fo-error>
+          </div> -->
+          <div>
+            <fo-label for="companyPhoneNumber" label="Nomor Telepon"></fo-label>
+            <fo-input name="companyPhoneNumber" value="" placeholder="Silahkan isi disini"></fo-input>
+            <fo-error name="companyPhoneNumber"></fo-error>
+          </div>
+          <div class="mt-4 flex justify-between gap-4">
+            <ui-button type="button" data-tab-target="2" >Sebelumnya</ui-button>
+            <ui-button type="submit" data-tab-target="4">Buat Akun</ui-button>
+          </div>
+        </form>
+
+      </div>
+    </div>
+  </div>
+  <!-- End of content  -->
+  <public-footer></public-footer>
+</body>
+
 </html>

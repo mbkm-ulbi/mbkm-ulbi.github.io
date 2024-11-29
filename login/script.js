@@ -1,32 +1,62 @@
-import { timeout } from "../src/js/libraries/utilities.js";
-import { setAuth, setFlashMessage } from "../src/js/libraries/cookies.js";
+import { setAuth, setFlashMessage, setUserInfo } from "../src/js/libraries/cookies.js";
 import { formValidation } from "./validation.js";
 import { slugUri } from "../src/js/customs/settings.js";
-import { html, render } from "https://cdn.jsdelivr.net/npm/uhtml@4.5.11/+esm";
 import { dummyOptions } from "./dummyOptions.js";
+import { postLogin } from "../src/js/api/index.js";
+import { toast } from "../src/js/libraries/notify.js";
 
 const form = document.getElementById("login-form");
+
+// Pastikan elemen adalah sebuah HTMLFormElement
 if (form instanceof HTMLFormElement) {
   form.addEventListener("submit", async (event) => {
     event.preventDefault();
+
+    // Ambil data dari form
     const formData = new FormData(form);
-    console.log({form})
+
+    // Validasi form sebelum melanjutkan
     if (!formValidation(form, formData)) return;
 
-    form.querySelectorAll("ui-button").forEach((element) => element.setAttribute("disabled", ""));
+    try {
+      // Disable semua tombol di form untuk mencegah submit ganda
+      form.querySelectorAll("button, [type='submit']").forEach((element) => {
+        if (element instanceof HTMLButtonElement || element instanceof HTMLElement) {
+          element.setAttribute("disabled", "true");
+        }
+      });
 
-    const email = formData.get("email");
-    const role = formData.get("role");
+      // Kirim data login ke API
+      const response = await postLogin(formData);
+      const { token, role, user } = response.data;
 
-    await timeout(300);
-    const token = {
-      email,
-      role,
-    };
-    await setAuth(JSON.stringify(token));
+      // Simpan informasi otentikasi
+      await setAuth(token);
 
-    await setFlashMessage("Login Success");
-    window.location.assign(`${slugUri}beranda`);
+      const userInfo = {
+        role: role.toLowerCase(),
+        user,
+      };
+
+      // Simpan userInfo ke cookie
+      await setUserInfo(userInfo);
+
+      // Tampilkan pesan sukses dan arahkan pengguna
+      await setFlashMessage("Login Success");
+      window.location.assign(`${slugUri}beranda`);
+    } catch (error) {
+      console.error("Login error:", error);
+      console.log(error.message)
+      // Tampilkan pesan error kepada pengguna
+      toast.error(error.message);
+    } finally {
+      // Re-enable semua tombol di form
+      form.querySelectorAll("button, [type='submit']").forEach((element) => {
+        if (element instanceof HTMLButtonElement || element instanceof HTMLElement) {
+          element.removeAttribute("disabled");
+        }
+      });
+    }
   });
 }
 
@@ -39,6 +69,7 @@ const getListDropdown = async () => {
 
     // @ts-ignore
     dummyOptions.forEach((option) => {
+      
       // @ts-ignore
       foSelectElement.choices.setChoices([{ value: option.value, label: option.label, selected: false }], "value", "label", false);
     });
@@ -51,6 +82,7 @@ const getListDropdown = async () => {
   }
 };
 
-document.addEventListener("DOMContentLoaded", () => {
+document.addEventListener("DOMContentLoaded", async() => {
+
   getListDropdown();
 });

@@ -109,7 +109,7 @@
   box-shadow: 0 3px 7px 0 rgba(0, 0, 0, 0.25);
   position: relative;
   padding: 0 8px;
-  background: none !important;
+  background: #fff !important;
   color: #111827;
   border-radius: 6px;
   max-width: 300px;

@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <base href="/" />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="" />
+    <title>Lowongan</title>
+    <link rel="icon" href="favicon.ico" />
+    <link rel="stylesheet" href="src/css/style.css" />
+    <script src="src/js/guard-auth.js" type="module"></script>
+    <script src="src/js/bundle-auth.js" type="module" defer blocking="render" fetchpriority="high"></script>
+  
+    <!-- <script src="https://cdn.jsdelivr.net/npm/@ckeditor/ckeditor5-build-classic"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@ckeditor/ckeditor5-image"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@ckeditor/ckeditor5-upload"></script> -->
+  </head>
+
+  <body>
+    <auth-layout>
+      <!-- Content  -->
+      <div class="space-y-4">
+        <div class="p-4 flex flex-col gap-4 rounded-md shadow-md">
+          <div class="text-md font-bold">Buat Postingan Lowongan Magang</div>
+          <div class="border-t border-gray-300 border-dashed"></div>
+          <div>
+            <fo-label for="select" label="Perusahaan"></fo-label>
+            <fo-select id='perusahaan-select' name='perusahaan-select'></fo-select>
+            <!-- <fo-select  id="perusahaan-select" name="perusahaan-select" placeholder="Silahkan pilih disini">
+            </fo-select> -->
+          </div>
+          <div class="flex border border-gray-300 rounded-md">
+            <div class="pl-2 w-[120px] flex overflow-hidden rounded-l-lg">
+              <img class="object-center object-contain" src="src/images/dummy_pos_ind.png" height="[100px]" alt="image" />
+            </div>
+            <div class="p-4 flex flex-col gap-1">
+              <div class="text-md font-semibold">PT. Pos Indonesia</div>
+              <div class="flex justify-start items-center gap-2">
+                <iconify-icon icon="solar:buildings-bold-duotone" height="22" class="text-ulbiOrange" noobserver></iconify-icon>
+                <div class="text-xs">PT. Pos Indonesia</div>
+              </div>
+              <div class="flex justify-start items-center gap-2">
+                <iconify-icon icon="solar:map-point-bold-duotone" height="22" class="text-ulbiOrange" noobserver></iconify-icon>
+                <div class="text-xs">Bandung, Jawa Barat</div>
+              </div>
+            </div>
+          </div>
+          <div>
+            <fo-label label="Upload Gambar Lowongan"></fo-label>
+            <fo-file className="min-h-24" name="fileUpload" accept="application/pdf"></fo-file>
+            <fo-error name="fileUpload"></fo-error>
+          </div>
+          <div>
+            <fo-label for="title" label="Judul"></fo-label>
+            <fo-input name="title" value="" placeholder=""></fo-input>
+            <fo-error name="title"></fo-error>
+          </div>
+          <div class="">
+            <fo-label for="description" label="Deskripsi Pekerjaan"></fo-label>
+            <!-- <fo-editor
+            name="editor1"
+            placeholder="Start typing here..."
+            className="custom-class"
+            value="Initial content"
+          ></fo-editor> -->
+          </div>
+          <div>
+            <fo-label for="duration" label="Durasi"></fo-label>
+            <fo-input name="duration" value="" placeholder="3 bulan"></fo-input>
+            <fo-error name="duration"></fo-error>
+          </div>
+          <div>
+            <fo-label for="work_type" label="Jenis Pekerjaan"></fo-label>
+            <fo-input name="work_type" value="" placeholder="fulltime"></fo-input>
+            <fo-error name="work_type"></fo-error>
+          </div>
+          <div>
+            <div class="flex justify-between items-center">
+              <fo-label for="benefit" label="Benefit Yang Ditawarkan"></fo-label>
+              <ui-button id="add-benefit" type="button" variant="ghost">+ Tambah Benefit</ui-button>
+            </div>
+            <div id="benefit-container" class="flex flex-col gap-4">
+              <fo-input name="benefit" value="" placeholder="Gaji Pokok Per Bulan Rp 3.000.000"></fo-input>
+              <fo-input name="benefit" value="" placeholder="Tunjangan Kesehatan"></fo-input>
+              <fo-input name="benefit" value="" placeholder="Transportasi"></fo-input>
+              <fo-error name="benefit"></fo-error>
+            </div>
+          </div>
+          <div>
+            <fo-label for="status" label="Status"></fo-label>
+            <fo-input name="status" value="" placeholder="tersedia"></fo-input>
+            <fo-error name="status"></fo-error>
+          </div>
+          <div>
+            <fo-label for="type" label="Tipe Lowongan"></fo-label>
+            <fo-input name="type" value="" placeholder="Umum"></fo-input>
+            <fo-error name="type"></fo-error>
+          </div>
+          <div>
+            <div class="flex justify-between items-center">
+              <fo-label for="subject" label="Mata Kuliah"></fo-label>
+              <ui-button id="add-subject" type="button" variant="ghost">+ Tambah Mata Kuliah</ui-button>
+            </div>
+            <div id="subject-container" class="flex flex-col gap-4">
+              <fo-input name="subject" value="" placeholder="Mata Kuliah 1"></fo-input>
+              <fo-input name="subject" value="" placeholder="Mata Kuliah 2"></fo-input>
+              <fo-input name="subject" value="" placeholder="Mata Kuliah 3"></fo-input>
+              <fo-error name="subject"></fo-error>
+            </div>
+          </div>
+          <div class="flex justify-between items-center">
+            <ui-button color="red" href="/lowongan/">BATAL</ui-button>
+            <div>
+              <div class="flex justify-end gap-3">
+                <ui-button variant="outline_blue" data-dialog-trigger="tinjau-lowongan">PRATINJAU</ui-button>
+                <ui-dialog name="tinjau-lowongan" className="w-[1000px] h-[600px] overflow-y-scroll">
+                  <div class="p-4 flex flex-col gap-4">
+                    <div class="flex justify-between items-center">
+                      <div class="text-md font-bold">Tinjau Lowongan</div>
+                      <div data-dialog-close><iconify-icon icon="solar:close-circle-bold" height="22" class="text-gray-600" noobserver></iconify-icon></div>
+                    </div>
+                    <div class="border-t border-gray-300 border-dashed"></div>
+
+                    <div class="flex justify-between items-center">
+                      <div>Diposting 2 Hari Yang Lalu</div>
+                      <div><ui-badge className="bg-green-600/25 text-green-600" dot>Aktif</ui-badge></div>
+                    </div>
+                    <div class="flex flex-row gap-2 justify-start items-center">
+                      <div class="w-[120px] flex overflow-hidden rounded-l-lg">
+                        <img class="object-center object-contain" src="src/images/dummy_pos_ind.png" height="[100px]" alt="image" />
+                      </div>
+                      <div class="flex flex-col justify-start gap-2">
+                        <div class="text-sm font-semibold">Global Finance Accounting Internship</div>
+                        <div class="flex justify-start items-center gap-2">
+                          <iconify-icon icon="solar:buildings-bold-duotone" height="22" class="text-ulbiOrange" noobserver></iconify-icon>
+                          <div>PT. Pos Indonesia</div>
+                        </div>
+                        <div class="flex justify-start items-center gap-2">
+                          <iconify-icon icon="solar:map-point-bold-duotone" height="22" class="text-ulbiOrange" noobserver></iconify-icon>
+                          <div>Bandung, Jawa Barat</div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="p-0 my-2 border-t border-gray-300"></div>
+                    <div class="space-y-4">
+                      <h1 class="font-bold">Deskripsi Pekerjaan</h1>
+                      <p>
+                        <span>As a Global Finance & Accounting Intern at EIGER</span>, your mission is to support our Finance and Accounting team in various
+                        functions, including financial analysis, reporting, and compliance. You will gain practical experience in managing financial data,
+                        contributing to budgeting processes, and ensuring accurate financial records.
+                      </p>
+                      <p>
+                        This internship offers a unique opportunity to develop your skills and knowledge in a global retail environment, preparing you for a
+                        successful career in finance and accounting.
+                      </p>
+                      <h2 class="font-bold">What You'll Need to Succeed</h2>
+                      <ul>
+                        <li>1. Final semester students or recently completed a degree in accounting or a related field.</li>
+                        <li>2. Strong analytical skills with the ability to interpret financial data.</li>
+                        <li>
+                          3. Someone who is confident, proactive, enthusiastic for learning, and communicative in conveying something orally or in writing.
+                        </li>
+                        <li>4. Work placement at the Head Office of Kab. Bandung, West Java.</li>
+                        <li>5. Interest in the retail industry and EIGER's brand.</li>
+                      </ul>
+                      <h2 class="font-bold">Kompetensi Yang Akan Dikembangkan</h2>
+                      <ul>
+                        <li>Administrasi</li>
+                        <li>Komunikasi</li>
+                        <li>Analisis Data</li>
+                        <li>Kerjasama Tim</li>
+                        <li>Pengelolaan Waktu</li>
+                        <li>Pemahaman Lingkungan Bisnis</li>
+                        <li>Problem Solving</li>
+                        <li>Analisis Keuangan</li>
+                        <li>Keahlian Teknologi</li>
+                        <li>Kemampuan Beradaptasi</li>
+                        <li>Operasional</li>
+                      </ul>
+                      <h2 class="font-bold">Kriteria Akademik</h2>
+                      <p>Mahasiswa perguruan tinggi aktif, minimal semester 6.</p>
+                      <h2 class="font-bold">Program studi yang diutamakan:</h2>
+                      <ul>
+                        <li>Akuntansi dan Perpajakan</li>
+                        <li>Ekonomi</li>
+                      </ul>
+                      <h2 class="font-bold">Durasi</h2>
+                      <p>3 Bulan</p>
+                      <h2 class="font-bold">Jenis Pekerjaan</h2>
+                      <p>Full Time</p>
+                      <h2 class="font-bold">Benefit Yang Ditawarkan</h2>
+                      <p>Gaji Pokok Per Bulan Rp.3.000.000</p>
+                      <p>Tunjangan Kesehatan</p>
+                      <p>Transportasi</p>
+                      <h2 class="font-bold">Tipe Lowongan</h2>
+                      <p>Umum</p>
+                    </div>
+                  </div>
+                </ui-dialog>
+                <ui-button variant="default" data-dialog-trigger="publikasi-lowongan">PUBLIKASIKAN</ui-button>
+                <ui-dialog name="publikasi-lowongan" className="w-[750px] h-[320px]">
+                  <div class="flex flex-col text-center justify-center items-center gap-3">
+                    <div class="test-md font-bold">Postingan Berhasil Diajukan</div>
+                    <iconify-icon icon="solar:verified-check-bold-duotone" height="96" class="text-green-600" noobserver></iconify-icon>
+                    <div class="text-sm font-semibold">Postingan Anda Akan Kami Tinjau Maksimal 2x24 Jam</div>
+                    <div class="text-xs">Akun Perusahaan Anda Kini Dapat Melakukan Posting Lowongan Magang Pada Website MBKM ULBI</div>
+                    <div class="text-xs">Silahkan Masuk Menggunakan Akun Yang Telah Anda Buat Untuk Melakukan Posting Lowongan Magang</div>
+                    <ui-button data-dialog-close>SELESAI</ui-button>
+                  </div>
+                </ui-dialog>
+              </div>
+            </div>
+          </div>
+        </div>
+        `
+      </div>
+      <!-- End of content  -->
+    </auth-layout>
+    <script src="lowongan/create/script.js" type="module" defer></script>
+  </body>
+</html>

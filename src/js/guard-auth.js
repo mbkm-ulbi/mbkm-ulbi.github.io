@@ -1,5 +1,6 @@
-import { getAuth } from "./libraries/cookies.js";
+import { getAuth, getUserInfo } from "./libraries/cookies.js";
 import { slugUri } from "./customs/settings.js";
 
 const auth = await getAuth();
-if (!auth) window.location.replace(`${slugUri}login`);
+const profileInfo = await getUserInfo();
+if (!auth && !profileInfo) window.location.replace(`${slugUri}login`);

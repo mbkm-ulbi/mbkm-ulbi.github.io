@@ -1,5 +1,6 @@
 
 import axios from 'https://cdn.jsdelivr.net/npm/axios@1.7.7/+esm'
+import { getAuth } from '../libraries/cookies.js';
 
 const getBaseUrl = (path) => {
     return 'https://api-ulbi.karismatech.net'+"/"+path
@@ -22,22 +23,31 @@ const postMultipartParam = (api) => (data, param="") => {
       }
     });
 };
-
-// const get = (api) => (param = "") => {
-//     return axios(`${getBaseUrl(api)}${param}`, {
-//       method: "GET",
-//       headers: {
-//         "Access-Control-Allow-Origin": `${CONFIG.origin}`,
-//         "Content-type": "application/json",
-//         "Authorization": `bearer ${TokenAPIM}`
-//       }
-//     });
-//   };
+const getWithToken = (api) => async (param = "") => {
+    const token = await getAuth()
+    return axios(`${getBaseUrl(api)}${param}`, {
+      method: "GET",
+      headers: {
+        // "Access-Control-Allow-Origin": `${CONFIG.origin}`,
+        "Content-type": "application/json",
+        "Authorization": `Bearer ${token}`
+      }
+    });
+};
 
 export const postLogin = postMultipartParam('api/v1/login')
-
+export const postRegister = postMultipartParam('api/v1/register')
+export const getListJob= getWithToken('api/v1/jobs')
+export const getListCompanies  = getWithToken('api/v1/companies')
+export const getListCandidate = getWithToken('api/v1/apply-jobs')
+export const getUsers = getWithToken('api/v1/profile')
 const API = {
-    postLogin
+    postLogin,
+    postRegister,
+    getListJob,
+    getListCompanies,
+    getListCandidate,
+    getUsers
 }
 
 export default API

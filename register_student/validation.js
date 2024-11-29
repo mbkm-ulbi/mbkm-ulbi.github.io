@@ -5,49 +5,111 @@
 export const formValidation = (form, data) => {
   let error = false;
 
-  const json = Object.fromEntries(data.entries());
-  console.log(json);
+  const username = data.get("username");
+  const password = data.get("password");
+  const confirmPassword = data.get("passwordConfirmation");
+  const email = data.get("email");
 
-  if (!data.get("textInput")) {
-    form.querySelectorAll("[name='textInput']").forEach((element) => element.setAttribute("error", "This field is required"));
+  if(!username) {
+    form.querySelectorAll("[name='username']").forEach((element) => element.setAttribute("error", "This field is required"));
     error = true;
   }
-
-  if (!data.get("password")) {
+  if(!password) {
     form.querySelectorAll("[name='password']").forEach((element) => element.setAttribute("error", "This field is required"));
     error = true;
   }
-
-  if (!data.get("numberInput")) {
-    form.querySelectorAll("[name='numberInput']").forEach((element) => element.setAttribute("error", "This field is required"));
+  if(!confirmPassword) {
+    form.querySelectorAll("[name='passwordConfirmation']").forEach((element) => element.setAttribute("error", "This field is required"));
     error = true;
   }
-
-  if (!data.get("select") || data.get("select") === "_clear") {
-    form.querySelectorAll("[name='select']").forEach((element) => element.setAttribute("error", "This field is required"));
+  if(password !== confirmPassword) {
+    form.querySelectorAll("[name='password']").forEach((element) => element.setAttribute("error", "Passwords do not match"));
+    form.querySelectorAll("[name='passwordConfirmation']").forEach((element) => element.setAttribute("error", "Passwords do not match"));
     error = true;
   }
-
-  if (!data.get("datepicker")) {
-    form.querySelectorAll("[name='datepicker']").forEach((element) => element.setAttribute("error", "This field is required"));
+  if(!email) {
+    form.querySelectorAll("[name='email']").forEach((element) => element.setAttribute("error", "This field is required"));
     error = true;
   }
-
-  if (!data.get("timepicker")) {
-    form.querySelectorAll("[name='timepicker']").forEach((element) => element.setAttribute("error", "This field is required"));
-    error = true;
-  }
-
-  if (!data.get("textArea")) {
-    form.querySelectorAll("[name='textArea']").forEach((element) => element.setAttribute("error", "This field is required"));
-    error = true;
-  }
-
-  const fileUpload = data.get("fileUpload");
-  if (fileUpload instanceof File && fileUpload.size === 0) {
-    form.querySelectorAll("[name='fileUpload']").forEach((element) => element.setAttribute("error", "This field is required"));
-    error = true;
-  }
-
+  
   return !error;
 };
+
+export const formValidation2 = (form, data) => {
+  let error = false;
+
+  const verificationCode = data.get("verificationCode");
+  if(!verificationCode){
+    form.querySelectorAll("[name='verificationCode']").forEach((element) => element.setAttribute("error", "This field is required"));
+    error = true;
+  }
+
+  return !error
+}
+
+export const formValidation3 = (form, data) => {
+  let error = false;
+
+  const nim = data.get("nim");
+  const fullName = data.get("fullName");
+  const prodi = data.get("prodi");
+  const faculty = data.get("faculty");
+  const semester = data.get("semester");
+  const fileUpload = data.get("fileUpload");
+  const deskripsi = data.get("deskripsi");
+
+  if(!nim){
+    form.querySelectorAll("[name='nim']").forEach((element) => element.setAttribute("error", "This field is required"));
+    error = true
+  }
+
+  if(!fullName){
+    form.querySelectorAll("[name='fullName']").forEach((element) => element.setAttribute("error", "This field is required"));
+    error = true
+  }
+
+  if(!prodi){
+    form.querySelectorAll("[name='prodi']").forEach((element) => element.setAttribute("error", "This field is required"));
+    error = true
+  }
+
+  if(!faculty){
+    form.querySelectorAll("[name='faculty']").forEach((element) => element.setAttribute("error", "This field is required"));
+    error = true
+  }
+
+  if(!semester){
+    form.querySelectorAll("[name='semester']").forEach((element) => element.setAttribute("error", "This field is required"));
+    error = true
+  }
+
+  if(!fileUpload){
+    form.querySelectorAll("[name='fileUpload']").forEach((element) => element.setAttribute("error", "This field is required"));
+    error = true
+  }
+
+  if(!deskripsi){
+    form.querySelectorAll("[name='deskripsi']").forEach((element) => element.setAttribute("error", "This field is required"));
+    error = true
+  }
+
+  return !error
+}
+
+export const formValidation4 = (form, data) => {
+  let error = false
+
+  const socialMedia = data.get("socialMedia")
+  const phoneNumber = data.get("phoneNumber")
+
+  if(!socialMedia){
+    form.querySelectorAll("[name='socialMedia']").forEach((element) => element.setAttribute("error", "This field is required"));
+    error = true
+  }
+  if(!phoneNumber){
+    form.querySelectorAll("[name='phoneNumber']").forEach((element) => element.setAttribute("error", "This field is required"));
+    error = true
+  }
+
+  return !error
+}

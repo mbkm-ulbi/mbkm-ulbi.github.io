@@ -5,13 +5,13 @@
 export const formValidation = (form, data) => {
   let error = false;
 
-  const email = data.get("email");
+  const username = data.get("username");
   const password = data.get("password");
-  const role = data.get("role");
-  console.log(email, password, role);
+  // const role = data.get("role");
+  // console.log(username, password, role);
 
-  if (!email) {
-    form.querySelectorAll("[name='email']").forEach((element) => element.setAttribute("error", "This field is required"));
+  if (!username) {
+    form.querySelectorAll("[name='username']").forEach((element) => element.setAttribute("error", "This field is required"));
     error = true;
   }
 
@@ -20,9 +20,9 @@ export const formValidation = (form, data) => {
     error = true;
   }
 
-  if (!role) {
-    form.querySelectorAll("[name='role']").forEach((element) => element.setAttribute("error", "This field is required"));
-    error = true;
-  }
+  // if (!role) {
+  //   form.querySelectorAll("[name='role']").forEach((element) => element.setAttribute("error", "This field is required"));
+  //   error = true;
+  // }
   return !error;
 };

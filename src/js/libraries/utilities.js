@@ -22,3 +22,10 @@ export const capitalizeEachWord = (input) => {
   if (!input) return "";
   return input.toLowerCase().replace(/\b\w/g, (char) => char.toUpperCase());
 };
+
+
+export const getUrlParam=()=>{
+  const queryString = window.location.search;
+  const urlParams = new URLSearchParams(queryString);
+  return urlParams
+}

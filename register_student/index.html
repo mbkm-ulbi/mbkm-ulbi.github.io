@@ -121,7 +121,7 @@
         <div class="mx-16 p-4 rounded-lg" id="styled-register" role="tabpanel" aria-labelledby="register-tab">
           <div class="text-xl font-bold">Pendaftaran Akun</div>
           <div class="flex justify-center">
-            <form id="register-form" class="w-full my-4 space-y-4">
+            <form id="register-form-1" class="w-full my-4 space-y-4">
               <div>
                 <fo-label for="username" label="Username"></fo-label>
                 <fo-input name="username" value="" placeholder="Silahkan isi disini"></fo-input>
@@ -135,43 +135,45 @@
               <div>
                 <fo-label for="passwordConfirmation" label="Konfirmasi Password"></fo-label>
                 <fo-input name="passwordConfirmation" type="password" value="" placeholder="Silahkan konfirmasi password"></fo-input>
-                <fo-error name="password"></fo-error>
+                <fo-error name="passwordConfirmation"></fo-error>
               </div>
               <div>
                 <fo-label for="email" label="Email"></fo-label>
                 <fo-input name="email" value="" placeholder="Contoh:namaanda@mail.com"></fo-input>
-                <fo-error name="password"></fo-error>
+                <fo-error name="email"></fo-error>
+              </div>
+              <div class="mt-4 flex justify-end gap-4">           
+                <ui-button type="submit" data-tab-target="1">Selanjutnya</ui-button>
               </div>             
             </form>            
           </div>
-          <div class="mt-4 flex justify-end gap-4">           
-            <ui-button type="button" data-tab-target="1">Selanjutnya</ui-button>
-          </div>
+          
         </div>
         <div class="hidden mx-16 p-4 rounded-lg" id="styled-confirmation" role="tabpanel" aria-labelledby="confirmation-tab">
           <div class="text-xl font-bold">Konfirmasi Pendaftaran</div>
           <div class="text-xs">Silahkan Isi Kode Verifikasi Yang Telah Kami Kirimkan Melalui Email Anda</div>
           <div class="flex justify-center">
-            <form id="register-form" class="w-full my-4 space-y-4">
+            <form id="register-form-2" class="w-full my-4 space-y-4">
               <div>
                 <fo-label for="verificationCode" label="Kode Verifikasi"></fo-label>
                 <fo-input name="verificationCode" value="" placeholder="Masukan 6 Digit Kode Verifikasi"></fo-input>
                 <fo-error name="verificationCode"></fo-error>
-              </div>              
+              </div>            
+              <div class="text-sm font-semibold">Kirim Ulang Kode Verifikasi <span class="text-blue-800">04:30</span></div>
+              <div class="mt-4 flex justify-between gap-4">
+                <ui-button type="button" data-tab-target="0">Sebelumnya</ui-button>
+                <ui-button type="submit" data-tab-target="2">Selanjutnya</ui-button>
+              </div>  
             </form>            
           </div>
-          <div class="text-sm font-semibold">Kirim Ulang Kode Verifikasi <span class="text-blue-800">04:30</span></div>
-          <div class="mt-4 flex justify-between gap-4">
-            <ui-button type="button" data-tab-target="0">Sebelumnya</ui-button>
-            <ui-button type="button" data-tab-target="2">Selanjutnya</ui-button>
-          </div>
+         
         </div>
         
         </div>
         <div class="hidden mx-16 p-4 rounded-lg" id="styled-profile" role="tabpanel" aria-labelledby="profile-tab">
           <div class="text-xl font-bold">Informasi Mahasiswa/Alumni</div>
           <div class="flex justify-center">            
-            <form id="register-form" class="w-full my-4 space-y-4">
+            <form id="register-form-3" class="w-full my-4 space-y-4">
               <div>
                 <fo-label for="nim" label="NIM"></fo-label>
                 <fo-input name="nim" value="" placeholder="Silahkan isi disini"></fo-input>
@@ -192,7 +194,7 @@
                 <fo-input name="faculty" value="" placeholder="Contoh:namaanda@mail.com"></fo-input>
                 <fo-error name="faculty"></fo-error>
               </div>
-              <div></div>
+              <div>
                 <fo-label for="semester" label="Semester"></fo-label>
                 <fo-input name="semester" value="" placeholder="Contoh:namaanda@mail.com"></fo-input>
                 <fo-error name="semester"></fo-error>
@@ -200,31 +202,33 @@
               <div class="grid grid-cols-3 gap-4">
                 <div class="col-span-1">                  
                     <fo-label label="Upload Foto Profil"></fo-label>                 
-                    <fo-file className="min-h-24" name="fileUpload" accept="application/pdf"></fo-file>
+                    <fo-file className="min-h-24" name="fileUpload" accept="image/*"></fo-file>
                     <fo-error name="fileUpload"></fo-error>                                                    
                 </div>
                 <div class="col-span-2">
                   <fo-label for="deskripsi" label="Deskripsi Singkat Profil"></fo-label>
                   <fo-textarea
                     className="min-h-24"
-                    name="textArea"
+                    name="deskripsi"
                     placeholder="Silahkan isi disini"
                     value="."
               ></fo-textarea>             
-              <fo-error name="textArea"></fo-error>
+              <fo-error name="deskripsi"></fo-error>
                 </div>
-              </div>              
+                
+              </div>     
+              <div class="mt-4 flex justify-between gap-4">
+                <ui-button type="button" data-tab-target="1">Sebelumnya</ui-button>
+                <ui-button type="submit" data-tab-target="3">Selanjutnya</ui-button>
+              </div>         
             </form>
-            <div class="mt-4 flex justify-between gap-4">
-              <ui-button type="button" data-tab-target="1">Sebelumnya</ui-button>
-              <ui-button type="button" data-tab-target="3">Selanjutnya</ui-button>
-            </div>
+          
           </div>
         </div>
         <div class="hidden mx-16 p-4 rounded-lg" id="styled-additional" role="tabpanel" aria-labelledby="additional-tab">
           <div class="text-xl font-bold">Informasi Tambahan</div>
           <div class="flex justify-center">
-            <form id="register-form" class="w-full my-4 space-y-4">
+            <form id="register-form-4" class="w-full my-4 space-y-4">
               <div>
                 <fo-label for="socialMedia" label="Media Sosial"></fo-label>
                 <fo-input name="socialMedia" value="" placeholder="Silahkan isi disini"></fo-input>
@@ -236,8 +240,8 @@
                 <fo-error name="phoneNumber"></fo-error>
               </div>             
               <div class="mt-4 flex justify-between gap-4">
-                <ui-button type="button" data-tab-target="2">Sebelumnya</ui-button>
-                <ui-button type="submit" href="">Buat Akun</ui-button>
+                <ui-button type="button" data-tab-target="2" >Sebelumnya</ui-button>
+                <ui-button type="submit" data-tab-target="4">Buat Akun</ui-button>
               </div>
             </form>            
         </div>

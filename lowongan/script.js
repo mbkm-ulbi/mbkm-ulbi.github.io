@@ -1,11 +1,13 @@
 import { html, render } from "https://cdn.jsdelivr.net/npm/uhtml@4.5.11/+esm";
 import { rekapLowonganMagangDummy, listLowonganMagangDummy } from "./dummyLowongan.js";
 import { toMonetary } from "../src/js/libraries/utilities.js";
-import { getAuth } from "../src/js/libraries/cookies.js";
+import { getAuth, getUserInfo } from "../src/js/libraries/cookies.js";
+import { getListJob } from "../src/js/api/index.js";
+import { toast } from "../src/js/libraries/notify.js";
 
 const fetchLowonganMagang = async () => {
   const rekap = await rekapLowonganMagangDummy();
-
+  let arr = []
   render(
     document.getElementById("rekapLowonganMagang"),
     html`
@@ -36,7 +38,13 @@ const fetchLowonganMagang = async () => {
 };
 
 const fetchListLowongan = async () => {
-  const list = await listLowonganMagangDummy();
+  let list = [];
+  const urlImage = "src/images/dummy_ulbi.png";
+  await getListJob().then((res) => {
+    list = res?.data?.data
+  }).catch((err)=>{
+    toast.error(err?.message)
+  })
 
   render(document.getElementById("totalLowonganMagang"), html` Menampilkan ${toMonetary(list.length)} Lowongan `);
 
@@ -47,7 +55,7 @@ const fetchListLowongan = async () => {
         (item) => html`
           <div class="flex-none flex gap-2 rounded-lg border border-gray-300">
             <div class="w-[120px] flex overflow-hidden rounded-l-lg">
-              <img class="object-center object-contain" src=${item.picture} height="[100px]" alt="image" />
+              <img class="object-center object-contain" src=${item?.job_vacancy_image ? item?.job_vacancy_image :urlImage} height="[100px]" alt="image" />
             </div>
             <div class="w-full p-4 flex flex-col gap-2 text-xs">
               <div class="flex justify-between items-center">
@@ -73,7 +81,7 @@ const fetchListLowongan = async () => {
               </div>
               <div class="flex justify-start items-center gap-2">
                 <iconify-icon icon="solar:calendar-bold-duotone" height="22" class="text-ulbiOrange" noobserver></iconify-icon>
-                <div>Waktu: ${item.date}</div>
+                <div>Waktu: ${item.created_at}</div>
               </div>
               <div class="flex justify-between items-center gap-2 p-absolute">
                 <div class="flex justify-start items-center gap-2">
@@ -82,7 +90,7 @@ const fetchListLowongan = async () => {
                 </div>
                 <div class="flex gap-2">
                   <ui-button variant="outline_orange" type="button">Simpan</ui-button>
-                  <ui-button color="orange" type="button" href=lowongan/review>Detail</ui-button>
+                  <ui-button color="orange" type="button" href=${`lowongan/review/index.html?id=${item?.id}`}>Detail</ui-button>
                 </div>
               </div>
             </div>
@@ -101,14 +109,21 @@ const fetchListLowongan = async () => {
       <div class="flex-none h-[800px] flex flex-col rounded-md border border-gray-300 text-xs">
         <div class="pt-4 px-4 flex justify-between items-center">
           <div>Diposting 2 Hari Yang Lalu</div>
-          <div><ui-badge className="bg-green-600/25 text-green-600" dot>Aktif</ui-badge></div>
+          <div>  ${detail.status === "Aktif"
+                    ? html`<ui-badge class="bg-green-600/25 text-green-600" dot>${detail.status}</ui-badge>`
+                    : detail.status === "Perlu Ditinjau"
+                    ? html`<ui-badge class="bg-orange-600/25 text-orange-600" dot>${detail.status}</ui-badge>`
+                    : detail.status === "Ditolak"
+                    ? html`<ui-badge class="bg-red-600/25 text-red-600" dot>${detail.status}</ui-badge>`
+                    : ""}
+            </div>
         </div>
         <div class="flex border-b border-gray-300">
           <div class="pl-2 w-[120px] flex overflow-hidden rounded-l-lg">
-            <img class="object-center object-contain" src=${detail.picture} height="[100px]" alt="image" />
+            <img class="object-center object-contain" src=${detail?.job_vacancy_image ? detail?.job_vacancy_image :urlImage} height="[100px]" alt="image" />
           </div>
           <div class="p-4 flex flex-col gap-1">
-            <div class="text-xl font-semibold">Dosen Tetap</div>
+            <div class="text-xl font-semibold">${detail?.title}</div>
             <div class="flex justify-start items-center gap-2">
               <iconify-icon icon="solar:buildings-bold-duotone" height="22" class="text-ulbiOrange" noobserver></iconify-icon>
               <div>${detail?.company}</div>
@@ -119,66 +134,21 @@ const fetchListLowongan = async () => {
             </div>
             <div class="flex justify-start items-center gap-2">
               <iconify-icon icon="solar:calendar-bold-duotone" height="22" class="text-ulbiOrange" noobserver></iconify-icon>
-              <div>Waktu: ${detail.date}</div>
+              <div>Waktu: ${detail.created_at}</div>
             </div>
           </div>
         </div>
         <div class="overflow-y-auto">
           <div>
-            <img class="block mx-auto" src="src/images/dummy_aice.png" alt="image" />
+            <img class="block mx-auto" src=${detail?.job_vacancy_image ? detail?.job_vacancy_image :urlImage} alt="image" />
           </div>
           <div class="space-y-3 m-3">
             <div>
               <fo-label label="Deskripsi Pekerjaan" className="text-sm text-gray-800"></fo-label>
             </div>
          <div class="max-w-3xl mx-auto p-6 mt-10">
-              <h1 class="text-2xl font-bold text-gray-800 mb-4">Universitas Logistik dan Bisnis Internasional</h1>
-              <p class="text-gray-700 mb-6">
-                Bekerjasama dengan <strong>PT. Alpen Food Industry</strong>, menyelenggarakan <strong>campus hiring</strong> (recruitment on campus) pada:
-              </p>
-
-              <div class="space-y-2 mb-6">
-                <div class="flex items-center">
-                  <span class="text-blue-500 mr-2">📅</span>
-                  <span><strong>Tanggal:</strong> Kamis, 28 November 2024</span>
-                </div>
-                <div class="flex items-center">
-                  <span class="text-blue-500 mr-2">🕙</span>
-                  <span><strong>Waktu:</strong> 10.00 WIB – Selesai</span>
-                </div>
-                <div class="flex items-center">
-                  <span class="text-blue-500 mr-2">📍</span>
-                  <span> <strong>Lokasi:</strong> Auditorium Lt 2, Universitas Logistik dan Bisnis Internasional, Jl. Sarisah No.54 Bandung </span>
-                </div>
-              </div>
-
-              <h2 class="text-lg font-semibold text-gray-800 mb-3">Untuk:</h2>
-              <ul class="list-disc list-inside text-gray-700 space-y-1 mb-6">
-                <li>Alumni ULBI</li>
-                <li>Mahasiswa/i tingkat akhir</li>
-                <li>Calon wisudawan ULBI</li>
-                <li>Terbuka untuk umum (<em>Gratis</em>)</li>
-              </ul>
-
-              <h2 class="text-lg font-semibold text-gray-800 mb-3">Agenda:</h2>
-              <ul class="list-disc list-inside text-gray-700 space-y-1 mb-6">
-                <li>Presentasi dari perusahaan</li>
-                <li>Psikotest/Interview</li>
-              </ul>
-
-              <h2 class="text-lg font-semibold text-gray-800 mb-3">Catatan:</h2>
-              <p class="text-gray-700 mb-4">Pelaksanaan campus hiring, harap membawa:</p>
-              <ul class="list-disc list-inside text-gray-700 space-y-1 mb-6">
-                <li>Alat tulis</li>
-                <li>Berpakaian rapi dan formal</li>
-              </ul>
-
-              <p class="text-gray-700 mb-4">
-                Daftar melalui form berikut ini:
-                <a href="https://bit.ly/registrasi_campushiring_aice" class="text-blue-600 underline" target="_blank">
-                  https://bit.ly/registrasi_campushiring_aice
-                </a>
-              </p>
+         ${detail?.description}
+              
             </div>
            
             
@@ -325,12 +295,21 @@ if (form instanceof HTMLFormElement) {
 
 // show/hide filter
 
+// const getJobMahasiswa = async () =>{
+//   const res = await getListJob()
+//  return res
+// }
+
 document.addEventListener("DOMContentLoaded", async function () {
-  const auth = await getAuth();
-  const parseAuth = JSON.parse(auth);
-  if (parseAuth.role === "superadmin" || parseAuth.role === "cdc" || parseAuth.role === "prodi" || parseAuth.role === "perusahaan") {
+
+ 
+  const auth = await getUserInfo();
+  if (auth.role === "superadmin" || auth.role === "cdc" || auth.role === "prodi" || auth.role === "mitra") {
     renderSuperUser();
   } else {
+    // const res = await getJobMahasiswa()
+    // console.log(await getAuth())
+    // console.log(res.data.data)
     renderUser();
     fetchLowonganMagang();
     fetchListLowongan();
@@ -458,7 +437,14 @@ const renderUser = () => {
   );
 };
 
-const renderSuperUser = () => {
+const renderSuperUser = async () => {
+  let list = [];
+  const urlImage = "src/images/dummy_ulbi.png";
+  await getListJob().then((res) => {
+    list = res?.data?.data
+  }).catch((err)=>{
+    toast.error(err?.message)
+  })
   const contentLowongan = document.getElementById("content-lowongan");
   render(
     contentLowongan,
@@ -508,39 +494,45 @@ const renderSuperUser = () => {
             </div>
           </div>
           <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            ${list?.map((item, index)=>html`
             <div class="bg-white rounded-lg shadow-md flex">
               <div
                 class="p-6 rounded-l-lg flex items-center justify-center"
               >
-              <img class="object-center object-contain" src='src/images/dummy_ulbi.png' height="[100px]" alt="image" />
+              <img class="object-center object-contain" src=${item?.job_vacancy_image || urlImage} height="[100px]" alt="image" />
               
               </div>
 
               <div class="p-6 flex-1 relative">
                 <div class="flex justify-between items-center">
-                  <p class="text-gray-500 text-sm">Diposting 2 Hari Yang Lalu</p>
+                  <p class="text-gray-500 text-sm">Diposting ${item?.created_at}</p>
                   <div class="bg-green-100 text-green-600 px-3 py-1 rounded-full text-xs">
-                    <iconify-icon class="fas fa-circle mr-1"> </iconify-icon>
-                    Aktif
+                    ${item.status === "Aktif"
+                    ? html`<ui-badge class="bg-green-600/25 text-green-600" dot>${item.status}</ui-badge>`
+                    : item.status === "Perlu Ditinjau"
+                    ? html`<ui-badge class="bg-orange-600/25 text-orange-600" dot>${item.status}</ui-badge>`
+                    : item.status === "Ditolak"
+                    ? html`<ui-badge class="bg-red-600/25 text-red-600" dot>${item.status}</ui-badge>`
+                    : ""}
                   </div>
                 </div>
-                <h2 class="text-xl font-semibold mt-2">Dosen Tetap</h2>
+                <h2 class="text-xl font-semibold mt-2">${item?.title}</h2>
                 <div class="mt-4">
                   <p class="flex items-center text-gray-700 text-sm">
                     <iconify-icon class="fas fa-building mr-2 text-red-500"> </iconify-icon>
-                    ULBI
+                      ${item?.company}
                   </p>
                   <p class="flex items-center text-gray-700 text-sm mt-2">
                     <iconify-icon class="fas fa-map-marker-alt mr-2 text-red-500"> </iconify-icon>
-                    Bandung, Jawa Barat
+                      ${item?.location}
                   </p>
                   <p class="flex items-center text-gray-700 text-sm mt-2">
                     <iconify-icon class="fas fa-calendar-alt mr-2 text-red-500"> </iconify-icon>
-                    Batas Akhir Pendaftaran: 01 Desember 2024
+                    Batas Akhir Pendaftaran: -
                   </p>
                   <p class="flex items-center text-gray-700 text-sm mt-2">
                     <iconify-icon class="fas fa-user-friends mr-2 text-red-500"> </iconify-icon>
-                    Postingan Dari Mitra/Perusahaan
+                    Postingan Dari ${item?.company}
                   </p>
                 </div>
                 <div class="absolute bottom-6 right-6 flex space-x-2">
@@ -549,134 +541,12 @@ const renderSuperUser = () => {
                 </div>
               </div>
             </div>
-            <div class="bg-white rounded-lg shadow-md flex">
-             <div
-                class="p-6 rounded-l-lg flex items-center justify-center"
-              >
-              <img class="object-center object-contain" src='src/images/dummy_ulbi.png' height="[100px]" alt="image" />
-              
-              </div>
-
-              <div class="p-6 flex-1 relative">
-                <div class="flex justify-between items-center">
-                  <p class="text-gray-500 text-sm">Diposting 2 Hari Yang Lalu</p>
-                  <div class="bg-yellow-100 text-yellow-600 px-3 py-1 rounded-full text-xs">
-                    <iconify-icon class="fas fa-circle mr-1"> </iconify-icon>
-                    Perlu Ditinjau
-                  </div>
-                </div>
-                <h2 class="text-xl font-semibold mt-2">Dosen Tetap</h2>
-                <div class="mt-4">
-                  <p class="flex items-center text-gray-700 text-sm">
-                    <iconify-icon class="fas fa-building mr-2 text-red-500"> </iconify-icon>
-                    ULBI
-                  </p>
-                  <p class="flex items-center text-gray-700 text-sm mt-2">
-                    <iconify-icon class="fas fa-map-marker-alt mr-2 text-red-500"> </iconify-icon>
-                    Bandung, Jawa Barat
-                  </p>
-                  <p class="flex items-center text-gray-700 text-sm mt-2">
-                    <iconify-icon class="fas fa-calendar-alt mr-2 text-red-500"> </iconify-icon>
-                    Batas Akhir Pendaftaran: 01 Desember 2024
-                  </p>
-                  <p class="flex items-center text-gray-700 text-sm mt-2">
-                    <iconify-icon class="fas fa-user-friends mr-2 text-red-500"> </iconify-icon>
-                    Postingan Dari Mitra/Perusahaan
-                  </p>
-                </div>
-                <div class="absolute bottom-6 right-6 flex space-x-2">
-                  <a class="border border-orange-500 text-orange-500 px-4 py-2 rounded-lg text-sm hover:bg-orange-100" href="lowongan/review"> Detail </a>
-                  <a class="bg-orange-500 text-white px-4 py-2 rounded-lg text-sm hover:bg-orange-600" href="lowongan/kurasi"> Tinjau </a>
-                </div>
-              </div>
-            </div>
-            <div class="bg-white rounded-lg shadow-md flex">
-              <div
-                class="p-6 rounded-l-lg flex items-center justify-center"
-              >
-              <img class="object-center object-contain" src='src/images/dummy_ulbi.png' height="[100px]" alt="image" />
-              
-              </div>
-
-              <div class="p-6 flex-1 relative">
-                <div class="flex justify-between items-center">
-                  <p class="text-gray-500 text-sm">Diposting 2 Hari Yang Lalu</p>
-                  <div class="bg-red-100 text-red-500  px-3 py-1 rounded-full text-xs">
-                    <iconify-icon class="fas fa-circle mr-1"> </iconify-icon>
-                    Ditolak
-                  </div>
-                </div>
-                <h2 class="text-xl font-semibold mt-2">Dosen Tetap</h2>
-                <div class="mt-4">
-                  <p class="flex items-center text-gray-700 text-sm">
-                    <iconify-icon class="fas fa-building mr-2 text-red-500"> </iconify-icon>
-                    ULBI
-                  </p>
-                  <p class="flex items-center text-gray-700 text-sm mt-2">
-                    <iconify-icon class="fas fa-map-marker-alt mr-2 text-red-500"> </iconify-icon>
-                    Bandung, Jawa Barat
-                  </p>
-                  <p class="flex items-center text-gray-700 text-sm mt-2">
-                    <iconify-icon class="fas fa-calendar-alt mr-2 text-red-500"> </iconify-icon>
-                    Batas Akhir Pendaftaran: 01 Desember 2024
-                  </p>
-                  <p class="flex items-center text-gray-700 text-sm mt-2">
-                    <iconify-icon class="fas fa-user-friends mr-2 text-red-500"> </iconify-icon>
-                    Postingan Dari Mitra/Perusahaan
-                  </p>
-                </div>
-                <div class="absolute bottom-6 right-6 flex space-x-2">
-                  <a class="border border-orange-500 text-orange-500 px-4 py-2 rounded-lg text-sm hover:bg-orange-100" href="lowongan/review"> Detail </a>
-                  <a class="bg-orange-500 text-white px-4 py-2 rounded-lg text-sm hover:bg-orange-600" href="lowongan/kurasi"> Tinjau </a>
-                </div>
-              </div>
-            </div>
-            <div class="bg-white rounded-lg shadow-md flex">
-              <div
-                class="p-6 rounded-l-lg flex items-center justify-center"
-              >
-              <img class="object-center object-contain" src='src/images/dummy_ulbi.png' height="[100px]" alt="image" />
-              
-              </div>
-
-              <div class="p-6 flex-1 relative">
-                <div class="flex justify-between items-center">
-                  <p class="text-gray-500 text-sm">Diposting 2 Hari Yang Lalu</p>
-                  <div class="bg-yellow-100 text-yellow-600 px-3 py-1 rounded-full text-xs">
-                    <iconify-icon class="fas fa-circle mr-1"> </iconify-icon>
-                    Perlu Ditinjau
-                  </div>
-                </div>
-                <h2 class="text-xl font-semibold mt-2">Dosen Tetap</h2>
-                <div class="mt-4">
-                  <p class="flex items-center text-gray-700 text-sm">
-                    <iconify-icon class="fas fa-building mr-2 text-red-500"> </iconify-icon>
-                    ULBI
-                  </p>
-                  <p class="flex items-center text-gray-700 text-sm mt-2">
-                    <iconify-icon class="fas fa-map-marker-alt mr-2 text-red-500"> </iconify-icon>
-                    Bandung, Jawa Barat
-                  </p>
-                  <p class="flex items-center text-gray-700 text-sm mt-2">
-                    <iconify-icon class="fas fa-calendar-alt mr-2 text-red-500"> </iconify-icon>
-                    Batas Akhir Pendaftaran: 01 Desember 2024
-                  </p>
-                  <p class="flex items-center text-gray-700 text-sm mt-2">
-                    <iconify-icon class="fas fa-user-friends mr-2 text-red-500"> </iconify-icon>
-                    Postingan Dari Mitra/Perusahaan
-                  </p>
-                </div>
-                <div class="absolute bottom-6 right-6 flex space-x-2">
-                  <a class="border border-orange-500 text-orange-500 px-4 py-2 rounded-lg text-sm hover:bg-orange-100" href="lowongan/review"> Detail </a>
-                  <a class="bg-orange-500 text-white px-4 py-2 rounded-lg text-sm hover:bg-orange-600" href="lowongan/kurasi"> Tinjau </a>
-                </div>
-              </div>
-            </div>
+            `)}
           </div>
           <div class="mt-4 flex justify-between items-center">
-            <p class="text-sm text-gray-500">Menampilkan 20 Lowongan</p>
+            <p class="text-sm text-gray-500">Menampilkan ${list.length} Lowongan</p>
             <div class="flex space-x-2">
-              <ui-pagination data-pagination-count="20" data-pagination-limit="10" data-pagination-page="1"></ui-pagination>
+              <ui-pagination data-pagination-count=${list.length} data-pagination-limit="10" data-pagination-page="1"></ui-pagination>
             </div>
           </div>
         </div>

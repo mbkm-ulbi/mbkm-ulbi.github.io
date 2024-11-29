@@ -1,7 +1,7 @@
 import { cn } from "../../libraries/tailwind.js";
 import { html, render } from "https://cdn.jsdelivr.net/npm/uhtml@4.5.11/+esm";
 import { slugUri } from "../../customs/settings.js";
-import { removeAuth, getAuth } from "../../libraries/cookies.js";
+import { removeAuth, getAuth, getUserInfo } from "../../libraries/cookies.js";
 import { capitalizeEachWord } from "../../libraries/utilities.js";
 
 /**
@@ -46,6 +46,7 @@ class AuthLayout extends HTMLElement {
           active: this.path.startsWith("/laporan/"),
         },
       ],
+      userInfo: {}
     };
     this.state = new Proxy(this._state, {
       set: (target, key, value) => {
@@ -57,10 +58,8 @@ class AuthLayout extends HTMLElement {
   }
 
   async connectedCallback() {
-    const auth = await getAuth();
-    const authParse = JSON.parse(auth)
-    console.log({ auth: JSON.parse(auth) });
-    if (authParse.role === "superadmin") {
+    const auth = await getUserInfo();
+    if (auth.role === "superadmin") {
       //push new menu master data
       let arr = [...this.state.listNavSidebar]
       arr.push({
@@ -103,7 +102,10 @@ class AuthLayout extends HTMLElement {
             })
       this.state.listNavSidebar =  arr
     }
+    console.log({wakww:auth})
+    this.state.userInfo = auth
     this.renderTemplate();
+    
   }
 
   toggleMasterDataDropdown() {
@@ -117,6 +119,8 @@ class AuthLayout extends HTMLElement {
     console.log("Authentication removed"); // Debugging: Konfirmasi sesi dihapus
     window.location.href = "/login"; // Redirect ke halaman login
   }
+
+
 
   sidebarTemplate() {
     return html`
@@ -132,10 +136,10 @@ class AuthLayout extends HTMLElement {
           <div class="mt-6 border-t border-gray-200 border-dashed"></div>
         </div>
         <div class="px-6 flex items-center gap-2">
-          <img src="src/images/dummy_avatar.png" alt="avatar" class="block rounded-lg h-[48px] shrink-0" />
+          <img src=${this.state.userInfo.user.profile_picture.preview} alt="avatar" class="block rounded-full h-[48px] shrink-0" />
           <div>
-            <div class="font-semibold whitespace-nowrap">Ahmad Damha</div>
-            <div class="text-gray-500 text-xs mt-1 whitespace-nowrap">PT POS Indonesia</div>
+            <div class="font-semibold whitespace-nowrap">${this.state.userInfo?.user?.name}</div>
+            <div class="text-gray-500 text-xs mt-1 whitespace-nowrap">${this.state.userInfo.user.program_study}</div>
           </div>
         </div>
         <nav class="px-6 grow flex flex-col gap-2 mt-4">

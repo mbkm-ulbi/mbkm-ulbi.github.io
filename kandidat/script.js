@@ -1,6 +1,7 @@
 import { html, render } from "https://cdn.jsdelivr.net/npm/uhtml@4.5.11/+esm";
 import { listKandidatDummy, rekapKandidatDummy } from "./dummyKandidat.js";
-import { getAuth } from "../src/js/libraries/cookies.js";
+import { getAuth, getUserInfo } from "../src/js/libraries/cookies.js";
+import API, { getListCandidate } from "../src/js/api/index.js";
 
 const fetchKandidat = async () => {
   const rekap = await rekapKandidatDummy();
@@ -311,10 +312,13 @@ const renderKandidatAdmin = () =>{
 }
 
 
-const renderKandidatMahasiswa = () =>{
+const renderKandidatMahasiswa = async() =>{
   const contentKandidat = document.getElementById("content-kandidat");
-
-  console.log(contentKandidat);
+  let data = {}
+  await API.getUsers().then((res)=>{
+    data = res?.data?.user
+  })
+  console.log(data);
   render(
     contentKandidat,
     html`
@@ -325,16 +329,16 @@ const renderKandidatMahasiswa = () =>{
             <div class="test-md p-4 font-bold">Kandidat</div>
           </div>
           <div class="w-full p-4 flex gap-4 text-justify border-b border-dashed border-gray-300">
-            <img src="src/images/dummy_foto_kandidat.png" width="[250px]" alt="kandidat-image" />
+            <img src=${data?.profile_picture?.preview} width="[250px]" alt="kandidat-image" />
             <div class="w-full">
               <div class="pb-2 flex gap-96">
                 <div>
                   <div class="text-xs font-bold">Nama Lengkap</div>
-                  <div class="text-md font-bold">Darmaji Setiaji Ngahiji</div>
+                  <div class="text-md font-bold">${data?.name}</div>
                 </div>
                 <div>
                   <div class="text-xs font-bold">NIM</div>
-                  <div class="text-xs">000000000123</div>
+                  <div class="text-xs">${data?.nim}</div>
                 </div>
               </div>
               <div class="border-b border-dashed border-gray-300"></div>
@@ -347,9 +351,9 @@ const renderKandidatMahasiswa = () =>{
                       <div>Alamat</div>
                     </div>
                     <div class="space-y-2">
-                      <div>08123456789</div>
-                      <div>D3-Manajemen Bisnis</div>
-                      <div>Jl. Bersama Kamu Selamanya No. 123, Kota Apa Saja, Jawa Utara 40000</div>
+                      <div>${data?.phone_number}</div>
+                      <div>${data?.program_study}</div>
+                      <div>${data?.address}</div>
                     </div>
                   </div>
                 </div>
@@ -359,8 +363,8 @@ const renderKandidatMahasiswa = () =>{
                     <div>IPK</div>
                   </div>
                   <div class="space-y-2">
-                    <div>darmaji@mail.com</div>
-                    <div>3.5</div>
+                    <div>${data?.email}</div>
+                    <div>${data?.ipk}</div>
                   </div>
                 </div>
               </div>
@@ -437,11 +441,15 @@ const renderKandidatMahasiswa = () =>{
   )
 }
 document.addEventListener("DOMContentLoaded", async () => {
-  const auth = await getAuth();
-  const parseAuth = JSON.parse(auth);
-  if(parseAuth.role === "mahasiswa"){
+  const auth = await getUserInfo();
+  if(auth.role === "mahasiswa"){
     renderKandidatMahasiswa();
   } else {
+    await getListCandidate().then(res => {
+      console.log(res)
+    }).catch((err)=>{
+      console.log(err)
+    })
     renderKandidatAdmin();
     fetchKandidat();
     fetchTabelKandidat();

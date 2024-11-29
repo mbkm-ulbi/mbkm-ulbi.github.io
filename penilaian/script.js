@@ -1,6 +1,6 @@
 import { html, render } from "https://cdn.jsdelivr.net/npm/uhtml@4.5.11/+esm";
 import { listKandidatDummy, rekapPenilaianDummy } from "../kandidat/dummyKandidat.js";
-import { getAuth } from "../src/js/libraries/cookies.js";
+import { getAuth, getUserInfo } from "../src/js/libraries/cookies.js";
 
 const fetchPenilaian = async () => {
   const rekap = await rekapPenilaianDummy();
@@ -500,13 +500,12 @@ const renderPenilaianMahasiswa = () =>{
   )
 }
 document.addEventListener("DOMContentLoaded", async () => {
-  const auth = await getAuth();
-  const parseAuth = JSON.parse(auth);
-  if(parseAuth.role === "cdc" || parseAuth.role === "superadmin" || parseAuth.role === "prodi" || parseAuth.role === "dosen" || parseAuth.role === "perusahaan"){
+  const auth = await getUserInfo();
+  if(auth.role === "cdc" || auth.role === "superadmin" || auth.role === "prodi" || auth.role === "dosen" || auth.role === "mitra"){
     renderPenilaian();
     fetchPenilaian();
     fetchTabelPenilaian();
-  } else if (parseAuth.role === "mahasiswa"){
+  } else if (auth.role === "mahasiswa"){
     renderPenilaianMahasiswa()
   }
 });

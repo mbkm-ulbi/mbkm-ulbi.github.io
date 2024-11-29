@@ -1,5 +1,7 @@
 import { html, render } from "https://cdn.jsdelivr.net/npm/uhtml@4.5.11/+esm";
-import { getAuth } from "../../src/js/libraries/cookies.js";
+import { getAuth, getUserInfo } from "../../src/js/libraries/cookies.js";
+import { getListJob } from "../../src/js/api/index.js";
+import { getUrlParam } from "../../src/js/libraries/utilities.js";
 
 const renderApprovalButton = () => {
   const approvlButton = document.getElementById("approval-lowongan");
@@ -29,9 +31,11 @@ const renderApplyButton = () => {
   );
 };
 document.addEventListener("DOMContentLoaded", async () => {
-  const auth = await getAuth();
-  const parseAuth = JSON.parse(auth);
-  if (parseAuth.role === "superadmin" || parseAuth.role === "prodi" || parseAuth.role === "cdc" || parseAuth.role === "perusahaan") {
+  const urlParams=getUrlParam()
+  const id = urlParams.get('id')
+  await  getListJob(`/${id}`)
+  const auth = await getUserInfo();
+  if (auth.role === "superadmin" || auth.role === "prodi" || auth.role === "cdc" || auth.role === "mitra") {
     renderApprovalButton();
   } else {
     renderApplyButton();
