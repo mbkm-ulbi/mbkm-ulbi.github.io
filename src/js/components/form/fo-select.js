@@ -25,6 +25,11 @@ class FormSelect extends HTMLElement {
   }
 
   disconnectedCallback() {
+    // Hancurkan instance Choices saat komponen dihapus
+    if (this.choices) {
+      this.choices.destroy();
+      this.choices = null;
+    }
     this.component.removeEventListener("change", this.handleValueChanged);
   }
 
@@ -55,6 +60,12 @@ class FormSelect extends HTMLElement {
   }
 
   renderTemplate() {
+    // Hancurkan instance Choices jika sudah ada
+    if (this.choices) {
+      this.choices.destroy();
+      this.choices = null;
+    }
+  
     render(
       this,
       html`
@@ -63,22 +74,24 @@ class FormSelect extends HTMLElement {
         </select>
       `
     );
-
+  
     this.component = this.querySelector("select");
     const choices = new Choices(this.component, {
       searchEnabled: this.hasAttribute("searchable"),
       itemSelectText: "",
     });
-
+  
     this.choices = choices;
     this.handleError();
     this.handleDisabled();
-
+  
     this.component.addEventListener("choice", function (event) {
       // @ts-ignore
       if (event.detail.value === "_clear") choices.removeActiveItems();
     });
   }
+  
+ 
 }
 
 customElements.define("fo-select", FormSelect);

@@ -53,7 +53,7 @@ const fetchListLowongan = async () => {
     html`
       ${list.map(
         (item) => html`
-          <div class="flex-none flex gap-2 rounded-lg border border-gray-300">
+          <div class="flex-none flex gap-2 rounded-lg border border-gray-300 overflow-hidden">
             <div class="w-[120px] flex overflow-hidden rounded-l-lg">
               <img class="object-center object-contain" src=${item?.job_vacancy_image ? item?.job_vacancy_image :urlImage} height="[100px]" alt="image" />
             </div>
@@ -449,7 +449,7 @@ const renderSuperUser = async () => {
   render(
     contentLowongan,
     html`
-      <div class="px-12 py-4 rounded-md shadow-md">
+      <div class="px-12 py-4 rounded-md shadow-md ">
         <div id="rekapJumlahLowongan" class="flex justify-between">
           <div class="flex items-center gap-2">
             <iconify-icon icon="solar:user-hands-bold" height="22" class="text-ulbiOrange" noobserver></iconify-icon>
@@ -536,7 +536,7 @@ const renderSuperUser = async () => {
                   </p>
                 </div>
                 <div class="absolute bottom-6 right-6 flex space-x-2">
-                  <a class="border border-orange-500 text-orange-500 px-4 py-2 rounded-lg text-sm hover:bg-orange-100" href="lowongan/review"> Detail </a>
+                  <a class="border border-orange-500 text-orange-500 px-4 py-2 rounded-lg text-sm hover:bg-orange-100" href=${`lowongan/review/index.html?id=${item?.id}`}> Detail </a>
                   <a class="bg-orange-500 text-white px-4 py-2 rounded-lg text-sm hover:bg-orange-600" href="lowongan/kurasi"> Tinjau </a>
                 </div>
               </div>

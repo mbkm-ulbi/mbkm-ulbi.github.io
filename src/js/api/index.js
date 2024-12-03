@@ -34,6 +34,16 @@ const getWithToken = (api) => async (param = "") => {
       }
     });
 };
+const postWithToken = (api) => async (data, param = "") => {
+    const token = await getAuth()
+    return axios.post(`${getBaseUrl(api)}${param}`, data, {
+      method: "POST",
+      headers: {
+        "Content-type": "application/json",
+        "Authorization": `Bearer ${token}`
+      }
+    });
+};
 
 export const postLogin = postMultipartParam('api/v1/login')
 export const postRegister = postMultipartParam('api/v1/register')
@@ -41,13 +51,15 @@ export const getListJob= getWithToken('api/v1/jobs')
 export const getListCompanies  = getWithToken('api/v1/companies')
 export const getListCandidate = getWithToken('api/v1/apply-jobs')
 export const getUsers = getWithToken('api/v1/profile')
+export const postJob = postWithToken('api/v1/jobs')
 const API = {
     postLogin,
     postRegister,
     getListJob,
     getListCompanies,
     getListCandidate,
-    getUsers
+    getUsers,
+    postJob
 }
 
 export default API

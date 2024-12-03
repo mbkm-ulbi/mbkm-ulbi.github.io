@@ -1,92 +1,91 @@
 import { cn } from "../../libraries/tailwind.js";
 import { html, render } from "https://cdn.jsdelivr.net/npm/uhtml@4.5.11/+esm";
-// import ClassicEditor from "https://cdn.jsdelivr.net/npm/@ckeditor/ckeditor5-build-classic/build/ckeditor.js";
 
 /**
- * @element fo-editor
+ * @element fo-ckeditor
  *
  * @attr {string} [name]
  * @attr {string} [value]
+ * @attr {boolean} [disabled]
  * @attr {string} [className]
- * @attr {string} [placeholder]
  */
-class FormEditor extends HTMLElement {
+
+class FormCKEditor extends HTMLElement {
   constructor() {
     super();
-    this.editorInstance = null;
+    this.editor = null;
   }
 
   connectedCallback() {
-    // Pastikan hanya satu instance editor yang diinisialisasi
-    this.initializeEditor();
+    this.renderTemplate();
+    this.loadEditor();
   }
 
   disconnectedCallback() {
-    // Hancurkan editor ketika komponen dilepas dari DOM
-    if (this.editorInstance) {
-      this.editorInstance.destroy().then(() => {
-        this.editorInstance = null;
-      }).catch((error) => {
-        console.error("Error destroying CKEditor:", error);
-      });
+    if (this.editor) {
+      this.editor.destroy();
     }
   }
 
   static get observedAttributes() {
-    return ["value", "placeholder", "className"];
+    return ["value", "disabled"];
   }
 
   attributeChangedCallback(name, oldValue, newValue) {
-    if (this.editorInstance && oldValue !== newValue) {
-      if (name === "value") {
-        this.editorInstance.setData(newValue || "");
-      }
+    if (name === "value" && this.editor && oldValue !== newValue) {
+      this.editor.setData(newValue);
+    }
+    if (name === "disabled" && this.editor) {
+      this.editor.isReadOnly = this.hasAttribute("disabled");
     }
   }
 
-  initializeEditor() {
-    const editorContainer = this.querySelector("#editor");
+  async loadEditor() {
+    const editorContainer = this.querySelector(".editor");
 
-    if (editorContainer && !this.editorInstance) {
-      // Inisialisasi CKEditor hanya jika belum ada instance editor
-      // @ts-ignore
-      ClassicEditor.create(editorContainer, {
-        toolbar: [
-          'heading', 'bold', 'italic', 'link', 'bulletedList', 'numberedList', '|',
-          'blockQuote', 'insertTable', 'mediaEmbed', 'undo', 'redo', 'insertImage',
-        ],
-        placeholder: this.getAttribute("placeholder") || "Start writing...",
-      }).then(this.handleEditorReady.bind(this))
-        .catch((error) => {
-          console.error("Error initializing CKEditor:", error);
+    if (!editorContainer) {
+      console.error("Editor container not found");
+      return;
+    }
+
+    // Memuat CKEditor dari CDN
+    const { default: ClassicEditor } = await import("https://cdn.jsdelivr.net/npm/@ckeditor/ckeditor5-build-classic@latest/build/ckeditor.js");
+
+    const editorConfig = {
+      toolbar: ['bold', 'italic', 'link', 'bulletedList', 'numberedList', 'blockQuote'],
+    };
+
+    // Inisialisasi CKEditor
+    ClassicEditor
+      .create(editorContainer, editorConfig)
+      .then(editor => {
+        this.editor = editor;
+
+        // Mengatur nilai awal
+        this.editor.setData(this.getAttribute("value") || "");
+
+        // Mendengarkan perubahan data
+        this.editor.model.document.on('change:data', () => {
+          const data = this.editor.getData();
+          this.setAttribute("value", data);
+          this.dispatchEvent(new Event('input')); // Memicu event input
         });
-    }
-  }
-
-  handleEditorReady(editor) {
-    this.editorInstance = editor;
-    console.log("CKEditor is ready", editor);
-
-    // Menangani event saat data editor disimpan atau berubah
-    this.addEventListener("save", () => {
-      const editorData = this.editorInstance.getData();
-      console.log("Saved Content:", editorData);
-      // Kirim atau simpan data editor sesuai kebutuhan
-    });
+      })
+      .catch(error => {
+        console.error("Failed to initialize CKEditor:", error);
+      });
   }
 
   renderTemplate() {
     render(
       this,
       html`
-        <div
-          id="editor"
-          class="${this.getAttribute("className") || "min-h-[400px] border border-gray-300 p-4 rounded"}"
-        ></div>
+        <div class="editor-container ${cn(this.getAttribute("className"))}">
+          <div class="editor" ?disabled=${this.hasAttribute("disabled")}></div>
+        </div>
       `
     );
   }
-
 }
 
-customElements.define("fo-editor", FormEditor);
+customElements.define("fo-editor", FormCKEditor);
