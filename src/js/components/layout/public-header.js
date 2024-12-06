@@ -30,8 +30,8 @@ class PublicHeader extends HTMLElement {
               </a>
             </div>
             <div class="flex gap-6">
-              <ui-button variant="outline_blue" href="/register_student">Register Jobseeker</ui-button>
-              <ui-button variant="outline_blue" href="/register_company">Register Employer</ui-button>
+              <ui-button variant="outline_blue" href="register_student/">Register Jobseeker</ui-button>
+              <ui-button variant="outline_blue" href="register_company/">Register Employer</ui-button>
               <a
                 href="login/"
                 class="px-8 py-2 text-sm text-white font-semibold flex items-center justify-center rounded-md transition-colors duration-150 border border-orange-400 bg-orange-400 hover:bg-orange-400/90"
