@@ -29,3 +29,9 @@ export const getUrlParam=()=>{
   const urlParams = new URLSearchParams(queryString);
   return urlParams
 }
+export const formatError = (errors) => {
+  const errorMessages = Object.keys(errors)
+  .map((field) => `${field}: ${errors[field].join(', ')}`)  // Gabungkan pesan error untuk tiap field
+  .join('\n');  // Pisahkan setiap field dengan baris baru
+  return errorMessages;
+}

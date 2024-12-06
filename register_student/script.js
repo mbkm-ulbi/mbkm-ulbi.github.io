@@ -1,6 +1,7 @@
 import API from "../src/js/api/index.js";
 import { slugUri } from "../src/js/customs/settings.js";
 import { toast } from "../src/js/libraries/notify.js";
+import { formatError } from "../src/js/libraries/utilities.js";
 import { formValidation, formValidation2, formValidation3, formValidation4 } from "./validation.js";
 
 
@@ -52,48 +53,66 @@ document.addEventListener("DOMContentLoaded", function () {
       const targetIndex = parseInt(button.getAttribute("data-tab-target"));
       const buttonType = button.getAttribute("type");
       const form = document.getElementById(`register-form-${targetIndex}`);
+      console.log("TargetIndex:", targetIndex);
+      if(targetIndex === 0){
+        switchTab(targetIndex);
+      }
       if (form instanceof HTMLFormElement) {
         if(buttonType === "submit"){
           form.addEventListener("submit", async (event) => {
             event.preventDefault();
-            const formData = new FormData(form);
-            if(targetIndex === 1){
-              if (!formValidation(form, formData)) return;
-            } else if(targetIndex === 2){
-              if (!formValidation2(form, formData)) return;
-            } else if(targetIndex === 3){
-              if(!formValidation3(form, formData)) return;
-            } else if (targetIndex === 4){
-              if(!formValidation4(form, formData)) return;
-              let data = new FormData();
-              data.append("role", formDataState.role);
-              data.append("type", formDataState.type);
-              data.append("username", formDataState.username);
-              data.append("password", formDataState.password);
-              data.append("email", formDataState.email);
-              data.append("nim", formDataState.nim);
-              data.append("name", formDataState.fullName)
-              data.append('program_study',formDataState.prodi);
-              data.append("faculty", formDataState.faculty);
-              data.append("semester", formDataState.semester);
-              data.append("profile_picture", formDataState.fileUpload);
-              data.append("deskripsi", formDataState.deskripsi || "");
-              data.append("social_media", formData.get("socialMedia"));
-              data.append("phone_number", formData.get("phoneNumber"));
+            const submitButton = form.querySelector("[type='submit']");
+            //@ts-ignore
+            if (submitButton) submitButton.disabled = true;
 
-              await API.postRegister(data).then((res)=>{
-                toast.success(res.data.message)
-                window.location.assign(`${slugUri}login`);
-              }).catch((err)=>{
-                toast.error(err.message);
-              })
+            const formData = new FormData(form);
+            try{
+              if(targetIndex === 1){
+                if (!formValidation(form, formData)) return;
+              } else if(targetIndex === 2){
+                if (!formValidation2(form, formData)) return;
+              } else if(targetIndex === 3){
+                if(!formValidation3(form, formData)) return;
+              } else if (targetIndex === 4){
+                if(!formValidation4(form, formData)) return;
+                let data = new FormData();
+                data.append("role", formDataState.role);
+                data.append("type", formDataState.type);
+                data.append("username", formDataState.username);
+                data.append("password", formDataState.password);
+                data.append("email", formDataState.email);
+                data.append("nim", formDataState.nim);
+                data.append("name", formDataState.fullName)
+                data.append('program_study',formDataState.prodi);
+                data.append("faculty", formDataState.faculty);
+                data.append("semester", formDataState.semester);
+                data.append("profile_picture", formDataState.fileUpload);
+                data.append("deskripsi", formDataState.deskripsi || "");
+                data.append("social_media", formData.get("socialMedia"));
+                data.append("phone_number", formData.get("phoneNumber"));
+  
+                await API.postRegister(data).then((res)=>{
+                  toast.success(res.data.message)
+                  window.location.assign(`${slugUri}login`);
+                }).catch((err)=>{
+                  const errorsMessage = formatError(err.response.data.errors);
+                  toast.error(errorsMessage);
+                })
+              }
+              for (let [key, value] of formData.entries()) {
+                formDataState[key] = value;
+          } 
+          console.log("Updated form data state:", formDataState);
+          switchTab(targetIndex);
+            }catch(error){
+              console.error("Form submission error:", error);
+            }finally{
+              //@ts-ignore
+              if (submitButton) submitButton.disabled = false;
             }
-            for (let [key, value] of formData.entries()) {
-                  formDataState[key] = value;
-            } 
-            console.log("Updated form data state:", formDataState);
-            switchTab(targetIndex);
-          });
+          
+      
+          }, { once: true })
         } else if(buttonType === "button"){
           switchTab(targetIndex);
         }
