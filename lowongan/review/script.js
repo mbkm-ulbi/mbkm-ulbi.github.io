@@ -1,6 +1,6 @@
 import { html, render } from "https://cdn.jsdelivr.net/npm/uhtml@4.5.11/+esm";
 import { getAuth, getUserInfo } from "../../src/js/libraries/cookies.js";
-import { getListJob } from "../../src/js/api/index.js";
+import API, { getListJob } from "../../src/js/api/index.js";
 import { getTime, getUrlParam } from "../../src/js/libraries/utilities.js";
 import { toast } from "../../src/js/libraries/notify.js";
 import { slugUri } from "../../src/js/customs/settings.js";
@@ -8,8 +8,9 @@ import moment from 'https://cdn.jsdelivr.net/npm/moment@2.30.1/+esm'
 
 const renderApprovalButton = (data) => {
   console.log(data);
+  const approvlButton = document.getElementById("approval-lowongan");
+
   if (data?.status === "Pending") {
-    const approvlButton = document.getElementById("approval-lowongan");
     const handleApprove = async () => {
       console.log("approve", data.id);
       await getListJob(`/${data.id}/setujui`)
@@ -38,6 +39,26 @@ const renderApprovalButton = (data) => {
         <div class="flex gap-4">
           <ui-button color="red" onclick=${handleReject}>TOLAK</ui-button>
           <ui-button color="green" onclick=${handleApprove}>SETUJUI</ui-button>
+        </div>
+      `
+    );
+  } else {
+    const handleDelete = async () => {
+      await API.deleteJobsById(`/${data.id}`)
+        .then((res) => {
+          toast.success("Lowongan berhasil dihapus");
+          window.location.assign(`${slugUri}lowongan`);
+        })
+        .catch((err) => {
+          toast.error("Gagal menghapus lowongan");
+        });
+    };
+    render(
+      approvlButton,
+      html`
+        <div class="flex gap-4">
+          <ui-button color="red" onclick=${handleDelete}>HAPUS</ui-button>
+          <ui-button color="green" >EDIT</ui-button>
         </div>
       `
     );
@@ -134,6 +155,21 @@ const renderElement = (data) => {
     `
   );
 };
+
+const renderEditDeleteButton = () => {
+ const approvlButton = document.getElementById("approval-lowongan");
+    const param = getUrlParam();
+    console.log(param.get("id"));
+    render(
+      approvlButton,
+      html`
+        <div class="flex gap-4">
+          <ui-button variant="outline_orange" type="button">Simpan</ui-button>
+          <ui-button color="orange" type="button" href=${`lowongan/apply/index.html?id=${param.get("id")}`}>Lamar</ui-button>
+        </div>
+      `
+    );
+}
 document.addEventListener("DOMContentLoaded", async () => {
   const urlParams = getUrlParam();
   const id = urlParams.get("id");

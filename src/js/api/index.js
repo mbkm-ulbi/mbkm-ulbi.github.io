@@ -44,10 +44,21 @@ const postWithToken = (api) => async (data, param = "") => {
       }
     });
 };
+const deleteWithToken = (api) => async (param = "") => {
+    const token = await getAuth()
+    return axios.delete(`${getBaseUrl(api)}${param}`, {
+      method: "DELETE",
+      headers: {
+        "Content-type": "application/json",
+        "Authorization": `Bearer ${token}`
+      }
+    });
+};
 
 export const postLogin = postMultipartParam('api/v1/login')
 export const postRegister = postMultipartParam('api/v1/register')
 export const getListJob= getWithToken('api/v1/jobs')
+export const deleteJobsById = deleteWithToken('api/v1/jobs')
 export const getListCompanies  = getWithToken('api/v1/companies')
 export const getListCandidate = getWithToken('api/v1/apply-jobs')
 export const getUsers = getWithToken('api/v1/profile')
@@ -61,7 +72,8 @@ const API = {
     getListCandidate,
     getUsers,
     postJob,
-    postApply
+    postApply,
+    deleteJobsById
 }
 
 export default API
