@@ -1,9 +1,10 @@
 import { html, render } from "https://cdn.jsdelivr.net/npm/uhtml@4.5.11/+esm";
 import { rekapLowonganMagangDummy, listLowonganMagangDummy } from "./dummyLowongan.js";
-import { toMonetary } from "../src/js/libraries/utilities.js";
+import { getTime, toMonetary } from "../src/js/libraries/utilities.js";
 import { getAuth, getUserInfo } from "../src/js/libraries/cookies.js";
 import { getListJob } from "../src/js/api/index.js";
 import { toast } from "../src/js/libraries/notify.js";
+import moment from 'https://cdn.jsdelivr.net/npm/moment@2.30.1/+esm'
 
 const fetchLowonganMagang = async () => {
   const rekap = await rekapLowonganMagangDummy();
@@ -55,17 +56,17 @@ const fetchListLowongan = async () => {
         (item) => html`
           <div class="flex-none flex gap-2 rounded-lg border border-gray-300 overflow-hidden">
             <div class="w-[120px] flex overflow-hidden rounded-l-lg">
-              <img class="object-center object-contain" src=${item?.job_vacancy_image ? item?.job_vacancy_image :urlImage} height="[100px]" alt="image" />
+              <img class="object-center object-contain" src=${item?.job_vacancy_image?.url ? item?.job_vacancy_image?.url :urlImage} height="[100px]" alt="image" />
             </div>
             <div class="w-full p-4 flex flex-col gap-2 text-xs">
               <div class="flex justify-between items-center">
                 <div>Diposting 2 Hari Yang Lalu</div>
                 <div>
-                  ${item.status === "Aktif"
+                  ${item.status === "Available"
                     ? html`<ui-badge class="bg-green-600/25 text-green-600" dot>${item.status}</ui-badge>`
-                    : item.status === "Perlu Ditinjau"
+                    : item.status === "Pending"
                     ? html`<ui-badge class="bg-orange-600/25 text-orange-600" dot>${item.status}</ui-badge>`
-                    : item.status === "Ditolak"
+                    : item.status === "Not Available"
                     ? html`<ui-badge class="bg-red-600/25 text-red-600" dot>${item.status}</ui-badge>`
                     : ""}
                 </div>
@@ -109,18 +110,18 @@ const fetchListLowongan = async () => {
       <div class="flex-none h-[800px] flex flex-col rounded-md border border-gray-300 text-xs">
         <div class="pt-4 px-4 flex justify-between items-center">
           <div>Diposting 2 Hari Yang Lalu</div>
-          <div>  ${detail.status === "Aktif"
+          <div>  ${detail.status === "Available"
                     ? html`<ui-badge class="bg-green-600/25 text-green-600" dot>${detail.status}</ui-badge>`
-                    : detail.status === "Perlu Ditinjau"
+                    : detail.status === "Pending"
                     ? html`<ui-badge class="bg-orange-600/25 text-orange-600" dot>${detail.status}</ui-badge>`
-                    : detail.status === "Ditolak"
+                    : detail.status === "Not Available"
                     ? html`<ui-badge class="bg-red-600/25 text-red-600" dot>${detail.status}</ui-badge>`
                     : ""}
             </div>
         </div>
         <div class="flex border-b border-gray-300">
           <div class="pl-2 w-[120px] flex overflow-hidden rounded-l-lg">
-            <img class="object-center object-contain" src=${detail?.job_vacancy_image ? detail?.job_vacancy_image :urlImage} height="[100px]" alt="image" />
+            <img class="object-center object-contain" src=${detail?.job_vacancy_image?.url ? detail?.job_vacancy_image?.url :urlImage} height="[100px]" alt="image" />
           </div>
           <div class="p-4 flex flex-col gap-1">
             <div class="text-xl font-semibold">${detail?.title}</div>
@@ -140,7 +141,7 @@ const fetchListLowongan = async () => {
         </div>
         <div class="overflow-y-auto">
           <div>
-            <img class="block mx-auto" src=${detail?.job_vacancy_image ? detail?.job_vacancy_image :urlImage} alt="image" />
+            <img class="block mx-auto" src=${detail?.job_vacancy_image?.url ? detail?.job_vacancy_image?.url :urlImage} alt="image" />
           </div>
           <div class="space-y-3 m-3">
             <div>
@@ -497,21 +498,21 @@ const renderSuperUser = async () => {
             ${list?.map((item, index)=>html`
             <div class="bg-white rounded-lg shadow-md flex">
               <div
-                class="p-6 rounded-l-lg flex items-center justify-center"
+                class="p-6 rounded-l-lg flex items-center justify-center w-[120px]"
               >
-              <img class="object-center object-contain" src=${item?.job_vacancy_image || urlImage} height="[100px]" alt="image" />
+              <img class="object-center object-contain" src=${item?.job_vacancy_image?.url || urlImage} height="[100px]" alt="image" />
               
               </div>
 
               <div class="p-6 flex-1 relative">
                 <div class="flex justify-between items-center">
-                  <p class="text-gray-500 text-sm">Diposting ${item?.created_at}</p>
-                  <div class="bg-green-100 text-green-600 px-3 py-1 rounded-full text-xs">
-                    ${item.status === "Aktif"
+                  <p class="text-gray-500 text-sm">Diposting ${getTime(item?.created_at)}</p>
+                  <div>
+                    ${item.status === "Available"
                     ? html`<ui-badge class="bg-green-600/25 text-green-600" dot>${item.status}</ui-badge>`
-                    : item.status === "Perlu Ditinjau"
+                    : item.status === "Pending"
                     ? html`<ui-badge class="bg-orange-600/25 text-orange-600" dot>${item.status}</ui-badge>`
-                    : item.status === "Ditolak"
+                    : item.status === "Not Available"
                     ? html`<ui-badge class="bg-red-600/25 text-red-600" dot>${item.status}</ui-badge>`
                     : ""}
                   </div>
@@ -528,7 +529,7 @@ const renderSuperUser = async () => {
                   </p>
                   <p class="flex items-center text-gray-700 text-sm mt-2">
                     <iconify-icon class="fas fa-calendar-alt mr-2 text-red-500"> </iconify-icon>
-                    Batas Akhir Pendaftaran: -
+                    Batas Akhir Pendaftaran: ${moment(item?.deadline).format('DD MMMM YYYY')}
                   </p>
                   <p class="flex items-center text-gray-700 text-sm mt-2">
                     <iconify-icon class="fas fa-user-friends mr-2 text-red-500"> </iconify-icon>

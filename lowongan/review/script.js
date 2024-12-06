@@ -1,39 +1,66 @@
 import { html, render } from "https://cdn.jsdelivr.net/npm/uhtml@4.5.11/+esm";
 import { getAuth, getUserInfo } from "../../src/js/libraries/cookies.js";
 import { getListJob } from "../../src/js/api/index.js";
-import { getUrlParam } from "../../src/js/libraries/utilities.js";
+import { getTime, getUrlParam } from "../../src/js/libraries/utilities.js";
+import { toast } from "../../src/js/libraries/notify.js";
+import { slugUri } from "../../src/js/customs/settings.js";
+import moment from 'https://cdn.jsdelivr.net/npm/moment@2.30.1/+esm'
 
-const renderApprovalButton = () => {
-  const approvlButton = document.getElementById("approval-lowongan");
-
-  render(
-    approvlButton,
-    html`
-      <div class="flex gap-4">
-        <ui-button color="red">TOLAK</ui-button>
-        <ui-button color="green">SETUJUI</ui-button>
-      </div>
-    `
-  );
+const renderApprovalButton = (data) => {
+  console.log(data);
+  if (data?.status === "Pending") {
+    const approvlButton = document.getElementById("approval-lowongan");
+    const handleApprove = async () => {
+      console.log("approve", data.id);
+      await getListJob(`/${data.id}/setujui`)
+        .then((res) => {
+          toast.success("Lowongan berhasil disetujui");
+          window.location.assign(`${slugUri}lowongan`);
+        })
+        .catch((err) => {
+          toast.error("Gagal menyetujui lowongan");
+        });
+    };
+    const handleReject = async () => {
+      console.log("reject", data.id);
+      await getListJob(`/${data.id}/tolak`)
+        .then((res) => {
+          toast.success("Lowongan berhasil ditolak");
+          window.location.assign(`${slugUri}lowongan`);
+        })
+        .catch((err) => {
+          toast.error("Gagal menyetujui lowongan");
+        });
+    };
+    render(
+      approvlButton,
+      html`
+        <div class="flex gap-4">
+          <ui-button color="red" onclick=${handleReject}>TOLAK</ui-button>
+          <ui-button color="green" onclick=${handleApprove}>SETUJUI</ui-button>
+        </div>
+      `
+    );
+  }
 };
 
 const renderApplyButton = () => {
   const approvlButton = document.getElementById("approval-lowongan");
-
+  const param = getUrlParam();
+  console.log(param.get("id"));
   render(
     approvlButton,
     html`
       <div class="flex gap-4">
         <ui-button variant="outline_orange" type="button">Simpan</ui-button>
-        <ui-button color="orange" type="button" href="lowongan/apply">Lamar</ui-button>
+        <ui-button color="orange" type="button" href=${`lowongan/apply/index.html?id=${param.get("id")}`}>Lamar</ui-button>
       </div>
     `
   );
 };
 const urlImage = "src/images/dummy_ulbi.png";
 
-
-const renderElement=(data)=>{
+const renderElement = (data) => {
   const lowongan = document.getElementById("lowongan-review");
   render(
     lowongan,
@@ -42,27 +69,25 @@ const renderElement=(data)=>{
         <div class="p-4 flex flex-col gap-4 rounded-md shadow-md">
           <div class="flex justify-between items-center">
             <div class="text-md font-bold">Detail Postingan</div>
-            <div class="flex gap-4" id="approval-lowongan">
-              
-            </div>
+            <div class="flex gap-4" id="approval-lowongan"></div>
           </div>
           <div class="border-t border-gray-300 border-dashed"></div>
           <div class="p-4 flex flex-col gap-2 text-xs rounded-md border border-gray-300">
             <div class="flex justify-between items-center">
-              <div>${data?.created_at}</div>
-             <div>
-                ${data.status === "Aktif"
-                ? html`<ui-badge class="bg-green-600/25 text-green-600" dot>${data.status}</ui-badge>`
-                : data.status === "Perlu Ditinjau"
-                ? html`<ui-badge class="bg-orange-600/25 text-orange-600" dot>${data.status}</ui-badge>`
-                : data.status === "Ditolak"
-                ? html`<ui-badge class="bg-red-600/25 text-red-600" dot>${data.status}</ui-badge>`
-                : ""}
+              <div>${getTime(data?.created_at)}</div>
+              <div>
+                ${data.status === "Available"
+                  ? html`<ui-badge class="bg-green-600/25 text-green-600" dot>${data.status}</ui-badge>`
+                  : data.status === "Pending"
+                  ? html`<ui-badge class="bg-orange-600/25 text-orange-600" dot>${data.status}</ui-badge>`
+                  : data.status === "Not Available"
+                  ? html`<ui-badge class="bg-red-600/25 text-red-600" dot>${data.status}</ui-badge>`
+                  : ""}
               </div>
             </div>
             <div class="flex flex-row gap-2 justify-start items-center">
               <div class="w-[120px] flex overflow-hidden rounded-l-lg">
-                <img class="object-center object-contain" src=${data?.image ?data?.image : urlImage} height="[100px]" alt="image" />
+                <img class="object-center object-contain" src=${data?.image ? data?.image : urlImage} height="[100px]" alt="image" />
               </div>
               <div class="flex flex-col justify-start gap-2">
                 <div class="text-sm font-semibold">${data?.title}</div>
@@ -77,35 +102,54 @@ const renderElement=(data)=>{
               </div>
             </div>
             <div class="p-0 my-2 border-t border-gray-300"></div>
-            <div class="space-y-4">
+            <div class="space-y-4 mb-6">
               <h1 class="font-bold">Deskripsi Pekerjaan</h1>
-             
               <div class="mt-5">
-                 ${html`${data?.description}`}
-               
+                <div class="mt-5" innerHTML=${data?.description}></div>
               </div>
+            </div>
+            <div class="mb-6">
+              <h1 class="font-bold">Durasi</h1>
+              <p class="text-base">${data?.duration}</p>
+            </div>
+            <div class="mb-6">
+              <h1 class="font-bold">Jenis Pekerjaan</h1>
+              <p class="text-base">${data?.job_type}</p>
+            </div>
+              <div class="mb-6">
+              <h1 class="font-bold">Benefit Yang Ditawarkan</h1>
+              <p class="text-base">${data?.benefits}</p>
+            </div>
+              <div class="mb-6">
+              <h1 class="font-bold">Tipe Lowongan</h1>
+              <p class="text-base">belum masuk</p>
+            </div>
+              <div class="mb-6">
+              <h1 class="font-bold">Batas Akhir Pendaftaran</h1>
+              <p class="text-base">${moment(data?.deadline).format("DD MMMM YYYY")}</p>
             </div>
           </div>
         </div>
       </div>
     `
-  )
-}
+  );
+};
 document.addEventListener("DOMContentLoaded", async () => {
-  const urlParams=getUrlParam()
-  const id = urlParams.get('id')
-  let data = {}
-  await getListJob(`/${id}`).then((res)=>{
-    data = res.data.data
-  })
-  
-  renderElement(data)
+  const urlParams = getUrlParam();
+  const id = urlParams.get("id");
+  let data = {};
+  await getListJob(`/${id}`).then((res) => {
+    data = res.data.data;
+  });
 
+  renderElement(data);
 
   const auth = await getUserInfo();
-  if (auth.role === "superadmin" || auth.role === "prodi" || auth.role === "cdc" || auth.role === "mitra") {
-    renderApprovalButton();
-  } else {
-    renderApplyButton();
+  if (auth.role === "superadmin" || auth.role === "prodi" || auth.role === "cdc") {
+    renderApprovalButton(data);
+  } else if (auth.role === "mahasiswa") {
+    if(data.status === "Available"){
+      renderApplyButton();
+    }
   }
 });

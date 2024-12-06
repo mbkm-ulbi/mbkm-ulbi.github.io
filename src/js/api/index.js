@@ -52,6 +52,7 @@ export const getListCompanies  = getWithToken('api/v1/companies')
 export const getListCandidate = getWithToken('api/v1/apply-jobs')
 export const getUsers = getWithToken('api/v1/profile')
 export const postJob = postWithToken('api/v1/jobs')
+export const postApply = postWithToken('api/v1/apply-jobs')
 const API = {
     postLogin,
     postRegister,
@@ -59,7 +60,8 @@ const API = {
     getListCompanies,
     getListCandidate,
     getUsers,
-    postJob
+    postJob,
+    postApply
 }
 
 export default API

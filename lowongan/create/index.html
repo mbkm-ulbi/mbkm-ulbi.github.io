@@ -25,34 +25,8 @@
           <div class="p-4 flex flex-col gap-4 rounded-md shadow-md">
             <div class="text-md font-bold">Buat Postingan Lowongan Magang</div>
             <div class="border-t border-gray-300 border-dashed"></div>
-            <div>
-              <fo-label for="company" label="Perusahaan"></fo-label>
-              <fo-select  id="company" name="company" placeholder="Silahkan pilih disini">
-              </fo-select>
-              <fo-error name="company"></fo-error>
-
-            </div>
-            <div class="flex border border-gray-300 rounded-md">
-              <div class="pl-2 w-[120px] flex overflow-hidden rounded-l-lg">
-                <img class="object-center object-contain" src="src/images/dummy_pos_ind.png" height="[100px]" alt="image" />
-              </div>
-              <div class="p-4 flex flex-col gap-1">
-                <div class="text-md font-semibold">PT. Pos Indonesia</div>
-                <div class="flex justify-start items-center gap-2">
-                  <iconify-icon icon="solar:buildings-bold-duotone" height="22" class="text-ulbiOrange" noobserver></iconify-icon>
-                  <div class="text-xs">PT. Pos Indonesia</div>
-                </div>
-                <div class="flex justify-start items-center gap-2">
-                  <iconify-icon icon="solar:map-point-bold-duotone" height="22" class="text-ulbiOrange" noobserver></iconify-icon>
-                  <div class="text-xs">Bandung, Jawa Barat</div>
-                </div>
-              </div>
-            </div>
-            <div>
-              <fo-label label="Upload Gambar Lowongan"></fo-label>
-              <fo-file className="min-h-24" name="job_vacancy_image" accept="image/*"></fo-file>
-              <fo-error name="job_vacancy_image"></fo-error>
-            </div>
+            <div id="select-company" class="flex flex-col gap-2"></div>
+         
             <div>
               <fo-label for="title" label="Judul"></fo-label>
               <fo-input name="title" value="" placeholder=""></fo-input>
@@ -127,7 +101,7 @@
               <ui-button color="red" href="/lowongan/">BATAL</ui-button>
               <div>
                 <div class="flex justify-end gap-3">
-                  <ui-button variant="outline_blue" data-dialog-trigger="tinjau-lowongan">PRATINJAU</ui-button>
+                  <!-- <ui-button variant="outline_blue" data-dialog-trigger="tinjau-lowongan">PRATINJAU</ui-button> -->
                   <ui-dialog name="tinjau-lowongan" className="w-[1000px] h-[600px] overflow-y-scroll">
                     <div class="p-4 flex flex-col gap-4">
                       <div class="flex justify-between items-center">

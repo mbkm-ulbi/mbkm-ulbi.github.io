@@ -1,12 +1,63 @@
 // import { getListCompanies } from "../../src/js/api";
 
 import API, { postLogin } from "../../src/js/api/index.js";
+import { slugUri } from "../../src/js/customs/settings.js";
+import { getUserInfo } from "../../src/js/libraries/cookies.js";
+import { toast } from "../../src/js/libraries/notify.js";
 import { formValidation } from "./validation.js";
+import { html, render } from "https://cdn.jsdelivr.net/npm/uhtml@4.5.11/+esm";
 
-const foSelectElement = document.getElementById("company");
+
+
+
+const renderSelectCompany =async  () =>{
+  const companySelect = document.getElementById("select-company");
+  
+  render(
+    companySelect,
+    html`
+            <div>
+              <fo-label for="company" label="Perusahaan"></fo-label>
+              <fo-select  id="company" name="company" placeholder="Silahkan pilih disini">
+              </fo-select>
+              <fo-error name="company"></fo-error>
+
+            </div>
+            <div class="flex border border-gray-300 rounded-md">
+              <div class="pl-2 w-[120px] flex overflow-hidden rounded-l-lg">
+                <img class="object-center object-contain" src="src/images/dummy_pos_ind.png" height="[100px]" alt="image" />
+              </div>
+              <div class="p-4 flex flex-col gap-1">
+                <div class="text-md font-semibold">PT. Pos Indonesia</div>
+                <div class="flex justify-start items-center gap-2">
+                  <iconify-icon icon="solar:buildings-bold-duotone" height="22" class="text-ulbiOrange" noobserver></iconify-icon>
+                  <div class="text-xs">PT. Pos Indonesia</div>
+                </div>
+                <div class="flex justify-start items-center gap-2">
+                  <iconify-icon icon="solar:map-point-bold-duotone" height="22" class="text-ulbiOrange" noobserver></iconify-icon>
+                  <div class="text-xs">Bandung, Jawa Barat</div>
+                </div>
+              </div>
+            </div>
+            <div>
+              <fo-label label="Upload Gambar Lowongan"></fo-label>
+              <fo-file className="min-h-24" name="job_vacancy_image" accept="image/*"></fo-file>
+              <fo-error name="job_vacancy_image"></fo-error>
+            </div>
+    `
+  );
+  
+}
+
+document.addEventListener("DOMContentLoaded", async function () {
+  const auth = await getUserInfo()
+  if(auth.role === "prodi" || auth.role === "cdc"){
+    await renderSelectCompany()
+  }
+  const foSelectElement = document.getElementById("company");
 let Options = []
 
-const getListDropdown = async () => {
+  const getListDropdown = async () => {
 
   await API.getListCompanies().then(res => {
     Options = res.data.data
@@ -33,10 +84,8 @@ const getListDropdown = async () => {
     foSelectElement.handleError();
   }
 };
-
-document.addEventListener("DOMContentLoaded", async function () {
-
-  await getListDropdown()
+ 
+getListDropdown();
   // foSelectElement.addEventListener("change", (e)=>{
   //   //@ts-ignore
   //   const selectedOption = foSelectElement.choices.getValue(true); // Mendapatkan data pilihan aktif
@@ -118,9 +167,32 @@ addBenefitButton.addEventListener("click", function () {
       formData.append("benefits", benefitString ); // Gabungkan manfaat dengan koma
       // Validasi form sebelum melanjutkan
       if (!formValidation(form, formData)) return;
-      await API.postJob(formData);
-      console.log("Form data:", formData);
+      try{
+        form.querySelectorAll("button, [type='submit']").forEach((element) => {
+          if (element instanceof HTMLButtonElement || element instanceof HTMLElement) {
+            element.setAttribute("disabled", "true");
+          }
+        });
+        await API.postJob(formData).then((res)=>{
+          toast.success("Berhasil membuat lowongan")
+          window.location.assign(`${slugUri}lowongan`);
 
+        }).catch((err)=>{
+          toast.error("Gagal membuat lowongan")
+        });
+      }catch(error){
+        console.error("Login error:", error);
+        console.log(error.message)
+        // Tampilkan pesan error kepada pengguna
+        toast.error(error.message);
+      }finally{
+        form.querySelectorAll("button, [type='submit']").forEach((element) => {
+          if (element instanceof HTMLButtonElement || element instanceof HTMLElement) {
+            element.removeAttribute("disabled");
+          }
+        });
+      }
+     
     })
   }
 });

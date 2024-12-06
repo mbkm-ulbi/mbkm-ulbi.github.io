@@ -52,7 +52,7 @@ const fetchTabelLaporan = async () => {
             <td>
               ${item.reportStatus === "Selesai"
                 ? html`<ui-badge class="bg-green-600/25 text-green-600" dot>${item.reportStatus}</ui-badge>`
-                : item.reportStatus === "Perlu Ditinjau"
+                : item.reportStatus === "Pending"
                 ? html`<ui-badge class="bg-orange-600/25 text-orange-600" dot>${item.reportStatus}</ui-badge>`
                 : item.reportStatus === "Berjalan"
                 ? html`<ui-badge class="bg-red-600/25 text-red-600" dot>${item.reportStatus}</ui-badge>`

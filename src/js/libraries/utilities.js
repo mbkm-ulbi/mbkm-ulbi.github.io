@@ -1,3 +1,4 @@
+
 export const timeout = (ms) => {
   return new Promise((resolve) => setTimeout(resolve, ms));
 };
@@ -34,4 +35,22 @@ export const formatError = (errors) => {
   .map((field) => `${field}: ${errors[field].join(', ')}`)  // Gabungkan pesan error untuk tiap field
   .join('\n');  // Pisahkan setiap field dengan baris baru
   return errorMessages;
+
 }
+
+import moment from 'https://cdn.jsdelivr.net/npm/moment@2.30.1/+esm'
+
+export const getTime = (date) => {
+  let result = moment(date).fromNow();
+  const now = moment();
+  const days = now.diff(date, 'days');
+  const weeks = now.diff(date, 'weeks');
+  if (days >= 7) {
+    if (days <= 13) {
+      result = `a week ago`;
+    } else if (days > 13 && days <= 25) {
+      result = `${weeks} weeks ago`;
+    }
+  }
+  return result;
+};

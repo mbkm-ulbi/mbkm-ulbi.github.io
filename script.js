@@ -20,11 +20,11 @@ const fetchListLowongan = async () => {
               <div class="flex justify-between items-center">
                 <div>Diposting 2 Hari Yang Lalu</div>
                 <div>
-                  ${item.status === "Aktif"
+                  ${item.status === "Available"
                     ? html`<ui-badge class="bg-green-600/25 text-green-600" dot>${item.status}</ui-badge>`
-                    : item.status === "Perlu Ditinjau"
+                    : item.status === "Pending"
                     ? html`<ui-badge class="bg-orange-600/25 text-orange-600" dot>${item.status}</ui-badge>`
-                    : item.status === "Ditolak"
+                    : item.status === "Not Available"
                     ? html`<ui-badge class="bg-red-600/25 text-red-600" dot>${item.status}</ui-badge>`
                     : ""}
                 </div>
