@@ -1,6 +1,10 @@
 import { html, render } from "https://cdn.jsdelivr.net/npm/uhtml@4.5.11/+esm";
 import { listKandidatDummy } from "/kandidat/dummyKandidat.js";
-import { toMonetary } from "../../src/js/libraries/utilities.js";
+import { getTime, getUrlParam, toMonetary } from "../../src/js/libraries/utilities.js";
+import API, { getListJob } from "../../src/js/api/index.js";
+import { toast } from "../../src/js/libraries/notify.js";
+import moment from 'https://cdn.jsdelivr.net/npm/moment@2.30.1/+esm'
+
 
 const fetchKandidat = async () => {
   const kandidat = await listKandidatDummy();
@@ -96,4 +100,106 @@ const fetchKandidat = async () => {
 
 //-----------------
 
-fetchKandidat();
+const renderDetailJobs = (item) => {
+  const detailJobs = document.getElementById("detail-jobs");
+  const urlImage = "src/images/dummy_ulbi.png";
+
+  render(
+    detailJobs,
+    html`
+      <div class="flex justify-between items-center">
+        <div>Diposting ${getTime(item?.created_at)}</div>
+        <div>
+          ${item.status === "Available"
+            ? html`<ui-badge class="bg-green-600/25 text-green-600" dot>${item.status}</ui-badge>`
+            : item.status === "Pending"
+            ? html`<ui-badge class="bg-orange-600/25 text-orange-600" dot>${item.status}</ui-badge>`
+            : item.status === "Not Available"
+            ? html`<ui-badge class="bg-red-600/25 text-red-600" dot>${item.status}</ui-badge>`
+            : ""}
+        </div>
+      </div>
+      <div class="flex flex-row gap-2 justify-start items-center">
+        <div class="w-[120px] flex overflow-hidden rounded-l-lg">
+          <img class="object-center object-contain" src=${item?.job_vacancy_image?.url ? item?.job_vacancy_image?.url :urlImage} height="[100px]" alt="image" />
+        </div>
+        <div class="flex flex-col justify-start gap-2">
+          <div class="text-sm font-semibold">${item?.title}</div>
+          <div class="flex justify-start items-center gap-2">
+            <iconify-icon icon="solar:buildings-bold-duotone" height="22" class="text-ulbiOrange" noobserver></iconify-icon>
+            <div>${item?.company}</div>
+          </div>
+          <div class="flex justify-start items-center gap-2">
+            <iconify-icon icon="solar:map-point-bold-duotone" height="22" class="text-ulbiOrange" noobserver></iconify-icon>
+            <div>${item?.location}</div>
+          </div>
+        </div>
+      </div>
+      <div class="p-0 my-2 border-t border-gray-300"></div>
+      <div class="space-y-4">
+        <h1 class="font-bold text-sm">Deskripsi Pekerjaan</h1>
+        <div class="p-6 mt-10">
+         <div class="mt-5" innerHTML=${item?.description}></div>
+        </div>
+      </div>
+        <div class="space-y-4">
+        <h1 class="font-bold text-sm">Durasi</h1>
+        <div class="p-6 mt-10">
+            <p class="text-base">${item?.duration}</p>
+        </div>
+      </div>
+      </div>
+        <div class="space-y-4">
+        <h1 class="font-bold text-sm">Jenis Pekerjaan</h1>
+        <div class="p-6 mt-10">
+            <p class="text-base">${item?.job_type}</p>
+        </div>
+      </div>
+      </div>
+        <div class="space-y-4">
+        <h1 class="font-bold text-sm">Benefit Yang Ditawarkan</h1>
+        <div class="p-6 mt-10">
+            <p class="text-base">${item?.benefits}</p>
+        </div>
+      </div>
+      </div>
+        <div class="space-y-4">
+        <h1 class="font-bold text-sm">Tipe Lowongan</h1>
+        <div class="p-6 mt-10">
+            <p class="text-base">belum masuk</p>
+        </div>
+      </div>
+      </div>
+        <div class="space-y-4">
+        <h1 class="font-bold text-sm">Batas Akhir Pendaftaran</h1>
+        <div class="p-6 mt-10">
+          <p class="text-base">${moment(item?.deadline).format("DD MMMM YYYY")}</p>
+        </div>
+      </div>
+    `
+  );
+};
+document.addEventListener("DOMContentLoaded", async () => {
+  const urlParams = getUrlParam();
+  const id = urlParams.get("id");
+  // let data = {};
+  let candidates = [];
+  await API.getListJob(`/${id}`)
+    .then((res) => {
+      let data = res.data.data;
+      renderDetailJobs(data);
+    })
+    .catch((err) => {
+      toast.error("Gagal mengambil data lowongan");
+    });
+
+  await API.getListCandidate(`/${id}`)
+    .then((res) => {
+      candidates = res.data.data;
+    })
+    .catch((err) => {
+      toast.error("Gagal mengambil data kandidat");
+    });
+
+  fetchKandidat();
+});

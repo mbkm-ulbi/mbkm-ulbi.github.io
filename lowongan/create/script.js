@@ -62,7 +62,7 @@ let Options = []
   await API.getListCompanies().then(res => {
     Options = res.data.data
   }).catch((err)=>{
-    console.log(err)
+    toast.error("Gagal mengambil data perusahaan")
   })
 
   // @ts-ignore

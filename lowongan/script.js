@@ -538,7 +538,7 @@ const renderSuperUser = async () => {
                 </div>
                 <div class="absolute bottom-6 right-6 flex space-x-2">
                   <a class="border border-orange-500 text-orange-500 px-4 py-2 rounded-lg text-sm hover:bg-orange-100" href=${`lowongan/review/index.html?id=${item?.id}`}> Detail </a>
-                  <a class="bg-orange-500 text-white px-4 py-2 rounded-lg text-sm hover:bg-orange-600" href="lowongan/kurasi"> Tinjau </a>
+                  <a class="bg-orange-500 text-white px-4 py-2 rounded-lg text-sm hover:bg-orange-600"  href=${`lowongan/kurasi/index.html?id=${item?.id}`}> Tinjau </a>
                 </div>
               </div>
             </div>

@@ -176,7 +176,9 @@ document.addEventListener("DOMContentLoaded", async () => {
   let data = {};
   await getListJob(`/${id}`).then((res) => {
     data = res.data.data;
-  });
+  }).catch((err) => {
+    toast.error("Gagal mengambil data lowongan");
+  })
 
   renderElement(data);
 

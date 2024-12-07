@@ -2,6 +2,7 @@ import { html, render } from "https://cdn.jsdelivr.net/npm/uhtml@4.5.11/+esm";
 import { listKandidatDummy, rekapKandidatDummy } from "./dummyKandidat.js";
 import { getAuth, getUserInfo } from "../src/js/libraries/cookies.js";
 import API, { getListCandidate } from "../src/js/api/index.js";
+import { toast } from "../src/js/libraries/notify.js";
 
 const fetchKandidat = async () => {
   const rekap = await rekapKandidatDummy();
@@ -448,7 +449,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     await getListCandidate().then(res => {
       console.log(res)
     }).catch((err)=>{
-      console.log(err)
+      toast.error("Gagal mengambil data kandidat")
     })
     renderKandidatAdmin();
     fetchKandidat();
