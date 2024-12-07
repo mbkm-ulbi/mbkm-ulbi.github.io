@@ -450,6 +450,7 @@ const renderSuperUser = async () => {
   render(
     contentLowongan,
     html`
+    <div class="space-y-4">
       <div class="px-12 py-4 rounded-md shadow-md ">
         <div id="rekapJumlahLowongan" class="flex justify-between">
           <div class="flex items-center gap-2">
@@ -474,7 +475,7 @@ const renderSuperUser = async () => {
           </div>
         </div>
       </div>
-      <div class="container mx-auto mt-5">
+      <div class="mt-5">
         <div class="bg-white p-6 rounded-lg shadow-md">
           <div class="flex justify-between items-center mb-4">
             <h1 class="text-xl font-semibold">Semua Lowongan</h1>
@@ -552,6 +553,7 @@ const renderSuperUser = async () => {
           </div>
         </div>
       </div>
+    </div>
     `
   );
 };
