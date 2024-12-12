@@ -4,7 +4,7 @@ import API, { getListJob } from "../../src/js/api/index.js";
 import { getTime, getUrlParam } from "../../src/js/libraries/utilities.js";
 import { toast } from "../../src/js/libraries/notify.js";
 import { slugUri } from "../../src/js/customs/settings.js";
-import moment from 'https://cdn.jsdelivr.net/npm/moment@2.30.1/+esm'
+import moment from "https://cdn.jsdelivr.net/npm/moment@2.30.1/+esm";
 
 const renderApprovalButton = (data) => {
   console.log(data);
@@ -37,9 +37,31 @@ const renderApprovalButton = (data) => {
       approvlButton,
       html`
         <div class="flex gap-4">
-          <ui-button color="red" onclick=${handleReject}>TOLAK</ui-button>
-          <ui-button color="green" onclick=${handleApprove}>SETUJUI</ui-button>
+          <ui-button color="red" data-dialog-trigger="reject">TOLAK</ui-button>
+          <ui-button color="green" data-dialog-trigger="approve">SETUJUI</ui-button>
         </div>
+        <ui-dialog name="reject" className="w-[750px] h-auto">
+          <div class="flex flex-col text-center justify-center items-center gap-3">
+            <div class="test-md font-bold">Apakah Anda yakin ingin menolak data ini?</div>
+            <iconify-icon icon="solar:question-circle-line-duotone" height="96" class="text-yellow-600" noobserver></iconify-icon>
+            <div class="text-sm font-semibold">Data yang ditolak tidak dapat dipublikasikan.</div>
+            <div class="flex justify-between gap-3">
+              <ui-button data-dialog-close color='red' id="batal">Batal</ui-button>
+              <ui-button onclick=${handleReject}>Ya, Yakin!</ui-button>
+            </div>
+          </div>
+        </ui-dialog>
+        <ui-dialog name="approve" className="w-[750px] h-auto">
+          <div class="flex flex-col text-center justify-center items-center gap-3">
+            <div class="test-md font-bold">Apakah Anda yakin ingin menyetujui data ini?</div>
+            <iconify-icon icon="solar:question-circle-line-duotone" height="96" class="text-yellow-600" noobserver></iconify-icon>
+            <div class="text-sm font-semibold">Data yang distujui dapat dipublikasikan.</div>
+            <div class="flex justify-between gap-3">
+              <ui-button data-dialog-close color='red' id="batal">Batal</ui-button>
+              <ui-button onclick=${handleApprove}>Ya, Yakin!</ui-button>
+            </div>
+          </div>
+        </ui-dialog>
       `
     );
   } else {
@@ -47,7 +69,9 @@ const renderApprovalButton = (data) => {
       await API.deleteJobsById(`/${data.id}`)
         .then((res) => {
           toast.success("Lowongan berhasil dihapus");
-          window.location.assign(`${slugUri}lowongan`);
+          setTimeout(() => {
+            window.location.assign(`${slugUri}lowongan`);
+          },500)
         })
         .catch((err) => {
           toast.error("Gagal menghapus lowongan");
@@ -57,9 +81,20 @@ const renderApprovalButton = (data) => {
       approvlButton,
       html`
         <div class="flex gap-4">
-          <ui-button color="red" onclick=${handleDelete}>HAPUS</ui-button>
-          <ui-button color="green" >EDIT</ui-button>
+          <ui-button color="red" data-dialog-trigger="delete">HAPUS</ui-button>
+          <ui-button color="green">EDIT</ui-button>
         </div>
+        <ui-dialog name="delete" className="w-[750px] h-auto">
+          <div class="flex flex-col text-center justify-center items-center gap-3">
+            <div class="test-md font-bold">Apakah Anda yakin ingin menghapus data ini?</div>
+            <iconify-icon icon="solar:question-circle-line-duotone" height="96" class="text-yellow-600" noobserver></iconify-icon>
+            <div class="text-sm font-semibold">Data yang dihapus tidak dapat dikembalikan.</div>
+            <div class="flex justify-between gap-3">
+              <ui-button data-dialog-close color='red' id="batal">Batal</ui-button>
+              <ui-button onclick=${handleDelete}>Ya, Yakin!</ui-button>
+            </div>
+          </div>
+        </ui-dialog>
       `
     );
   }
@@ -137,18 +172,21 @@ const renderElement = (data) => {
               <h1 class="font-bold">Jenis Pekerjaan</h1>
               <p class="text-base">${data?.job_type}</p>
             </div>
-              <div class="mb-6">
+            <div class="mb-6">
               <h1 class="font-bold">Benefit Yang Ditawarkan</h1>
               <p class="text-base">${data?.benefits}</p>
             </div>
-              <div class="mb-6">
+            <div class="mb-6">
               <h1 class="font-bold">Tipe Lowongan</h1>
               <p class="text-base">belum masuk</p>
             </div>
-              <div class="mb-6">
+            <div class="mb-6">
               <h1 class="font-bold">Batas Akhir Pendaftaran</h1>
               <p class="text-base">${moment(data?.deadline).format("DD MMMM YYYY")}</p>
             </div>
+          </div>
+          <div class="flex justify-end">
+            <ui-button color="red" href="lowongan/">Kembali</ui-button>
           </div>
         </div>
       </div>
@@ -157,28 +195,30 @@ const renderElement = (data) => {
 };
 
 const renderEditDeleteButton = () => {
- const approvlButton = document.getElementById("approval-lowongan");
-    const param = getUrlParam();
-    console.log(param.get("id"));
-    render(
-      approvlButton,
-      html`
-        <div class="flex gap-4">
-          <ui-button variant="outline_orange" type="button">Simpan</ui-button>
-          <ui-button color="orange" type="button" href=${`lowongan/apply/index.html?id=${param.get("id")}`}>Lamar</ui-button>
-        </div>
-      `
-    );
-}
+  const approvlButton = document.getElementById("approval-lowongan");
+  const param = getUrlParam();
+  console.log(param.get("id"));
+  render(
+    approvlButton,
+    html`
+      <div class="flex gap-4">
+        <ui-button variant="outline_orange" type="button">Simpan</ui-button>
+        <ui-button color="orange" type="button" href=${`lowongan/apply/index.html?id=${param.get("id")}`}>Lamar</ui-button>
+      </div>
+    `
+  );
+};
 document.addEventListener("DOMContentLoaded", async () => {
   const urlParams = getUrlParam();
   const id = urlParams.get("id");
   let data = {};
-  await getListJob(`/${id}`).then((res) => {
-    data = res.data.data;
-  }).catch((err) => {
-    toast.error("Gagal mengambil data lowongan");
-  })
+  await getListJob(`/${id}`)
+    .then((res) => {
+      data = res.data.data;
+    })
+    .catch((err) => {
+      toast.error("Gagal mengambil data lowongan");
+    });
 
   renderElement(data);
 
@@ -186,7 +226,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   if (auth.role === "superadmin" || auth.role === "prodi" || auth.role === "cdc") {
     renderApprovalButton(data);
   } else if (auth.role === "mahasiswa") {
-    if(data.status === "Available"){
+    if (data.status === "Available") {
       renderApplyButton();
     }
   }

@@ -26,7 +26,6 @@
             <div class="text-md font-bold">Buat Postingan Lowongan Magang</div>
             <div class="border-t border-gray-300 border-dashed"></div>
             <div id="select-company" class="flex flex-col gap-2"></div>
-         
             <div>
               <fo-label for="title" label="Judul"></fo-label>
               <fo-input name="title" value="" placeholder=""></fo-input>
@@ -98,7 +97,7 @@
               </div>
             </div> -->
             <div class="flex justify-between items-center">
-              <ui-button color="red" href="/lowongan/">BATAL</ui-button>
+              <ui-button color="red" href="lowongan/">BATAL</ui-button>
               <div>
                 <div class="flex justify-end gap-3">
                   <!-- <ui-button variant="outline_blue" data-dialog-trigger="tinjau-lowongan">PRATINJAU</ui-button> -->
@@ -187,14 +186,15 @@
                     </div>
                   </ui-dialog>
                   <ui-button variant="default" type="submit">PUBLIKASIKAN</ui-button>
-                  <ui-dialog name="publikasi-lowongan" className="w-[750px] h-[320px]">
+                  <ui-button  type="button" data-dialog-trigger="success" id="launcher" hidden>Lauch</ui-button>
+                  <ui-dialog name="success" className="w-[750px] h-auto">
                     <div class="flex flex-col text-center justify-center items-center gap-3">
                       <div class="test-md font-bold">Postingan Berhasil Diajukan</div>
                       <iconify-icon icon="solar:verified-check-bold-duotone" height="96" class="text-green-600" noobserver></iconify-icon>
                       <div class="text-sm font-semibold">Postingan Anda Akan Kami Tinjau Maksimal 2x24 Jam</div>
                       <div class="text-xs">Akun Perusahaan Anda Kini Dapat Melakukan Posting Lowongan Magang Pada Website MBKM ULBI</div>
                       <div class="text-xs">Silahkan Masuk Menggunakan Akun Yang Telah Anda Buat Untuk Melakukan Posting Lowongan Magang</div>
-                      <ui-button data-dialog-close>SELESAI</ui-button>
+                      <ui-button data-dialog-close href="lowongan/">SELESAI</ui-button>
                     </div>
                   </ui-dialog>
                 </div>
