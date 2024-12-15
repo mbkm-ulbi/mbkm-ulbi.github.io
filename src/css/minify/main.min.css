@@ -1122,10 +1122,6 @@ video {
   height: 320px;
 }
 
-.h-\[450px\] {
-  height: 450px;
-}
-
 .h-\[48px\] {
   height: 48px;
 }
@@ -1258,6 +1254,10 @@ video {
   width: 120px;
 }
 
+.w-\[250px\] {
+  width: 250px;
+}
+
 .w-\[400px\] {
   width: 400px;
 }
@@ -1306,6 +1306,10 @@ video {
 .w-max {
   width: -moz-max-content;
   width: max-content;
+}
+
+.w-\[150px\] {
+  width: 150px;
 }
 
 .max-w-3xl {

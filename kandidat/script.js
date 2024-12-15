@@ -3,6 +3,8 @@ import { listKandidatDummy, rekapKandidatDummy } from "./dummyKandidat.js";
 import { getAuth, getUserInfo } from "../src/js/libraries/cookies.js";
 import API, { getListCandidate } from "../src/js/api/index.js";
 import { toast } from "../src/js/libraries/notify.js";
+import moment from 'https://cdn.jsdelivr.net/npm/moment@2.30.1/+esm'
+
 
 const fetchKandidat = async () => {
   const rekap = await rekapKandidatDummy();
@@ -44,50 +46,50 @@ const fetchKandidat = async () => {
   );
 };
 
-const fetchTabelKandidat = async () => {
-  const list = await listKandidatDummy();
+const fetchTabelKandidat = async (list) => {
 
   render(
     document.getElementById("tabelKandidat"),
     html`
-      ${list.map((item) => {
+      ${list.map((item,index) => {
         return html`
           <tr>
-            <td>${item.applyTime}</td>
-            <td>${item.name}</td>
-            <td>${item.type}</td>
-            <td>${item.company}</td>
-            <td>${item.position}</td>
-            <td>${item.studyProgramme}</td>
+            <td>${moment(item.created_at).format("DD MMMM YYYY hh:mm")}</td>
+            <td>${item.users[0]?.name}</td>
+            <td>${item.jobs[0]?.job_type}</td>
+            <td>${item.jobs[0]?.company}</td>
+            <td>${item.jobs[0]?.company}</td>
+            <td>${item.users[0]?.program_study}</td>
             <td>
-              ${item.currentStatus === "Aktif"
-                ? html`<ui-badge class="bg-green-600/25 text-green-600" dot>${item.currentStatus}</ui-badge>`
-                : item.currentStatus === "Melamar"
-                ? html`<ui-badge class="bg-orange-600/25 text-orange-600" dot>${item.currentStatus}</ui-badge>`
-                : item.currentStatus === "Selesai"
-                ? html`<ui-badge class="bg-gray-600/25 text-gray-600" dot>${item.currentStatus}</ui-badge>`
-                : ""}
+              ${item.status === "approved"
+                ? html`<ui-badge class="bg-green-600/25 text-green-600" dot>${item.status}</ui-badge>`
+                : item.status === "pending"
+                ? html`<ui-badge class="bg-orange-600/25 text-orange-600" dot>${item.status}</ui-badge>`
+                : item.status === "done"
+                ? html`<ui-badge class="bg-gray-600/25 text-gray-600" dot>${item.status}</ui-badge>`
+                : item.status === 'rejected'
+                ? html`<ui-badge class="bg-red-600/25 text-red-600" dot>${item.status}</ui-badge>` : ''}
             </td>
             <td class="flex space-x-4">
               <div>
-                <a data-dialog-trigger="detail-kandidat"><iconify-icon icon="solar:eye-bold" class="text-orange-500" height="16"></iconify-icon></a>
-                <ui-dialog name="detail-kandidat" className="w-[750px] h-[450px] p-0">
+                <a data-dialog-trigger=${`detail-kandidat-`+index}><iconify-icon icon="solar:eye-bold" class="text-orange-500" height="16"></iconify-icon></a>
+                <ui-dialog name=${`detail-kandidat-`+index} className="w-[750px] h-auto p-0">
                   <div>
                     <div class="w-full flex justify-between items-center bg-ulbiBlue p-4 rounded-t-md">
                       <div class="text-lg text-white font-bold">Detail Kandidat</div>
                       <div data-dialog-close><iconify-icon icon="solar:close-circle-bold" height="22" class="text-white" noobserver></iconify-icon></div>
                     </div>
                     <div class="p-4 w-full flex gap-4 text-justify">
-                      <img src="src/images/dummy_foto_kandidat.png" width="[250px]" alt="kandidat-image" />
+                      <img src=${item?.users[0]?.profile_picture?.url} class="w-[150px]" alt="kandidat-image" />
                       <div class="w-full">
                         <div class="pb-2 flex gap-28">
                           <div>
                             <div class="text-xs font-bold">Nama Lengkap</div>
-                            <div class="text-lg font-bold">Darmaji Setiaji Ngahiji</div>
+                            <div class="text-lg font-bold">${item?.users[0]?.name}</div>
                           </div>
                           <div>
                             <div class="text-xs font-bold">NIM</div>
-                            <div class="text-xs">000000000123</div>
+                            <div class="text-xs">${item?.users[0]?.nim}</div>
                           </div>
                         </div>
                         <div class="border-b border-dashed border-gray-300"></div>
@@ -99,8 +101,8 @@ const fetchTabelKandidat = async () => {
                                 <div>Prodi</div>
                               </div>
                               <div class="space-y-2">
-                                <div>08123456789</div>
-                                <div>D3-Manajemen Bisnis</div>
+                                <div>${item?.users[0]?.phone_number}</div>
+                                <div>${item?.users[0]?.program_study}</div>
                               </div>
                             </div>
                           </div>
@@ -110,14 +112,14 @@ const fetchTabelKandidat = async () => {
                               <div>IPK</div>
                             </div>
                             <div class="space-y-2">
-                              <div>darmaji@mail.com</div>
-                              <div>3.5</div>
+                              <div>${item?.users[0]?.email}</div>
+                              <div>${item?.users[0]?.ipk}</div>
                             </div>
                           </div>
                         </div>
                         <div class="flex gap-4">
                           <div class="font-bold">Alamat</div>
-                          <div>Jl. Bersama Kamu Selamanya No. 123, Kota Apa Saja, Jawa Utara 40000</div>
+                          <div>${item?.users[0]?.address}</div>
                         </div>
                       </div>
                     </div>
@@ -131,8 +133,8 @@ const fetchTabelKandidat = async () => {
                             <div>Tanggal</div>
                           </div>
                           <div class="space-y-2">
-                            <div>PT. Pos Indonesia</div>
-                            <div>24 September 2024 - 14:35</div>
+                            <div>${item?.jobs[0]?.company}</div>
+                            <div>${moment(item?.created_at).format("DD MMMM YYYY hh:mm")}</div>
                           </div>
                         </div>
                       </div>
@@ -142,18 +144,18 @@ const fetchTabelKandidat = async () => {
                           <div>Masa Kerja</div>
                         </div>
                         <div class="space-y-2">
-                          <div>Staf Admin</div>
-                          <div>3 Bulan</div>
+                          <div>${item?.jobs[0]?.title}</div>
+                          <div>${item?.jobs[0]?.duration}</div>
                         </div>
                       </div>
                     </div>
                     <div class="p-4 flex gap-4">
                       <div class="font-bold">Alamat</div>
-                      <div>Jl. Bersama Kamu Selamanya No. 123, Kota Apa Saja, Jawa Utara 40000</div>
+                      <div>${item?.jobs[0]?.location}</div>
                     </div>
                     <div class="p-4 flex justify-end">
-                      
-                      <ui-button className="w-max flex gap-2" data-dialog-close> SELESAIKAN MASA KERJA</ui-button>
+                        ${item?.status === 'approved' ?` <ui-button className="w-max flex gap-2" data-dialog-close> SELESAIKAN MASA KERJA</ui-button>` : ''}
+              
                     </div>
                   </div>
                 </ui-dialog>
@@ -371,38 +373,7 @@ const renderKandidatMahasiswa = async() =>{
               </div>
             </div>
           </div>
-          <div class="w-full p-4 text-justify border-b border-dashed border-gray-300">
-            <div class="test-md p-2 font-bold">Melamar Magang</div>
-            <div class="pb-2 flex gap-5 ">
-              <div>
-                <img src="src/images/dummy_pos_ind.png" style="height: 80px;" />
-              </div>
-              <div class="mr-10">
-                <div class="pt-2 flex gap-16 text-xs">
-                  <div class="font-bold space-y-2">
-                    <div>Telepon</div>
-                    <div>Prodi</div>
-                    <div>Alamat</div>
-                  </div>
-                  <div class="space-y-2">
-                    <div>08123456789</div>
-                    <div>D3-Manajemen Bisnis</div>
-                    <div>Jl. Bersama Kamu Selamanya No. 123, Kota Apa Saja, Jawa Utara 40000</div>
-                  </div>
-                </div>
-              </div>
-              <div class="pt-2 flex gap-16 text-xs">
-                <div class="font-bold space-y-2">
-                  <div>Email</div>
-                  <div>IPK</div>
-                </div>
-                <div class="space-y-2">
-                  <div>darmaji@mail.com</div>
-                  <div>3.5</div>
-                </div>
-              </div>
-            </div>
-          </div>
+
           <div class="w-full p-4 text-justify mb-5">
             <div class="test-md p-2 font-bold">Selesai Magang</div>
             <div class="pb-2 flex gap-5 ">
@@ -446,13 +417,14 @@ document.addEventListener("DOMContentLoaded", async () => {
   if(auth.role === "mahasiswa"){
     renderKandidatMahasiswa();
   } else {
+    let dataCandidates = []
     await getListCandidate().then(res => {
-      console.log(res)
+      dataCandidates = res.data.data
     }).catch((err)=>{
       toast.error("Gagal mengambil data kandidat")
     })
     renderKandidatAdmin();
     fetchKandidat();
-    fetchTabelKandidat();
+    fetchTabelKandidat(dataCandidates);
   }
 });

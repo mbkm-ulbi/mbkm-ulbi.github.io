@@ -54,3 +54,14 @@ export const getTime = (date) => {
   }
   return result;
 };
+
+export function isDeadlineExceeded(deadline) {
+  // Mendapatkan tanggal hari ini
+  const today = new Date();
+
+  // Mengonversi deadline menjadi objek Date
+  const deadlineDate = new Date(deadline);
+
+  // Mengecek apakah hari ini melebihi deadline
+  return today > deadlineDate;
+}

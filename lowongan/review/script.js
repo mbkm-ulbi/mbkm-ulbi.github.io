@@ -1,7 +1,7 @@
 import { html, render } from "https://cdn.jsdelivr.net/npm/uhtml@4.5.11/+esm";
 import { getAuth, getUserInfo } from "../../src/js/libraries/cookies.js";
 import API, { getListJob } from "../../src/js/api/index.js";
-import { getTime, getUrlParam } from "../../src/js/libraries/utilities.js";
+import { getTime, getUrlParam, isDeadlineExceeded } from "../../src/js/libraries/utilities.js";
 import { toast } from "../../src/js/libraries/notify.js";
 import { slugUri } from "../../src/js/customs/settings.js";
 import moment from "https://cdn.jsdelivr.net/npm/moment@2.30.1/+esm";
@@ -223,10 +223,10 @@ document.addEventListener("DOMContentLoaded", async () => {
   renderElement(data);
 
   const auth = await getUserInfo();
-  if (auth.role === "superadmin" || auth.role === "prodi" || auth.role === "cdc") {
+  if (["superadmin", "prodi", "cdc"].includes(auth.role)) {
     renderApprovalButton(data);
-  } else if (auth.role === "mahasiswa") {
-    if (data.status === "Available") {
+  } else if (auth.role === "mahasiswa" && data.status === "Available") {
+    if(!isDeadlineExceeded(data.deadline)){
       renderApplyButton();
     }
   }

@@ -1,6 +1,9 @@
 import { html, render } from "https://cdn.jsdelivr.net/npm/uhtml@4.5.11/+esm";
 import { listKandidatDummy, rekapPenilaianDummy } from "../kandidat/dummyKandidat.js";
 import { getAuth, getUserInfo } from "../src/js/libraries/cookies.js";
+import API from "../src/js/api/index.js";
+import moment from 'https://cdn.jsdelivr.net/npm/moment@2.30.1/+esm'
+
 
 const fetchPenilaian = async () => {
   const rekap = await rekapPenilaianDummy();
@@ -205,8 +208,12 @@ const renderPenilaian = () =>{
     `
   )
 }
-const renderPenilaianMahasiswa = () =>{
+const renderPenilaianMahasiswa = async () =>{
   const penilaian = document.getElementById("content-penilaian");
+  let data = {}
+  await API.getUsers().then((res)=>{
+    data = res?.data
+  })
   render(
     penilaian,
     html`
@@ -215,16 +222,16 @@ const renderPenilaianMahasiswa = () =>{
           <div class="p-4 text-lg font-bold">Penilaian Kandidat</div>
           <div class="border-b border-gray-300"></div>
           <div class="p-4 flex gap-4">
-            <img src="src/images/dummy_foto_kandidat.png" width="[250px]" alt="kandidat-image" />
+            <img src=${data?.user?.profile_picture?.url} class="w-[150px]"  alt="kandidat-image" />
             <div class="w-full">
               <div class="pb-2 flex gap-96">
                 <div>
                   <div class="text-xs font-bold">Nama Lengkap</div>
-                  <div class="text-md font-bold">Darmaji Setiaji Ngahiji</div>
+                  <div class="text-md font-bold">${data?.user?.name}</div>
                 </div>
                 <div>
                   <div class="text-xs font-bold">NIM</div>
-                  <div class="text-xs">000000000123</div>
+                  <div class="text-xs">${data?.user?.nim}</div>
                 </div>
               </div>
               <div class="border-b border-dashed border-gray-300"></div>
@@ -237,9 +244,9 @@ const renderPenilaianMahasiswa = () =>{
                       <div>Alamat</div>
                     </div>
                     <div class="space-y-2">
-                      <div>08123456789</div>
-                      <div>D3-Manajemen Bisnis</div>
-                      <div>Jl. Bersama Kamu Selamanya No. 123, Kota Apa Saja, Jawa Utara 40000</div>
+                      <div>${data?.user?.phone_number}</div>
+                      <div>${data?.user?.program_study}</div>
+                      <div>${data?.user?.address}</div>
                     </div>
                   </div>
                 </div>
@@ -249,8 +256,8 @@ const renderPenilaianMahasiswa = () =>{
                     <div>IPK</div>
                   </div>
                   <div class="space-y-2">
-                    <div>darmaji@mail.com</div>
-                    <div>3.5</div>
+                    <div>${data?.user?.email}</div>
+                    <div>${data?.user?.ipk}</div>
                   </div>
                 </div>
               </div>
@@ -258,7 +265,7 @@ const renderPenilaianMahasiswa = () =>{
           </div>
           <div class="py-1 border-b border-dashed border-gray-300"></div>
           <div>
-            <div class="p-4 text-md font-bold">Melamar Magang</div>
+            <div class="p-4 text-md font-bold">Informasi Magang</div>
             <div class="px-4 pb-2 flex gap-14">
               <div>
                 <div class="pt-2 flex gap-16 text-xs">
@@ -268,9 +275,9 @@ const renderPenilaianMahasiswa = () =>{
                     <div>Alamat</div>
                   </div>
                   <div class="space-y-2">
-                    <div>PT. Pos Indonesia</div>
-                    <div>24 September 2024 - 14:35</div>
-                    <div>Jl. Bersama Kamu Selamanya No. 123, Kota Apa Saja, Jawa Utara 40000</div>
+                    <div>${data?.job?.company}</div>
+                    <div>${moment(data?.job?.created_at)?.format("DD MMMM YYYY hh:mm")}</div>
+                    <div>${data?.job?.location}</div>
                   </div>
                 </div>
               </div>
@@ -280,44 +287,14 @@ const renderPenilaianMahasiswa = () =>{
                   <div>Masa Kerja</div>
                 </div>
                 <div class="space-y-2">
-                  <div>Staf Admin</div>
-                  <div>3 Bulan</div>
+                  <div>${data?.job?.title}</div>
+                  <div>${data?.job?.duration}</div>
                 </div>
               </div>
             </div>
           </div>
-          <div class="py-1 border-b border-dashed border-gray-300"></div>
-          <div>
-            <div class="p-4 text-md font-bold">Selesai Magang</div>
-            <div class="px-4 pb-2 flex gap-14">
-              <div>
-                <div class="pt-2 flex gap-16 text-xs">
-                  <div class="font-bold space-y-2">
-                    <div>Perusahaan</div>
-                    <div>Tanggal</div>
-                    <div>Alamat</div>
-                  </div>
-                  <div class="space-y-2">
-                    <div>PT. Pos Indonesia</div>
-                    <div>24 September 2024 - 14:35</div>
-                    <div>Jl. Bersama Kamu Selamanya No. 123, Kota Apa Saja, Jawa Utara 40000</div>
-                  </div>
-                </div>
-              </div>
-              <div class="pt-2 flex gap-16 text-xs">
-                <div class="font-bold space-y-2">
-                  <div>Posisi</div>
-                  <div>Masa Kerja</div>
-                  <div>Periode</div>
-                </div>
-                <div class="space-y-2">
-                  <div>Staf Admin</div>
-                  <div>3 Bulan</div>
-                  <div>01 Juli - 30 September 2024</div>
-                </div>
-              </div>
-            </div>
-          </div>
+          
+          
           <div class="py-1 border-b border-dashed border-gray-300"></div>
           <div class="p-4 text-md font-bold">Laporan Kandidat</div>
           <div class="px-4 flex gap-4">

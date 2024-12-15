@@ -82,12 +82,12 @@ const fetchListLowongan = async () => {
               </div>
               <div class="flex justify-start items-center gap-2">
                 <iconify-icon icon="solar:calendar-bold-duotone" height="22" class="text-ulbiOrange" noobserver></iconify-icon>
-                <div>Waktu: ${item.created_at}</div>
+                <div>Batas akhir melamar: ${moment(item.deadline).format("DD MMMM YYYY")}</div>
               </div>
               <div class="flex justify-between items-center gap-2 p-absolute">
                 <div class="flex justify-start items-center gap-2">
                   <iconify-icon icon="solar:user-bold-duotone" height="22" class="text-ulbiOrange" noobserver></iconify-icon>
-                  <div class="font-semibold">${item.applicants} Kandidat Mendaftar</div>
+                  <div class="font-semibold">${item.applicants ? "null" : "null"} Kandidat Mendaftar</div>
                 </div>
                 <div class="flex gap-2">
                   <ui-button variant="outline_orange" type="button">Simpan</ui-button>
