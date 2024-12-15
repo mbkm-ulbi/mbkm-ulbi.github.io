@@ -27,6 +27,11 @@
             <div class="border-t border-gray-300 border-dashed"></div>
             <div id="select-company" class="flex flex-col gap-2"></div>
             <div>
+              <fo-label label="Upload Gambar Lowongan"></fo-label>
+              <fo-file className="min-h-24" name="job_vacancy_image" accept="image/*"></fo-file>
+              <fo-error name="job_vacancy_image"></fo-error>
+            </div>
+            <div>
               <fo-label for="title" label="Judul"></fo-label>
               <fo-input name="title" value="" placeholder=""></fo-input>
               <fo-error name="title"></fo-error>

@@ -2,7 +2,7 @@
 
 import API, { postLogin } from "../../src/js/api/index.js";
 import { slugUri } from "../../src/js/customs/settings.js";
-import { getUserInfo } from "../../src/js/libraries/cookies.js";
+import { getAuth, getUserInfo } from "../../src/js/libraries/cookies.js";
 import { toast } from "../../src/js/libraries/notify.js";
 import { formValidation } from "./validation.js";
 import { html, render } from "https://cdn.jsdelivr.net/npm/uhtml@4.5.11/+esm";
@@ -18,17 +18,13 @@ const renderSelectCompany = async () => {
         <fo-select id="company" name="company" placeholder="Silahkan pilih disini"> </fo-select>
         <fo-error name="company"></fo-error>
       </div>
-      <div>
-        <fo-label label="Upload Gambar Lowongan"></fo-label>
-        <fo-file className="min-h-24" name="job_vacancy_image" accept="image/*"></fo-file>
-        <fo-error name="job_vacancy_image"></fo-error>
-      </div>
     `
   );
 };
 
 document.addEventListener("DOMContentLoaded", async function () {
   const auth = await getUserInfo();
+  console.log(auth?.user)
   if (auth.role === "prodi" || auth.role === "cdc") {
     await renderSelectCompany();
   }
@@ -133,14 +129,19 @@ document.addEventListener("DOMContentLoaded", async function () {
       event.preventDefault();
       const formData = new FormData(form);
       const company = Options.find((item) => item.id == formData.get("company"));
-      formData.set("company", company?.company_name);
-      formData.append("location", company?.company_address);
+      if(company){
+        formData.set("company", company?.company_name);
+        formData.append("location", company?.company_address);
+      } else {
+        formData.append("company", "Default Company");
+        formData.append("location", "Default Location");
+      }
 
+      console.log('company',formData.get("company"));
       //Ubah benefit menjadi string coma seperti ini "benefit1,benefit2,benefit3"
       const benefitInputs = benefitContainer.querySelectorAll("fo-input");
       //@ts-ignore
       const benefits = Array.from(benefitInputs).map((input, index) => formData.get(`benefit-${index + 1}`));
-      console.log("benefits", benefits.join(","));
       const benefitString = benefits.join(", ").toString();
       formData.append("benefits", benefitString); // Gabungkan manfaat dengan koma
       // Validasi form sebelum melanjutkan

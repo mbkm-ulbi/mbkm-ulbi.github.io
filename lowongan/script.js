@@ -148,8 +148,7 @@ const fetchListLowongan = async () => {
               <fo-label label="Deskripsi Pekerjaan" className="text-sm text-gray-800"></fo-label>
             </div>
          <div class="max-w-3xl mx-auto p-6 mt-10">
-         ${detail?.description}
-              
+         <div innerHTML=${detail?.description}></div>
             </div>
            
             
@@ -158,7 +157,7 @@ const fetchListLowongan = async () => {
         <div class="p-4 flex flex-wrap justify-between border-t border-gray-300">
           <div><ui-button variant="outline_orange" type="button" href="">Simpan</ui-button></div>
           <div>
-            <ui-button data-dialog-trigger="data-lamaran" color="orange" type="button">Lamar</ui-button>
+            <ui-button href=${`lowongan/apply/index.html?id=`+detail?.id} color="orange" type="button">Lamar</ui-button>
             <ui-dialog name="data-lamaran" className="w-[1000px] h-[2000px] p-0 overflow-auto">
               <div class="flex flex-col items-center gap-4">
                 <div class="pb-2 p-4 w-full flex justify-between items-center border-b border-gray-300">

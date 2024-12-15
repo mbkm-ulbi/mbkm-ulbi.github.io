@@ -6,30 +6,33 @@ import { toast } from "../../src/js/libraries/notify.js";
 import moment from "https://cdn.jsdelivr.net/npm/moment@2.30.1/+esm";
 import micromodal from "https://cdn.jsdelivr.net/npm/micromodal@0.4.10/+esm";
 
-const fetchKandidat = async (kandidat,fetchCandidates) => {
+const fetchKandidat = async (kandidat, fetchCandidates) => {
   console.log(kandidat);
-  const handleApprove = async (id, index) =>{
+  const handleApprove = async (id, index) => {
     //disable button tolak dan setujui
-    await API.postApply(null,`/${id}/approve`).then((res=>{
-      toast.success("Berhasil menerima kandidat");
-      //jika success maka close modal
-      fetchCandidates()
-      micromodal.close("tinjau-kandidat-" + index);
-
-    })).catch((err)=>{
-      console.log(err)
-      toast.error("Gagal menerima kandidat");
-    })
-  }
-  const handleReject = async (id, index)=>{
-    await API.postApply(null,`/${id}/reject`).then((res=>{
-      toast.success("Berhasil menolak kandidat");
-      fetchCandidates()
-      micromodal.close("tinjau-kandidat-" + index);
-    })).catch((err)=>{
-      toast.error("Gagal menolak kandidat");
-    })
-  }
+    await API.postApply(null, `/${id}/approve`)
+      .then((res) => {
+        toast.success("Berhasil menerima kandidat");
+        //jika success maka close modal
+        fetchCandidates();
+        micromodal.close("tinjau-kandidat-" + index);
+      })
+      .catch((err) => {
+        console.log(err);
+        toast.error("Gagal menerima kandidat");
+      });
+  };
+  const handleReject = async (id, index) => {
+    await API.postApply(null, `/${id}/reject`)
+      .then((res) => {
+        toast.success("Berhasil menolak kandidat");
+        fetchCandidates();
+        micromodal.close("tinjau-kandidat-" + index);
+      })
+      .catch((err) => {
+        toast.error("Gagal menolak kandidat");
+      });
+  };
   render(document.getElementById("totalKandidat"), html` ${toMonetary(kandidat.length)} Kandidat `);
 
   render(
@@ -96,25 +99,42 @@ const fetchKandidat = async (kandidat,fetchCandidates) => {
                       </div>
                       <div class="w-full">
                         <fo-label label="DHS"></fo-label>
-                        <fo-uploaded  ?disabled=${!item?.apply_job?.dhs?.url} fileurl=${item?.apply_job?.dhs ? item?.apply_job?.dhs?.url : ''} filename=${item?.apply_job?.dhs ? item?.apply_job?.dhs?.url : "File tidak ditemukan"} className="mb-2"></fo-uploaded>
+                        <fo-uploaded
+                          ?disabled=${!item?.apply_job?.dhs?.url}
+                          fileurl=${item?.apply_job?.dhs ? item?.apply_job?.dhs?.url : ""}
+                          filename=${item?.apply_job?.dhs ? item?.apply_job?.dhs?.url : "File tidak ditemukan"}
+                          className="mb-2"
+                        ></fo-uploaded>
                         <fo-error name="fileUpload"></fo-error>
                       </div>
                       <div class="w-full">
                         <fo-label label="CV"></fo-label>
-                        <fo-uploaded  ?disabled=${!item?.apply_job?.cv?.url} fileurl=${item?.apply_job?.cv ? item?.apply_job?.cv?.url : ''} filename=${item?.apply_job?.cv ? item?.apply_job?.cv?.url : "File tidak ditemukan"} className="mb-2"></fo-uploaded>
+                        <fo-uploaded
+                          ?disabled=${!item?.apply_job?.cv?.url}
+                          fileurl=${item?.apply_job?.cv ? item?.apply_job?.cv?.url : ""}
+                          filename=${item?.apply_job?.cv ? item?.apply_job?.cv?.url : "File tidak ditemukan"}
+                          className="mb-2"
+                        ></fo-uploaded>
                         <fo-error name="fileUpload"></fo-error>
                       </div>
                       <div class="w-full">
                         <fo-label label="Surat Lamaran"></fo-label>
-                        <fo-uploaded  ?disabled=${!item?.apply_job?.surat_lamaran?.url} fileurl=${item?.apply_job?.surat_lamaran ? item?.apply_job?.surat_lamaran?.url : ''} filename=${item?.apply_job?.surat_lamaran ? item?.apply_job?.surat_lamaran?.url : "File tidak ditemukan"} className="mb-2"></fo-uploaded>
+                        <fo-uploaded
+                          ?disabled=${!item?.apply_job?.surat_lamaran?.url}
+                          fileurl=${item?.apply_job?.surat_lamaran ? item?.apply_job?.surat_lamaran?.url : ""}
+                          filename=${item?.apply_job?.surat_lamaran ? item?.apply_job?.surat_lamaran?.url : "File tidak ditemukan"}
+                          className="mb-2"
+                        ></fo-uploaded>
                         <fo-error name="fileUpload"></fo-error>
                       </div>
                     </div>
-                    ${item?.apply_job?.status !== "approved" && item?.apply_job?.status !== "rejected" ? html`<div class="border-t border-gray-300"></div>
-                    <div class="p-4 flex justify-between items-center">
-                      <ui-button color="red" className="w-full" onclick=${()=>handleReject(item?.apply_job?.id, index)}>TOLAK</ui-button>
-                      <ui-button color="green" className="w-full" onclick=${()=>handleApprove(item?.apply_job?.id, index)}>SETUJUI</ui-button>
-                    </div>` : null}
+                    ${item?.apply_job?.status !== "approved" && item?.apply_job?.status !== "rejected"
+                      ? html`<div class="border-t border-gray-300"></div>
+                          <div class="p-4 flex justify-between items-center">
+                            <ui-button color="red" className="w-full" onclick=${() => handleReject(item?.apply_job?.id, index)}>TOLAK</ui-button>
+                            <ui-button color="green" className="w-full" onclick=${() => handleApprove(item?.apply_job?.id, index)}>SETUJUI</ui-button>
+                          </div>`
+                      : null}
                   </div>
                 </ui-dialog>
               </div>
@@ -211,29 +231,74 @@ const renderDetailJobs = (item) => {
     `
   );
 };
+
+const renderTutupLowongan = (id, fetchJob) => {
+  const elemetTutupLowongan = document.getElementById("tutup-lowongan-element");
+  const handleTutupLowongan = async (id) => {
+    await API.getListJob(`/${id}/tolak`)
+      .then((res) => {
+        toast.success("Berhasil menutup lowongan");
+        micromodal.close("tutup-lowongan");
+        fetchJob()
+      }).catch((err) => {
+        toast.error("Gagal menutup lowongan");
+        fetchJob()
+
+      })
+  }
+  render(
+    elemetTutupLowongan,
+    html`<div>
+      <ui-button color="red" data-dialog-trigger="tutup-lowongan">TUTUP LOWONGAN</ui-button>
+      <ui-dialog name="tutup-lowongan" className="w-[750px] h-[320px]">
+        <div class="flex flex-col text-center justify-center items-center gap-3">
+          <div class="test-md font-bold">Yakin Untuk Menutup Postingan Ini?</div>
+          <iconify-icon icon="solar:close-square-bold-duotone" height="96" class="text-ulbiOrange" noobserver></iconify-icon>
+          <div class="text-sm font-semibold">Postingan Anda Akan Kami Tinjau Maksimal 2x24 Jam</div>
+          <div class="text-xs">Akun Perusahaan Anda Kini Dapat Melakukan Posting Lowongan Magang Pada Website MBKM ULBI</div>
+          <div class="text-xs">Silahkan Masuk Menggunakan Akun Yang Telah Anda Buat Untuk Melakukan Posting Lowongan Magang</div>
+          <div class="flex gap-4">
+            <ui-button data-dialog-close>BATAL</ui-button>
+            <div>
+              <ui-button color="red" onclick=${()=>handleTutupLowongan(id)}>TUTUP</ui-button>
+            </div>
+          </div>
+        </div>
+      </ui-dialog>
+    </div> `
+  );
+};
 document.addEventListener("DOMContentLoaded", async () => {
+  micromodal.init();
   const urlParams = getUrlParam();
   const id = urlParams.get("id");
   // let data = {};
-  await API.getListJob(`/${id}`)
-    .then((res) => {
-      let data = res.data.data;
-      renderDetailJobs(data);
-    })
-    .catch((err) => {
-      toast.error("Gagal mengambil data lowongan");
-    });
-  
-   let fetchCandidates = async () => {await API.getListJob(`/${id}/list`)
-    .then((res) => {
+  let job = {}
+  const fetchJob = async () => {
+    await API.getListJob(`/${id}`)
+      .then((res) => {
+        job = res.data.data;
+        renderDetailJobs(job);
+      })
+      .catch((err) => {
+        toast.error("Gagal mengambil data lowongan");
+      });
+  };
+  await fetchJob()
+ 
+  let fetchCandidates = async () => {
+    await API.getListJob(`/${id}/list`)
+      .then((res) => {
+        let candidates = res.data.data;
+        fetchKandidat(candidates, fetchCandidates);
+      })
+      .catch((err) => {
+        toast.error("Gagal mengambil data kandidat");
+      });
+  };
 
-      let candidates = res.data.data;
-      fetchKandidat(candidates,fetchCandidates);
-
-    })
-    .catch((err) => {
-      toast.error("Gagal mengambil data kandidat");
-    });}
-    fetchCandidates()
-
+  await fetchCandidates();
+  if(job.status === "Available"){
+    renderTutupLowongan(id,fetchJob);
+  }
 });

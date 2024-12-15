@@ -21,31 +21,15 @@
         <div class="p-4 flex flex-col gap-4 rounded-md shadow-md">
           <div class="flex justify-between items-center">
             <div class="text-md font-bold">Kurasi Kandidat</div>
-            <div>
-              <ui-button color="red" data-dialog-trigger="tutup-lowongan">TUTUP LOWONGAN</ui-button>
-              <ui-dialog name="tutup-lowongan" className="w-[750px] h-[320px]">
+            <div id="tutup-lowongan-element">
+              <ui-dialog name="konfirmasi-tutup">
                 <div class="flex flex-col text-center justify-center items-center gap-3">
-                  <div class="test-md font-bold">Yakin Untuk Menutup Postingan Ini?</div>
-                  <iconify-icon icon="solar:close-square-bold-duotone" height="96" class="text-ulbiOrange" noobserver></iconify-icon>
+                  <div class="test-md font-bold">Postingan Telah Ditutup</div>
+                  <iconify-icon icon="solar:verified-check-bold-duotone" height="96" class="text-green-600" noobserver></iconify-icon>
                   <div class="text-sm font-semibold">Postingan Anda Akan Kami Tinjau Maksimal 2x24 Jam</div>
                   <div class="text-xs">Akun Perusahaan Anda Kini Dapat Melakukan Posting Lowongan Magang Pada Website MBKM ULBI</div>
                   <div class="text-xs">Silahkan Masuk Menggunakan Akun Yang Telah Anda Buat Untuk Melakukan Posting Lowongan Magang</div>
-                  <div class="flex gap-4">
-                    <ui-button data-dialog-close>BATAL</ui-button>
-                    <div>
-                      <ui-button color="red" data-dialog-trigger="konfirmasi-tutup">TUTUP</ui-button>
-                      <ui-dialog name="konfirmasi-tutup">
-                        <div class="flex flex-col text-center justify-center items-center gap-3">
-                          <div class="test-md font-bold">Postingan Telah Ditutup</div>
-                          <iconify-icon icon="solar:verified-check-bold-duotone" height="96" class="text-green-600" noobserver></iconify-icon>
-                          <div class="text-sm font-semibold">Postingan Anda Akan Kami Tinjau Maksimal 2x24 Jam</div>
-                          <div class="text-xs">Akun Perusahaan Anda Kini Dapat Melakukan Posting Lowongan Magang Pada Website MBKM ULBI</div>
-                          <div class="text-xs">Silahkan Masuk Menggunakan Akun Yang Telah Anda Buat Untuk Melakukan Posting Lowongan Magang</div>
-                          <ui-button data-dialog-close>SELESAI</ui-button>
-                        </div>
-                      </ui-dialog>
-                    </div>
-                  </div>
+                  <ui-button data-dialog-close>SELESAI</ui-button>
                 </div>
               </ui-dialog>
             </div>
@@ -112,6 +96,7 @@
 
         </div>
       </div>
+    
 
       <!-- End of content  -->
     </auth-layout>
