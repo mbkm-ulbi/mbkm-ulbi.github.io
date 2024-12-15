@@ -51,10 +51,7 @@ const renderSuperAdmin =  () =>{
                     <iconify-icon icon="solar:alt-arrow-right-bold" class="text-orange-500" height="20"></iconify-icon>
                 </div>
                 <div class="mt-4 text-4xl font-bold text-gray-700">6,500</div>
-                <div class="mt-2 text-sm flex">
-                    <span class="me-1 text-orange-500">2%</span>Decrease From Target <iconify-icon
-                        icon="solar:arrow-down-bold" class="text-orange-500" height="20"></iconify-icon>
-                </div>
+                
             </div>
             <!-- Card 2 -->
             <div class="bg-white rounded-lg shadow p-6 flex-1">
@@ -63,10 +60,7 @@ const renderSuperAdmin =  () =>{
                     <iconify-icon icon="solar:alt-arrow-right-bold" class="text-orange-500" height="20"></iconify-icon>
                 </div>
                 <div class="mt-4 text-4xl font-bold text-gray-700">6,500</div>
-                <div class="mt-2 text-sm flex">
-                    <span class="me-1 text-orange-500">2%</span>Decrease From Target <iconify-icon
-                        icon="solar:arrow-down-bold" class="text-orange-500" height="20"></iconify-icon>
-                </div>
+                
             </div>
             <!-- Card 3 -->
             <div class="bg-white rounded-lg shadow p-6 flex-1">
@@ -75,10 +69,7 @@ const renderSuperAdmin =  () =>{
                     <iconify-icon icon="solar:alt-arrow-right-bold" class="text-orange-500" height="20"></iconify-icon>
                 </div>
                 <div class="mt-4 text-4xl font-bold text-gray-700">6,500</div>
-                <div class="mt-2 text-sm flex">
-                    <span class="me-1 text-orange-500">2%</span>Decrease From Target <iconify-icon
-                        icon="solar:arrow-down-bold" class="text-orange-500" height="20"></iconify-icon>
-                </div>
+                
             </div>
             <!-- Card 4 -->
             <div class="bg-white rounded-lg shadow p-6 flex-1">
@@ -87,10 +78,7 @@ const renderSuperAdmin =  () =>{
                     <iconify-icon icon="solar:alt-arrow-right-bold" class="text-orange-500" height="20"></iconify-icon>
                 </div>
                 <div class="mt-4 text-4xl font-bold text-gray-700">6,500</div>
-                <div class="mt-2 text-sm flex">
-                    <span class="me-1 text-orange-500">2%</span>Decrease From Target <iconify-icon
-                        icon="solar:arrow-down-bold" class="text-orange-500" height="20"></iconify-icon>
-                </div>
+                
             </div>
             <!-- Card 5 -->
             <div class="bg-white rounded-lg shadow p-6 flex-1">
@@ -99,10 +87,7 @@ const renderSuperAdmin =  () =>{
                     <iconify-icon icon="solar:alt-arrow-right-bold" class="text-orange-500" height="20"></iconify-icon>
                 </div>
                 <div class="mt-4 text-4xl font-bold text-gray-700">6,500</div>
-                <div class="mt-2 text-sm flex">
-                    <span class="me-1 text-orange-500">2%</span>Decrease From Target <iconify-icon
-                        icon="solar:arrow-down-bold" class="text-orange-500" height="20"></iconify-icon>
-                </div>
+                
             </div>
         </div>
         <div class="mt-6">
@@ -110,13 +95,8 @@ const renderSuperAdmin =  () =>{
         </div>
         <div class="flex space-x-8">
             <!-- Line Chart -->
-            <div class="bg-white p-4 rounded-lg shadow w-2/3">
+            <div class="bg-white p-4 rounded-lg shadow w-full">
                 <canvas id="lineChart"></canvas>
-            </div>
-            <!-- Pie Chart -->
-            <div class="bg-white p-4 rounded-lg shadow w-1/3">
-                <canvas id="pieChart"></canvas>
-                <!-- Legend content -->
             </div>
         </div>
         <p class="text-xl font-bold mt-4">Persentase Keikutsertaan Mahasiswa Berdasarkan Prodi</p>

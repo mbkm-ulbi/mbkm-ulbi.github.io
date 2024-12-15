@@ -4,10 +4,30 @@ import { getTime, getUrlParam, toMonetary } from "../../src/js/libraries/utiliti
 import API, { getListJob } from "../../src/js/api/index.js";
 import { toast } from "../../src/js/libraries/notify.js";
 import moment from "https://cdn.jsdelivr.net/npm/moment@2.30.1/+esm";
+import micromodal from "https://cdn.jsdelivr.net/npm/micromodal@0.4.10/+esm";
 
-const fetchKandidat = async (kandidat) => {
+const fetchKandidat = async (kandidat,getListJob) => {
   console.log(kandidat);
-
+  const handleApprove = async (id, index) =>{
+    //disable button tolak dan setujui
+    await API.postApply(null,`/${id}/accept`).then((res=>{
+      toast.success("Berhasil menerima kandidat");
+      //jika success maka close modal
+      micromodal.close("tinjau-kandidat-" + index);
+      getListJob();
+    })).catch((err)=>{
+      toast.error("Gagal menerima kandidat");
+    })
+  }
+  const handleReject = async (id, index)=>{
+    await API.postApply(null,`/${id}/reject`).then((res=>{
+      toast.success("Berhasil menolak kandidat");
+      micromodal.close("tinjau-kandidat-" + index);
+      getListJob();
+    })).catch((err)=>{
+      toast.error("Gagal menolak kandidat");
+    })
+  }
   render(document.getElementById("totalKandidat"), html` ${toMonetary(kandidat.length)} Kandidat `);
 
   render(
@@ -30,12 +50,12 @@ const fetchKandidat = async (kandidat) => {
               </div>
               <div class="flex flex-col gap-4">
                 <div>
-                  ${item.applyStatus === "Diterima"
-                    ? html`<ui-badge class="bg-green-600/25 text-green-600" dot>${item.applyStatus}</ui-badge>`
-                    : item.applyStatus === "Pending"
-                    ? html`<ui-badge class="bg-orange-600/25 text-orange-600" dot>${item.applyStatus}</ui-badge>`
-                    : item.applyStatus === "Ditolak"
-                    ? html`<ui-badge class="bg-red-600/25 text-red-600" dot>${item.applyStatus}</ui-badge>`
+                  ${item.apply_job?.status === "approved"
+                    ? html`<ui-badge class="bg-green-600/25 text-green-600" dot>${item.apply_job?.status?.toUpperCase()}</ui-badge>`
+                    : item.apply_job?.status === "pending"
+                    ? html`<ui-badge class="bg-orange-600/25 text-orange-600" dot>${item.apply_job?.status?.toUpperCase()}</ui-badge>`
+                    : item.apply_job?.status === "rejected"
+                    ? html`<ui-badge class="bg-red-600/25 text-red-600" dot>${item.apply_job?.status?.toUpperCase()}</ui-badge>`
                     : ""}
                 </div>
                 <ui-button data-dialog-trigger=${"tinjau-kandidat-" + index}>TINJAU</ui-button>
@@ -74,25 +94,26 @@ const fetchKandidat = async (kandidat) => {
                       </div>
                       <div class="w-full">
                         <fo-label label="DHS"></fo-label>
-                        <fo-uploaded fileurl="https://google.com" filename="filename.pdf" className="mb-2"></fo-uploaded>
+                        <fo-uploaded  disabled=${item?.apply_job?.dhs?.url ? false : true} fileurl=${item?.apply_job?.dhs ? item?.apply_job?.dhs?.url : ''} filename=${item?.apply_job?.dhs ? item?.apply_job?.dhs?.url : "File tidak ditemukan"} className="mb-2"></fo-uploaded>
                         <fo-error name="fileUpload"></fo-error>
                       </div>
                       <div class="w-full">
                         <fo-label label="CV"></fo-label>
-                        <fo-uploaded fileurl="https://google.com" filename="filename.pdf" className="mb-2"></fo-uploaded>
+                        <fo-uploaded  disabled=${item?.apply_job?.cv?.url ? false : true} fileurl=${item?.apply_job?.cv ? item?.apply_job?.cv?.url : ''} filename=${item?.apply_job?.cv ? item?.apply_job?.cv?.url : "File tidak ditemukan"} className="mb-2"></fo-uploaded>
                         <fo-error name="fileUpload"></fo-error>
                       </div>
                       <div class="w-full">
                         <fo-label label="Surat Lamaran"></fo-label>
-                        <fo-uploaded fileurl="https://google.com" filename="filename.pdf" className="mb-2"></fo-uploaded>
+                        <fo-uploaded  disabled=${item?.apply_job?.surat_lamaran?.url ? false : true} fileurl=${item?.apply_job?.surat_lamaran ? item?.apply_job?.surat_lamaran?.url : ''} filename=${item?.apply_job?.surat_lamaran ? item?.apply_job?.surat_lamaran?.url : "File tidak ditemukan"} className="mb-2"></fo-uploaded>
                         <fo-error name="fileUpload"></fo-error>
                       </div>
                     </div>
-                    <div class="border-t border-gray-300"></div>
+                    ${item?.apply_job?.status !== "approved" && item?.apply_job?.status !== "rejected" ? html`<div class="border-t border-gray-300"></div>
                     <div class="p-4 flex justify-between items-center">
-                      <ui-button data-dialog-close color="red" className="w-full">TOLAK</ui-button>
-                      <ui-button color="green" className="w-full">SETUJUI</ui-button>
-                    </div>
+                      <ui-button color="red" className="w-full" onclick=${()=>handleReject(item?.apply_job?.id, index)}>TOLAK</ui-button>
+                      <ui-button color="green" className="w-full" onclick=${()=>handleApprove(item?.apply_job?.id, index)}>SETUJUI</ui-button>
+                    </div>` : null}
+                    
                   </div>
                 </ui-dialog>
               </div>
@@ -205,7 +226,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   await API.getListJob(`/${id}/list`)
     .then((res) => {
       const candidates = res.data.data;
-      fetchKandidat(candidates);
+      fetchKandidat(candidates,getListJob);
     })
     .catch((err) => {
       toast.error("Gagal mengambil data kandidat");

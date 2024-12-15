@@ -30,7 +30,7 @@ class PublicHeader extends HTMLElement {
               </a>
             </div>
             <div class="flex gap-6">
-              <ui-button variant="outline_blue" href="register_student/">Register Jobseeker</ui-button>
+              <ui-button variant="outline_blue" href="register_student/">Register Mahasiswa</ui-button>
               <ui-button variant="outline_blue" href="register_company/">Register Employer</ui-button>
               <a
                 href="login/"

@@ -9,6 +9,7 @@ import "../ui/ui-link.js";
  * @attr {string} fileurl
  * @attr {string} [filename]
  * @attr {string} [className]
+ * @attr {boolean} [disabled]
  */
 class FormUploaded extends HTMLElement {
   constructor() {
@@ -18,6 +19,7 @@ class FormUploaded extends HTMLElement {
   connectedCallback() {
     this.renderTemplate();
   }
+
 
   renderTemplate() {
     render(
@@ -30,10 +32,10 @@ class FormUploaded extends HTMLElement {
             this.getAttribute("className")
           )}
         >
-          <ui-link type="external" href=${this.getAttribute("fileurl")} target="_blank" className="line-clamp-1">
+          <ui-link type=${this.hasAttribute("disabled") ? "":"external"} href=${this.hasAttribute("disabled") ? "javascript:void(0)" : this.getAttribute("fileurl")} target=${this.hasAttribute("disabled") ?"" :"_blank"} className="line-clamp-1" >
             ${this.getAttribute("filename") ?? this.getAttribute("fileurl")}
           </ui-link>
-          <ui-link type="external" href=${this.getAttribute("fileurl")} target="_blank" className="flex items-center justify-center">
+          <ui-link type=${this.hasAttribute("disabled") ? "":"external"} href=${this.hasAttribute("disabled") ? "javascript:void(0)" : this.getAttribute("fileurl")} target=${this.hasAttribute("disabled") ?"" :"_blank"} className="flex items-center justify-center">
             <iconify-icon icon="iconamoon:attachment" height="16" class="text-gray-600 hover:text-gray-500" noobserver></iconify-icon>
           </ui-link>
         </div>

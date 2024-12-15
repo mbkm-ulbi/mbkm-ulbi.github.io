@@ -7,6 +7,7 @@ import { html, render } from "https://cdn.jsdelivr.net/npm/uhtml@4.5.11/+esm";
  * @attr {string} href
  * @attr {"_blank"} [target]
  * @attr {string} [className]
+ * @attr {boolean} [disabled]
  */
 class UILink extends HTMLElement {
   constructor() {
@@ -26,6 +27,7 @@ class UILink extends HTMLElement {
           class=${cn("text-blue-600 hover:text-blue-400", this.getAttribute("className"))}
           href=${this.getAttribute("href")}
           target=${this.getAttribute("target")}
+          ?disabled=${this.hasAttribute("disabled")}
         >
           ${this.content}
         </a>

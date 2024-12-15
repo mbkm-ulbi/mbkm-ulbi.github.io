@@ -139,6 +139,7 @@ class AuthLayout extends HTMLElement {
           <img src=${this.state.userInfo.user.profile_picture.preview} alt="avatar" class="block rounded-full h-[48px] shrink-0" />
           <div>
             <div class="font-semibold whitespace-nowrap">${this.state.userInfo?.user?.name}</div>
+            <div class="text-gray-500 text-xs mt-1 whitespace-nowrap">Role: ${this.state.userInfo?.role?.toUpperCase()}</div>
             <div class="text-gray-500 text-xs mt-1 whitespace-nowrap">${this.state.userInfo.user.program_study}</div>
           </div>
         </div>
