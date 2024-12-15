@@ -6,24 +6,26 @@ import { toast } from "../../src/js/libraries/notify.js";
 import moment from "https://cdn.jsdelivr.net/npm/moment@2.30.1/+esm";
 import micromodal from "https://cdn.jsdelivr.net/npm/micromodal@0.4.10/+esm";
 
-const fetchKandidat = async (kandidat,getListJob) => {
+const fetchKandidat = async (kandidat,fetchCandidates) => {
   console.log(kandidat);
   const handleApprove = async (id, index) =>{
     //disable button tolak dan setujui
-    await API.postApply(null,`/${id}/accept`).then((res=>{
+    await API.postApply(null,`/${id}/approve`).then((res=>{
       toast.success("Berhasil menerima kandidat");
       //jika success maka close modal
+      fetchCandidates()
       micromodal.close("tinjau-kandidat-" + index);
-      getListJob();
+
     })).catch((err)=>{
+      console.log(err)
       toast.error("Gagal menerima kandidat");
     })
   }
   const handleReject = async (id, index)=>{
     await API.postApply(null,`/${id}/reject`).then((res=>{
       toast.success("Berhasil menolak kandidat");
+      fetchCandidates()
       micromodal.close("tinjau-kandidat-" + index);
-      getListJob();
     })).catch((err)=>{
       toast.error("Gagal menolak kandidat");
     })
@@ -94,17 +96,17 @@ const fetchKandidat = async (kandidat,getListJob) => {
                       </div>
                       <div class="w-full">
                         <fo-label label="DHS"></fo-label>
-                        <fo-uploaded  disabled=${item?.apply_job?.dhs?.url ? false : true} fileurl=${item?.apply_job?.dhs ? item?.apply_job?.dhs?.url : ''} filename=${item?.apply_job?.dhs ? item?.apply_job?.dhs?.url : "File tidak ditemukan"} className="mb-2"></fo-uploaded>
+                        <fo-uploaded  ?disabled=${!item?.apply_job?.dhs?.url} fileurl=${item?.apply_job?.dhs ? item?.apply_job?.dhs?.url : ''} filename=${item?.apply_job?.dhs ? item?.apply_job?.dhs?.url : "File tidak ditemukan"} className="mb-2"></fo-uploaded>
                         <fo-error name="fileUpload"></fo-error>
                       </div>
                       <div class="w-full">
                         <fo-label label="CV"></fo-label>
-                        <fo-uploaded  disabled=${item?.apply_job?.cv?.url ? false : true} fileurl=${item?.apply_job?.cv ? item?.apply_job?.cv?.url : ''} filename=${item?.apply_job?.cv ? item?.apply_job?.cv?.url : "File tidak ditemukan"} className="mb-2"></fo-uploaded>
+                        <fo-uploaded  ?disabled=${!item?.apply_job?.cv?.url} fileurl=${item?.apply_job?.cv ? item?.apply_job?.cv?.url : ''} filename=${item?.apply_job?.cv ? item?.apply_job?.cv?.url : "File tidak ditemukan"} className="mb-2"></fo-uploaded>
                         <fo-error name="fileUpload"></fo-error>
                       </div>
                       <div class="w-full">
                         <fo-label label="Surat Lamaran"></fo-label>
-                        <fo-uploaded  disabled=${item?.apply_job?.surat_lamaran?.url ? false : true} fileurl=${item?.apply_job?.surat_lamaran ? item?.apply_job?.surat_lamaran?.url : ''} filename=${item?.apply_job?.surat_lamaran ? item?.apply_job?.surat_lamaran?.url : "File tidak ditemukan"} className="mb-2"></fo-uploaded>
+                        <fo-uploaded  ?disabled=${!item?.apply_job?.surat_lamaran?.url} fileurl=${item?.apply_job?.surat_lamaran ? item?.apply_job?.surat_lamaran?.url : ''} filename=${item?.apply_job?.surat_lamaran ? item?.apply_job?.surat_lamaran?.url : "File tidak ditemukan"} className="mb-2"></fo-uploaded>
                         <fo-error name="fileUpload"></fo-error>
                       </div>
                     </div>
@@ -113,7 +115,6 @@ const fetchKandidat = async (kandidat,getListJob) => {
                       <ui-button color="red" className="w-full" onclick=${()=>handleReject(item?.apply_job?.id, index)}>TOLAK</ui-button>
                       <ui-button color="green" className="w-full" onclick=${()=>handleApprove(item?.apply_job?.id, index)}>SETUJUI</ui-button>
                     </div>` : null}
-                    
                   </div>
                 </ui-dialog>
               </div>
@@ -222,13 +223,17 @@ document.addEventListener("DOMContentLoaded", async () => {
     .catch((err) => {
       toast.error("Gagal mengambil data lowongan");
     });
-
-  await API.getListJob(`/${id}/list`)
+  
+   let fetchCandidates = async () => {await API.getListJob(`/${id}/list`)
     .then((res) => {
-      const candidates = res.data.data;
-      fetchKandidat(candidates,getListJob);
+
+      let candidates = res.data.data;
+      fetchKandidat(candidates,fetchCandidates);
+
     })
     .catch((err) => {
       toast.error("Gagal mengambil data kandidat");
-    });
+    });}
+    fetchCandidates()
+
 });

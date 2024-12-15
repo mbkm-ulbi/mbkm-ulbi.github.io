@@ -39,7 +39,7 @@ const postWithToken = (api) => async (data, param = "") => {
     return axios.post(`${getBaseUrl(api)}${param}`, data, {
       method: "POST",
       headers: {
-        "Content-type": "application/json",
+        "Content-type": "application/x-www-form-urlencoded",
         "Authorization": `Bearer ${token}`
       }
     });
@@ -49,7 +49,7 @@ const deleteWithToken = (api) => async (param = "") => {
     return axios.delete(`${getBaseUrl(api)}${param}`, {
       method: "DELETE",
       headers: {
-        "Content-type": "application/json",
+        "Content-type": "application/x-www-form-urlencoded",
         "Authorization": `Bearer ${token}`
       }
     });

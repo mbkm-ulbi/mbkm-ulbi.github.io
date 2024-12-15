@@ -5,8 +5,7 @@ import { getUrlParam } from "../../src/js/libraries/utilities.js";
 import { toast } from "../../src/js/libraries/notify.js";
 import { formValidation } from "./validation.js";
 import { slugUri } from "../../src/js/customs/settings.js";
-import moment from 'https://cdn.jsdelivr.net/npm/moment@2.30.1/+esm'
-
+import moment from "https://cdn.jsdelivr.net/npm/moment@2.30.1/+esm";
 
 const renderMyInfo = (auth) => {
   const myInfo = document.getElementById("my-info");
@@ -48,7 +47,9 @@ const renderCompanyInfo = (company) => {
     html`
         <div class="bg-white rounded-lg border flex p-4">
                   <div class="flex-shrink-0">
-                   <img alt="Profile picture of a smiling person with a blue background" class="w-22 h-22 object-cover" height="100" src=${company?.job_vacancy_image?.url} width="100"/>
+                   <img alt="Profile picture of a smiling person with a blue background" class="w-22 h-22 object-cover" height="100" src=${
+                     company?.job_vacancy_image?.url
+                   } width="100"/>
                   </div>
                   <div class="ml-4">
                    <h2 class="text-lg font-semibold text-gray-800">
@@ -113,7 +114,9 @@ if (form instanceof HTMLFormElement) {
     const formData = new FormData(form);
     formData.append("users[]", auth?.user?.id);
     formData.append("jobs[]", id);
-
+    console.log("dhs", formData.get("dhs"));
+    console.log("surat_lamaran", formData.get("surat_lamaran"));
+    console.log("cv", formData.get("cv"));
     // Validasi form sebelum melanjutkan
     if (!formValidation(form, formData)) return;
 

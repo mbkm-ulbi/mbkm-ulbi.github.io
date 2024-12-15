@@ -143,7 +143,7 @@ const renderElement = (data) => {
             </div>
             <div class="flex flex-row gap-2 justify-start items-center">
               <div class="w-[120px] flex overflow-hidden rounded-l-lg">
-                <img class="object-center object-contain" src=${data?.image ? data?.image : urlImage} height="[100px]" alt="image" />
+                <img class="object-center object-contain" src=${data?.job_vacancy_image?.url ? data?.job_vacancy_image?.url : urlImage} height="[100px]" alt="image" />
               </div>
               <div class="flex flex-col justify-start gap-2">
                 <div class="text-sm font-semibold">${data?.title}</div>

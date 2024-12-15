@@ -20,8 +20,9 @@ class FormUploaded extends HTMLElement {
     this.renderTemplate();
   }
 
-
+  
   renderTemplate() {
+    console.log(this.hasAttribute("disabled"))
     render(
       this,
       html`
