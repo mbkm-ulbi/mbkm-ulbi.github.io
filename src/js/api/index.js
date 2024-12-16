@@ -64,6 +64,7 @@ export const getListCandidate = getWithToken('api/v1/apply-jobs')
 export const getUsers = getWithToken('api/v1/profile')
 export const postJob = postWithToken('api/v1/jobs')
 export const postApply = postWithToken('api/v1/apply-jobs')
+export const getListEvaluations = getWithToken('api/v1/evaluations')
 const API = {
     postLogin,
     postRegister,
@@ -73,7 +74,8 @@ const API = {
     getUsers,
     postJob,
     postApply,
-    deleteJobsById
+    deleteJobsById,
+    getListEvaluations
 }
 
 export default API

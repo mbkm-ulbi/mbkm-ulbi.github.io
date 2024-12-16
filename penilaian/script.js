@@ -3,6 +3,7 @@ import { listKandidatDummy, rekapPenilaianDummy } from "../kandidat/dummyKandida
 import { getAuth, getUserInfo } from "../src/js/libraries/cookies.js";
 import API from "../src/js/api/index.js";
 import moment from 'https://cdn.jsdelivr.net/npm/moment@2.30.1/+esm'
+import { toast } from "../src/js/libraries/notify.js";
 
 
 const fetchPenilaian = async () => {
@@ -37,8 +38,7 @@ const fetchPenilaian = async () => {
   );
 };
 
-const fetchTabelPenilaian = async () => {
-  const list = await listKandidatDummy();
+const fetchTabelPenilaian = async (list) => {
 
   render(
     document.getElementById("tabelPenilaian"),
@@ -46,20 +46,20 @@ const fetchTabelPenilaian = async () => {
       ${list.map((item) => {
         return html`
           <tr>
-            <td>${item.applyTime}</td>
-            <td>${item.name}</td>
+            <td>${moment(item.created_at).format("DD MMMM YYYY hh:mm")}</td>
+            <td>${item.apply_job.users[0].name}</td>
             <td>${item.type}</td>
-            <td>${item.company}</td>
+            <td>${item.company_personnel?.name}</td>
             <td>${item.position}</td>
             <td>${item.studyProgramme}</td>
-            <td>${item.score}</td>
+            <td>${item.grade}</td>
             <td>
-              ${item.assessment === "Sudah Dinilai"
-                ? html`<ui-badge class="bg-green-600/25 text-green-600" dot>${item.assessment}</ui-badge>`
-                : item.assessment === "Draft"
-                ? html`<ui-badge class="bg-orange-600/25 text-orange-600" dot>${item.assessment}</ui-badge>`
-                : item.assessment === "Belum Dinilai"
-                ? html`<ui-badge class="bg-red-600/25 text-red-600" dot>${item.assessment}</ui-badge>`
+              ${item.status === "Sudah Dinilai"
+                ? html`<ui-badge class="bg-green-600/25 text-green-600" dot>${item.status}</ui-badge>`
+                : item.status === "Draft"
+                ? html`<ui-badge class="bg-orange-600/25 text-orange-600" dot>${item.status}</ui-badge>`
+                : item.status === "Belum Dinilai"
+                ? html`<ui-badge class="bg-red-600/25 text-red-600" dot>${item.status}</ui-badge>`
                 : ""}
             </td>
             <td class="flex space-x-4">
@@ -479,9 +479,13 @@ const renderPenilaianMahasiswa = async () =>{
 document.addEventListener("DOMContentLoaded", async () => {
   const auth = await getUserInfo();
   if(auth.role === "cdc" || auth.role === "superadmin" || auth.role === "prodi" || auth.role === "dosen" || auth.role === "mitra"){
+    let dataEvaluation = []
+    await API.getListEvaluations().then((res)=>{
+      dataEvaluation = res?.data.data
+    }).catch((err)=>toast.error("Gagal memuat data penilaian"))
     renderPenilaian();
     fetchPenilaian();
-    fetchTabelPenilaian();
+    fetchTabelPenilaian(dataEvaluation);
   } else if (auth.role === "mahasiswa"){
     renderPenilaianMahasiswa()
   }

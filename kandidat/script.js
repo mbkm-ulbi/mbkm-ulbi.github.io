@@ -154,7 +154,7 @@ const fetchTabelKandidat = async (list) => {
                       <div>${item?.jobs[0]?.location}</div>
                     </div>
                     <div class="p-4 flex justify-end">
-                        ${item?.status === 'approved' ?` <ui-button className="w-max flex gap-2" data-dialog-close> SELESAIKAN MASA KERJA</ui-button>` : ''}
+                        ${item?.status === 'approved' ?html`<ui-button className="w-max flex gap-2" data-dialog-close> SELESAIKAN MASA KERJA</ui-button>` : ''}
               
                     </div>
                   </div>
@@ -315,13 +315,13 @@ const renderKandidatAdmin = () =>{
 }
 
 
-const renderKandidatMahasiswa = async() =>{
+const renderKandidatMahasiswa = async(dataLamaran) =>{
   const contentKandidat = document.getElementById("content-kandidat");
   let data = {}
   await API.getUsers().then((res)=>{
     data = res?.data?.user
   })
-  console.log(data);
+  const defaultImage = 'src/images/dummy_ulbi.png'
   render(
     contentKandidat,
     html`
@@ -374,38 +374,52 @@ const renderKandidatMahasiswa = async() =>{
             </div>
           </div>
 
+          
           <div class="w-full p-4 text-justify mb-5">
-            <div class="test-md p-2 font-bold">Selesai Magang</div>
-            <div class="pb-2 flex gap-5 ">
-              <div>
-                <img src="src/images/dummy_pos_ind.png" style="height: 80px;" />
+            <div class="test-md p-2 font-bold">Daftar Magang yang Dilamar</div>
+            <div class="grid grid-cols-2 gap-5 ">
+            ${dataLamaran.map((item,index) => (
+              html`
+              <div class="pb-2 flex gap-5">
+              <div style="width: 100px;">
+                <img src=${item?.jobs[0]?.job_vacancy_image?.url ?? defaultImage} style="height: 100px;" />
               </div>
               <div class="mr-10">
                 <div class="pt-2 flex gap-16 text-xs">
                   <div class="font-bold space-y-2">
-                    <div>Telepon</div>
-                    <div>Prodi</div>
+                    <div>Perusahaan</div>
+                    <div>Posisi</div>
                     <div>Alamat</div>
                   </div>
                   <div class="space-y-2">
-                    <div>08123456789</div>
-                    <div>D3-Manajemen Bisnis</div>
-                    <div>Jl. Bersama Kamu Selamanya No. 123, Kota Apa Saja, Jawa Utara 40000</div>
+                    <div>${item?.jobs[0]?.company}</div>
+                    <div>${item?.jobs[0]?.title}</div>
+                    <div>${item?.jobs[0]?.location}</div>
                   </div>
                 </div>
               </div>
               <div class="pt-2 flex gap-16 text-xs">
                 <div class="font-bold space-y-2">
-                  <div>Email</div>
-                  <div>IPK</div>
+                  <div>Satus</div>
+            ${item.status === "approved" ? html`<div>Action</div>` : ''}
+                  
                 </div>
                 <div class="space-y-2">
-                  <div>darmaji@mail.com</div>
-                  <div>3.5</div>
+                  <div> ${item.status === "approved"
+                ? html`<ui-badge class="bg-green-600/25 text-green-600" dot>${item.status}</ui-badge>`
+                : item.status === "pending"
+                ? html`<ui-badge class="bg-orange-600/25 text-orange-600" dot>${item.status}</ui-badge>`
+                : item.status === "done"
+                ? html`<ui-badge class="bg-gray-600/25 text-gray-600" dot>${item.status}</ui-badge>`
+                : item.status === 'rejected'
+                ? html`<ui-badge class="bg-red-600/25 text-red-600" dot>${item.status}</ui-badge>` : ''}</div>
+                  ${item.status === "approved" ? html`<div><ui-button className="w-max flex gap-2">Jadikan Magang Aktif</ui-button></div>` : ''}
                 </div>
               </div>
             </div>
-          </div>
+              `
+            ))}
+            </div>
         </div>
       </div>
     </div>
@@ -415,7 +429,13 @@ const renderKandidatMahasiswa = async() =>{
 document.addEventListener("DOMContentLoaded", async () => {
   const auth = await getUserInfo();
   if(auth.role === "mahasiswa"){
-    renderKandidatMahasiswa();
+    let dataLamaran = []
+    await API.getListCandidate("/user/"+auth.user.id).then((res)=>{
+      dataLamaran = res.data.data
+    }).catch((err)=>{
+      toast.error("Gagal mengambil data lamaran")
+    })
+    renderKandidatMahasiswa(dataLamaran);
   } else {
     let dataCandidates = []
     await getListCandidate().then(res => {
