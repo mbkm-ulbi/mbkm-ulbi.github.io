@@ -62,11 +62,11 @@ const fetchListLowongan = async () => {
               <div class="flex justify-between items-center">
                 <div>Diposting 2 Hari Yang Lalu</div>
                 <div>
-                  ${item.status === "Available"
+                  ${item.status === "Tersedia"
                     ? html`<ui-badge class="bg-green-600/25 text-green-600" dot>${item.status}</ui-badge>`
-                    : item.status === "Pending"
+                    : item.status === "Perlu Ditinjau"
                     ? html`<ui-badge class="bg-orange-600/25 text-orange-600" dot>${item.status}</ui-badge>`
-                    : item.status === "Not Available"
+                    : item.status === "Ditutup" || item.status === "Ditolak"
                     ? html`<ui-badge class="bg-red-600/25 text-red-600" dot>${item.status}</ui-badge>`
                     : ""}
                 </div>
@@ -110,11 +110,11 @@ const fetchListLowongan = async () => {
       <div class="flex-none h-[800px] flex flex-col rounded-md border border-gray-300 text-xs">
         <div class="pt-4 px-4 flex justify-between items-center">
           <div>Diposting 2 Hari Yang Lalu</div>
-          <div>  ${detail.status === "Available"
+          <div>   ${detail.status === "Tersedia"
                     ? html`<ui-badge class="bg-green-600/25 text-green-600" dot>${detail.status}</ui-badge>`
-                    : detail.status === "Pending"
+                    : detail.status === "Perlu Ditinjau"
                     ? html`<ui-badge class="bg-orange-600/25 text-orange-600" dot>${detail.status}</ui-badge>`
-                    : detail.status === "Not Available"
+                    : detail.status === "Ditutup" || detail.status === "Ditolak"
                     ? html`<ui-badge class="bg-red-600/25 text-red-600" dot>${detail.status}</ui-badge>`
                     : ""}
             </div>
@@ -508,11 +508,11 @@ const renderSuperUser = async () => {
                 <div class="flex justify-between items-center">
                   <p class="text-gray-500 text-sm">Diposting ${getTime(item?.created_at)}</p>
                   <div>
-                    ${item.status === "Available"
+                     ${item.status === "Tersedia"
                     ? html`<ui-badge class="bg-green-600/25 text-green-600" dot>${item.status}</ui-badge>`
-                    : item.status === "Pending"
+                    : item.status === "Perlu Ditinjau"
                     ? html`<ui-badge class="bg-orange-600/25 text-orange-600" dot>${item.status}</ui-badge>`
-                    : item.status === "Not Available"
+                    : item.status === "Ditutup" || item.status === "Ditolak"
                     ? html`<ui-badge class="bg-red-600/25 text-red-600" dot>${item.status}</ui-badge>`
                     : ""}
                   </div>

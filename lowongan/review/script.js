@@ -10,10 +10,10 @@ const renderApprovalButton = (data) => {
   console.log(data);
   const approvlButton = document.getElementById("approval-lowongan");
 
-  if (data?.status === "Pending") {
+  if (data?.status === "Perlu Ditinjau") {
     const handleApprove = async () => {
       console.log("approve", data.id);
-      await getListJob(`/${data.id}/setujui`)
+      await API.postJob(null,`/${data.id}/approve`)
         .then((res) => {
           toast.success("Lowongan berhasil disetujui");
           window.location.assign(`${slugUri}lowongan`);
@@ -24,7 +24,7 @@ const renderApprovalButton = (data) => {
     };
     const handleReject = async () => {
       console.log("reject", data.id);
-      await getListJob(`/${data.id}/tolak`)
+      API.postJob(null,`/${data.id}/reject`)
         .then((res) => {
           toast.success("Lowongan berhasil ditolak");
           window.location.assign(`${slugUri}lowongan`);
@@ -132,13 +132,13 @@ const renderElement = (data) => {
             <div class="flex justify-between items-center">
               <div>${getTime(data?.created_at)}</div>
               <div>
-                ${data.status === "Available"
-                  ? html`<ui-badge class="bg-green-600/25 text-green-600" dot>${data.status}</ui-badge>`
-                  : data.status === "Pending"
-                  ? html`<ui-badge class="bg-orange-600/25 text-orange-600" dot>${data.status}</ui-badge>`
-                  : data.status === "Not Available"
-                  ? html`<ui-badge class="bg-red-600/25 text-red-600" dot>${data.status}</ui-badge>`
-                  : ""}
+              ${data.status === "Tersedia"
+                ? html`<ui-badge class="bg-green-600/25 text-green-600" dot>${data.status}</ui-badge>`
+                : data.status === "Perlu Ditinjau"
+                ? html`<ui-badge class="bg-orange-600/25 text-orange-600" dot>${data.status}</ui-badge>`
+                : data.status === "Ditutup" || data.status === "Ditolak"
+                ? html`<ui-badge class="bg-red-600/25 text-red-600" dot>${data.status}</ui-badge>`
+                : ""}
               </div>
             </div>
             <div class="flex flex-row gap-2 justify-start items-center">
@@ -225,7 +225,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   const auth = await getUserInfo();
   if (["superadmin", "prodi", "cdc"].includes(auth.role)) {
     renderApprovalButton(data);
-  } else if (auth.role === "mahasiswa" && data.status === "Available") {
+  } else if (auth.role === "mahasiswa" && data.status === "Tersedia") {
     if(!isDeadlineExceeded(data.deadline)){
       renderApplyButton();
     }

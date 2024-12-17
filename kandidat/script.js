@@ -68,7 +68,7 @@ const fetchTabelKandidat = async (list, fetchDataKandidat) => {
             <td>${item.users[0]?.name}</td>
             <td>${item.jobs[0]?.job_type}</td>
             <td>${item.jobs[0]?.company}</td>
-            <td>${item.jobs[0]?.company}</td>
+            <td>${item.jobs[0]?.title}</td>
             <td>${item.users[0]?.program_study}</td>
             <td>
               ${html`${badgeStatus(item.status)}`}
@@ -490,8 +490,8 @@ document.addEventListener("DOMContentLoaded", async () => {
       })
     }
     await fetchDataKandidat()
-    renderKandidatAdmin();
-    fetchKandidat();
-    fetchTabelKandidat(dataCandidates, fetchDataKandidat);
+    await renderKandidatAdmin();
+    await fetchKandidat();
+    await fetchTabelKandidat(dataCandidates, fetchDataKandidat);
   }
 });

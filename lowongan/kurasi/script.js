@@ -154,15 +154,13 @@ const renderDetailJobs = (item) => {
       <div class="flex justify-between items-center">
         <div>Diposting ${getTime(item?.created_at)}</div>
         <div>
-          ${
-            item.status === "Available"
-              ? html`<ui-badge class="bg-green-600/25 text-green-600" dot>${item.status}</ui-badge>`
-              : item.status === "Pending"
-              ? html`<ui-badge class="bg-orange-600/25 text-orange-600" dot>${item.status}</ui-badge>`
-              : item.status === "Not Available"
-              ? html`<ui-badge class="bg-red-600/25 text-red-600" dot>${item.status}</ui-badge>`
-              : ""
-          }
+           ${item.status === "Tersedia"
+                    ? html`<ui-badge class="bg-green-600/25 text-green-600" dot>${item.status}</ui-badge>`
+                    : item.status === "Perlu Ditinjau"
+                    ? html`<ui-badge class="bg-orange-600/25 text-orange-600" dot>${item.status}</ui-badge>`
+                    : item.status === "Ditutup" || item.status === "Ditolak"
+                    ? html`<ui-badge class="bg-red-600/25 text-red-600" dot>${item.status}</ui-badge>`
+                    : ""}
         </div>
       </div>
       <div class="flex flex-row gap-2 justify-start items-center">

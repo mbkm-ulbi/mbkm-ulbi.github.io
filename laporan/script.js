@@ -1,6 +1,8 @@
 import { html, render } from "https://cdn.jsdelivr.net/npm/uhtml@4.5.11/+esm";
 import { listKandidatDummy, rekapLaporanDummy } from "../kandidat/dummyKandidat.js";
 import { getAuth, getUserInfo } from "../src/js/libraries/cookies.js";
+import API from "../src/js/api/index.js";
+import { toast } from "../src/js/libraries/notify.js";
 
 const fetchLaporan = async () => {
   const rekap = await rekapLaporanDummy();
@@ -72,12 +74,12 @@ const fetchTabelLaporan = async () => {
 
 //-----------------
 
-const renderLaporan = () =>{
+const renderLaporan = () => {
   const contentLaporan = document.getElementById("content-laporan");
   render(
     contentLaporan,
     html`
-     <div class="space-y-4">
+      <div class="space-y-4">
         <div class="px-12 py-4 rounded-md shadow-md">
           <div id="rekapLaporan" class="flex justify-between">
             <div class="flex items-center gap-2">
@@ -200,153 +202,101 @@ const renderLaporan = () =>{
         </div>
       </div>
     `
-  )
-}
+  );
+};
 
-
-const renderLaporanMahasiswa = () =>{
+const renderLaporanMahasiswa = async (dataLamaran) => {
   const contentLaporan = document.getElementById("content-laporan");
+  console.log({ dataLamaran });
   render(
     contentLaporan,
     html`
-    <div class="space-y-4">
+      <div class="space-y-4">
         <div class="rounded-md shadow-md">
-        
-        <div class="flex flex-col text-center justify-center items-center gap-4">
-        <div class="pb-2 w-full flex justify-start items-center border-b border-gray-300">
-          <div class="test-md p-4 font-bold">Laporan Magang</div>
-        </div>
-        <div class="w-full p-4 flex gap-4 text-justify">
-          <img src="src/images/dummy_foto_kandidat.png" width="[250px]" alt="kandidat-image" />
-          <div class="w-full">
-            <div class="pb-2 flex gap-96">
-              <div>
-                <div class="text-xs font-bold">Nama Lengkap</div>
-                <div class="text-md font-bold">Darmaji Setiaji Ngahiji</div>
-              </div>
-              <div>
-                <div class="text-xs font-bold">NIM</div>
-                <div class="text-xs">000000000123</div>
-              </div>
+          <div class="flex flex-col text-center justify-center items-center gap-4">
+            <div class="pb-2 w-full flex justify-start items-center border-b border-gray-300">
+              <div class="test-md p-4 font-bold">Laporan Magang</div>
             </div>
-            <div class="border-b border-dashed border-gray-300"></div>
-            <div class="pb-2 flex gap-14">
-              <div>
-                <div class="pt-2 flex gap-16 text-xs">
-                  <div class="font-bold space-y-2">
-                    <div>Telepon</div>
-                    <div>Prodi</div>
-                    <div>Alamat</div>
+            <div class="w-full p-4 flex gap-4 text-justify">
+              <img src=${dataLamaran?.users[0]?.profile_picture?.url} class="w-[150px]" alt="kandidat-image" />
+              <div class="w-full">
+                <div class="pb-2 flex gap-96">
+                  <div>
+                    <div class="text-xs font-bold">Nama Lengkap</div>
+                    <div class="text-md font-bold">${dataLamaran?.users[0]?.name}</div>
                   </div>
-                  <div class="space-y-2">
-                    <div>08123456789</div>
-                    <div>D3-Manajemen Bisnis</div>
-                    <div>Jl. Bersama Kamu Selamanya No. 123, Kota Apa Saja, Jawa Utara 40000</div>
+                  <div>
+                    <div class="text-xs font-bold">NIM</div>
+                    <div class="text-xs">${dataLamaran?.users[0]?.nim}</div>
                   </div>
                 </div>
-              </div>
-              <div class="pt-2 flex gap-16 text-xs">
-                <div class="font-bold space-y-2">
-                  <div>Email</div>
-                  <div>IPK</div>
-                </div>
-                <div class="space-y-2">
-                  <div>darmaji@mail.com</div>
-                  <div>3.5</div>
+                <div class="border-b border-dashed border-gray-300"></div>
+                <div class="pb-2 flex gap-14">
+                  <div>
+                    <div class="pt-2 flex gap-16 text-xs">
+                      <div class="font-bold space-y-2">
+                        <div>Telepon</div>
+                        <div>Prodi</div>
+                        <div>Alamat</div>
+                      </div>
+                      <div class="space-y-2">
+                        <div>${dataLamaran?.users[0]?.phone_number}</div>
+                        <div>${dataLamaran?.users[0]?.program_study}</div>
+                        <div>${dataLamaran?.users[0]?.address}</div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="pt-2 flex gap-16 text-xs">
+                    <div class="font-bold space-y-2">
+                      <div>Email</div>
+                      <div>IPK</div>
+                    </div>
+                    <div class="space-y-2">
+                      <div>${dataLamaran?.users[0]?.email}</div>
+                      <div>${dataLamaran?.users[0]?.ipk}</div>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
-        </div>
-
-        <div class="p-4 w-full h-[30rem] bg-gray-100 flex flex-col overflow-scroll gap-2 border border-dashed border-gray-300 rounded-md text-xs text-justify">
-           <h1 class="text-xl font-bold mb-4">LAPORAN KEGIATAN MAGANG MAHASISWA</h1>
-        <p class="mb-2"><span class="font-semibold">Nama Mahasiswa:</span> Ahmad Yusran</p>
-        <p class="mb-2"><span class="font-semibold">NIM:</span> 123456789</p>
-        <p class="mb-2"><span class="font-semibold">Program Studi:</span> Akuntansi</p>
-        <p class="mb-2"><span class="font-semibold">Perusahaan:</span> PT ABC Sejahtera</p>
-        <p class="mb-2"><span class="font-semibold">Departemen:</span> Keuangan</p>
-        <p class="mb-4"><span class="font-semibold">Periode Magang:</span> 1 Agustus 2024 – 31 Agustus 2024</p>
-
-        <h2 class="text-lg font-bold mb-4">RINCIAN KEGIATAN MAGANG</h2>
-
-        <div class="mb-6">
-            <p class="font-semibold mb-2">Hari/Tanggal: Senin, 1 Agustus 2024</p>
-            <ul class="list-disc list-inside">
-                <li>Pengarahan Awal Dari Supervisor Terkait Tugas-Tugas Selama Magang.</li>
-                <li>Pengenalan Software Akuntansi Yang Digunakan Oleh Perusahaan (Accurate).</li>
-                <li>Memeriksa Kelengkapan Dokumen Untuk Pengajuan Reimbursement Karyawan.</li>
-                <li>Menginput Data Transaksi Kas Kecil (Petty Cash) Ke Dalam Sistem.</li>
-            </ul>
-        </div>
-
-        <div class="mb-6">
-            <p class="font-semibold mb-2">Hari/Tanggal: Selasa, 2 Agustus 2024</p>
-            <ul class="list-disc list-inside">
-                <li>Melakukan Pengarsipan Dokumen Keuangan Secara Manual Dan Digital.</li>
-                <li>Memproses Pengajuan Dana Untuk Kebutuhan Operasional Perusahaan.</li>
-                <li>Membantu Dalam Proses Rekonsiliasi Bank Harian Dengan Supervisor.</li>
-                <li>Mengecek Bukti Transaksi Pembelian Barang Perusahaan.</li>
-            </ul>
-        </div>
-
-        <div class="mb-6">
-            <p class="font-semibold mb-2">Hari/Tanggal: Rabu, 3 Agustus 2024</p>
-            <ul class="list-disc list-inside">
-                <li>Menyusun Laporan Pengeluaran Harian Dari Transaksi Kas Kecil.</li>
-                <li>Menginput Data Transaksi Pemasukan Dari Customer Ke Dalam Sistem.</li>
-                <li>Mengecek Dan Memastikan Kelengkapan Bukti Transaksi Pembayaran Vendor.</li>
-                <li>Mendiskusikan Masalah Pada Sistem Pelaporan Keuangan Dengan Supervisor.</li>
-            </ul>
-        </div>
-        </div>
-
-        <div class="mt-2 w-full flex flex-col gap-3 items-center">
-          <div class="flex items-center justify-between space-x-4 p-4 text-xs">
-            <div class="flex gap-2 items-center">
-              <iconify-icon icon="solar:check-circle-bold" height="22" class="text-green-500" noobserver></iconify-icon>
-              <div>Selesai Dibuat Oleh Mahasiswa</div>
-            </div>
-            <div class="flex gap-2 items-center">
-              <iconify-icon icon="solar:danger-circle-bold" height="22" class="text-red-500" noobserver></iconify-icon>
-              <div>Selesai Diperiksa Oleh Perusahaan</div>
-            </div>
-            <div class="flex gap-2 items-center">
-              <iconify-icon icon="solar:danger-circle-bold" height="22" class="text-red-500" noobserver></iconify-icon>
-              <div>Selesai Diperiksa Oleh Dosen Wali</div>
-            </div>
-            <div class="flex gap-2 items-center">
-              <iconify-icon icon="solar:danger-circle-bold" height="22" class="text-red-500" noobserver></iconify-icon>
-              <div>Selesai Diperiksa Oleh Prodi</div>
-            </div>
-            <div class="flex gap-2 items-center">
-            <ui-button className="w-max flex gap-2">
-              <iconify-icon icon="solar:download-square-bold" height="22" class="text-white" noobserver></iconify-icon>
-              DOWNLOAD
-            </ui-button>
-            </div>
-            <div class="flex gap-2 items-center">
-               <ui-button color="orange">EDIT LAPORAN</ui-button>
-            </div>
-               <div class="flex gap-2 items-center">
-               <ui-button color="orange" disabled>KIRIM LAPORAN</ui-button>
-            </div>
+          <form id="create-report">
+          <div class="ms-5 me-5">
+            <fo-label label="Upload Laporan"></fo-label>
+            <fo-file className="min-h-24" name="job_vacancy_image" accept="application/pdf"></fo-file>
+            <fo-error name="job_vacancy_image"></fo-error>
           </div>
+
+          <div class=" w-full flex justify-end ">
+            <ui-button class="me-5 mt-5 mb-5" color="orange" type="submit">KIRIM LAPORAN</ui-button>
+          </div>
+          </form
         </div>
       </div>
-        </div>
-    </div>
-        
-    `)
-}
+    `
+  );
+};
+
 document.addEventListener("DOMContentLoaded", async () => {
   const auth = await getUserInfo();
-  if(auth.role === "cdc" || auth.role === "superadmin" || auth.role === "prodi" || auth.role === "dosen" || auth.role === "mitra"){
+  if (auth.role === "cdc" || auth.role === "superadmin" || auth.role === "prodi" || auth.role === "dosen" || auth.role === "mitra") {
     renderLaporan();
     fetchLaporan();
     fetchTabelLaporan();
-  } else if(auth.role === "mahasiswa"){
-    renderLaporanMahasiswa()
-  }
-})
+  } else if (auth.role === "mahasiswa") {
+    const auth = await getUserInfo();
+    let dataLamaran = {};
+    async function getMyJob() {
+      await API.getListCandidate("/user/" + auth.user.id)
+        .then((res) => {
+          dataLamaran = res.data.data?.find((item) => item?.status === "Selesai");
+        })
+        .catch((err) => {
+          toast.error("Gagal mengambil data lamaran");
+        });
+    }
 
+    await getMyJob();
+    await renderLaporanMahasiswa(dataLamaran);
+  }
+});
