@@ -1254,8 +1254,8 @@ video {
   width: 120px;
 }
 
-.w-\[250px\] {
-  width: 250px;
+.w-\[150px\] {
+  width: 150px;
 }
 
 .w-\[400px\] {
@@ -1306,10 +1306,6 @@ video {
 .w-max {
   width: -moz-max-content;
   width: max-content;
-}
-
-.w-\[150px\] {
-  width: 150px;
 }
 
 .max-w-3xl {
@@ -2673,6 +2669,10 @@ video {
   background-color: rgb(255 0 0 / var(--tw-bg-opacity, 1));
 }
 
+.bg-blue-600\/25 {
+  background-color: rgb(37 99 235 / 0.25);
+}
+
 .bg-blue-800 {
   --tw-bg-opacity: 1;
   background-color: rgb(30 64 175 / var(--tw-bg-opacity, 1));
@@ -2728,10 +2728,6 @@ video {
   background-color: rgb(75 85 99 / 0.2);
 }
 
-.bg-gray-600\/25 {
-  background-color: rgb(75 85 99 / 0.25);
-}
-
 .bg-gray-700 {
   --tw-bg-opacity: 1;
   background-color: rgb(55 65 81 / var(--tw-bg-opacity, 1));
@@ -2749,6 +2745,10 @@ video {
 .bg-green-700 {
   --tw-bg-opacity: 1;
   background-color: rgb(21 128 61 / var(--tw-bg-opacity, 1));
+}
+
+.bg-green-800\/25 {
+  background-color: rgb(22 101 52 / 0.25);
 }
 
 .bg-inherit {
@@ -2812,6 +2812,18 @@ video {
 .bg-yellow-600 {
   --tw-bg-opacity: 1;
   background-color: rgb(202 138 4 / var(--tw-bg-opacity, 1));
+}
+
+.bg-green-300\/25 {
+  background-color: rgb(134 239 172 / 0.25);
+}
+
+.bg-green-500\/25 {
+  background-color: rgb(34 197 94 / 0.25);
+}
+
+.bg-emerald-500\/25 {
+  background-color: rgb(16 185 129 / 0.25);
 }
 
 .bg-\[url\(\'\.\.\/\.\.\/images\/logo_ulbi_dark\.png\'\)\] {
@@ -3352,6 +3364,11 @@ video {
   color: rgb(22 163 74 / var(--tw-text-opacity, 1));
 }
 
+.text-green-800 {
+  --tw-text-opacity: 1;
+  color: rgb(22 101 52 / var(--tw-text-opacity, 1));
+}
+
 .text-orange-500 {
   --tw-text-opacity: 1;
   color: rgb(249 115 22 / var(--tw-text-opacity, 1));
@@ -3408,6 +3425,16 @@ video {
 .text-yellow-600 {
   --tw-text-opacity: 1;
   color: rgb(202 138 4 / var(--tw-text-opacity, 1));
+}
+
+.text-green-300 {
+  --tw-text-opacity: 1;
+  color: rgb(134 239 172 / var(--tw-text-opacity, 1));
+}
+
+.text-emerald-500 {
+  --tw-text-opacity: 1;
+  color: rgb(16 185 129 / var(--tw-text-opacity, 1));
 }
 
 .underline {

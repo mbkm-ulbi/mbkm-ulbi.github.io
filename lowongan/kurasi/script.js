@@ -5,6 +5,7 @@ import API, { getListJob } from "../../src/js/api/index.js";
 import { toast } from "../../src/js/libraries/notify.js";
 import moment from "https://cdn.jsdelivr.net/npm/moment@2.30.1/+esm";
 import micromodal from "https://cdn.jsdelivr.net/npm/micromodal@0.4.10/+esm";
+import badgeStatus from "../../src/js/libraries/badgeStatus.js";
 
 const fetchKandidat = async (kandidat, fetchCandidates) => {
   console.log(kandidat);
@@ -39,7 +40,6 @@ const fetchKandidat = async (kandidat, fetchCandidates) => {
     document.getElementById("listKandidat"),
     html`
       ${kandidat.map((item, index) => {
-        item.applyStatus = "Pending";
         return html`
           <div class="p-4 flex-none flex gap-2 rounded-lg border border-gray-300">
             <div class="flex justify-between w-full gap-3">
@@ -55,15 +55,11 @@ const fetchKandidat = async (kandidat, fetchCandidates) => {
               </div>
               <div class="flex flex-col gap-4">
                 <div>
-                  ${item.apply_job?.status === "approved"
-                    ? html`<ui-badge class="bg-green-600/25 text-green-600" dot>${item.apply_job?.status?.toUpperCase()}</ui-badge>`
-                    : item.apply_job?.status === "pending"
-                    ? html`<ui-badge class="bg-orange-600/25 text-orange-600" dot>${item.apply_job?.status?.toUpperCase()}</ui-badge>`
-                    : item.apply_job?.status === "rejected"
-                    ? html`<ui-badge class="bg-red-600/25 text-red-600" dot>${item.apply_job?.status?.toUpperCase()}</ui-badge>`
-                    : ""}
+                  ${badgeStatus(item.apply_job.status)}
+                 
                 </div>
-                <ui-button data-dialog-trigger=${"tinjau-kandidat-" + index}>TINJAU</ui-button>
+                ${item?.apply_job?.status == "Melamar" ? html`<ui-button data-dialog-trigger=${"tinjau-kandidat-" + index}>TINJAU</ui-button>` : ''}
+                
                 <ui-dialog name=${"tinjau-kandidat-" + index} className="p-0 w-[800px] h-auto">
                   <div class="flex flex-col">
                     <div class="p-4 flex justify-between items-center">
@@ -128,7 +124,7 @@ const fetchKandidat = async (kandidat, fetchCandidates) => {
                         <fo-error name="fileUpload"></fo-error>
                       </div>
                     </div>
-                    ${item?.apply_job?.status !== "approved" && item?.apply_job?.status !== "rejected"
+                    ${item?.apply_job?.status == "Melamar"
                       ? html`<div class="border-t border-gray-300"></div>
                           <div class="p-4 flex justify-between items-center">
                             <ui-button color="red" className="w-full" onclick=${() => handleReject(item?.apply_job?.id, index)}>TOLAK</ui-button>

@@ -4,6 +4,8 @@ import { getAuth, getUserInfo } from "../src/js/libraries/cookies.js";
 import API, { getListCandidate } from "../src/js/api/index.js";
 import { toast } from "../src/js/libraries/notify.js";
 import moment from 'https://cdn.jsdelivr.net/npm/moment@2.30.1/+esm'
+import badgeStatus from "../src/js/libraries/badgeStatus.js";
+import micromodal from "https://cdn.jsdelivr.net/npm/micromodal@0.4.10/+esm";
 
 
 const fetchKandidat = async () => {
@@ -46,8 +48,16 @@ const fetchKandidat = async () => {
   );
 };
 
-const fetchTabelKandidat = async (list) => {
-
+const fetchTabelKandidat = async (list, fetchDataKandidat) => {
+  const handleDoneJob = async (id) => {
+    await API.postApply(null, `/${id}/done`).then((res)=> {
+      toast.success("Berhasil menyelesaikan magang")
+      micromodal.close(`detail-kandidat-`+id)
+      fetchDataKandidat()
+    }).catch((err)=> {
+      toast.error("Gagal menyelesaikan magang")
+    })
+  }
   render(
     document.getElementById("tabelKandidat"),
     html`
@@ -61,19 +71,12 @@ const fetchTabelKandidat = async (list) => {
             <td>${item.jobs[0]?.company}</td>
             <td>${item.users[0]?.program_study}</td>
             <td>
-              ${item.status === "approved"
-                ? html`<ui-badge class="bg-green-600/25 text-green-600" dot>${item.status}</ui-badge>`
-                : item.status === "pending"
-                ? html`<ui-badge class="bg-orange-600/25 text-orange-600" dot>${item.status}</ui-badge>`
-                : item.status === "done"
-                ? html`<ui-badge class="bg-gray-600/25 text-gray-600" dot>${item.status}</ui-badge>`
-                : item.status === 'rejected'
-                ? html`<ui-badge class="bg-red-600/25 text-red-600" dot>${item.status}</ui-badge>` : ''}
+              ${html`${badgeStatus(item.status)}`}
             </td>
             <td class="flex space-x-4">
               <div>
-                <a data-dialog-trigger=${`detail-kandidat-`+index}><iconify-icon icon="solar:eye-bold" class="text-orange-500" height="16"></iconify-icon></a>
-                <ui-dialog name=${`detail-kandidat-`+index} className="w-[750px] h-auto p-0">
+                <a data-dialog-trigger=${`detail-kandidat-`+item?.id}><iconify-icon icon="solar:eye-bold" class="text-orange-500" height="16"></iconify-icon></a>
+                <ui-dialog name=${`detail-kandidat-`+item?.id} className="w-[750px] h-auto p-0">
                   <div>
                     <div class="w-full flex justify-between items-center bg-ulbiBlue p-4 rounded-t-md">
                       <div class="text-lg text-white font-bold">Detail Kandidat</div>
@@ -154,8 +157,7 @@ const fetchTabelKandidat = async (list) => {
                       <div>${item?.jobs[0]?.location}</div>
                     </div>
                     <div class="p-4 flex justify-end">
-                        ${item?.status === 'approved' ?html`<ui-button className="w-max flex gap-2" data-dialog-close> SELESAIKAN MASA KERJA</ui-button>` : ''}
-              
+                        ${item?.status === 'Aktif' ?html`<ui-button onclick=${()=>handleDoneJob(item?.id)} className="w-max flex gap-2" data-dialog-close> SELESAIKAN MASA KERJA</ui-button>` : ''}
                     </div>
                   </div>
                 </ui-dialog>
@@ -315,13 +317,23 @@ const renderKandidatAdmin = () =>{
 }
 
 
-const renderKandidatMahasiswa = async(dataLamaran) =>{
+const renderKandidatMahasiswa = async(dataLamaran,getMyJob) =>{
   const contentKandidat = document.getElementById("content-kandidat");
   let data = {}
   await API.getUsers().then((res)=>{
     data = res?.data?.user
   })
+  const dataLamaranFindActive = dataLamaran.find((item)=> item.status === "Aktif")
+  console.log(dataLamaranFindActive)
   const defaultImage = 'src/images/dummy_ulbi.png'
+  const handleToActive = async (id) =>{
+    await API.postApply(null, `/${id}/activate`).then(async (res)=>{
+      toast.success("Berhasil mengaktifkan magang")
+      await getMyJob()
+    }).catch((err)=>{
+      toast.error("Gagal mengaktifkan magang")
+    })
+  }
   render(
     contentKandidat,
     html`
@@ -373,7 +385,41 @@ const renderKandidatMahasiswa = async(dataLamaran) =>{
               </div>
             </div>
           </div>
-
+          ${dataLamaranFindActive ? html`<div class="w-full p-4 text-justify mb-5">
+            <div class="test-md p-2 font-bold">Magang Aktif</div>
+            <div class="grid grid-cols-2 gap-5 ">
+         <div class="pb-2 flex gap-5">
+              <div style="width: 100px;">
+                <img src=${dataLamaranFindActive?.jobs[0]?.job_vacancy_image?.url ?? defaultImage} style="height: 100px;" />
+              </div>
+              <div class="mr-10">
+                <div class="pt-2 flex gap-16 text-xs">
+                  <div class="font-bold space-y-2">
+                    <div>Perusahaan</div>
+                    <div>Posisi</div>
+                    <div>Alamat</div>
+                  </div>
+                  <div class="space-y-2">
+                    <div>${dataLamaranFindActive?.jobs[0]?.company}</div>
+                    <div>${dataLamaranFindActive?.jobs[0]?.title}</div>
+                    <div>${dataLamaranFindActive?.jobs[0]?.location}</div>
+                  </div>
+                </div>
+              </div>
+              <div class="pt-2 flex gap-16 text-xs">
+                <div class="font-bold space-y-2">
+                <div class="flex justify-between gap-5">
+                  <div>Status</div>
+                   <div>${html`${badgeStatus(dataLamaranFindActive.status)}`}</div>
+                </div>
+                   ${!dataLamaranFindActive && dataLamaranFindActive.status === "Disetujui" ? html`<div><ui-button id=${`active-button`} onclick=${()=>handleToActive(dataLamaranFindActive?.id)} className="w-max flex gap-1 p-2">Jadikan Magang Aktif</ui-button></div>` : ''}
+                </div>
+                <div class="space-y-2">
+               
+                </div>
+              </div>
+            </div>
+            </div>` : ''}
           
           <div class="w-full p-4 text-justify mb-5">
             <div class="test-md p-2 font-bold">Daftar Magang yang Dilamar</div>
@@ -400,20 +446,14 @@ const renderKandidatMahasiswa = async(dataLamaran) =>{
               </div>
               <div class="pt-2 flex gap-16 text-xs">
                 <div class="font-bold space-y-2">
-                  <div>Satus</div>
-            ${item.status === "approved" ? html`<div>Action</div>` : ''}
-                  
+                <div class="flex justify-between gap-5">
+                  <div>Status</div>
+                   <div>${html`${badgeStatus(item.status)}`}</div>
+                </div>
+                   ${!dataLamaranFindActive && item.status === "Disetujui" ? html`<div><ui-button id=${`active-button`} onclick=${()=>handleToActive(item?.id)} className="w-max flex gap-1 p-2">Jadikan Magang Aktif</ui-button></div>` : ''}
                 </div>
                 <div class="space-y-2">
-                  <div> ${item.status === "approved"
-                ? html`<ui-badge class="bg-green-600/25 text-green-600" dot>${item.status}</ui-badge>`
-                : item.status === "pending"
-                ? html`<ui-badge class="bg-orange-600/25 text-orange-600" dot>${item.status}</ui-badge>`
-                : item.status === "done"
-                ? html`<ui-badge class="bg-gray-600/25 text-gray-600" dot>${item.status}</ui-badge>`
-                : item.status === 'rejected'
-                ? html`<ui-badge class="bg-red-600/25 text-red-600" dot>${item.status}</ui-badge>` : ''}</div>
-                  ${item.status === "approved" ? html`<div><ui-button className="w-max flex gap-2">Jadikan Magang Aktif</ui-button></div>` : ''}
+               
                 </div>
               </div>
             </div>
@@ -430,21 +470,28 @@ document.addEventListener("DOMContentLoaded", async () => {
   const auth = await getUserInfo();
   if(auth.role === "mahasiswa"){
     let dataLamaran = []
-    await API.getListCandidate("/user/"+auth.user.id).then((res)=>{
-      dataLamaran = res.data.data
-    }).catch((err)=>{
-      toast.error("Gagal mengambil data lamaran")
-    })
-    renderKandidatMahasiswa(dataLamaran);
+    async function getMyJob(){
+      await API.getListCandidate("/user/"+auth.user.id).then((res)=>{
+        dataLamaran = res.data.data
+      }).catch((err)=>{
+        toast.error("Gagal mengambil data lamaran")
+      })
+    }
+    await getMyJob()
+   
+    renderKandidatMahasiswa(dataLamaran, getMyJob);
   } else {
     let dataCandidates = []
-    await getListCandidate().then(res => {
-      dataCandidates = res.data.data
-    }).catch((err)=>{
-      toast.error("Gagal mengambil data kandidat")
-    })
+    async function fetchDataKandidat(){
+      await API.getListCandidate().then((res)=>{
+        dataCandidates = res.data.data
+      }).catch((err)=>{
+        toast.error("Gagal mengambil data kandidat")
+      })
+    }
+    await fetchDataKandidat()
     renderKandidatAdmin();
     fetchKandidat();
-    fetchTabelKandidat(dataCandidates);
+    fetchTabelKandidat(dataCandidates, fetchDataKandidat);
   }
 });
