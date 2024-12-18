@@ -324,7 +324,7 @@ const renderKandidatMahasiswa = async(dataLamaran,getMyJob) =>{
     data = res?.data?.user
   })
   const dataLamaranFindActive = dataLamaran.find((item)=> item.status === "Aktif")
-  console.log(dataLamaranFindActive)
+  // const dataLamaranFilterSelesai = dataLamaran.filter((item)=> item.status === "Selesai")
   const defaultImage = 'src/images/dummy_ulbi.png'
   const handleToActive = async (id) =>{
     await API.postApply(null, `/${id}/activate`).then(async (res)=>{
@@ -469,29 +469,28 @@ const renderKandidatMahasiswa = async(dataLamaran,getMyJob) =>{
 document.addEventListener("DOMContentLoaded", async () => {
   const auth = await getUserInfo();
   if(auth.role === "mahasiswa"){
-    let dataLamaran = []
     async function getMyJob(){
       await API.getListCandidate("/user/"+auth.user.id).then((res)=>{
-        dataLamaran = res.data.data
+        let dataLamaran = res.data.data
+        renderKandidatMahasiswa(dataLamaran, getMyJob);
       }).catch((err)=>{
         toast.error("Gagal mengambil data lamaran")
       })
     }
     await getMyJob()
-   
-    renderKandidatMahasiswa(dataLamaran, getMyJob);
   } else {
-    let dataCandidates = []
     async function fetchDataKandidat(){
       await API.getListCandidate().then((res)=>{
-        dataCandidates = res.data.data
+        let dataCandidates = res.data.data
+        console.log(dataCandidates)
+        fetchTabelKandidat(dataCandidates, fetchDataKandidat)
       }).catch((err)=>{
         toast.error("Gagal mengambil data kandidat")
       })
     }
-    await fetchDataKandidat()
     await renderKandidatAdmin();
     await fetchKandidat();
-    await fetchTabelKandidat(dataCandidates, fetchDataKandidat);
+    await fetchDataKandidat()
+
   }
 });
