@@ -65,6 +65,9 @@ export const getUsers = getWithToken('api/v1/profile')
 export const postJob = postWithToken('api/v1/jobs')
 export const postApply = postWithToken('api/v1/apply-jobs')
 export const getListEvaluations = getWithToken('api/v1/evaluations')
+export const createEvaluation = postWithToken('api/v1/evaluations')
+export const createReport = postWithToken('api/v1/reports')
+export const getListReport = getWithToken('api/v1/reports')
 const API = {
     postLogin,
     postRegister,
@@ -75,7 +78,10 @@ const API = {
     postJob,
     postApply,
     deleteJobsById,
-    getListEvaluations
+    getListEvaluations,
+    createReport,
+    getListReport,
+    createEvaluation
 }
 
 export default API

@@ -48,10 +48,10 @@ const fetchTabelPenilaian = async (list) => {
           <tr>
             <td>${moment(item.created_at).format("DD MMMM YYYY hh:mm")}</td>
             <td>${item.apply_job.users[0].name}</td>
-            <td>${item.type}</td>
-            <td>${item.company_personnel?.name}</td>
-            <td>${item.position}</td>
-            <td>${item.studyProgramme}</td>
+            <td>${item.apply_job?.jobs[0]?.job_type}</td>
+            <td>${item.apply_job?.jobs[0]?.company}</td>
+            <td>${item.apply_job?.jobs[0]?.title}</td>
+            <td>${item.apply_job.users[0].program_study}</td>
             <td>${item.grade}</td>
             <td>
               ${item.status === "Sudah Dinilai"
@@ -64,7 +64,7 @@ const fetchTabelPenilaian = async (list) => {
             </td>
             <td class="flex space-x-4">
               <div>
-                <a href="/penilaian/penilaianKandidat"><iconify-icon icon="solar:eye-bold" class="text-orange-500" height="16"></iconify-icon></a>
+                <a href=${"/penilaian/review/index.html?id="+item?.apply_job_id}><iconify-icon icon="solar:eye-bold" class="text-orange-500" height="16"></iconify-icon></a>
               </div>
             </td>
           </tr>

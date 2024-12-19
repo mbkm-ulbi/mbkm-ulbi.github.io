@@ -3,6 +3,7 @@ import { listKandidatDummy, rekapLaporanDummy } from "../kandidat/dummyKandidat.
 import { getAuth, getUserInfo } from "../src/js/libraries/cookies.js";
 import API from "../src/js/api/index.js";
 import { toast } from "../src/js/libraries/notify.js";
+import { formValidation } from "./validation.js";
 
 const fetchLaporan = async () => {
   const rekap = await rekapLaporanDummy();
@@ -36,8 +37,7 @@ const fetchLaporan = async () => {
   );
 };
 
-const fetchTabelLaporan = async () => {
-  const list = await listKandidatDummy();
+const fetchTabelLaporan = async (list) => {
 
   render(
     document.getElementById("tabelLaporan"),
@@ -45,24 +45,23 @@ const fetchTabelLaporan = async () => {
       ${list.map((item) => {
         return html`
           <tr>
-            <td>${item.name}</td>
-            <td>${item.type}</td>
-            <td>${item.company}</td>
-            <td>${item.position}</td>
-            <td>${item.studyProgramme}</td>
-            <td>${item.period}</td>
+            <td>${item.apply_job.users[0]?.name}</td>
+            <td>${item.apply_job?.jobs[0]?.job_type}</td>
+            <td>${item.apply_job?.jobs[0]?.company}</td>
+            <td>${item.apply_job?.jobs[0]?.title}</td>
+            <td>${item.apply_jobs?.jobs[0]?.duration}</td>
             <td>
-              ${item.reportStatus === "Selesai"
-                ? html`<ui-badge class="bg-green-600/25 text-green-600" dot>${item.reportStatus}</ui-badge>`
-                : item.reportStatus === "Pending"
-                ? html`<ui-badge class="bg-orange-600/25 text-orange-600" dot>${item.reportStatus}</ui-badge>`
-                : item.reportStatus === "Berjalan"
-                ? html`<ui-badge class="bg-red-600/25 text-red-600" dot>${item.reportStatus}</ui-badge>`
+              ${item.status === "Selesai"
+                ? html`<ui-badge class="bg-green-600/25 text-green-600" dot>${item.status}</ui-badge>`
+                : item.status === "Pending"
+                ? html`<ui-badge class="bg-orange-600/25 text-orange-600" dot>${item.status}</ui-badge>`
+                : item.status === "Berjalan"
+                ? html`<ui-badge class="bg-red-600/25 text-red-600" dot>${item.status}</ui-badge>`
                 : ""}
             </td>
             <td class="flex space-x-4">
               <div>
-                <ui-link href="laporan/laporanMagang"><iconify-icon icon="solar:eye-bold" class="text-orange-500" height="16"></iconify-icon></ui-link>
+                <ui-link href=${`laporan/approve/index.html?id=${item.apply_job_id}`}><iconify-icon icon="solar:eye-bold" class="text-orange-500" height="16"></iconify-icon></ui-link>
               </div>
             </td>
           </tr>
@@ -157,7 +156,6 @@ const renderLaporan = () => {
                     <th>TIPE</th>
                     <th>PERUSAHAAN</th>
                     <th>POSISI</th>
-                    <th>PRODI</th>
                     <th>PERIODE</th>
                     <th>STATUS</th>
                     <th>ACTION</th>
@@ -207,7 +205,7 @@ const renderLaporan = () => {
 
 const renderLaporanMahasiswa = async (dataLamaran) => {
   const contentLaporan = document.getElementById("content-laporan");
-  console.log({ dataLamaran });
+  
   render(
     contentLaporan,
     html`
@@ -260,15 +258,89 @@ const renderLaporanMahasiswa = async (dataLamaran) => {
               </div>
             </div>
           </div>
+          <div class="flex flex-col text-center justify-center items-center gap-4">
+            <div class="pb-2 w-full flex justify-start items-center border-b border-gray-300">
+            </div>
+            <div class="w-full p-4 flex gap-4 text-justify">
+              <img src=${dataLamaran?.jobs[0]?.job_vacancy_image?.url} class="w-[150px]" alt="kandidat-image" />
+              <div class="w-full">
+                <div class="pb-2 flex gap-96">
+                  <div>
+                    <div class="text-xs font-bold">Perusahaan</div>
+                    <div class="text-md font-bold">${dataLamaran?.jobs[0]?.company}</div>
+                  </div>
+                  <div>
+                    <div class="text-xs font-bold">Posisi</div>
+                    <div class="text-xs">${dataLamaran?.jobs[0]?.title}</div>
+                  </div>
+                </div>
+                <div class="border-b border-dashed border-gray-300"></div>
+                <div class="pb-2 flex gap-14">
+                  <div>
+                    <div class="pt-2 flex gap-16 text-xs">
+                      <div class="font-bold space-y-2">
+                        <div>Benefit</div>
+                        <div>Durasi</div>
+                        <div>Tipe Lowongan</div>
+                      </div>
+                      <div class="space-y-2">
+                        <div>${dataLamaran?.jobs[0]?.benefits}</div>
+                        <div>${dataLamaran?.jobs[0]?.duration}</div>
+                        <div>${dataLamaran?.jobs[0]?.job_type}</div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="pt-2 flex gap-16 text-xs">
+                    <div class="font-bold space-y-2">
+                      <div>Lokasi</div>
+                    </div>
+                    <div class="space-y-2">
+                      <div>${dataLamaran?.jobs[0]?.location}</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
           <form id="create-report">
           <div class="ms-5 me-5">
             <fo-label label="Upload Laporan"></fo-label>
-            <fo-file className="min-h-24" name="job_vacancy_image" accept="application/pdf"></fo-file>
-            <fo-error name="job_vacancy_image"></fo-error>
+            <fo-file className="min-h-24" name="file" accept="application/pdf"></fo-file>
+            <fo-error name="file"></fo-error>
           </div>
-
-          <div class=" w-full flex justify-end ">
-            <ui-button class="me-5 mt-5 mb-5" color="orange" type="submit">KIRIM LAPORAN</ui-button>
+          <div
+            class=" w-full flex justify-between p-4"
+            style="
+                padding-bottom: 50px;
+                padding-top: 50px;
+            ">
+            <div class="flex gap-2 items-center">
+              <iconify-icon icon="solar:check-circle-bold" height="22" class="text-green-500" noobserver></iconify-icon>
+              <div>Selesai Dibuat Oleh Mahasiswa</div>
+            </div>
+            <div class="flex gap-2 items-center">
+              <iconify-icon icon="solar:danger-circle-bold" height="22" class="text-red-500" noobserver></iconify-icon>
+              <div>Selesai Diperiksa Oleh Perusahaan</div>
+            </div>
+            <div class="flex gap-2 items-center">
+              <iconify-icon
+                icon=${dataLamaran?.lecturer_checked_id ? "solar:check-circle-bold" : "solar:danger-circle-bold"}
+                height="22"
+                class=${dataLamaran?.lecturer_checked_id ? "text-green-500" : "text-red-500"}
+                noobserver
+              ></iconify-icon>
+              <div>${dataLamaran?.lecturer_checked_id ? "Selesai" : "Menunggu"} Diperiksa Oleh Dosen Wali</div>
+            </div>
+            <div class="flex gap-2 items-center">
+              <iconify-icon
+                icon=${dataLamaran?.prodi_checked_id ? "solar:check-circle-bold" : "solar:danger-circle-bold"}
+                height="22"
+                class=${dataLamaran?.prodi_checked_id ? "text-green-500" : "text-red-500"}
+                noobserver
+              ></iconify-icon>
+              <div>${dataLamaran?.prodi_checked_id ? "Selesai": "Menunggu"} Diperiksa Oleh Prodi</div>
+            </div>
+             <ui-button class="me-5 mt-5 mb-5" color="orange" type="submit">KIRIM LAPORAN</ui-button>
           </div>
           </form
         </div>
@@ -282,14 +354,27 @@ document.addEventListener("DOMContentLoaded", async () => {
   if (auth.role === "cdc" || auth.role === "superadmin" || auth.role === "prodi" || auth.role === "dosen" || auth.role === "mitra") {
     renderLaporan();
     fetchLaporan();
-    fetchTabelLaporan();
+
+    async function getDataReport() {
+      await API.getListReport()
+        .then((res) => {
+          let data = res.data.data;
+          fetchTabelLaporan(data);
+        })
+        .catch((err) => {
+          toast.error("Gagal mengambil data laporan");
+        });
+    }
+    await getDataReport();
   } else if (auth.role === "mahasiswa") {
     const auth = await getUserInfo();
-    let dataLamaran = {};
+    let apply_job_id;
     async function getMyJob() {
-      await API.getListCandidate("/user/" + auth.user.id)
+      await API.getListCandidate("/user/" + auth.user.id + "/last")
         .then((res) => {
-          dataLamaran = res.data.data?.find((item) => item?.status === "Selesai");
+          let dataLamaran = res.data.data;
+          apply_job_id = dataLamaran.id;
+          renderLaporanMahasiswa(dataLamaran);
         })
         .catch((err) => {
           toast.error("Gagal mengambil data lamaran");
@@ -297,6 +382,26 @@ document.addEventListener("DOMContentLoaded", async () => {
     }
 
     await getMyJob();
-    await renderLaporanMahasiswa(dataLamaran);
+
+    const form = document.getElementById("create-report");
+    if (form instanceof HTMLFormElement) {
+      form.addEventListener("submit", async (e) => {
+        e.preventDefault();
+        const formData = new FormData(form);
+        formData.append("apply_job_id", apply_job_id);
+        if (!formValidation(form, formData)) return;
+
+        await API.createReport(formData)
+          .then((res) => {
+            toast.success("Berhasil mengirim laporan");
+            getMyJob();
+          })
+          .catch((err) => {
+            toast.error("Gagal mengirim laporan");
+          });
+      });
+    }
+
+    // await
   }
 });
