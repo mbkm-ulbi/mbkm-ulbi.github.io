@@ -303,12 +303,19 @@ const renderLaporanMahasiswa = async (dataLamaran) => {
             </div>
           </div>
           <form id="create-report">
-         
-          <div class="ms-5 me-5">
+         ${dataLamaran?.reports ? html`<div class="px-4 flex gap-4">
+            <div class="w-full ">
+              <fo-label className="font-bold text-md" label="Laporan Mahasiswa"></fo-label>
+              <fo-uploaded fileurl=${dataLamaran?.reports?.file_laporan?.url} filename=${dataLamaran?.reports?.file_laporan?.url} className="mb-2"></fo-uploaded>
+              <fo-error name="fileUpload"></fo-error>
+            </div>
+          </div>`:html`<div class="ms-5 me-5">
             <fo-label label="Upload Laporan"></fo-label>
             <fo-file className="min-h-24" name="file" accept="application/pdf"></fo-file>
             <fo-error name="file"></fo-error>
-          </div>
+          </div>`}
+          
+          
           <div
             class=" w-full flex justify-between p-4"
             style="
@@ -317,36 +324,41 @@ const renderLaporanMahasiswa = async (dataLamaran) => {
             ">
             <div class="flex gap-2 items-center">
               <iconify-icon
-                icon=${dataLamaran?.surat_lamaran?.url ? "solar:check-circle-bold" : "solar:danger-circle-bold"}
+                icon=${dataLamaran?.reports ? "solar:check-circle-bold" : "solar:danger-circle-bold"}
                 height="22"
-                class=${dataLamaran?.surat_lamaran?.url ? "text-green-500" : "text-red-500"}
+                class=${dataLamaran?.reports ? "text-green-500" : "text-red-500"}
                 noobserver
               ></iconify-icon>
-              <div>${dataLamaran?.surat_lamaran?.url ? "Selesai" : "Menunggu"} Dibuat Oleh Mahasiswa</div>
+              <div>${dataLamaran?.reports ? "Selesai" : "Menunggu"} Dibuat Oleh Mahasiswa</div>
             </div>
-            <div class="flex gap-2 items-center">
-              <iconify-icon icon="solar:danger-circle-bold" height="22" class="text-red-500" noobserver></iconify-icon>
-              <div>Selesai Diperiksa Oleh Perusahaan</div>
+             <div class="flex gap-2 items-center">
+              <iconify-icon
+                icon=${dataLamaran?.reports?.company_checked_id ? "solar:check-circle-bold" : "solar:danger-circle-bold"}
+                height="22"
+                class=${dataLamaran?.reports?.company_checked_id ? "text-green-500" : "text-red-500"}
+                noobserver
+              ></iconify-icon>
+              <div>${dataLamaran?.reports?.company_checked_id ? "Selesai" : "Menunggu"} Diperiksa Oleh Perusahaan</div>
             </div>
             <div class="flex gap-2 items-center">
               <iconify-icon
-                icon=${dataLamaran?.lecturer_checked_id ? "solar:check-circle-bold" : "solar:danger-circle-bold"}
+                icon=${dataLamaran?.reports?.lecturer_checked_id ? "solar:check-circle-bold" : "solar:danger-circle-bold"}
                 height="22"
-                class=${dataLamaran?.lecturer_checked_id ? "text-green-500" : "text-red-500"}
+                class=${dataLamaran?.reports?.lecturer_checked_id ? "text-green-500" : "text-red-500"}
                 noobserver
               ></iconify-icon>
-              <div>${dataLamaran?.lecturer_checked_id ? "Selesai" : "Menunggu"} Diperiksa Oleh Dosen Wali</div>
+              <div>${dataLamaran?.reports?.lecturer_checked_id ? "Selesai" : "Menunggu"} Diperiksa Oleh Dosen Wali</div>
             </div>
             <div class="flex gap-2 items-center">
               <iconify-icon
-                icon=${dataLamaran?.prodi_checked_id ? "solar:check-circle-bold" : "solar:danger-circle-bold"}
+                icon=${dataLamaran?.reports?.prodi_checked_id ? "solar:check-circle-bold" : "solar:danger-circle-bold"}
                 height="22"
-                class=${dataLamaran?.prodi_checked_id ? "text-green-500" : "text-red-500"}
+                class=${dataLamaran?.reports?.prodi_checked_id ? "text-green-500" : "text-red-500"}
                 noobserver
               ></iconify-icon>
-              <div>${dataLamaran?.prodi_checked_id ? "Selesai": "Menunggu"} Diperiksa Oleh Prodi</div>
+              <div>${dataLamaran?.reports?.prodi_checked_id ? "Selesai": "Menunggu"} Diperiksa Oleh Prodi</div>
             </div>
-             <ui-button class="me-5 mt-5 mb-5" color="orange" type="submit">KIRIM LAPORAN</ui-button>
+            ${dataLamaran?.reports ? "" : html`<ui-button class="me-5 mt-5 mb-5" color="orange" type="submit">KIRIM LAPORAN</ui-button>`}
           </div>
           </form
         </div>

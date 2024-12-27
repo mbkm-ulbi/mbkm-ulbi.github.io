@@ -208,12 +208,12 @@ const renderPenilaian = () =>{
     `
   )
 }
-const renderPenilaianMahasiswa = async () =>{
+const renderPenilaianMahasiswa = async (data) =>{
   const penilaian = document.getElementById("content-penilaian");
-  let data = {}
-  await API.getUsers().then((res)=>{
-    data = res?.data
-  })
+  const users = data?.users[0];
+  const jobs = data?.jobs[0];
+  const reports = data?.reports?.file_laporan;
+  const evaluations = data?.evaluations
   render(
     penilaian,
     html`
@@ -222,16 +222,16 @@ const renderPenilaianMahasiswa = async () =>{
           <div class="p-4 text-lg font-bold">Penilaian Kandidat</div>
           <div class="border-b border-gray-300"></div>
           <div class="p-4 flex gap-4">
-            <img src=${data?.user?.profile_picture?.url} class="w-[150px]"  alt="kandidat-image" />
+            <img src=${users?.profile_picture?.url} class="w-[150px]"  alt="kandidat-image" />
             <div class="w-full">
               <div class="pb-2 flex gap-96">
                 <div>
                   <div class="text-xs font-bold">Nama Lengkap</div>
-                  <div class="text-md font-bold">${data?.user?.name}</div>
+                  <div class="text-md font-bold">${users?.name}</div>
                 </div>
                 <div>
                   <div class="text-xs font-bold">NIM</div>
-                  <div class="text-xs">${data?.user?.nim}</div>
+                  <div class="text-xs">${users?.nim}</div>
                 </div>
               </div>
               <div class="border-b border-dashed border-gray-300"></div>
@@ -244,9 +244,9 @@ const renderPenilaianMahasiswa = async () =>{
                       <div>Alamat</div>
                     </div>
                     <div class="space-y-2">
-                      <div>${data?.user?.phone_number}</div>
-                      <div>${data?.user?.program_study}</div>
-                      <div>${data?.user?.address}</div>
+                      <div>${users?.phone_number}</div>
+                      <div>${users?.program_study}</div>
+                      <div>${users?.address}</div>
                     </div>
                   </div>
                 </div>
@@ -256,39 +256,53 @@ const renderPenilaianMahasiswa = async () =>{
                     <div>IPK</div>
                   </div>
                   <div class="space-y-2">
-                    <div>${data?.user?.email}</div>
-                    <div>${data?.user?.ipk}</div>
+                    <div>${users?.email}</div>
+                    <div>${users?.ipk}</div>
                   </div>
                 </div>
               </div>
             </div>
           </div>
-          <div class="py-1 border-b border-dashed border-gray-300"></div>
-          <div>
-            <div class="p-4 text-md font-bold">Informasi Magang</div>
-            <div class="px-4 pb-2 flex gap-14">
-              <div>
-                <div class="pt-2 flex gap-16 text-xs">
-                  <div class="font-bold space-y-2">
-                    <div>Perusahaan</div>
-                    <div>Tanggal</div>
-                    <div>Alamat</div>
+          <div class="p-4 text-md font-bold">Selesai Magang</div>
+
+          <div class="flex flex-col text-center justify-center items-center gap-4">
+            <div class="w-full p-4 flex gap-4 text-justify">
+              <img src=${jobs.job_vacancy_image?.url} class="w-[150px]" alt="kandidat-image" />
+              <div class="w-full">
+                <div class="pb-2 flex gap-96">
+                  <div>
+                    <div class="text-xs font-bold">Perusahaan</div>
+                    <div class="text-md font-bold">${jobs.company}</div>
                   </div>
-                  <div class="space-y-2">
-                    <div>${data?.job?.company}</div>
-                    <div>${moment(data?.job?.created_at)?.format("DD MMMM YYYY hh:mm")}</div>
-                    <div>${data?.job?.location}</div>
+                  <div>
+                    <div class="text-xs font-bold">Posisi</div>
+                    <div class="text-xs">${jobs.title}</div>
                   </div>
                 </div>
-              </div>
-              <div class="pt-2 flex gap-16 text-xs">
-                <div class="font-bold space-y-2">
-                  <div>Posisi</div>
-                  <div>Masa Kerja</div>
-                </div>
-                <div class="space-y-2">
-                  <div>${data?.job?.title}</div>
-                  <div>${data?.job?.duration}</div>
+                <div class="border-b border-dashed border-gray-300"></div>
+                <div class="pb-2 flex gap-14">
+                  <div>
+                    <div class="pt-2 flex gap-16 text-xs">
+                      <div class="font-bold space-y-2">
+                        <div>Benefit</div>
+                        <div>Durasi</div>
+                        <div>Tipe Lowongan</div>
+                      </div>
+                      <div class="space-y-2">
+                        <div>${jobs.benefits}</div>
+                        <div>${jobs.duration}</div>
+                        <div>${jobs.job_type}</div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="pt-2 flex gap-16 text-xs">
+                    <div class="font-bold space-y-2">
+                      <div>Lokasi</div>
+                    </div>
+                    <div class="space-y-2">
+                      <div>${jobs.location}</div>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
@@ -300,16 +314,12 @@ const renderPenilaianMahasiswa = async () =>{
           <div class="px-4 flex gap-4">
             <div class="w-full">
               <fo-uploaded
-                fileurl="https://google.com"
-                filename="Laporan Magang_Darmaji Setiadi Ngahiji_Juli_Agustus_September_2024.pdf"
+                fileurl=${reports?.url}
+                filename=${reports?.name}
                 className="mb-2"
               ></fo-uploaded>
               <fo-error name="fileUpload"></fo-error>
             </div>
-            <ui-button className="w-max flex gap-2" data-dialog-trigger="lihat-laporan">
-              <iconify-icon icon="solar:documents-bold" height="22" class="text-white" noobserver></iconify-icon>
-              LIHAT LAPORAN
-            </ui-button>
             <ui-dialog name="lihat-laporan">
               <div class="flex flex-col text-center justify-center items-center gap-4">
                 <div class="pb-2 w-full flex justify-between items-center border-b border-gray-300">
@@ -421,8 +431,8 @@ const renderPenilaianMahasiswa = async () =>{
             <div class="flex gap-8 items-center">
               <span class="w-32 text-xs font-bold">Nilai Akhir</span>
               <div class="flex gap-0 text-xs font-bold text-white text-center">
-                <div class="px-4 py-2 bg-blue-900 rounded-l-md">C</div>
-                <div class="px-4 py-2 bg-red-600 rounded-r-md">Cukup</div>
+                <div class="px-4 py-2 bg-blue-900 rounded-l-md">${evaluations?.grade || "-"}</div>
+                <div class="px-4 py-2 bg-red-600 rounded-r-md">-</div>
               </div>
             </div>
             <div class="flex gap-8 items-center">
@@ -433,46 +443,82 @@ const renderPenilaianMahasiswa = async () =>{
               <div class="p-4 flex justify-between items-center bg-gray-200/50 font-bold border-b border-gray-300">
                 <div class="flex items-center font-semibold">
                   <div class="w-60">Penilaian Dari Perusahaan</div>
-                  <div class="w-12">100</div>
+                  <div class="w-12">${evaluations?.company_grade_score || "-"}</div>
                   <div class="flex gap-0 text-xs font-bold text-white text-center">
-                    <div class="px-4 py-2 bg-blue-900 rounded-l-md">A</div>
-                    <div class="px-4 py-2 bg-red-600 rounded-r-md">Sangat Baik</div>
+                    <div class="px-4 py-2 bg-blue-900 rounded-l-md">${evaluations?.company_grade || "-"}</div>
+                    <div class="px-4 py-2 bg-red-600 rounded-r-md">-</div>
                   </div>
                 </div>
                 <div class="flex gap-4 text-xs">
-                  <div><span class="font-bold">Dinilai oleh: </span>Budi Santoso</div>
-                  <div><span class="font-bold">Dinilai pada tanggal: </span>31 Agustus 2024</div>
+                  <div><span class="font-bold">Dinilai oleh: </span>-</div>
+                  <div><span class="font-bold">Dinilai pada tanggal: </span>${moment(evaluations?.company_grade_date).format("DD MMMM YYYY")}</div>
                 </div>
               </div>
               <div class="p-4 text-xs">
                 <p>
-                  Ahmad Yusran menunjukkan kinerja luar biasa selama masa magangnya. Ia cepat memahami proses keuangan dan software akuntansi yang digunakan,
-                  serta mampu menyelesaikan tugas-tugas dengan sangat teliti dan tepat waktu. Ahmad proaktif, memiliki inisiatif tinggi, dan selalu memberikan
-                  solusi yang efektif dalam berbagai situasi. Kemampuan komunikasinya baik, ia mudah beradaptasi dalam tim, dan selalu menunjukkan etos kerja
-                  yang positif. Ahmad sangat bertanggung jawab, disiplin, dan memiliki integritas yang tinggi. Kami sangat puas dengan kontribusinya dan
-                  merekomendasikannya untuk peran yang lebih menantang di masa depan.
+                 ${evaluations?.company_grade_description || "-"}
                 </p>
               </div>
-              <div class="p-4 flex items-center font-semibold border-t border-gray-300">
-                <div class="w-60">Penilaian Dari Dosen Wali</div>
-                <div class="w-12">70</div>
-                <div class="flex gap-0 text-xs font-bold text-white text-center">
-                  <div class="px-4 py-2 bg-blue-900 rounded-l-md">B</div>
-                  <div class="px-4 py-2 bg-red-600 rounded-r-md">Baik</div>
+              <div class="p-4 flex justify-between items-center bg-gray-200/50 font-bold border-b border-gray-300">
+                <div class="flex items-center font-semibold">
+                  <div class="w-60">Penilaian Dari Dosen Wali</div>
+                  <div class="w-12">${evaluations?.lecturer_grade_score || "-"}</div>
+                  <div class="flex gap-0 text-xs font-bold text-white text-center">
+                    <div class="px-4 py-2 bg-blue-900 rounded-l-md">${evaluations?.lecturer_grade || "-"}</div>
+                    <div class="px-4 py-2 bg-red-600 rounded-r-md">-</div>
+                  </div>
+                </div>
+                <div class="flex gap-4 text-xs">
+                  <div><span class="font-bold">Dinilai oleh: </span>-</div>
+                  <div><span class="font-bold">Dinilai pada tanggal: </span>${moment(evaluations?.lecturer_grade_date).format("DD MMMM YYYY")}</div>
                 </div>
               </div>
-              <div class="p-4 flex items-center font-semibold border-t border-gray-300">
-                <div class="w-60">Penilaian Dari Prodi</div>
-                <div class="w-12">10</div>
-                <div class="flex gap-0 text-xs font-bold text-white text-center">
-                  <div class="px-4 py-2 bg-blue-900 rounded-l-md">D</div>
-                  <div class="px-4 py-2 bg-red-600 rounded-r-md">Kurang</div>
+              <div class="p-4 text-xs">
+                <p>
+                 ${evaluations?.lecturer_grade_description || "-"}
+                </p>
+              </div>
+               <div class="p-4 flex justify-between items-center bg-gray-200/50 font-bold border-b border-gray-300">
+                <div class="flex items-center font-semibold">
+                  <div class="w-60">Penilaian Dari Prodi</div>
+                  <div class="w-12">${evaluations?.prodi_grade_score || "-"}</div>
+                  <div class="flex gap-0 text-xs font-bold text-white text-center">
+                    <div class="px-4 py-2 bg-blue-900 rounded-l-md">${evaluations?.prodi_grade || "-"}</div>
+                    <div class="px-4 py-2 bg-red-600 rounded-r-md">-</div>
+                  </div>
                 </div>
+                <div class="flex gap-4 text-xs">
+                  <div><span class="font-bold">Dinilai oleh: </span>-</div>
+                  <div><span class="font-bold">Dinilai pada tanggal: </span>${moment(evaluations?.prodi_grade_date).format("DD MMMM YYYY")}</div>
+                </div>
+              </div>
+              <div class="p-4 text-xs">
+                <p>
+                 ${evaluations?.prodi_grade_description || "-"}
+                </p>
               </div>
             </div>
           </div>
         </div>
       </div>
+    `
+  )
+}
+const renderNotEligible = () => {
+  const contentLaporan = document.getElementById("content-laporan");
+  render(
+    contentLaporan,
+    html`
+       <div class="space-y-4">
+        <div class="rounded-md shadow-md">
+          <div class="flex flex-col text-center justify-center items-center gap-4">
+           <div class="w-full p-1 flex gap-1 justify-center items-center flex-col">
+           <img src="src/images/job.svg" class="w-[40rem]"></img>
+           <div class="text-md mb-10">Anda belum menyelesaikan magang. Silahkan selesaikan magang terlebih dahulu!</div>
+           </div>
+          </div>
+        </div>
+       </div>
     `
   )
 }
@@ -487,6 +533,13 @@ document.addEventListener("DOMContentLoaded", async () => {
     fetchPenilaian();
     fetchTabelPenilaian(dataEvaluation);
   } else if (auth.role === "mahasiswa"){
-    renderPenilaianMahasiswa()
+    await API.getListCandidate("/user/" + auth.user.id + "/last").then((res)=>{
+      let data = res?.data?.data || []
+      if(data.length > 0 || typeof data === "object"){
+        renderPenilaianMahasiswa(data)
+      } else {
+        renderNotEligible()
+      }
+    }).catch((err)=>toast.error("Gagal memuat data penilaian"))
   }
 });
