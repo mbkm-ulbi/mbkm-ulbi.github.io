@@ -2,6 +2,7 @@ import { html, render } from "https://cdn.jsdelivr.net/npm/uhtml@4.5.11/+esm";
 import { getAuth, getFlashMessage, getUserInfo } from "../src/js/libraries/cookies.js";
 import { toast } from "../src/js/libraries/notify.js";
 import { listPenilaian, dummy, dummyDataNew } from "./dummyBeranda.js";
+import API from "../src/js/api/index.js";
 
 const flashMessage = await getFlashMessage();
 if (flashMessage) toast.success(flashMessage);
@@ -38,7 +39,7 @@ const fetchListPenilaian = async () => {
 
 
 
-const renderSuperAdmin =  () =>{
+const renderSuperAdmin =  (data) =>{
   const content = document.getElementById("content-beranda")
   render(
     content,
@@ -50,7 +51,7 @@ const renderSuperAdmin =  () =>{
                     <span class="text-orange-500 font-semibold">Jumlah Mitra</span>
                     <iconify-icon icon="solar:alt-arrow-right-bold" class="text-orange-500" height="20"></iconify-icon>
                 </div>
-                <div class="mt-4 text-4xl font-bold text-gray-700">6,500</div>
+                <div  class="mt-4 text-4xl font-bold text-gray-700">${data?.total_company}</div>
                 
             </div>
             <!-- Card 2 -->
@@ -59,7 +60,7 @@ const renderSuperAdmin =  () =>{
                     <span class="text-orange-500 font-semibold">Jumlah Lowongan</span>
                     <iconify-icon icon="solar:alt-arrow-right-bold" class="text-orange-500" height="20"></iconify-icon>
                 </div>
-                <div class="mt-4 text-4xl font-bold text-gray-700">6,500</div>
+                <div class="mt-4 text-4xl font-bold text-gray-700">${data?.total_job}</div>
                 
             </div>
             <!-- Card 3 -->
@@ -68,16 +69,7 @@ const renderSuperAdmin =  () =>{
                     <span class="text-orange-500 font-semibold">Jumlah Mahasiswa</span>
                     <iconify-icon icon="solar:alt-arrow-right-bold" class="text-orange-500" height="20"></iconify-icon>
                 </div>
-                <div class="mt-4 text-4xl font-bold text-gray-700">6,500</div>
-                
-            </div>
-            <!-- Card 4 -->
-            <div class="bg-white rounded-lg shadow p-6 flex-1">
-                <div class="flex justify-between items-center">
-                    <span class="text-orange-500 font-semibold">Jumlah Alumni</span>
-                    <iconify-icon icon="solar:alt-arrow-right-bold" class="text-orange-500" height="20"></iconify-icon>
-                </div>
-                <div class="mt-4 text-4xl font-bold text-gray-700">6,500</div>
+                <div class="mt-4 text-4xl font-bold text-gray-700">${data?.total_student}</div>
                 
             </div>
             <!-- Card 5 -->
@@ -86,7 +78,7 @@ const renderSuperAdmin =  () =>{
                     <span class="text-orange-500 font-semibold">Jumlah Aktif Magang</span>
                     <iconify-icon icon="solar:alt-arrow-right-bold" class="text-orange-500" height="20"></iconify-icon>
                 </div>
-                <div class="mt-4 text-4xl font-bold text-gray-700">6,500</div>
+                <div class="mt-4 text-4xl font-bold text-gray-700">${data?.total_aktif_magang}</div>
                 
             </div>
         </div>
@@ -252,10 +244,21 @@ const fetchNewData = () => {
   );
 };
 
+async function getDataDashboard(){
+  let data = {}
+  await API.getDashbooard().then((res) => {
+    data = res.data
+  }).catch((err) => {
+    toast.error("Gagal mengambil data")
+  })
+  return data
+}
+
 document.addEventListener("DOMContentLoaded", async()=>{
   const auth = await getUserInfo()
   if(auth.role === "superadmin" || auth.role === "cdc" || auth.role === "prodi" || auth.role === "mitra" || auth.role === "dosen"){
-    renderSuperAdmin()
+    const data = await getDataDashboard()
+    renderSuperAdmin(data)
     fetchJurusan()
     fetchNewData()
     const createDoughnutChart = (canvas) => {
