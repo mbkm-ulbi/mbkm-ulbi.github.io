@@ -3,10 +3,9 @@ import { listKandidatDummy, rekapKandidatDummy } from "./dummyKandidat.js";
 import { getAuth, getUserInfo } from "../src/js/libraries/cookies.js";
 import API, { getListCandidate } from "../src/js/api/index.js";
 import { toast } from "../src/js/libraries/notify.js";
-import moment from 'https://cdn.jsdelivr.net/npm/moment@2.30.1/+esm'
+import moment from "https://cdn.jsdelivr.net/npm/moment@2.30.1/+esm";
 import badgeStatus from "../src/js/libraries/badgeStatus.js";
 import micromodal from "https://cdn.jsdelivr.net/npm/micromodal@0.4.10/+esm";
-
 
 const fetchKandidat = async () => {
   const rekap = await rekapKandidatDummy();
@@ -50,18 +49,24 @@ const fetchKandidat = async () => {
 
 const fetchTabelKandidat = async (list, fetchDataKandidat) => {
   const handleDoneJob = async (id) => {
-    await API.postApply(null, `/${id}/done`).then((res)=> {
-      toast.success("Berhasil menyelesaikan magang")
-      micromodal.close(`detail-kandidat-`+id)
-      fetchDataKandidat()
-    }).catch((err)=> {
-      toast.error("Gagal menyelesaikan magang")
-    })
+    await API.postApply(null, `/${id}/done`)
+      .then((res) => {
+        toast.success("Berhasil menyelesaikan magang");
+        micromodal.close(`detail-kandidat-` + id);
+        fetchDataKandidat();
+      })
+      .catch((err) => {
+        toast.error("Gagal menyelesaikan magang");
+      });
+  };
+
+  const handleSetStorage = (id) =>{
+    localStorage.setItem("apply_job_id", id)
   }
   render(
     document.getElementById("tabelKandidat"),
     html`
-      ${list.map((item,index) => {
+      ${list.map((item, index) => {
         return html`
           <tr>
             <td>${moment(item.created_at).format("DD MMMM YYYY hh:mm")}</td>
@@ -70,13 +75,13 @@ const fetchTabelKandidat = async (list, fetchDataKandidat) => {
             <td>${item.jobs[0]?.company}</td>
             <td>${item.jobs[0]?.title}</td>
             <td>${item.users[0]?.program_study}</td>
-            <td>
-              ${html`${badgeStatus(item.status)}`}
-            </td>
+            <td>${html`${badgeStatus(item.status)}`}</td>
             <td class="flex space-x-4">
               <div>
-                <a data-dialog-trigger=${`detail-kandidat-`+item?.id}><iconify-icon icon="solar:eye-bold" class="text-orange-500" height="16"></iconify-icon></a>
-                <ui-dialog name=${`detail-kandidat-`+item?.id} className="w-[750px] h-auto p-0">
+                <a data-dialog-trigger=${`detail-kandidat-` + item?.id}
+                  ><iconify-icon icon="solar:eye-bold" class="text-orange-500" height="16" onclick=${()=>handleSetStorage(item?.id)}></iconify-icon
+                ></a>
+                <ui-dialog name=${`detail-kandidat-` + item?.id} className="w-[750px] h-auto p-0">
                   <div>
                     <div class="w-full flex justify-between items-center bg-ulbiBlue p-4 rounded-t-md">
                       <div class="text-lg text-white font-bold">Detail Kandidat</div>
@@ -156,13 +161,24 @@ const fetchTabelKandidat = async (list, fetchDataKandidat) => {
                       <div class="font-bold">Alamat</div>
                       <div>${item?.jobs[0]?.location}</div>
                     </div>
-                    <div class="p-4 flex justify-end">
-                        ${item?.status === 'Aktif' ?html`<ui-button onclick=${()=>handleDoneJob(item?.id)} className="w-max flex gap-2" data-dialog-close> SELESAIKAN MASA KERJA</ui-button>` : ''}
+                    <form id="lecturer-form">
+                    <div class="p-4">
+                      <div class="mb-2 text-lg font-bold">Dosen Pembimbing</div>
+                      <fo-select value=${item?.responsible_lecturer_id} id="lecturer_id" name="lecturer_id" placeholder="Silahkan pilih disini"> </fo-select>
+                      <fo-error name="lecturer_id"></fo-error>
                     </div>
+                    <div class="p-4 flex justify-end gap-2">
+                      <ui-button type="submit" variant="outline_orange" className="w-max flex gap-2">SIMPAN</ui-button>
+                      ${item?.status === "Aktif"
+                        ? html`<ui-button onclick=${() => handleDoneJob(item?.id)} type="button" className="w-max flex gap-2" data-dialog-close>
+                            SELESAIKAN MASA KERJA</ui-button
+                          >`
+                        : ""}
+                    </div>
+                    </form>
                   </div>
                 </ui-dialog>
               </div>
-              <div><iconify-icon icon="solar:download-square-bold" class="text-blue-900" height="16"></iconify-icon></div>
             </td>
           </tr>
         `;
@@ -173,12 +189,12 @@ const fetchTabelKandidat = async (list, fetchDataKandidat) => {
 
 //-----------------
 
-const renderKandidatAdmin = () =>{
+const renderKandidatAdmin = () => {
   const contentKandidat = document.getElementById("content-kandidat");
   render(
     contentKandidat,
     html`
-          <div class="space-y-4">
+      <div class="space-y-4">
         <div class="px-12 py-4 rounded-md shadow-md">
           <div id="rekapJumlahKandidat" class="flex justify-between">
             <div class="flex items-center gap-2">
@@ -313,184 +329,265 @@ const renderKandidatAdmin = () =>{
         </div>
       </div>
     `
-  )
-}
+  );
+};
 
-
-const renderKandidatMahasiswa = async(dataLamaran,getMyJob) =>{
+const renderKandidatMahasiswa = async (dataLamaran, getMyJob) => {
   const contentKandidat = document.getElementById("content-kandidat");
-  let data = {}
-  await API.getUsers().then((res)=>{
-    data = res?.data?.user
-  })
-  const dataLamaranFindActive = dataLamaran.find((item)=> item.status === "Aktif")
+  let data = {};
+  await API.getUsers().then((res) => {
+    data = res?.data?.user;
+  });
+  const dataLamaranFindActive = dataLamaran.find((item) => item.status === "Aktif");
   // const dataLamaranFilterSelesai = dataLamaran.filter((item)=> item.status === "Selesai")
-  const defaultImage = 'src/images/dummy_ulbi.png'
-  const handleToActive = async (id) =>{
-    await API.postApply(null, `/${id}/activate`).then(async (res)=>{
-      toast.success("Berhasil mengaktifkan magang")
-      await getMyJob()
-    }).catch((err)=>{
-      toast.error("Gagal mengaktifkan magang")
-    })
-  }
+  const defaultImage = "src/images/dummy_ulbi.png";
+  const handleToActive = async (id) => {
+    await API.postApply(null, `/${id}/activate`)
+      .then(async (res) => {
+        toast.success("Berhasil mengaktifkan magang");
+        await getMyJob();
+      })
+      .catch((err) => {
+        toast.error("Gagal mengaktifkan magang");
+      });
+  };
   render(
     contentKandidat,
     html`
-     <div class="space-y-4">
-      <div class="rounded-md shadow-md">
-        <div class="flex flex-col text-center justify-center items-center gap-4">
-          <div class="pb-2 w-full flex justify-start items-center border-b border-gray-300">
-            <div class="test-md p-4 font-bold">Kandidat</div>
-          </div>
-          <div class="w-full p-4 flex gap-4 text-justify border-b border-dashed border-gray-300">
-            <img src=${data?.profile_picture?.preview} width="[250px]" alt="kandidat-image" />
-            <div class="w-full">
-              <div class="pb-2 flex gap-96">
-                <div>
-                  <div class="text-xs font-bold">Nama Lengkap</div>
-                  <div class="text-md font-bold">${data?.name}</div>
+      <div class="space-y-4">
+        <div class="rounded-md shadow-md">
+          <div class="flex flex-col text-center justify-center items-center gap-4">
+            <div class="pb-2 w-full flex justify-start items-center border-b border-gray-300">
+              <div class="test-md p-4 font-bold">Kandidat</div>
+            </div>
+            <div class="w-full p-4 flex gap-4 text-justify border-b border-dashed border-gray-300">
+              <img src=${data?.profile_picture?.preview} width="[250px]" alt="kandidat-image" />
+              <div class="w-full">
+                <div class="pb-2 flex gap-96">
+                  <div>
+                    <div class="text-xs font-bold">Nama Lengkap</div>
+                    <div class="text-md font-bold">${data?.name}</div>
+                  </div>
+                  <div>
+                    <div class="text-xs font-bold">NIM</div>
+                    <div class="text-xs">${data?.nim}</div>
+                  </div>
                 </div>
-                <div>
-                  <div class="text-xs font-bold">NIM</div>
-                  <div class="text-xs">${data?.nim}</div>
-                </div>
-              </div>
-              <div class="border-b border-dashed border-gray-300"></div>
-              <div class="pb-2 flex gap-14">
-                <div>
+                <div class="border-b border-dashed border-gray-300"></div>
+                <div class="pb-2 flex gap-14">
+                  <div>
+                    <div class="pt-2 flex gap-16 text-xs">
+                      <div class="font-bold space-y-2">
+                        <div>Telepon</div>
+                        <div>Prodi</div>
+                        <div>Alamat</div>
+                      </div>
+                      <div class="space-y-2">
+                        <div>${data?.phone_number}</div>
+                        <div>${data?.program_study}</div>
+                        <div>${data?.address}</div>
+                      </div>
+                    </div>
+                  </div>
                   <div class="pt-2 flex gap-16 text-xs">
                     <div class="font-bold space-y-2">
-                      <div>Telepon</div>
-                      <div>Prodi</div>
-                      <div>Alamat</div>
+                      <div>Email</div>
+                      <div>IPK</div>
                     </div>
                     <div class="space-y-2">
-                      <div>${data?.phone_number}</div>
-                      <div>${data?.program_study}</div>
-                      <div>${data?.address}</div>
+                      <div>${data?.email}</div>
+                      <div>${data?.ipk}</div>
                     </div>
                   </div>
                 </div>
-                <div class="pt-2 flex gap-16 text-xs">
-                  <div class="font-bold space-y-2">
-                    <div>Email</div>
-                    <div>IPK</div>
+              </div>
+            </div>
+            ${dataLamaranFindActive
+              ? html`<div class="w-full p-4 text-justify mb-5">
+                  <div class="test-md p-2 font-bold">Magang Aktif</div>
+                  <div class="grid grid-cols-2 gap-5 ">
+                    <div class="pb-2 flex gap-5">
+                      <div style="width: 100px;">
+                        <img src=${dataLamaranFindActive?.jobs[0]?.job_vacancy_image?.url ?? defaultImage} style="height: 100px;" />
+                      </div>
+                      <div class="mr-10">
+                        <div class="pt-2 flex gap-16 text-xs">
+                          <div class="font-bold space-y-2">
+                            <div>Perusahaan</div>
+                            <div>Posisi</div>
+                            <div>Alamat</div>
+                          </div>
+                          <div class="space-y-2">
+                            <div>${dataLamaranFindActive?.jobs[0]?.company}</div>
+                            <div>${dataLamaranFindActive?.jobs[0]?.title}</div>
+                            <div>${dataLamaranFindActive?.jobs[0]?.location}</div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="pt-2 flex gap-16 text-xs">
+                        <div class="font-bold space-y-2">
+                          <div class="flex justify-between gap-5">
+                            <div>Status</div>
+                            <div>${html`${badgeStatus(dataLamaranFindActive.status)}`}</div>
+                          </div>
+                          ${!dataLamaranFindActive && dataLamaranFindActive.status === "Disetujui"
+                            ? html`<div>
+                                <ui-button id=${`active-button`} onclick=${() => handleToActive(dataLamaranFindActive?.id)} className="w-max flex gap-1 p-2"
+                                  >Jadikan Magang Aktif</ui-button
+                                >
+                              </div>`
+                            : ""}
+                        </div>
+                        <div class="space-y-2"></div>
+                      </div>
+                    </div>
                   </div>
-                  <div class="space-y-2">
-                    <div>${data?.email}</div>
-                    <div>${data?.ipk}</div>
-                  </div>
-                </div>
+                </div>`
+              : ""}
+
+            <div class="w-full p-4 text-justify mb-5">
+              <div class="test-md p-2 font-bold">Daftar Magang yang Dilamar</div>
+              <div class="grid grid-cols-2 gap-5 ">
+                ${dataLamaran.map(
+                  (item, index) =>
+                    html`
+                      <div class="pb-2 flex gap-5">
+                        <div style="width: 100px;">
+                          <img src=${item?.jobs[0]?.job_vacancy_image?.url ?? defaultImage} style="height: 100px;" />
+                        </div>
+                        <div class="mr-10">
+                          <div class="pt-2 flex gap-16 text-xs">
+                            <div class="font-bold space-y-2">
+                              <div>Perusahaan</div>
+                              <div>Posisi</div>
+                              <div>Alamat</div>
+                            </div>
+                            <div class="space-y-2">
+                              <div>${item?.jobs[0]?.company}</div>
+                              <div>${item?.jobs[0]?.title}</div>
+                              <div>${item?.jobs[0]?.location}</div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="pt-2 flex gap-16 text-xs">
+                          <div class="font-bold space-y-2">
+                            <div class="flex justify-between gap-5">
+                              <div>Status</div>
+                              <div>${html`${badgeStatus(item.status)}`}</div>
+                            </div>
+                            ${!dataLamaranFindActive && item.status === "Disetujui"
+                              ? html`<div>
+                                  <ui-button id=${`active-button`} onclick=${() => handleToActive(item?.id)} className="w-max flex gap-1 p-2"
+                                    >Jadikan Magang Aktif</ui-button
+                                  >
+                                </div>`
+                              : ""}
+                          </div>
+                          <div class="space-y-2"></div>
+                        </div>
+                      </div>
+                    `
+                )}
               </div>
             </div>
           </div>
-          ${dataLamaranFindActive ? html`<div class="w-full p-4 text-justify mb-5">
-            <div class="test-md p-2 font-bold">Magang Aktif</div>
-            <div class="grid grid-cols-2 gap-5 ">
-         <div class="pb-2 flex gap-5">
-              <div style="width: 100px;">
-                <img src=${dataLamaranFindActive?.jobs[0]?.job_vacancy_image?.url ?? defaultImage} style="height: 100px;" />
-              </div>
-              <div class="mr-10">
-                <div class="pt-2 flex gap-16 text-xs">
-                  <div class="font-bold space-y-2">
-                    <div>Perusahaan</div>
-                    <div>Posisi</div>
-                    <div>Alamat</div>
-                  </div>
-                  <div class="space-y-2">
-                    <div>${dataLamaranFindActive?.jobs[0]?.company}</div>
-                    <div>${dataLamaranFindActive?.jobs[0]?.title}</div>
-                    <div>${dataLamaranFindActive?.jobs[0]?.location}</div>
-                  </div>
-                </div>
-              </div>
-              <div class="pt-2 flex gap-16 text-xs">
-                <div class="font-bold space-y-2">
-                <div class="flex justify-between gap-5">
-                  <div>Status</div>
-                   <div>${html`${badgeStatus(dataLamaranFindActive.status)}`}</div>
-                </div>
-                   ${!dataLamaranFindActive && dataLamaranFindActive.status === "Disetujui" ? html`<div><ui-button id=${`active-button`} onclick=${()=>handleToActive(dataLamaranFindActive?.id)} className="w-max flex gap-1 p-2">Jadikan Magang Aktif</ui-button></div>` : ''}
-                </div>
-                <div class="space-y-2">
-               
-                </div>
-              </div>
-            </div>
-            </div>` : ''}
-          
-          <div class="w-full p-4 text-justify mb-5">
-            <div class="test-md p-2 font-bold">Daftar Magang yang Dilamar</div>
-            <div class="grid grid-cols-2 gap-5 ">
-            ${dataLamaran.map((item,index) => (
-              html`
-              <div class="pb-2 flex gap-5">
-              <div style="width: 100px;">
-                <img src=${item?.jobs[0]?.job_vacancy_image?.url ?? defaultImage} style="height: 100px;" />
-              </div>
-              <div class="mr-10">
-                <div class="pt-2 flex gap-16 text-xs">
-                  <div class="font-bold space-y-2">
-                    <div>Perusahaan</div>
-                    <div>Posisi</div>
-                    <div>Alamat</div>
-                  </div>
-                  <div class="space-y-2">
-                    <div>${item?.jobs[0]?.company}</div>
-                    <div>${item?.jobs[0]?.title}</div>
-                    <div>${item?.jobs[0]?.location}</div>
-                  </div>
-                </div>
-              </div>
-              <div class="pt-2 flex gap-16 text-xs">
-                <div class="font-bold space-y-2">
-                <div class="flex justify-between gap-5">
-                  <div>Status</div>
-                   <div>${html`${badgeStatus(item.status)}`}</div>
-                </div>
-                   ${!dataLamaranFindActive && item.status === "Disetujui" ? html`<div><ui-button id=${`active-button`} onclick=${()=>handleToActive(item?.id)} className="w-max flex gap-1 p-2">Jadikan Magang Aktif</ui-button></div>` : ''}
-                </div>
-                <div class="space-y-2">
-               
-                </div>
-              </div>
-            </div>
-              `
-            ))}
-            </div>
         </div>
       </div>
-    </div>
     `
-  )
-}
+  );
+};
 document.addEventListener("DOMContentLoaded", async () => {
   const auth = await getUserInfo();
-  if(auth.role === "mahasiswa"){
-    async function getMyJob(){
-      await API.getListCandidate("/user/"+auth.user.id).then((res)=>{
-        let dataLamaran = res.data.data
-        renderKandidatMahasiswa(dataLamaran, getMyJob);
-      }).catch((err)=>{
-        toast.error("Gagal mengambil data lamaran")
-      })
+  if (auth.role === "mahasiswa") {
+    async function getMyJob() {
+      await API.getListCandidate("/user/" + auth.user.id)
+        .then((res) => {
+          let dataLamaran = res.data.data;
+          renderKandidatMahasiswa(dataLamaran, getMyJob);
+        })
+        .catch((err) => {
+          toast.error("Gagal mengambil data lamaran");
+        });
     }
-    await getMyJob()
+    await getMyJob();
   } else {
-    async function fetchDataKandidat(){
-      await API.getListCandidate().then((res)=>{
-        let dataCandidates = res.data.data
-        console.log(dataCandidates)
-        fetchTabelKandidat(dataCandidates, fetchDataKandidat)
-      }).catch((err)=>{
-        toast.error("Gagal mengambil data kandidat")
-      })
+    async function fetchDataKandidat() {
+      await API.getListCandidate()
+        .then((res) => {
+          let dataCandidates = res.data.data;
+          console.log(dataCandidates);
+          fetchTabelKandidat(dataCandidates, fetchDataKandidat);
+        })
+        .catch((err) => {
+          toast.error("Gagal mengambil data kandidat");
+        });
     }
     await renderKandidatAdmin();
     await fetchKandidat();
-    await fetchDataKandidat()
+    await fetchDataKandidat();
 
+    const foSelectElement = document.getElementById("lecturer_id");
+    const defaultValue = foSelectElement.getAttribute("value"); 
+    console.log({defaultValue})
+    let Options = [];
+    const getListDropdown = async () => {
+      await API.getListLecturer()
+        .then((res) => {
+          Options = res.data.data;
+        })
+        .catch((err) => {
+          toast.error("Gagal mengambil data perusahaan");
+        });
+  
+      // @ts-ignore
+      if (foSelectElement && foSelectElement.choices) {
+        // @ts-ignore
+        // foSelectElement.choices.clearStore();
+        // @ts-ignore
+        Options.map((option) => {
+          // @ts-ignore
+          foSelectElement.choices.setChoices(
+            [{ value: option?.id, label: option?.name, selected: option?.id == defaultValue, }],
+            "value",
+            "label",
+            false
+          );
+          
+        });
+       
+        // Re-render or reset state if needed
+        // @ts-ignore
+        foSelectElement.handleDisabled();
+        // @ts-ignore
+        foSelectElement.handleError();
+      }
+    };
+    getListDropdown()
+
+    const form = document.getElementById("lecturer-form");
+    if(form instanceof HTMLFormElement){
+      form.addEventListener("submit", async (event) => {
+       
+        event.preventDefault()
+        const formData = new FormData(form);
+
+        try{
+          const apply_job_id = localStorage.getItem("apply_job_id")
+          await API.postApply(formData, `/${apply_job_id}/set-lecturer`).then(async (res)=>{
+            toast.success("Berhasil menambahkan dosen pembimbing")
+            await fetchDataKandidat()
+          })
+        }catch(error){
+          // Tampilkan pesan error kepada pengguna
+          toast.error("Gagal menambahkan dosen pembimbing");
+        }finally{
+          form.querySelectorAll("button, [type='submit']").forEach((element) => {
+            if (element instanceof HTMLButtonElement || element instanceof HTMLElement) {
+              element.removeAttribute("disabled");
+            }
+          });
+        }
+      }); 
+    }
   }
 });

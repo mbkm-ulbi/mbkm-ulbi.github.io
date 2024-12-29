@@ -69,6 +69,7 @@ export const createEvaluation = postWithToken('api/v1/evaluations')
 export const createReport = postWithToken('api/v1/reports')
 export const getListReport = getWithToken('api/v1/reports')
 export const getDashbooard = getWithToken('api/v1/dashboard/overview')
+export const getListLecturer = getWithToken('api/v1/users/lecturer')
 const API = {
     postLogin,
     postRegister,
@@ -83,7 +84,8 @@ const API = {
     createReport,
     getListReport,
     createEvaluation,
-    getDashbooard
+    getDashbooard,
+    getListLecturer
 }
 
 export default API
