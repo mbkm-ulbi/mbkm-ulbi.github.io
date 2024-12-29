@@ -376,8 +376,8 @@ const renderNotEligible = () => {
         <div class="rounded-md shadow-md">
           <div class="flex flex-col text-center justify-center items-center gap-4">
            <div class="w-full p-1 flex gap-1 justify-center items-center flex-col">
-           <img src="src/images/job.svg" class="w-[40rem]"></img>
-           <div class="text-md mb-10">Anda belum menyelesaikan magang. Silahkan selesaikan magang terlebih dahulu!</div>
+           <img src="src/images/document.svg" class="w-[40rem]"></img>
+           <div class="text-md mb-10">Belum ada laporan yang diunggah</div>
            </div>
           </div>
         </div>
@@ -409,9 +409,9 @@ document.addEventListener("DOMContentLoaded", async () => {
     async function getMyJob() {
       await API.getListCandidate("/user/" + auth.user.id + "/last")
         .then((res) => {
-          let dataLamaran = res.data.data || [];
-          console.log(dataLamaran.length);
-          if(dataLamaran.length > 0 || typeof dataLamaran === "object") {
+          let dataLamaran = res.data.data || {};
+          console.log({dataLamaran});
+          if(dataLamaran.length > 0 && typeof dataLamaran === "object") {
             apply_job_id = dataLamaran.id;
             renderLaporanMahasiswa(dataLamaran);
           } else {

@@ -505,7 +505,7 @@ const renderPenilaianMahasiswa = async (data) =>{
   )
 }
 const renderNotEligible = () => {
-  const contentLaporan = document.getElementById("content-laporan");
+  const contentLaporan = document.getElementById("content-penilaian");
   render(
     contentLaporan,
     html`
@@ -513,8 +513,8 @@ const renderNotEligible = () => {
         <div class="rounded-md shadow-md">
           <div class="flex flex-col text-center justify-center items-center gap-4">
            <div class="w-full p-1 flex gap-1 justify-center items-center flex-col">
-           <img src="src/images/job.svg" class="w-[40rem]"></img>
-           <div class="text-md mb-10">Anda belum menyelesaikan magang. Silahkan selesaikan magang terlebih dahulu!</div>
+           <img src="src/images/grades.svg" class="w-[40rem]"></img>
+           <div class="text-md mb-10">Belum ada penilaian yang diberikan</div>
            </div>
           </div>
         </div>
@@ -534,12 +534,14 @@ document.addEventListener("DOMContentLoaded", async () => {
     fetchTabelPenilaian(dataEvaluation);
   } else if (auth.role === "mahasiswa"){
     await API.getListCandidate("/user/" + auth.user.id + "/last").then((res)=>{
-      let data = res?.data?.data || []
-      if(data.length > 0 || typeof data === "object"){
-        renderPenilaianMahasiswa(data)
+      let dataLamaran = res?.data?.data || {}
+      if(dataLamaran.length > 0 && typeof dataLamaran === "object"){
+        renderPenilaianMahasiswa(dataLamaran)
       } else {
         renderNotEligible()
       }
-    }).catch((err)=>toast.error("Gagal memuat data penilaian"))
+    }).catch((err)=>{
+      console.log(err)
+      toast.error("Gagal memuat data penilaian")})
   }
 });
