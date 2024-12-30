@@ -363,32 +363,8 @@ const renderUser = () => {
                   <option>PT. Pos Indonesia</option>
                 </fo-select>
               </div>
-              <div>
-                <div class="mb-2 font-semibold">Matakuliah:</div>
-                <fo-select className="w-full px-4 py-2">                  
-                  <option>Accounting</option>
-                  <option>Marketing</option>
-                  <option>Finance</option>
-                </fo-select>
-              </div>
             </div>    
-            <div class="w-full grid grid-cols-3 gap-4">
-              <div>
-                <div class="my-2 font-semibold">Kategori:</div>
-                <div class="flex flex-wrap items-center gap-3">
-                  <fo-checkbox name="umum" label="Umum" checked></fo-checkbox>
-                  <fo-checkbox name="privat" label="Privat"></fo-checkbox>      
-                </div>
-              </div>
-              <div>
-                <div class="my-2 font-semibold">Status:</div>
-                <div class="flex flex-wrap items-center gap-3">
-                  <fo-radio name="semua" value="semua" label="Semua" checked></fo-radio>
-                  <fo-radio name="tersedia" value="tersedia" label="Tersedia"></fo-radio>
-                  <fo-radio name="terbatas" value="terbatas" label="Terbatas"></fo-radio>
-                </div>
-              </div>
-            </div>
+         
           </div>                    
         </div>
         <!-- Tombol Toggle -->
@@ -407,14 +383,6 @@ const renderUser = () => {
             <fo-select name="select" placeholder="Choose one..." clearable>
               <option value="ptposindonesia">PT. Pos Indonesia</Inp></option>
               <option value="pttelkom">PT. Telkom</option>
-            </fo-select>
-            <fo-error name="select"></fo-error>
-          </div>
-          <div class="flex gap-3 items-center">
-            <fo-label for="select" label="Matakuliah"></fo-label>
-            <fo-select name="select" placeholder="Choose one..." clearable>
-              <option value="semua">Semua</option>
-              <option value="finance">Finance</option>
             </fo-select>
             <fo-error name="select"></fo-error>
           </div>
