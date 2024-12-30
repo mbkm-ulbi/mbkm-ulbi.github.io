@@ -48,7 +48,6 @@ const fetchListLowongan = async () => {
                   <div class="text-sm font-semibold">${item.applicants} Kandidat Mendaftar</div>
                 </div>
                 <div class="flex gap-2">
-                  <ui-button variant="outline_orange" type="button" href="">Simpan</ui-button>
                   <ui-button color="orange" type="button" href="">Detail</ui-button>
                 </div>
               </div>
@@ -166,7 +165,6 @@ const fetchListLowongan = async () => {
           </div>
         </div>
         <div class="p-4 flex flex-wrap justify-between border-t border-gray-300">
-          <div><ui-button variant="outline_orange" type="button" href="">Simpan</ui-button></div>
           <div><ui-button color="orange" type="button" href="">Daftar</ui-button></div>
         </div>
       </div>

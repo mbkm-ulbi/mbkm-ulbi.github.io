@@ -53,7 +53,7 @@ const fetchTabelLaporan = async (list) => {
             <td>
               ${item.status === "Selesai"
                 ? html`<ui-badge class="bg-green-600/25 text-green-600" dot>${item.status}</ui-badge>`
-                : item.status === "Pending"
+                : item.status === "Pending" || item.status === "Draft"
                 ? html`<ui-badge class="bg-orange-600/25 text-orange-600" dot>${item.status}</ui-badge>`
                 : item.status === "Berjalan"
                 ? html`<ui-badge class="bg-red-600/25 text-red-600" dot>${item.status}</ui-badge>`
@@ -303,6 +303,7 @@ const renderLaporanMahasiswa = async (dataLamaran) => {
             </div>
           </div>
           <form id="create-report">
+         
           <div class="ms-5 me-5">
             <fo-label label="Upload Laporan"></fo-label>
             <fo-file className="min-h-24" name="file" accept="application/pdf"></fo-file>
@@ -315,8 +316,13 @@ const renderLaporanMahasiswa = async (dataLamaran) => {
                 padding-top: 50px;
             ">
             <div class="flex gap-2 items-center">
-              <iconify-icon icon="solar:check-circle-bold" height="22" class="text-green-500" noobserver></iconify-icon>
-              <div>Selesai Dibuat Oleh Mahasiswa</div>
+              <iconify-icon
+                icon=${dataLamaran?.surat_lamaran?.url ? "solar:check-circle-bold" : "solar:danger-circle-bold"}
+                height="22"
+                class=${dataLamaran?.surat_lamaran?.url ? "text-green-500" : "text-red-500"}
+                noobserver
+              ></iconify-icon>
+              <div>${dataLamaran?.surat_lamaran?.url ? "Selesai" : "Menunggu"} Dibuat Oleh Mahasiswa</div>
             </div>
             <div class="flex gap-2 items-center">
               <iconify-icon icon="solar:danger-circle-bold" height="22" class="text-red-500" noobserver></iconify-icon>
@@ -349,6 +355,25 @@ const renderLaporanMahasiswa = async (dataLamaran) => {
   );
 };
 
+const renderNotEligible = () => {
+  const contentLaporan = document.getElementById("content-laporan");
+  render(
+    contentLaporan,
+    html`
+       <div class="space-y-4">
+        <div class="rounded-md shadow-md">
+          <div class="flex flex-col text-center justify-center items-center gap-4">
+           <div class="w-full p-1 flex gap-1 justify-center items-center flex-col">
+           <img src="src/images/job.svg" class="w-[40rem]"></img>
+           <div class="text-md mb-10">Anda belum menyelesaikan magang. Silahkan selesaikan magang terlebih dahulu!</div>
+           </div>
+          </div>
+        </div>
+       </div>
+    `
+  )
+}
+
 document.addEventListener("DOMContentLoaded", async () => {
   const auth = await getUserInfo();
   if (auth.role === "cdc" || auth.role === "superadmin" || auth.role === "prodi" || auth.role === "dosen" || auth.role === "mitra") {
@@ -372,9 +397,15 @@ document.addEventListener("DOMContentLoaded", async () => {
     async function getMyJob() {
       await API.getListCandidate("/user/" + auth.user.id + "/last")
         .then((res) => {
-          let dataLamaran = res.data.data;
-          apply_job_id = dataLamaran.id;
-          renderLaporanMahasiswa(dataLamaran);
+          let dataLamaran = res.data.data || [];
+          console.log(dataLamaran.length);
+          if(dataLamaran.length > 0 || typeof dataLamaran === "object") {
+            apply_job_id = dataLamaran.id;
+            renderLaporanMahasiswa(dataLamaran);
+          } else {
+            renderNotEligible()
+          }
+        
         })
         .catch((err) => {
           toast.error("Gagal mengambil data lamaran");

@@ -90,7 +90,6 @@ const fetchListLowongan = async () => {
                   <div class="font-semibold">${item.applicants ? "null" : "null"} Kandidat Mendaftar</div>
                 </div>
                 <div class="flex gap-2">
-                  <ui-button variant="outline_orange" type="button">Simpan</ui-button>
                   <ui-button color="orange" type="button" href=${`lowongan/review/index.html?id=${item?.id}`}>Detail</ui-button>
                 </div>
               </div>
@@ -155,7 +154,6 @@ const fetchListLowongan = async () => {
           </div>
         </div>
         <div class="p-4 flex flex-wrap justify-between border-t border-gray-300">
-          <div><ui-button variant="outline_orange" type="button" href="">Simpan</ui-button></div>
           <div>
             <ui-button href=${`lowongan/apply/index.html?id=`+detail?.id} color="orange" type="button">Lamar</ui-button>
             <ui-dialog name="data-lamaran" className="w-[1000px] h-[2000px] p-0 overflow-auto">

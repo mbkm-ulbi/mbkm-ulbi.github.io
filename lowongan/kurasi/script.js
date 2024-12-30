@@ -45,7 +45,7 @@ const fetchKandidat = async (kandidat, fetchCandidates) => {
             <div class="flex justify-between w-full gap-3">
               <div class="flex justify-start items-center gap-3">
                 <div class="w-[48px] flex overflow-hidden rounded-full">
-                  <img class="object-center object-cover h-[50px]" src=${item.profile_picture.url} alt="image" />
+                  <img class="object-center object-cover h-[50px]" src=${item?.profile_picture?.url} alt="image" />
                 </div>
                 <div>
                   <div class="font-semibold">${item.name}</div>
@@ -70,7 +70,7 @@ const fetchKandidat = async (kandidat, fetchCandidates) => {
                     <div class="p-4 space-y-4">
                       <div class="flex gap-3">
                         <div class="w-[48px] flex overflow-hidden rounded-full">
-                          <img class="object-center object-cover h-[50px]" src=${item.profile_picture.url} alt="image" />
+                          <img class="object-center object-cover h-[50px]" src=${item?.profile_picture?.url} alt="image" />
                         </div>
                         <div class="flex flex-col justify-center">
                           <div class="font-semibold">${item.name}</div>

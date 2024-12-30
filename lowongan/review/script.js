@@ -108,7 +108,6 @@ const renderApplyButton = () => {
     approvlButton,
     html`
       <div class="flex gap-4">
-        <ui-button variant="outline_orange" type="button">Simpan</ui-button>
         <ui-button color="orange" type="button" href=${`lowongan/apply/index.html?id=${param.get("id")}`}>Lamar</ui-button>
       </div>
     `
@@ -202,7 +201,6 @@ const renderEditDeleteButton = () => {
     approvlButton,
     html`
       <div class="flex gap-4">
-        <ui-button variant="outline_orange" type="button">Simpan</ui-button>
         <ui-button color="orange" type="button" href=${`lowongan/apply/index.html?id=${param.get("id")}`}>Lamar</ui-button>
       </div>
     `

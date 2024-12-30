@@ -241,7 +241,7 @@ const renderEvaluationDetail = async (data) => {
               <div class="p-4 flex justify-between items-center bg-gray-200/50 font-bold border border-gray-300">
                   <div class="flex items-center font-semibold">
                     <div class="w-60">Penilaian Dari Perusahaan</div>
-                    ${data.company_grade? html`<div class="w-12">${data.company_grade_score}</div>
+                    ${data.company_grade || data.company_grade_score? html`<div class="w-12">${data.company_grade_score}</div>
                     <div class="flex gap-0 text-xs font-bold text-white text-center">
                       <div class="px-4 py-2 bg-blue-900 rounded-l-md">${data.company_grade}</div>
                       <div class="px-4 py-2 bg-red-600 rounded-r-md">-</div>
@@ -254,10 +254,10 @@ const renderEvaluationDetail = async (data) => {
                   </div>`: ''}
                 
                 </div>
-                ${data.company_grade_description
+                ${data.company_grade_description || role !== "mitra"
                   ? html`<div class="p-4 text-xs">
                       <p>
-                        ${data.company_grade_description}
+                        ${data.company_grade_description ? data.company_grade_description : "Belum ada penilaian dari perusahaan"}
                       </p>
                     </div>`
                   : html`
@@ -287,7 +287,7 @@ const renderEvaluationDetail = async (data) => {
                 <div class="p-4 flex justify-between items-center bg-gray-200/50 font-bold border border-gray-300">
                   <div class="flex items-center font-semibold">
                     <div class="w-60">Penilaian Dari Dosen</div>
-                    ${data.lecturer_grade? html`<div class="w-12">${data.lecturer_grade_score}</div>
+                    ${data.lecturer_grade || data.lecturer_grade_score? html`<div class="w-12">${data.lecturer_grade_score}</div>
                     <div class="flex gap-0 text-xs font-bold text-white text-center">
                       <div class="px-4 py-2 bg-blue-900 rounded-l-md">${data.lecturer_grade}</div>
                       <div class="px-4 py-2 bg-red-600 rounded-r-md">-</div>
@@ -300,10 +300,10 @@ const renderEvaluationDetail = async (data) => {
                   </div>`: ''}
                 
                 </div>
-                ${data.lecturer_grade_description
+                ${data.lecturer_grade_description || role !== "dosen"
                   ? html`<div class="p-4 text-xs">
                       <p>
-                        ${data.lecturer_grade_description}
+                        ${data.lecturer_grade_description ? data.lecturer_grade_description : "Belum ada penilaian dari dosen"}
                       </p>
                     </div>`
                   : html`
@@ -333,7 +333,7 @@ const renderEvaluationDetail = async (data) => {
                 <div class="p-4 flex justify-between items-center bg-gray-200/50 font-bold border border-gray-300">
                   <div class="flex items-center font-semibold">
                     <div class="w-60">Penilaian Dari Prodi</div>
-                    ${data.prodi_grade? html`<div class="w-12">${data.prodi_grade_score}</div>
+                    ${data.prodi_grade || data.prodi_grade_score ? html`<div class="w-12">${data.prodi_grade_score}</div>
                     <div class="flex gap-0 text-xs font-bold text-white text-center">
                       <div class="px-4 py-2 bg-blue-900 rounded-l-md">${data.prodi_grade}</div>
                       <div class="px-4 py-2 bg-red-600 rounded-r-md">-</div>
@@ -346,10 +346,10 @@ const renderEvaluationDetail = async (data) => {
                   </div>`: ''}
                 
                 </div>
-                ${data.prodi_grade_description
+                ${data.prodi_grade_description || role !== "prodi"
                   ? html`<div class="p-4 text-xs">
                       <p>
-                        ${data.prodi_grade_description}
+                        ${data.prodi_grade_description ? data.prodi_grade_description : "Belum ada penilaian dari prodi"}
                       </p>
                     </div>`
                   : html`
@@ -359,7 +359,7 @@ const renderEvaluationDetail = async (data) => {
                           <fo-input name="grade_score" placeholder="90" type="number"></fo-input>
                           <fo-error name="grade_score"></fo-error>
                         </div>
-                         <div>
+                        <div>
                           <fo-label for="grade" label="Nilai Huruf"></fo-label>
                           <fo-input name="grade" placeholder="A" type="text"></fo-input>
                           <fo-error name="grade"></fo-error>
@@ -404,7 +404,6 @@ document.addEventListener("DOMContentLoaded", async () => {
     const form = document.getElementById("evaluation-form");
     if (form instanceof HTMLFormElement) {
         form.addEventListener("submit", async (event) => {
-            alert("submit");
             event.preventDefault();
             const formData = new FormData(form);
             formData.append("apply_job_id", evaluationId);

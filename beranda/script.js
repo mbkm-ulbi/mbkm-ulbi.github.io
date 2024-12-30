@@ -114,8 +114,9 @@ const renderUser = () =>{
   const content = document.getElementById("content-beranda")
   render(
     content,
-    html` <div class="space-y-4" >
-      <div class="grid grid-cols-2 gap-4">
+    html` 
+    <div class="space-y-4" >
+      <div class="grid grid-cols-1 gap-4">
         <div class="py-4 space-y-4 border border-gray-300 rounded-md shadow-md">
           <div class="px-4 flex justify-between">
             <div class="text-lg font-bold">Status Magang</div>
@@ -148,43 +149,7 @@ const renderUser = () =>{
             <ui-button color="orange" href="lowongan/">LIHAT LOWONGAN</ui-button>
           </div>
         </div>
-        <div class="py-4 space-y-4 border border-gray-300 rounded-md shadow-md">
-          <div class="px-4 flex justify-between">
-            <div class="text-lg font-bold">Kelengkapan Profil</div>
-            <iconify-icon icon="solar:info-circle-bold" class="text-orange-500" height="20"></iconify-icon>
-          </div>
-          <div class="border-t border-gray-300"></div>
-          <div class="px-4 flex justify-between items-center">
-            <span class="text-lg">Mahasiswa</span>
-          </div>
-          <div class="px-4 grid grid-cols-3 gap-2 text-xs">
-            <div class="flex gap-2">
-              <iconify-icon icon="solar:check-circle-bold-duotone" class="text-green-500" height="16"></iconify-icon>
-              <span>Informasi Dasar</span>
-            </div>
-            <div class="flex gap-2">
-              <iconify-icon icon="solar:check-circle-bold-duotone" class="text-green-500" height="16"></iconify-icon>
-              <span>Upload CV</span>
-            </div>
-            <div class="flex gap-2">
-              <iconify-icon icon="solar:close-circle-bold-duotone" class="text-red-500" height="16"></iconify-icon>
-              <span>Upload DHS</span>
-            </div>
-            <div class="flex gap-2">
-              <iconify-icon icon="solar:close-circle-bold-duotone" class="text-red-500" height="16"></iconify-icon>
-              <span>Informasi Kontak</span>
-            </div>
-            <div class="flex gap-2">
-              <iconify-icon icon="solar:check-circle-bold-duotone" class="text-green-500" height="16"></iconify-icon>
-              <span>Upload Lamaran</span>
-            </div>
-            <div class="flex gap-2">
-              <iconify-icon icon="solar:close-circle-bold-duotone" class="text-red-500" height="16"></iconify-icon>
-              <span>Upload Foto Profil</span>
-            </div>
-          </div>
-          <div class="px-4"><ui-button color="orange">PERBAHARUI PROFIL</ui-button></div>
-        </div>
+        
         <div class="py-4 space-y-4 border border-gray-300 rounded-md shadow-md">
           <div class="px-4 flex justify-between">
             <div class="text-lg font-bold">Penilaian</div>
@@ -205,82 +170,14 @@ const renderUser = () =>{
           </div>
           <div class="border-t border-gray-300"></div>
           <div class="px-4 space-y-4">
-            <div
-              class="p-4 w-full h-[260px] flex flex-col overflow-scroll gap-2 bg-gray-200/50 border border-dashed border-gray-300 rounded-md text-xs text-justify"
-            >
-              <h1 class="font-bold">LAPORAN KEGIATAN MAGANG MAHASISWA</h1>
-              <div class="details">
-                <p>Nama Mahasiswa: Ahmad Yusran</p>
-                <p>NIM: 123456789</p>
-                <p>Program Studi: Akuntansi</p>
-                <p>Perusahaan: PT ABC Sejahtera</p>
-                <p>Departemen: Keuangan</p>
-                <p>Periode Magang: 1 Agustus 2024 – 31 Agustus 2024</p>
-              </div>
-              <h2 class="font-bold">RINCIAN KEGIATAN MAGANG</h2>
-              <div class="activities">
-                <h3>Senin, 1 Agustus 2024</h3>
-                <ul>
-                  <li>Pengarahan Awal Dari Supervisor Terkait Tugas-Tugas Selama Magang.</li>
-                  <li>Pengenalan Software Akuntansi Yang Digunakan Oleh Perusahaan (Accurate).</li>
-                  <li>Memeriksa Kelengkapan Dokumen Untuk Pengajuan Reimbursement Karyawan.</li>
-                  <li>Menginput Data Transaksi Kas Kecil (Petty Cash) Ke Dalam Sistem.</li>
-                </ul>
-                <h3>Selasa, 2 Agustus 2024</h3>
-                <ul>
-                  <li>Melakukan Pengarsipan Dokumen Keuangan Secara Manual Dan Digital.</li>
-                  <li>Mempersiapkan Pengajuan Dana Untuk Kebutuhan Operasional Perusahaan.</li>
-                  <li>Membantu Dalam Proses Rekonsiliasi Bank Harian Dengan Supervisor.</li>
-                  <li>Mengecek Bukti Transaksi Pembelian Barang Perusahaan.</li>
-                </ul>
-              </div>
+           <div class="w-full ">
+              <fo-label className="font-bold text-md" label="Laporan Mahasiswa"></fo-label>
+              <fo-uploaded fileurl=${'belum ada'} filename=${'belum ada'} className="mb-2"></fo-uploaded>
+              <fo-error name="fileUpload"></fo-error>
             </div>
-            <span class="text-xs"><i>Terakhir diperbaharui: 24 September 2024 - 19.21</i></span>
-            <div class="flex gap-4 text-xs">
-              <div class="flex gap-2 items-center">
-                <iconify-icon icon="solar:danger-circle-bold" height="22" class="text-red-500" noobserver></iconify-icon>
-                <div>Mahasiswa</div>
-              </div>
-              <div class="flex gap-2 items-center">
-                <iconify-icon icon="solar:danger-circle-bold" height="22" class="text-red-500" noobserver></iconify-icon>
-                <div>Perusahaan</div>
-              </div>
-              <div class="flex gap-2 items-center">
-                <iconify-icon icon="solar:danger-circle-bold" height="22" class="text-red-500" noobserver></iconify-icon>
-                <div>Dosen Wali</div>
-              </div>
-              <div class="flex gap-2 items-center">
-                <iconify-icon icon="solar:danger-circle-bold" height="22" class="text-red-500" noobserver></iconify-icon>
-                <div>Prodi</div>
-              </div>
+            <div class="flex justify-end gap-4">
+              <ui-button color="orange" href="laporan/" className="mt-4">LANJUTKAN LAPORAN</ui-button>
             </div>
-            <div class="flex gap-4">
-              <ui-button variant="outline_orange" className="mt-4">PREVIEW LAPORAN</ui-button>
-              <ui-button color="orange" className="mt-4">LANJUTKAN LAPORAN</ui-button>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="py-4 space-y-4 border border-gray-300 rounded-md shadow-md">
-        <div class="px-4 flex justify-between">
-          <div class="text-lg font-bold">Notifikasi/Aktivitas</div>
-          <iconify-icon icon="solar:info-circle-bold" class="text-orange-500" height="20"></iconify-icon>
-        </div>
-        <div class="border-t border-gray-300"></div>
-        <div class="p-4 space-y-4 text-gray-500 text-xs text-center">
-          <div class="p-4 flex justify-between items-center border border-gray-300 rounded-md">
-            <div class="text-left">
-              <div class="text-gray-500 font-bold">24 September 2024 -14:30</div>
-              <div>Selamat! Prodi Telah Menyetujui Permohonan Magang Anda</div>
-            </div>
-            <iconify-icon icon="solar:alt-arrow-right-bold" class="text-orange-500" height="12"></iconify-icon>
-          </div>
-          <div class="p-4 flex justify-between items-center border border-gray-300 rounded-md">
-            <div class="text-left">
-              <div class="text-gray-500 font-bold">24 September 2024 -14:30</div>
-              <div>Anda Telah Melamar di PT. Pos Indonesia sebagai Senior Akuntan</div>
-            </div>
-            <iconify-icon icon="solar:alt-arrow-right-bold" class="text-orange-500" height="12"></iconify-icon>
           </div>
         </div>
       </div>

@@ -283,23 +283,7 @@ class AuthLayout extends HTMLElement {
             )}
           </div>
         </div>
-        <div>
-          <button
-            data-popover-trigger="popover-notification"
-            class="flex items-center gap-2 px-2 py-2 rounded-lg bg-white hover:opacity-90 duration-200 focus:outline-none"
-          >
-            <iconify-icon class="text-ulbiOrange" icon="solar:bell-bold" width="20" noobserver></iconify-icon>
-            <span class="font-semibold text-gray-800 text-xs">Notifikasi</span>
-            <iconify-icon class="text-gray-800" icon="solar:alt-arrow-down-bold" width="16" noobserver></iconify-icon>
-          </button>
-          <ui-popover name="popover-notification" trigger="click" placement="bottom-end">
-            <ul class="text-sm list-inside list-disc">
-              <li>Notifikasi 1</li>
-              <li>Notifikasi 2</li>
-              <li>Notifikasi 3</li>
-            </ul>
-          </ui-popover>
-        </div>
+       
       </header>
     `;
   }
