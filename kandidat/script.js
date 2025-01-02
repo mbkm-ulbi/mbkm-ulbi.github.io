@@ -47,7 +47,7 @@ const fetchKandidat = async () => {
   );
 };
 
-const fetchTabelKandidat = async (list, fetchDataKandidat) => {
+const fetchTabelKandidat = async (list, fetchDataKandidat, setApplyJobId) => {
   const handleDoneJob = async (id) => {
     await API.postApply(null, `/${id}/done`)
       .then((res) => {
@@ -61,7 +61,7 @@ const fetchTabelKandidat = async (list, fetchDataKandidat) => {
   };
 
   const handleSetStorage = (id) =>{
-    localStorage.setItem("apply_job_id", id)
+    setApplyJobId(id)
   }
   render(
     document.getElementById("tabelKandidat"),
@@ -511,12 +511,21 @@ document.addEventListener("DOMContentLoaded", async () => {
     }
     await getMyJob();
   } else {
+    let apply_job_id = null
+    const setApplyJobId = (id) => {
+      console.log({id}) //id ini muncul
+      apply_job_id = id
+      if(apply_job_id){
+        getListDropdown()
+      }
+    }
+    
     async function fetchDataKandidat() {
       await API.getListCandidate()
         .then((res) => {
           let dataCandidates = res.data.data;
           console.log(dataCandidates);
-          fetchTabelKandidat(dataCandidates, fetchDataKandidat);
+          fetchTabelKandidat(dataCandidates, fetchDataKandidat, setApplyJobId);
         })
         .catch((err) => {
           toast.error("Gagal mengambil data kandidat");
@@ -525,13 +534,13 @@ document.addEventListener("DOMContentLoaded", async () => {
     await renderKandidatAdmin();
     await fetchKandidat();
     await fetchDataKandidat();
-
     const foSelectElement = document.getElementById("lecturer_id");
     const defaultValue = foSelectElement.getAttribute("value"); 
+    console.log({apply_job_id})
     console.log({defaultValue})
     let Options = [];
     const getListDropdown = async () => {
-      await API.getListLecturer()
+      await API.getListLecturer(`?apply_job_id=${apply_job_id}`)
         .then((res) => {
           Options = res.data.data;
         })
@@ -562,7 +571,7 @@ document.addEventListener("DOMContentLoaded", async () => {
         foSelectElement.handleError();
       }
     };
-    getListDropdown()
+ 
 
     const form = document.getElementById("lecturer-form");
     if(form instanceof HTMLFormElement){
@@ -572,7 +581,6 @@ document.addEventListener("DOMContentLoaded", async () => {
         const formData = new FormData(form);
 
         try{
-          const apply_job_id = localStorage.getItem("apply_job_id")
           await API.postApply(formData, `/${apply_job_id}/set-lecturer`).then(async (res)=>{
             toast.success("Berhasil menambahkan dosen pembimbing")
             await fetchDataKandidat()

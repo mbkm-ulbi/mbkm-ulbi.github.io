@@ -4,6 +4,7 @@ import { toast } from "../src/js/libraries/notify.js";
 import { listPenilaian, dummy, dummyDataNew } from "./dummyBeranda.js";
 import API from "../src/js/api/index.js";
 import moment from "https://cdn.jsdelivr.net/npm/moment@2.30.1/+esm";
+import { NO_IMAGE, ULBI_LOGO } from "../src/js/libraries/constants.js";
 
 const flashMessage = await getFlashMessage();
 if (flashMessage) toast.success(flashMessage);
@@ -126,8 +127,6 @@ const renderSuperAdmin = (data) => {
           <canvas id="lineChart"></canvas>
         </div>
       </div>
-      <p class="text-xl font-bold mt-4">Persentase Keikutsertaan Mahasiswa Berdasarkan Prodi</p>
-      <div class="flex flex-col md:flex-row md:space-x-4 space-y-4 md:space-y-0 w-full" id="persentase-jurusan"></div>
       <p class="text-xl font-bold mt-4">Data Terbaru</p>
       <div class="flex flex-col md:flex-row md:space-x-4 space-y-4 md:space-y-0 w-full" id="data-terbaru"></div>`
   );
@@ -282,31 +281,63 @@ const fetchJurusan = async () => {
     `
   );
 };
-const fetchNewData = () => {
+const fetchNewData = (data) => {
+  data = data.latest_data
+  console.log({data})
   const response = dummyDataNew;
   const dataTerbaru = document.getElementById("data-terbaru");
   render(
     dataTerbaru,
-    html` ${response.map(
-      (item) => html`
-        <div class="bg-white rounded-lg shadow-md p-6 flex-1">
-          <h2 class="text-orange-500 text-lg font-bold mb-4">${item?.label}</h2>
+    html`
+      <div class="bg-white rounded-lg shadow-md p-6 flex-1">
+          <h2 class="text-orange-500 text-lg font-bold mb-4">Lowongan</h2>
           <div class="space-y-4">
-            ${item?.companys.map(
-              (company) => html`
+            ${data?.jobs.map(
+              (jobs) => html`
                 <div class="flex items-center">
-                  <img alt="Company logo" class="w-10 h-10 rounded-full" height="40" src=${company.images} width="40" />
+                  <img alt="Lowongan logo" class="w-10 h-10 rounded-full bg-cover bg-center" src=${jobs?.job_vacancy_image?.url ?? NO_IMAGE}  />
                   <div class="ml-4">
-                    <p class="text-black font-semibold">${company?.name}</p>
-                    <p class="text-gray-500">${company?.position}</p>
+                    <p class="text-black font-semibold">${jobs?.company}</p>
+                    <p class="text-gray-500">${jobs?.title}</p>
                   </div>
                 </div>
               `
             )}
           </div>
         </div>
-      `
-    )}`
+           <div class="bg-white rounded-lg shadow-md p-6 flex-1">
+          <h2 class="text-orange-500 text-lg font-bold mb-4">Perusahaan</h2>
+          <div class="space-y-4">
+            ${data?.companies.map(
+              (companies) => html`
+                <div class="flex items-center">
+                  <img alt="Perusahaan logo" class="w-10 h-10 rounded-full" height="40" src=${companies?.company_logo ?? NO_IMAGE} width="40" />
+                  <div class="ml-4">
+                    <p class="text-black font-semibold">${companies?.company_name}</p>
+                    <p class="text-gray-500">${companies?.company_website}</p>
+                  </div>
+                </div>
+              `
+            )}
+          </div>
+        </div>
+           <div class="bg-white rounded-lg shadow-md p-6 flex-1">
+          <h2 class="text-orange-500 text-lg font-bold mb-4">Mahasiswa</h2>
+          <div class="space-y-4">
+            ${data?.apply_job_students.map(
+              (apply_job_students) => html`
+                <div class="flex items-center">
+                  <img alt="Company logo" class="w-10 h-10 rounded-full" height="40" src=${apply_job_students?.users[0]?.profile_picture?.url ?? NO_IMAGE} width="40" />
+                  <div class="ml-4">
+                    <p class="text-black font-semibold">${apply_job_students?.users[0]?.name}</p>
+                    <p class="text-gray-500">${apply_job_students?.users[0]?.faculty}</p>
+                  </div>
+                </div>
+              `
+            )}
+          </div>
+        </div>
+    `
   );
 };
 
@@ -339,8 +370,8 @@ document.addEventListener("DOMContentLoaded", async () => {
   if (auth.role === "superadmin" || auth.role === "cdc" || auth.role === "prodi" || auth.role === "mitra" || auth.role === "dosen") {
     const data = await getDataDashboard();
     renderSuperAdmin(data);
-    fetchJurusan();
-    fetchNewData();
+    // fetchJurusan();
+    fetchNewData(data);
     const createDoughnutChart = (canvas) => {
       const ctx = canvas.getContext("2d");
       //@ts-ignore
@@ -374,27 +405,13 @@ document.addEventListener("DOMContentLoaded", async () => {
       new Chart(lineCtx, {
         type: "line",
         data: {
-          labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
-          datasets: [
-            {
-              label: "Submitted",
-              data: [10, 20, 30, 40, 23, 60, 100, 80, 90, 22, 110, 212],
-              borderColor: "#00277F",
-              fill: false,
-            },
-            {
-              label: "Approved",
-              data: [5, 15, 25, 15, 45, 30, 65, 75, 100, 80, 105, 200],
-              borderColor: "#4DC247",
-              fill: false,
-            },
-            {
-              label: "Rejected",
-              data: [100, 50, 22, 32, 42, 52, 21, 3, 123, 3, 3, 112],
-              borderColor: "#EA5329",
-              fill: false,
-            },
-          ],
+          labels: data?.chart_data?.labels,
+          datasets: data?.chart_data?.datasets.map((item)=>({
+            label: item.label,
+            data: item.data,
+            borderColor: item.label === "Melamar" ? "#00277F" : item?.label === "Disetujui" ? "#4DC247" : item?.label === "Aktif" ? "#FFA500" : item?.label === "Selesai" ? "#EA5329" : "#667391",
+            fill: false,
+          })),
         },
         options: {
           responsive: true,
