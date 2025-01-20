@@ -196,7 +196,7 @@ const renderLaporan = () => {
               </table>
             </ui-table>
           </div>
-          <div><ui-pagination /></div>
+          <div><ui-pagination data-pagination-count=${10000} data-pagination-limit=${10} data-pagination-page=${1}/></div>
         </div>
       </div>
     `
@@ -388,42 +388,53 @@ const renderNotEligible = () => {
 
 document.addEventListener("DOMContentLoaded", async () => {
   const auth = await getUserInfo();
+
   if (auth.role === "cdc" || auth.role === "superadmin" || auth.role === "prodi" || auth.role === "dosen" || auth.role === "mitra") {
     renderLaporan();
     fetchLaporan();
 
-    async function getDataReport() {
-      await API.getListReport()
-        .then((res) => {
-          let data = res.data.data;
-          fetchTabelLaporan(data);
-        })
-        .catch((err) => {
-          toast.error("Gagal mengambil data laporan");
-        });
-    }
-    await getDataReport();
-  } else if (auth.role === "mahasiswa") {
-    const auth = await getUserInfo();
-    let apply_job_id;
-    async function getMyJob() {
-      await API.getListCandidate("/user/" + auth.user.id + "/last")
-        .then((res) => {
-          let dataLamaran = res.data.data || {};
-          console.log({dataLamaran});
-          if(dataLamaran.length > 0 && typeof dataLamaran === "object") {
-            apply_job_id = dataLamaran.id;
-            renderLaporanMahasiswa(dataLamaran);
-          } else {
-            renderNotEligible()
-          }
-        
-        })
-        .catch((err) => {
-          toast.error("Gagal mengambil data lamaran");
-        });
+    async function getDataReport(page = 1, perPage = 10) {
+      try {
+        const res = await API.getListReport(`?page=${page}&per_page=${perPage}`);
+        const data = res.data.data;
+        fetchTabelLaporan(data);
+      } catch (err) {
+        toast.error("Gagal mengambil data laporan");
+      }
     }
 
+    // Memuat data awal
+    await getDataReport();
+
+    // Menangani pagination page change
+    const pagination = document.querySelector("ui-pagination");
+    if (pagination) {
+      pagination.addEventListener("pagination-page-change", async (event) => {
+        const { page } = event.detail; // Mendapatkan halaman dari event
+        await getDataReport(page);
+      });
+    }
+  } else if (auth.role === "mahasiswa") {
+    let apply_job_id;
+
+    async function getMyJob() {
+      try {
+        const res = await API.getListCandidate(`/user/${auth.user.id}/last`);
+        const dataLamaran = res.data.data || {};
+        console.log({ dataLamaran });
+
+        if (dataLamaran.length > 0 && typeof dataLamaran === "object") {
+          apply_job_id = dataLamaran.id;
+          renderLaporanMahasiswa(dataLamaran);
+        } else {
+          renderNotEligible();
+        }
+      } catch (err) {
+        toast.error("Gagal mengambil data lamaran");
+      }
+    }
+
+    // Memuat data awal untuk mahasiswa
     await getMyJob();
 
     const form = document.getElementById("create-report");
@@ -434,17 +445,15 @@ document.addEventListener("DOMContentLoaded", async () => {
         formData.append("apply_job_id", apply_job_id);
         if (!formValidation(form, formData)) return;
 
-        await API.createReport(formData)
-          .then((res) => {
-            toast.success("Berhasil mengirim laporan");
-            getMyJob();
-          })
-          .catch((err) => {
-            toast.error("Gagal mengirim laporan");
-          });
+        try {
+          await API.createReport(formData);
+          toast.success("Berhasil mengirim laporan");
+          await getMyJob(); // Memuat ulang laporan setelah berhasil
+        } catch (err) {
+          toast.error("Gagal mengirim laporan");
+        }
       });
     }
-
-    // await
   }
 });
+

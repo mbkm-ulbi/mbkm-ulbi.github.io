@@ -141,7 +141,7 @@ class AuthLayout extends HTMLElement {
           <div>
             <div class="font-semibold whitespace-nowrap">${this.state.userInfo?.user?.name}</div>
             <div class="text-gray-500 text-xs mt-1 whitespace-nowrap">Role: ${this.state.userInfo?.role?.toUpperCase()}</div>
-            <div class="text-gray-500 text-xs mt-1 whitespace-nowrap">${this.state.userInfo.user.program_study}</div>
+            <div class="text-gray-500 text-xs mt-1 whitespace-nowrap">${this.state?.userInfo?.user?.program_study}</div>
           </div>
         </div>
         <nav class="px-6 grow flex flex-col gap-2 mt-4">

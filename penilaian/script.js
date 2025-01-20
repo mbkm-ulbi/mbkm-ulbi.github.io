@@ -202,7 +202,7 @@ const renderPenilaian = () =>{
               </table>
             </ui-table>
           </div>
-          <div><ui-pagination /></div>
+          <div><ui-pagination data-pagination-count=${10000} data-pagination-limit=${10} data-pagination-page=${1}/></div>
         </div>
       </div>
     `
@@ -524,24 +524,50 @@ const renderNotEligible = () => {
 }
 document.addEventListener("DOMContentLoaded", async () => {
   const auth = await getUserInfo();
-  if(auth.role === "cdc" || auth.role === "superadmin" || auth.role === "prodi" || auth.role === "dosen" || auth.role === "mitra"){
-    let dataEvaluation = []
-    await API.getListEvaluations().then((res)=>{
-      dataEvaluation = res?.data.data
-    }).catch((err)=>toast.error("Gagal memuat data penilaian"))
+
+  if (auth.role === "cdc" || auth.role === "superadmin" || auth.role === "prodi" || auth.role === "dosen" || auth.role === "mitra") {
+    let dataEvaluation = [];
+
+    // Mendapatkan data awal pada halaman 1
+    await API.getListEvaluations(`?page=1&per_page=10`)
+      .then((res) => {
+        dataEvaluation = res?.data?.data;
+      })
+      .catch((err) => toast.error("Gagal memuat data penilaian"));
+
+    // Render awal
     renderPenilaian();
     fetchPenilaian();
     fetchTabelPenilaian(dataEvaluation);
-  } else if (auth.role === "mahasiswa"){
-    await API.getListCandidate("/user/" + auth.user.id + "/last").then((res)=>{
-      let dataLamaran = res?.data?.data || {}
-      if(dataLamaran.length > 0 && typeof dataLamaran === "object"){
-        renderPenilaianMahasiswa(dataLamaran)
-      } else {
-        renderNotEligible()
-      }
-    }).catch((err)=>{
-      console.log(err)
-      toast.error("Gagal memuat data penilaian")})
+
+    // Menangani pagination page change
+    const pagination = document.querySelector("ui-pagination");
+    if (pagination) {
+      pagination.addEventListener("pagination-page-change", async (event) => {
+        const { page } = event.detail; // Mendapatkan halaman baru dari event
+        try {
+          const res = await API.getListEvaluations(`?page=${page}&per_page=10`);
+          const newData = res?.data?.data || [];
+          fetchTabelPenilaian(newData); // Memperbarui tabel dengan data baru
+        } catch (error) {
+          console.error("Gagal memuat data penilaian:", error);
+          toast.error("Gagal memuat data penilaian");
+        }
+      });
+    }
+  } else if (auth.role === "mahasiswa") {
+    await API.getListCandidate(`/user/${auth.user.id}/last`)
+      .then((res) => {
+        const dataLamaran = res?.data?.data || {};
+        if (dataLamaran.length > 0 && typeof dataLamaran === "object") {
+          renderPenilaianMahasiswa(dataLamaran);
+        } else {
+          renderNotEligible();
+        }
+      })
+      .catch((err) => {
+        console.error(err);
+        toast.error("Gagal memuat data penilaian");
+      });
   }
 });

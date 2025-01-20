@@ -4,11 +4,11 @@ import { getTime, toMonetary } from "../src/js/libraries/utilities.js";
 import { getAuth, getUserInfo } from "../src/js/libraries/cookies.js";
 import { getListJob } from "../src/js/api/index.js";
 import { toast } from "../src/js/libraries/notify.js";
-import moment from 'https://cdn.jsdelivr.net/npm/moment@2.30.1/+esm'
+import moment from "https://cdn.jsdelivr.net/npm/moment@2.30.1/+esm";
 
 const fetchLowonganMagang = async () => {
   const rekap = await rekapLowonganMagangDummy();
-  let arr = []
+  let arr = [];
   render(
     document.getElementById("rekapLowonganMagang"),
     html`
@@ -41,11 +41,13 @@ const fetchLowonganMagang = async () => {
 const fetchListLowongan = async () => {
   let list = [];
   const urlImage = "src/images/dummy_ulbi.png";
-  await getListJob().then((res) => {
-    list = res?.data?.data
-  }).catch((err)=>{
-    toast.error(err?.message)
-  })
+  await getListJob()
+    .then((res) => {
+      list = res?.data?.data;
+    })
+    .catch((err) => {
+      toast.error(err?.message);
+    });
 
   render(document.getElementById("totalLowonganMagang"), html` Menampilkan ${toMonetary(list.length)} Lowongan `);
 
@@ -56,7 +58,12 @@ const fetchListLowongan = async () => {
         (item) => html`
           <div class="flex-none flex gap-2 rounded-lg border border-gray-300 overflow-hidden">
             <div class="w-[120px] flex overflow-hidden rounded-l-lg">
-              <img class="object-center object-contain" src=${item?.job_vacancy_image?.url ? item?.job_vacancy_image?.url :urlImage} height="[100px]" alt="image" />
+              <img
+                class="object-center object-contain"
+                src=${item?.job_vacancy_image?.url ? item?.job_vacancy_image?.url : urlImage}
+                height="[100px]"
+                alt="image"
+              />
             </div>
             <div class="w-full p-4 flex flex-col gap-2 text-xs">
               <div class="flex justify-between items-center">
@@ -109,18 +116,24 @@ const fetchListLowongan = async () => {
       <div class="flex-none h-[800px] flex flex-col rounded-md border border-gray-300 text-xs">
         <div class="pt-4 px-4 flex justify-between items-center">
           <div>Diposting 2 Hari Yang Lalu</div>
-          <div>   ${detail.status === "Tersedia"
-                    ? html`<ui-badge class="bg-green-600/25 text-green-600" dot>${detail.status}</ui-badge>`
-                    : detail.status === "Perlu Ditinjau"
-                    ? html`<ui-badge class="bg-orange-600/25 text-orange-600" dot>${detail.status}</ui-badge>`
-                    : detail.status === "Ditutup" || detail.status === "Ditolak"
-                    ? html`<ui-badge class="bg-red-600/25 text-red-600" dot>${detail.status}</ui-badge>`
-                    : ""}
-            </div>
+          <div>
+            ${detail.status === "Tersedia"
+              ? html`<ui-badge class="bg-green-600/25 text-green-600" dot>${detail.status}</ui-badge>`
+              : detail.status === "Perlu Ditinjau"
+              ? html`<ui-badge class="bg-orange-600/25 text-orange-600" dot>${detail.status}</ui-badge>`
+              : detail.status === "Ditutup" || detail.status === "Ditolak"
+              ? html`<ui-badge class="bg-red-600/25 text-red-600" dot>${detail.status}</ui-badge>`
+              : ""}
+          </div>
         </div>
         <div class="flex border-b border-gray-300">
           <div class="pl-2 w-[120px] flex overflow-hidden rounded-l-lg">
-            <img class="object-center object-contain" src=${detail?.job_vacancy_image?.url ? detail?.job_vacancy_image?.url :urlImage} height="[100px]" alt="image" />
+            <img
+              class="object-center object-contain"
+              src=${detail?.job_vacancy_image?.url ? detail?.job_vacancy_image?.url : urlImage}
+              height="[100px]"
+              alt="image"
+            />
           </div>
           <div class="p-4 flex flex-col gap-1">
             <div class="text-xl font-semibold">${detail?.title}</div>
@@ -140,22 +153,20 @@ const fetchListLowongan = async () => {
         </div>
         <div class="overflow-y-auto">
           <div>
-            <img class="block mx-auto" src=${detail?.job_vacancy_image?.url ? detail?.job_vacancy_image?.url :urlImage} alt="image" />
+            <img class="block mx-auto" src=${detail?.job_vacancy_image?.url ? detail?.job_vacancy_image?.url : urlImage} alt="image" />
           </div>
           <div class="space-y-3 m-3">
             <div>
               <fo-label label="Deskripsi Pekerjaan" className="text-sm text-gray-800"></fo-label>
             </div>
-         <div class="max-w-3xl mx-auto p-6 mt-10">
-         <div innerHTML=${detail?.description}></div>
+            <div class="max-w-3xl mx-auto p-6 mt-10">
+              <div innerHTML=${detail?.description}></div>
             </div>
-           
-            
           </div>
         </div>
         <div class="p-4 flex flex-wrap justify-between border-t border-gray-300">
           <div>
-            <ui-button href=${`lowongan/apply/index.html?id=`+detail?.id} color="orange" type="button">Lamar</ui-button>
+            <ui-button href=${`lowongan/apply/index.html?id=` + detail?.id} color="orange" type="button">Lamar</ui-button>
             <ui-dialog name="data-lamaran" className="w-[1000px] h-[2000px] p-0 overflow-auto">
               <div class="flex flex-col items-center gap-4">
                 <div class="pb-2 p-4 w-full flex justify-between items-center border-b border-gray-300">
@@ -299,11 +310,35 @@ if (form instanceof HTMLFormElement) {
 // }
 
 document.addEventListener("DOMContentLoaded", async function () {
-
- 
   const auth = await getUserInfo();
   if (auth.role === "superadmin" || auth.role === "cdc" || auth.role === "prodi" || auth.role === "mitra") {
-    renderSuperUser();
+    let list = [];
+
+    await getListJob(`?page=1&per_page=10`)
+      .then((res) => {
+        list = res?.data?.data;
+      })
+      .catch((err) => {
+        toast.error(err?.message);
+      });
+
+    renderSuperUser(list);
+
+    const pagination = document.querySelector("ui-pagination");
+    if (pagination) {
+      pagination.addEventListener("pagination-page-change", async (event) => {
+        const { page } = event.detail; // Mendapatkan halaman baru dari event
+        try {
+          const res = await getListJob(`?page=${page}&per_page=10`)
+          const newData = res?.data?.data || [];
+          renderSuperUser(newData); // Memperbarui tabel dengan data baru
+        } catch (error) {
+          console.error("Gagal memuat data penilaian:", error);
+          toast.error("Gagal memuat data penilaian");
+        }
+      });
+    }
+
   } else {
     // const res = await getJobMahasiswa()
     // console.log(await getAuth())
@@ -403,122 +438,126 @@ const renderUser = () => {
   );
 };
 
-const renderSuperUser = async () => {
-  let list = [];
+const renderSuperUser = async (list) => {
   const urlImage = "src/images/dummy_ulbi.png";
-  await getListJob().then((res) => {
-    list = res?.data?.data
-  }).catch((err)=>{
-    toast.error(err?.message)
-  })
+
   const contentLowongan = document.getElementById("content-lowongan");
   render(
     contentLowongan,
     html`
-    <div class="space-y-4">
-      <div class="px-12 py-4 rounded-md shadow-md ">
-        <div id="rekapJumlahLowongan" class="flex justify-between">
-          <div class="flex items-center gap-2">
-            <iconify-icon icon="solar:user-hands-bold" height="22" class="text-ulbiOrange" noobserver></iconify-icon>
-            <span class="text-lg text-ulbiBlue font-bold">Lowongan</span>
-          </div>
-          <div class="flex flex-col justify-center items-center">
-            <div class="text-xs text-gray-500 font-semibold">Total</div>
-            <div class="text-xl font-bold">100</div>
-          </div>
-          <div class="flex flex-col justify-center items-center">
-            <div class="text-xs text-gray-500 font-semibold">Diterima</div>
-            <div class="text-xl font-bold">50</div>
-          </div>
-          <div class="flex flex-col justify-center items-center">
-            <div class="text-xs text-gray-500 font-semibold">Ditinjau</div>
-            <div class="text-xl font-bold">30</div>
-          </div>
-          <div class="flex flex-col justify-center items-center">
-            <div class="text-xs text-gray-500 font-semibold">Ditolak</div>
-            <div class="text-xl font-bold">20</div>
+      <div class="space-y-4">
+        <div class="px-12 py-4 rounded-md shadow-md ">
+          <div id="rekapJumlahLowongan" class="flex justify-between">
+            <div class="flex items-center gap-2">
+              <iconify-icon icon="solar:user-hands-bold" height="22" class="text-ulbiOrange" noobserver></iconify-icon>
+              <span class="text-lg text-ulbiBlue font-bold">Lowongan</span>
+            </div>
+            <div class="flex flex-col justify-center items-center">
+              <div class="text-xs text-gray-500 font-semibold">Total</div>
+              <div class="text-xl font-bold">100</div>
+            </div>
+            <div class="flex flex-col justify-center items-center">
+              <div class="text-xs text-gray-500 font-semibold">Diterima</div>
+              <div class="text-xl font-bold">50</div>
+            </div>
+            <div class="flex flex-col justify-center items-center">
+              <div class="text-xs text-gray-500 font-semibold">Ditinjau</div>
+              <div class="text-xl font-bold">30</div>
+            </div>
+            <div class="flex flex-col justify-center items-center">
+              <div class="text-xs text-gray-500 font-semibold">Ditolak</div>
+              <div class="text-xl font-bold">20</div>
+            </div>
           </div>
         </div>
-      </div>
-      <div class="mt-5">
-        <div class="bg-white p-6 rounded-lg shadow-md">
-          <div class="flex justify-between items-center mb-4">
-            <h1 class="text-xl font-semibold">Semua Lowongan</h1>
-            <a class="bg-orange-500 text-white px-4 py-2 rounded-lg cursor-pointer" href="lowongan/create">BUAT POSTINGAN BARU</a>
-          </div>
-          <div class="flex space-x-4 mb-4">
-            <div class="flex-1">
-              <label class="block text-sm font-medium text-gray-700" for="company">Perusahaan</label>
-              <fo-select id="company">
-                <option>ULBI</option>
-              </fo-select>
+        <div class="mt-5">
+          <div class="bg-white p-6 rounded-lg shadow-md">
+            <div class="flex justify-between items-center mb-4">
+              <h1 class="text-xl font-semibold">Semua Lowongan</h1>
+              <a class="bg-orange-500 text-white px-4 py-2 rounded-lg cursor-pointer" href="lowongan/create">BUAT POSTINGAN BARU</a>
             </div>
-            <div class="flex-1">
-              <label class="block text-sm font-medium text-gray-700" for="status">Status Lowongan</label>
-              <fo-select id="status">
-                <option>Semua</option>
-              </fo-select>
-            </div>
-          </div>
-          <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-            ${list?.map((item, index)=>html`
-            <div class="bg-white rounded-lg shadow-md flex">
-              <div
-                class="p-6 rounded-l-lg flex items-center justify-center w-[120px]"
-              >
-              <img class="object-center object-contain" src=${item?.job_vacancy_image?.url || urlImage} height="[100px]" alt="image" />
-              
+            <div class="flex space-x-4 mb-4">
+              <div class="flex-1">
+                <label class="block text-sm font-medium text-gray-700" for="company">Perusahaan</label>
+                <fo-select id="company">
+                  <option>ULBI</option>
+                </fo-select>
               </div>
+              <div class="flex-1">
+                <label class="block text-sm font-medium text-gray-700" for="status">Status Lowongan</label>
+                <fo-select id="status">
+                  <option>Semua</option>
+                </fo-select>
+              </div>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+              ${list?.map(
+                (item, index) => html`
+                  <div class="bg-white rounded-lg shadow-md flex">
+                    <div class="p-6 rounded-l-lg flex items-center justify-center w-[120px]">
+                      <img class="object-center object-contain" src=${item?.job_vacancy_image?.url || urlImage} height="[100px]" alt="image" />
+                    </div>
 
-              <div class="p-6 flex-1 relative">
-                <div class="flex justify-between items-center">
-                  <p class="text-gray-500 text-sm">Diposting ${getTime(item?.created_at)}</p>
-                  <div>
-                     ${item.status === "Tersedia"
-                    ? html`<ui-badge class="bg-green-600/25 text-green-600" dot>${item.status}</ui-badge>`
-                    : item.status === "Perlu Ditinjau"
-                    ? html`<ui-badge class="bg-orange-600/25 text-orange-600" dot>${item.status}</ui-badge>`
-                    : item.status === "Ditutup" || item.status === "Ditolak"
-                    ? html`<ui-badge class="bg-red-600/25 text-red-600" dot>${item.status}</ui-badge>`
-                    : ""}
+                    <div class="p-6 flex-1 relative">
+                      <div class="flex justify-between items-center">
+                        <p class="text-gray-500 text-sm">Diposting ${getTime(item?.created_at)}</p>
+                        <div>
+                          ${item.status === "Tersedia"
+                            ? html`<ui-badge class="bg-green-600/25 text-green-600" dot>${item.status}</ui-badge>`
+                            : item.status === "Perlu Ditinjau"
+                            ? html`<ui-badge class="bg-orange-600/25 text-orange-600" dot>${item.status}</ui-badge>`
+                            : item.status === "Ditutup" || item.status === "Ditolak"
+                            ? html`<ui-badge class="bg-red-600/25 text-red-600" dot>${item.status}</ui-badge>`
+                            : ""}
+                        </div>
+                      </div>
+                      <h2 class="text-xl font-semibold mt-2">${item?.title}</h2>
+                      <div class="mt-4">
+                        <p class="flex items-center text-gray-700 text-sm">
+                          <iconify-icon class="fas fa-building mr-2 text-red-500"> </iconify-icon>
+                          ${item?.company}
+                        </p>
+                        <p class="flex items-center text-gray-700 text-sm mt-2">
+                          <iconify-icon class="fas fa-map-marker-alt mr-2 text-red-500"> </iconify-icon>
+                          ${item?.location}
+                        </p>
+                        <p class="flex items-center text-gray-700 text-sm mt-2">
+                          <iconify-icon class="fas fa-calendar-alt mr-2 text-red-500"> </iconify-icon>
+                          Batas Akhir Pendaftaran: ${moment(item?.deadline).format("DD MMMM YYYY")}
+                        </p>
+                        <p class="flex items-center text-gray-700 text-sm mt-2">
+                          <iconify-icon class="fas fa-user-friends mr-2 text-red-500"> </iconify-icon>
+                          Postingan Dari ${item?.company}
+                        </p>
+                      </div>
+                      <div class="absolute bottom-6 right-6 flex space-x-2">
+                        <a
+                          class="border border-orange-500 text-orange-500 px-4 py-2 rounded-lg text-sm hover:bg-orange-100"
+                          href=${`lowongan/review/index.html?id=${item?.id}`}
+                        >
+                          Detail
+                        </a>
+                        <a
+                          class="bg-orange-500 text-white px-4 py-2 rounded-lg text-sm hover:bg-orange-600"
+                          href=${`lowongan/kurasi/index.html?id=${item?.id}`}
+                        >
+                          Tinjau
+                        </a>
+                      </div>
+                    </div>
                   </div>
-                </div>
-                <h2 class="text-xl font-semibold mt-2">${item?.title}</h2>
-                <div class="mt-4">
-                  <p class="flex items-center text-gray-700 text-sm">
-                    <iconify-icon class="fas fa-building mr-2 text-red-500"> </iconify-icon>
-                      ${item?.company}
-                  </p>
-                  <p class="flex items-center text-gray-700 text-sm mt-2">
-                    <iconify-icon class="fas fa-map-marker-alt mr-2 text-red-500"> </iconify-icon>
-                      ${item?.location}
-                  </p>
-                  <p class="flex items-center text-gray-700 text-sm mt-2">
-                    <iconify-icon class="fas fa-calendar-alt mr-2 text-red-500"> </iconify-icon>
-                    Batas Akhir Pendaftaran: ${moment(item?.deadline).format('DD MMMM YYYY')}
-                  </p>
-                  <p class="flex items-center text-gray-700 text-sm mt-2">
-                    <iconify-icon class="fas fa-user-friends mr-2 text-red-500"> </iconify-icon>
-                    Postingan Dari ${item?.company}
-                  </p>
-                </div>
-                <div class="absolute bottom-6 right-6 flex space-x-2">
-                  <a class="border border-orange-500 text-orange-500 px-4 py-2 rounded-lg text-sm hover:bg-orange-100" href=${`lowongan/review/index.html?id=${item?.id}`}> Detail </a>
-                  <a class="bg-orange-500 text-white px-4 py-2 rounded-lg text-sm hover:bg-orange-600"  href=${`lowongan/kurasi/index.html?id=${item?.id}`}> Tinjau </a>
-                </div>
-              </div>
+                `
+              )}
             </div>
-            `)}
-          </div>
-          <div class="mt-4 flex justify-between items-center">
-            <p class="text-sm text-gray-500">Menampilkan ${list.length} Lowongan</p>
-            <div class="flex space-x-2">
-              <ui-pagination data-pagination-count=${list.length} data-pagination-limit="10" data-pagination-page="1"></ui-pagination>
+            <div class="mt-4 flex justify-between items-center">
+              <p class="text-sm text-gray-500">Menampilkan ${1000} Lowongan</p>
+              <div class="flex space-x-2">
+                <ui-pagination data-pagination-count=${1000} data-pagination-limit="10" data-pagination-page="1"></ui-pagination>
+              </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
     `
   );
 };

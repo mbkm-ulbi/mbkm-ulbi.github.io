@@ -325,7 +325,7 @@ const renderKandidatAdmin = () => {
               </table>
             </ui-table>
           </div>
-          <div><ui-pagination /></div>
+         <div><ui-pagination id="pagination" data-pagination-count=${10000} data-pagination-limit=${10} data-pagination-page=${1}/></div>
         </div>
       </div>
     `
@@ -498,72 +498,76 @@ const renderKandidatMahasiswa = async (dataLamaran, getMyJob) => {
 };
 document.addEventListener("DOMContentLoaded", async () => {
   const auth = await getUserInfo();
+
   if (auth.role === "mahasiswa") {
     async function getMyJob() {
-      await API.getListCandidate("/user/" + auth.user.id)
-        .then((res) => {
-          let dataLamaran = res.data.data;
-          renderKandidatMahasiswa(dataLamaran, getMyJob);
-        })
-        .catch((err) => {
-          toast.error("Gagal mengambil data lamaran");
-        });
+      try {
+        const res = await API.getListCandidate(`/user/${auth.user.id}`);
+        const dataLamaran = res.data.data;
+        renderKandidatMahasiswa(dataLamaran, getMyJob);
+      } catch (err) {
+        toast.error("Gagal mengambil data lamaran");
+      }
     }
     await getMyJob();
   } else {
-    let apply_job_id = null
+    let apply_job_id = null;
+
     const setApplyJobId = (id) => {
-      console.log({id}) //id ini muncul
-      apply_job_id = id
-      if(apply_job_id){
-        getListDropdown()
+      console.log({ id }); // Debugging id
+      apply_job_id = id;
+      if (apply_job_id) {
+        getListDropdown();
+      }
+    };
+
+    async function fetchDataKandidat(page = 1, perPage = 10) {
+      try {
+        const res = await API.getListCandidate(`?page=${page}&per_page=${perPage}`);
+        const dataCandidates = res.data.data;
+        console.log(dataCandidates);
+        fetchTabelKandidat(dataCandidates, fetchDataKandidat, setApplyJobId);
+      } catch (err) {
+        toast.error("Gagal mengambil data kandidat");
       }
     }
-    
-    async function fetchDataKandidat() {
-      await API.getListCandidate()
-        .then((res) => {
-          let dataCandidates = res.data.data;
-          console.log(dataCandidates);
-          fetchTabelKandidat(dataCandidates, fetchDataKandidat, setApplyJobId);
-        })
-        .catch((err) => {
-          toast.error("Gagal mengambil data kandidat");
-        });
-    }
+
     await renderKandidatAdmin();
-    await fetchKandidat();
     await fetchDataKandidat();
+
     const foSelectElement = document.getElementById("lecturer_id");
-    const defaultValue = foSelectElement.getAttribute("value"); 
-    console.log({apply_job_id})
-    console.log({defaultValue})
+    const defaultValue = foSelectElement?.getAttribute("value");
     let Options = [];
+
     const getListDropdown = async () => {
-      await API.getListLecturer(`?apply_job_id=${apply_job_id}`)
-        .then((res) => {
-          Options = res.data.data;
-        })
-        .catch((err) => {
-          toast.error("Gagal mengambil data perusahaan");
-        });
-  
+      try {
+        const res = await API.getListLecturer(`?apply_job_id=${apply_job_id}`);
+        Options = res.data.data;
+      } catch (err) {
+        toast.error("Gagal mengambil data perusahaan");
+        return;
+      }
+
       // @ts-ignore
       if (foSelectElement && foSelectElement.choices) {
         // @ts-ignore
-        // foSelectElement.choices.clearStore();
-        // @ts-ignore
-        Options.map((option) => {
+        foSelectElement.choices.clearStore();
+        Options.forEach((option) => {
           // @ts-ignore
           foSelectElement.choices.setChoices(
-            [{ value: option?.id, label: option?.name, selected: option?.id == defaultValue, }],
+            [
+              {
+                value: option?.id,
+                label: option?.name,
+                selected: option?.id == defaultValue,
+              },
+            ],
             "value",
             "label",
             false
           );
-          
         });
-       
+
         // Re-render or reset state if needed
         // @ts-ignore
         foSelectElement.handleDisabled();
@@ -571,31 +575,37 @@ document.addEventListener("DOMContentLoaded", async () => {
         foSelectElement.handleError();
       }
     };
- 
 
     const form = document.getElementById("lecturer-form");
-    if(form instanceof HTMLFormElement){
+    if (form instanceof HTMLFormElement) {
       form.addEventListener("submit", async (event) => {
-       
-        event.preventDefault()
+        event.preventDefault();
         const formData = new FormData(form);
 
-        try{
-          await API.postApply(formData, `/${apply_job_id}/set-lecturer`).then(async (res)=>{
-            toast.success("Berhasil menambahkan dosen pembimbing")
-            await fetchDataKandidat()
-          })
-        }catch(error){
-          // Tampilkan pesan error kepada pengguna
+        try {
+          await API.postApply(formData, `/${apply_job_id}/set-lecturer`);
+          toast.success("Berhasil menambahkan dosen pembimbing");
+          await fetchDataKandidat(); // Memuat ulang data kandidat
+        } catch (err) {
           toast.error("Gagal menambahkan dosen pembimbing");
-        }finally{
+        } finally {
           form.querySelectorAll("button, [type='submit']").forEach((element) => {
             if (element instanceof HTMLButtonElement || element instanceof HTMLElement) {
               element.removeAttribute("disabled");
             }
           });
         }
-      }); 
+      });
+    }
+
+    // Event listener untuk pagination
+    const paginationElement = document.getElementById("pagination"); // Asumsikan ID elemen pagination
+    if (paginationElement) {
+      paginationElement.addEventListener("pagination-page-change", async (event) => {
+        const { page } = event.detail; // Mengambil nomor halaman dari event
+        await fetchDataKandidat(page);
+      });
     }
   }
 });
+
