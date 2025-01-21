@@ -60,9 +60,9 @@ const fetchTabelKandidat = async (list, fetchDataKandidat, setApplyJobId) => {
       });
   };
 
-  const handleSetStorage = (id) =>{
-    setApplyJobId(id)
-  }
+  const handleSetStorage = (id) => {
+    setApplyJobId(id);
+  };
   render(
     document.getElementById("tabelKandidat"),
     html`
@@ -79,7 +79,7 @@ const fetchTabelKandidat = async (list, fetchDataKandidat, setApplyJobId) => {
             <td class="flex space-x-4">
               <div>
                 <a data-dialog-trigger=${`detail-kandidat-` + item?.id}
-                  ><iconify-icon icon="solar:eye-bold" class="text-orange-500" height="16" onclick=${()=>handleSetStorage(item?.id)}></iconify-icon
+                  ><iconify-icon icon="solar:eye-bold" class="text-orange-500" height="16" onclick=${() => handleSetStorage(item?.id)}></iconify-icon
                 ></a>
                 <ui-dialog name=${`detail-kandidat-` + item?.id} className="w-[750px] h-auto p-0">
                   <div>
@@ -162,19 +162,19 @@ const fetchTabelKandidat = async (list, fetchDataKandidat, setApplyJobId) => {
                       <div>${item?.jobs[0]?.location}</div>
                     </div>
                     <form id="lecturer-form">
-                    <div class="p-4">
-                      <div class="mb-2 text-lg font-bold">Dosen Pembimbing</div>
-                      <fo-select value=${item?.responsible_lecturer_id} id="lecturer_id" name="lecturer_id" placeholder="Silahkan pilih disini"> </fo-select>
-                      <fo-error name="lecturer_id"></fo-error>
-                    </div>
-                    <div class="p-4 flex justify-end gap-2">
-                      <ui-button type="submit" variant="outline_orange" className="w-max flex gap-2">SIMPAN</ui-button>
-                      ${item?.status === "Aktif"
-                        ? html`<ui-button onclick=${() => handleDoneJob(item?.id)} type="button" className="w-max flex gap-2" data-dialog-close>
-                            SELESAIKAN MASA KERJA</ui-button
-                          >`
-                        : ""}
-                    </div>
+                      <div class="p-4">
+                        <div class="mb-2 text-lg font-bold">Dosen Pembimbing</div>
+                        <fo-select value=${item?.responsible_lecturer_id} id="lecturer_id" name="lecturer_id" placeholder="Silahkan pilih disini"> </fo-select>
+                        <fo-error name="lecturer_id"></fo-error>
+                      </div>
+                      <div class="p-4 flex justify-end gap-2">
+                        <ui-button type="submit" variant="outline_orange" className="w-max flex gap-2">SIMPAN</ui-button>
+                        ${item?.status === "Aktif"
+                          ? html`<ui-button onclick=${() => handleDoneJob(item?.id)} type="button" className="w-max flex gap-2" data-dialog-close>
+                              SELESAIKAN MASA KERJA</ui-button
+                            >`
+                          : ""}
+                      </div>
                     </form>
                   </div>
                 </ui-dialog>
@@ -189,7 +189,7 @@ const fetchTabelKandidat = async (list, fetchDataKandidat, setApplyJobId) => {
 
 //-----------------
 
-const renderKandidatAdmin = () => {
+const renderKandidatAdmin = (total) => {
   const contentKandidat = document.getElementById("content-kandidat");
   render(
     contentKandidat,
@@ -325,7 +325,7 @@ const renderKandidatAdmin = () => {
               </table>
             </ui-table>
           </div>
-         <div><ui-pagination id="pagination" data-pagination-count=${10000} data-pagination-limit=${10} data-pagination-page=${1}/></div>
+          <div><ui-pagination id="pagination" data-pagination-count=${total} data-pagination-limit=${10} data-pagination-page=${1} /></div>
         </div>
       </div>
     `
@@ -525,14 +525,16 @@ document.addEventListener("DOMContentLoaded", async () => {
       try {
         const res = await API.getListCandidate(`?page=${page}&per_page=${perPage}`);
         const dataCandidates = res.data.data;
-        console.log(dataCandidates);
+        //fix this why not working total = res.data.count
+        const total = res?.data?.count;
+        await renderKandidatAdmin(total);
+
         fetchTabelKandidat(dataCandidates, fetchDataKandidat, setApplyJobId);
       } catch (err) {
         toast.error("Gagal mengambil data kandidat");
       }
     }
 
-    await renderKandidatAdmin();
     await fetchDataKandidat();
 
     const foSelectElement = document.getElementById("lecturer_id");
@@ -608,4 +610,3 @@ document.addEventListener("DOMContentLoaded", async () => {
     }
   }
 });
-

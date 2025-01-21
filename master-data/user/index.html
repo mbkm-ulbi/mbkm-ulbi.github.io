@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <base href="/" />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="User" />
+    <title>Role</title>
+    <link rel="icon" href="favicon.ico" />
+    <link rel="stylesheet" href="src/css/style.css" />
+    <script src="src/js/guard-auth.js" type="module"></script>
+    <script src="src/js/bundle-auth.js" type="module" defer blocking="render" fetchpriority="high"></script>
+    <script src="master-data/user/script.js" type="module" defer></script>
+  </head>
+
+  <body>
+    <auth-layout>
+      <!-- Content  -->
+
+      <div class="shadow p-5 grid grid-cols-3 gap-4 sm:grid-cols-6 mb-4">
+        <button class="tab-button bg-orange-500 text-white font-bold py-2 px-4 rounded-lg text-center" data-target="perusahaan">PERUSAHAAN</button>
+        <button class="tab-button text-gray-600 font-bold py-2 px-4 rounded-lg text-center" data-target="cdc">CDC</button>
+        <button class="tab-button text-gray-600 font-bold py-2 px-4 rounded-lg text-center" data-target="prodi">PRODI</button>
+        <button class="tab-button text-gray-600 font-bold py-2 px-4 rounded-lg text-center" data-target="dosen">DOSEN</button>
+        <button class="tab-button text-gray-600 font-bold py-2 px-4 rounded-lg text-center" data-target="mahasiswa">MAHASISWA</button>
+        <button class="tab-button text-gray-600 font-bold py-2 px-4 rounded-lg text-center" data-target="alumni">ALUMNI</button>
+      </div>
+
+      <div id="content-area" class="p-4 shadow rounded-lg mt-10">   
+        <div id="perusahaan" class="tab-content">
+          <p class="text-gray-700">Data User - Perusahaan</p>
+          <div class="px-4 py-4 space-y-4 rounded-md">
+            <div class="grid grid-cols-2 gap-2 text-xs">
+              <div>
+                <div class="mb-2 font-semibold">Nama</div>
+                <fo-select>
+                  <option>Semua</option>
+                </fo-select>
+              </div>
+              <div>
+                <div class="mb-2 font-semibold">Status</div>
+                <fo-select>
+                  <option>Semua</option>
+                  <option>Belum Dinilai</option>
+                  <option>Draft</option>
+                  <option>Sudah Dinilai</option>
+                </fo-select>
+              </div>
+            </div>
+            <div>
+              <ui-table>
+                <table>
+                  <thead>
+                    <tr>
+                      <th>TANGGAL DAFTAR</th>
+                      <th>BENTUK</th>
+                      <th>NAMA</th>
+                      <th>BIDANG USAHA</th>
+                      <th>JUMLAH LOWONGAN</th>
+                      <th>STATUS AKUN</th>
+                      <th>ACTION</th>
+                    </tr>
+                  </thead>
+                  <tbody id="company-list">
+                    <tr>
+                      <td colspan="99" class="text-center">
+                        <div class="bg-gray-200 h-8 animate-pulse rounded"></div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td colspan="99" class="text-center">
+                        <div class="bg-gray-200 h-8 animate-pulse rounded"></div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td colspan="99" class="text-center">
+                        <div class="bg-gray-200 h-8 animate-pulse rounded"></div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td colspan="99" class="text-center">
+                        <div class="bg-gray-200 h-8 animate-pulse rounded"></div>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </ui-table>
+            </div>
+            <div><ui-pagination id="paginate-company" data-pagination-count="1000" data-pagination-limit="10" data-pagination-page="1" /></div>
+          </div>
+        </div>
+        <div id="cdc" class="tab-content hidden">
+          <p class="text-gray-700">Data User - CDC</p>
+          <div class="px-4 py-4 space-y-4 rounded-md">
+            <div class="grid grid-cols-2 gap-2 text-xs">
+              <div>
+                <div class="mb-2 font-semibold">Nama</div>
+                <fo-select>
+                  <option>Semua</option>
+                </fo-select>
+              </div>
+              <div>
+                <div class="mb-2 font-semibold">Status</div>
+                <fo-select>
+                  <option>Semua</option>
+                  <option>Belum Dinilai</option>
+                  <option>Draft</option>
+                  <option>Sudah Dinilai</option>
+                </fo-select>
+              </div>
+            </div>
+            <div>
+              <ui-table>
+                <table>
+                  <thead>
+                    <tr>
+                      <th>TANGGAL DAFTAR</th>
+                      <th>NAMA</th>
+                      <th>STATUS</th>
+                      <th>ACTION</th>
+                    </tr>
+                  </thead>
+                  <tbody id="cdc-list">
+                    <tr>
+                      <td colspan="99" class="text-center">
+                        <div class="bg-gray-200 h-8 animate-pulse rounded"></div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td colspan="99" class="text-center">
+                        <div class="bg-gray-200 h-8 animate-pulse rounded"></div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td colspan="99" class="text-center">
+                        <div class="bg-gray-200 h-8 animate-pulse rounded"></div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td colspan="99" class="text-center">
+                        <div class="bg-gray-200 h-8 animate-pulse rounded"></div>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </ui-table>
+            </div>
+            <div><ui-pagination id="paginate-lecturer" data-pagination-count="1000" data-pagination-limit="10" data-pagination-page="1" /></div>
+          </div>
+        </div>
+        <div id="prodi" class="tab-content hidden">
+          <p class="text-gray-700">Data User - Prodi</p>
+        </div>
+        <div id="dosen" class="tab-content hidden">
+          <p class="text-gray-700">Data User - Dosen</p>
+          <div class="px-4 py-4 space-y-4 rounded-md">
+            <div class="grid grid-cols-2 gap-2 text-xs">
+              <div>
+                <div class="mb-2 font-semibold">Nama</div>
+                <fo-select>
+                  <option>Semua</option>
+                </fo-select>
+              </div>
+              <div>
+                <div class="mb-2 font-semibold">Status</div>
+                <fo-select>
+                  <option>Semua</option>
+                  <option>Belum Dinilai</option>
+                  <option>Draft</option>
+                  <option>Sudah Dinilai</option>
+                </fo-select>
+              </div>
+            </div>
+            <div>
+              <ui-table>
+                <table>
+                  <thead>
+                    <tr>
+                      <th>TANGGAL DAFTAR</th>
+                      <th>NAMA</th>
+                      <th>STATUS</th>
+                      <th>ACTION</th>
+                    </tr>
+                  </thead>
+                  <tbody id="dosen-list">
+                    <tr>
+                      <td colspan="99" class="text-center">
+                        <div class="bg-gray-200 h-8 animate-pulse rounded"></div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td colspan="99" class="text-center">
+                        <div class="bg-gray-200 h-8 animate-pulse rounded"></div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td colspan="99" class="text-center">
+                        <div class="bg-gray-200 h-8 animate-pulse rounded"></div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td colspan="99" class="text-center">
+                        <div class="bg-gray-200 h-8 animate-pulse rounded"></div>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </ui-table>
+            </div>
+            <div><ui-pagination data-pagination-count="1000" data-pagination-limit="10" data-pagination-page="1" /></div>
+          </div>
+        </div>
+        <div id="mahasiswa" class="tab-content hidden">
+          <p class="text-gray-700">Data User - Mahasiswa</p>
+        </div>
+        <div id="alumni" class="tab-content hidden">
+          <p class="text-gray-700">Data User - Alumni</p>
+        </div>
+      </div>
+      <!-- End of content  -->
+    </auth-layout>
+  </body>
+</html>

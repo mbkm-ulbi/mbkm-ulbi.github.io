@@ -38,7 +38,6 @@ const fetchLaporan = async () => {
 };
 
 const fetchTabelLaporan = async (list) => {
-
   render(
     document.getElementById("tabelLaporan"),
     html`
@@ -61,7 +60,9 @@ const fetchTabelLaporan = async (list) => {
             </td>
             <td class="flex space-x-4">
               <div>
-                <ui-link href=${`laporan/approve/index.html?id=${item.apply_job_id}`}><iconify-icon icon="solar:eye-bold" class="text-orange-500" height="16"></iconify-icon></ui-link>
+                <ui-link href=${`laporan/approve/index.html?id=${item.apply_job_id}`}
+                  ><iconify-icon icon="solar:eye-bold" class="text-orange-500" height="16"></iconify-icon
+                ></ui-link>
               </div>
             </td>
           </tr>
@@ -73,7 +74,7 @@ const fetchTabelLaporan = async (list) => {
 
 //-----------------
 
-const renderLaporan = () => {
+const renderLaporan = (total) => {
   const contentLaporan = document.getElementById("content-laporan");
   render(
     contentLaporan,
@@ -196,7 +197,7 @@ const renderLaporan = () => {
               </table>
             </ui-table>
           </div>
-          <div><ui-pagination data-pagination-count=${10000} data-pagination-limit=${10} data-pagination-page=${1}/></div>
+          <div><ui-pagination data-pagination-count=${total} data-pagination-limit=${10} data-pagination-page=${1} /></div>
         </div>
       </div>
     `
@@ -205,7 +206,7 @@ const renderLaporan = () => {
 
 const renderLaporanMahasiswa = async (dataLamaran) => {
   const contentLaporan = document.getElementById("content-laporan");
-  
+
   render(
     contentLaporan,
     html`
@@ -303,17 +304,25 @@ const renderLaporanMahasiswa = async (dataLamaran) => {
             </div>
           </div>
           <form id="create-report">
-         ${dataLamaran?.reports ? html`<div class="px-4 flex gap-4">
-            <div class="w-full ">
-              <fo-label className="font-bold text-md" label="Laporan Mahasiswa"></fo-label>
-              <fo-uploaded fileurl=${dataLamaran?.reports?.file_laporan?.url} filename=${dataLamaran?.reports?.file_laporan?.url} className="mb-2"></fo-uploaded>
-              <fo-error name="fileUpload"></fo-error>
-            </div>
-          </div>`:html`<div class="ms-5 me-5">
-            <fo-label label="Upload Laporan"></fo-label>
-            <fo-file className="min-h-24" name="file" accept="application/pdf"></fo-file>
-            <fo-error name="file"></fo-error>
-          </div>`}
+         ${
+           dataLamaran?.reports
+             ? html`<div class="px-4 flex gap-4">
+                 <div class="w-full ">
+                   <fo-label className="font-bold text-md" label="Laporan Mahasiswa"></fo-label>
+                   <fo-uploaded
+                     fileurl=${dataLamaran?.reports?.file_laporan?.url}
+                     filename=${dataLamaran?.reports?.file_laporan?.url}
+                     className="mb-2"
+                   ></fo-uploaded>
+                   <fo-error name="fileUpload"></fo-error>
+                 </div>
+               </div>`
+             : html`<div class="ms-5 me-5">
+                 <fo-label label="Upload Laporan"></fo-label>
+                 <fo-file className="min-h-24" name="file" accept="application/pdf"></fo-file>
+                 <fo-error name="file"></fo-error>
+               </div>`
+         }
           
           
           <div
@@ -356,7 +365,7 @@ const renderLaporanMahasiswa = async (dataLamaran) => {
                 class=${dataLamaran?.reports?.prodi_checked_id ? "text-green-500" : "text-red-500"}
                 noobserver
               ></iconify-icon>
-              <div>${dataLamaran?.reports?.prodi_checked_id ? "Selesai": "Menunggu"} Diperiksa Oleh Prodi</div>
+              <div>${dataLamaran?.reports?.prodi_checked_id ? "Selesai" : "Menunggu"} Diperiksa Oleh Prodi</div>
             </div>
             ${dataLamaran?.reports ? "" : html`<ui-button class="me-5 mt-5 mb-5" color="orange" type="submit">KIRIM LAPORAN</ui-button>`}
           </div>
@@ -383,20 +392,22 @@ const renderNotEligible = () => {
         </div>
        </div>
     `
-  )
-}
+  );
+};
 
 document.addEventListener("DOMContentLoaded", async () => {
   const auth = await getUserInfo();
 
   if (auth.role === "cdc" || auth.role === "superadmin" || auth.role === "prodi" || auth.role === "dosen" || auth.role === "mitra") {
-    renderLaporan();
     fetchLaporan();
 
     async function getDataReport(page = 1, perPage = 10) {
       try {
         const res = await API.getListReport(`?page=${page}&per_page=${perPage}`);
         const data = res.data.data;
+        const total = res?.data?.count;
+        renderLaporan(total);
+
         fetchTabelLaporan(data);
       } catch (err) {
         toast.error("Gagal mengambil data laporan");
@@ -456,4 +467,3 @@ document.addEventListener("DOMContentLoaded", async () => {
     }
   }
 });
-

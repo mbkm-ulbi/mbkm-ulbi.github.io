@@ -313,16 +313,17 @@ document.addEventListener("DOMContentLoaded", async function () {
   const auth = await getUserInfo();
   if (auth.role === "superadmin" || auth.role === "cdc" || auth.role === "prodi" || auth.role === "mitra") {
     let list = [];
-
+    let total = 0
     await getListJob(`?page=1&per_page=10`)
       .then((res) => {
+        total = res?.data?.count
         list = res?.data?.data;
       })
       .catch((err) => {
         toast.error(err?.message);
       });
 
-    renderSuperUser(list);
+    renderSuperUser(list,total);
 
     const pagination = document.querySelector("ui-pagination");
     if (pagination) {
@@ -331,7 +332,8 @@ document.addEventListener("DOMContentLoaded", async function () {
         try {
           const res = await getListJob(`?page=${page}&per_page=10`)
           const newData = res?.data?.data || [];
-          renderSuperUser(newData); // Memperbarui tabel dengan data baru
+          const total = res?.data?.count || 0;
+          renderSuperUser(newData,total); // Memperbarui tabel dengan data baru
         } catch (error) {
           console.error("Gagal memuat data penilaian:", error);
           toast.error("Gagal memuat data penilaian");
@@ -438,7 +440,7 @@ const renderUser = () => {
   );
 };
 
-const renderSuperUser = async (list) => {
+const renderSuperUser = async (list,total) => {
   const urlImage = "src/images/dummy_ulbi.png";
 
   const contentLowongan = document.getElementById("content-lowongan");
@@ -550,9 +552,9 @@ const renderSuperUser = async (list) => {
               )}
             </div>
             <div class="mt-4 flex justify-between items-center">
-              <p class="text-sm text-gray-500">Menampilkan ${1000} Lowongan</p>
+              <p class="text-sm text-gray-500">Menampilkan ${total} Lowongan</p>
               <div class="flex space-x-2">
-                <ui-pagination data-pagination-count=${1000} data-pagination-limit="10" data-pagination-page="1"></ui-pagination>
+                <ui-pagination data-pagination-count=${total} data-pagination-limit="10" data-pagination-page="1"></ui-pagination>
               </div>
             </div>
           </div>

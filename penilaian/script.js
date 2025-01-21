@@ -77,7 +77,7 @@ const fetchTabelPenilaian = async (list) => {
 //-----------------
 
 
-const renderPenilaian = () =>{
+const renderPenilaian = (total) =>{
   const penilaian = document.getElementById("content-penilaian");
   render(
     penilaian,
@@ -202,7 +202,7 @@ const renderPenilaian = () =>{
               </table>
             </ui-table>
           </div>
-          <div><ui-pagination data-pagination-count=${10000} data-pagination-limit=${10} data-pagination-page=${1}/></div>
+          <div><ui-pagination data-pagination-count=${total} data-pagination-limit=${10} data-pagination-page=${1}/></div>
         </div>
       </div>
     `
@@ -527,16 +527,17 @@ document.addEventListener("DOMContentLoaded", async () => {
 
   if (auth.role === "cdc" || auth.role === "superadmin" || auth.role === "prodi" || auth.role === "dosen" || auth.role === "mitra") {
     let dataEvaluation = [];
-
+    let total = 0
     // Mendapatkan data awal pada halaman 1
     await API.getListEvaluations(`?page=1&per_page=10`)
       .then((res) => {
         dataEvaluation = res?.data?.data;
+        total = res?.data?.count;
       })
       .catch((err) => toast.error("Gagal memuat data penilaian"));
 
     // Render awal
-    renderPenilaian();
+    renderPenilaian(total);
     fetchPenilaian();
     fetchTabelPenilaian(dataEvaluation);
 
