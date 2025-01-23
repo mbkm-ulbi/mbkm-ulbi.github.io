@@ -61,12 +61,20 @@ const deleteWithToken = (api) => async (param = "") => {
   });
 };
 
+<<<<<<< Updated upstream
 
 // export const postLogin = postMultipartParam('api/v1/login')
 // export const postRegister = postMultipartParam('api/v1/register')
 // export const getListJob= getWithToken('api/v1/jobs')
 // export const deleteJobsById = deleteWithToken('api/v1/jobs')
 // export const getListCompanies  = getWithToken('api/v1/companies')
+=======
+// export const postLogin = postMultipartParam('api/v1/login')
+// export const postRegister = postMultipartParam('api/v1/register')
+// export const getListJob = getWithToken('api/v1/jobs')
+// export const deleteJobsById = deleteWithToken('api/v1/jobs')
+// export const getListCompanies = getWithToken('api/v1/companies')
+>>>>>>> Stashed changes
 // export const getListCandidate = getWithToken('api/v1/apply-jobs')
 // export const getUsers = getWithToken('api/v1/profile')
 // export const postJob = postWithToken('api/v1/jobs')
@@ -93,6 +101,10 @@ export const createReport = postWithToken('api/v2/reports')
 export const getListReport = getWithToken('api/v2/reports')
 export const getDashbooard = getWithToken('api/v2/dashboard/overview')
 export const getListLecturer = getWithToken('api/v2/users/lecturer')
+<<<<<<< Updated upstream
+=======
+
+>>>>>>> Stashed changes
 const API = {
   postLogin,
   postRegister,
