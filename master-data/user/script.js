@@ -7,7 +7,6 @@ document.addEventListener("DOMContentLoaded", async () => {
   const tabButtons = document.querySelectorAll(".tab-button");
   const tabContents = document.querySelectorAll(".tab-content");
 
-  renderContentCompany();
   await loadTabContent(API.getListCompanies, renderContentCompany, renderCompanyList, "paginate-company");
 
   tabButtons.forEach((button) => {
