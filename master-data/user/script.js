@@ -2,12 +2,25 @@ import { html, render } from "https://cdn.jsdelivr.net/npm/uhtml@4.5.11/+esm";
 import API from "../../src/js/api/index.js";
 import { toast } from "../../src/js/libraries/notify.js";
 import moment from "https://cdn.jsdelivr.net/npm/moment@2.30.1/+esm";
+import micromodal from "https://cdn.jsdelivr.net/npm/micromodal@0.4.10/+esm";
 
 document.addEventListener("DOMContentLoaded", async () => {
   const tabButtons = document.querySelectorAll(".tab-button");
   const tabContents = document.querySelectorAll(".tab-content");
 
-  await loadTabContent(API.getListCompanies, renderContentCompany, renderCompanyList, "paginate-company");
+  let listRole = [];
+
+  await API.getRoles()
+    .then((res) => {
+      listRole = res.data.data;
+    })
+    .catch((err) => {
+      toast.error("Gagal memuat data penilaian");
+    });
+
+  console.log({ listRole });
+
+  await loadTabContent(API.getListCompanies, renderContentCompany, renderCompanyList, "paginate-company", listRole);
 
   tabButtons.forEach((button) => {
     button.addEventListener("click", async () => {
@@ -28,17 +41,17 @@ document.addEventListener("DOMContentLoaded", async () => {
       // Check which tab is active and render data
       const tabType = button.getAttribute("data-target");
       if (tabType === "perusahaan") {
-        await loadTabContent(API.getListCompanies, renderContentCompany, renderCompanyList, "paginate-company");
+        await loadTabContent(API.getListCompanies, renderContentCompany, renderCompanyList, "paginate-company", listRole);
       } else if (tabType === "dosen") {
-        await loadTabContent(API.getListLecturer, renderContentDosen, renderLecturerList, "paginate-lecturer");
+        await loadTabContent(API.getListLecturer, renderContentDosen, renderLecturerList, "paginate-lecturer", listRole);
       } else if (tabType === "mahasiswa") {
-        await loadTabContent(API.getListStudent, renderContentMahasiswa, renderMahasiswaList, "paginate-student");
+        await loadTabContent(API.getListStudent, renderContentMahasiswa, renderMahasiswaList, "paginate-student", listRole);
       }
     });
   });
 });
 
-const loadTabContent = async (fetchFunction, renderContent, renderList, paginationId) => {
+const loadTabContent = async (fetchFunction, renderContent, renderList, paginationId, listRole) => {
   let data = [];
   let totalAwal = 0;
   try {
@@ -49,7 +62,7 @@ const loadTabContent = async (fetchFunction, renderContent, renderList, paginati
     toast.error("Gagal memuat data");
   }
   renderContent(totalAwal);
-  renderList(data);
+  renderList(data, listRole);
 
   const pagination = document.getElementById(paginationId);
   if (pagination) {
@@ -60,10 +73,9 @@ const loadTabContent = async (fetchFunction, renderContent, renderList, paginati
         const newData = res?.data?.data || [];
         const total = res?.data?.count || 0;
         renderContent(total);
-        renderList(newData); // Update the table with new data
+        renderList(newData, listRole); // Update the table with new data
       } catch (error) {
         console.error("Error loading pagination data:", error);
-        toast.error("Gagal memuat data");
       }
     });
   }
@@ -273,7 +285,7 @@ const renderContentCompany = (total = 0) => {
     `
   );
 };
-const renderMahasiswaList = (data) => {
+const renderMahasiswaList = (data, listRole) => {
   const table = document.getElementById("mahasiswa-list");
   render(
     table,
@@ -299,7 +311,7 @@ const renderMahasiswaList = (data) => {
                       <div data-dialog-close><iconify-icon icon="solar:close-circle-bold" height="22" class="text-white" noobserver></iconify-icon></div>
                     </div>
                     <div class="p-4 w-full flex gap-4 text-justify">
-                      <img src=${item?.profile_picture?.url} class="w-[150px]" alt="mahasiswa-image" />
+                      <img src=${item?.profile_picture?.url} class="w-[150px] h-[150px]" alt="mahasiswa-image" />
                       <div class="w-full">
                         <div class="pb-2 flex gap-28">
                           <div>
@@ -340,6 +352,20 @@ const renderMahasiswaList = (data) => {
                           <div class="font-bold">Semester</div>
                           <div>${item?.semester ?? "-"}</div>
                         </div>
+                        <form id=${`form-student-${item?.id || "default"}`}>
+                          <div class="mt-4">
+                            <div class="mb-2 text-lg font-bold">Role</div>
+                            <fo-select
+                              name="role_id"
+                              id=${`role-student-${item?.id}`}
+                              value=${item?.roles[0]?.id}
+                              placeholder="Silahkan pilih disini"
+                            ></fo-select>
+                          </div>
+                          <div class="p-4 flex justify-end gap-2">
+                            <button type="submit" class="w-max flex gap-2 bg-orange-500 text-white px-4 py-2 rounded-md">SIMPAN</button>
+                          </div>
+                        </form>
                       </div>
                     </div>
                   </div>
@@ -351,9 +377,71 @@ const renderMahasiswaList = (data) => {
       )}
     `
   );
+
+  data.forEach((item) => {
+    const form = document.getElementById(`form-student-${item?.id}`);
+
+    if (form instanceof HTMLFormElement) {
+      // Hapus semua event listener sebelumnya dengan mengganti elemen form baru
+      const newForm = form.cloneNode(true);
+      form.replaceWith(newForm);
+
+      newForm.addEventListener("submit", async (event) => {
+        event.preventDefault();
+        //@ts-ignore
+        const formData = new FormData(newForm);
+        console.log({ formData });
+        formData.set("user_id", item?.id);
+
+        try {
+          await API.postRolesByUserId(formData);
+          toast.success("Role berhasil diperbarui!");
+          micromodal.close("detail-mahasiswa-" + item?.id);
+          await loadTabContent(API.getListStudent, renderContentDosen, renderMahasiswaList, "paginate-student", listRole);
+        } catch (error) {
+          console.error("Error updating role:", error);
+          toast.error("Terjadi kesalahan. Coba lagi nanti.");
+        }
+      });
+    }
+  });
+
+  // **Inisialisasi Pilihan Role untuk Setiap `fo-select`**
+  data.forEach((item) => {
+    const foSelectElement = document.getElementById(`role-student-${item?.id}`);
+    if (foSelectElement) {
+      const defaultValue = foSelectElement.getAttribute("value");
+      //@ts-ignore
+      if (foSelectElement && foSelectElement.choices) {
+        //@ts-ignore
+        foSelectElement.choices.clearStore();
+
+        listRole.forEach((option) => {
+          //@ts-ignore
+          foSelectElement.choices.setChoices(
+            [
+              {
+                value: option?.id,
+                label: option?.title,
+                selected: defaultValue == option?.id,
+              },
+            ],
+            "value",
+            "label",
+            false
+          );
+        });
+        //@ts-ignore
+        foSelectElement.handleDisabled();
+        //@ts-ignore
+        foSelectElement.handleError();
+      }
+    }
+  });
 };
-const renderCompanyList = (data) => {
+const renderCompanyList = (data, listRole) => {
   const table = document.getElementById("company-list");
+  console.log({ companyROle: listRole });
   render(
     table,
     html`
@@ -426,9 +514,37 @@ const renderCompanyList = (data) => {
       )}
     `
   );
+
+  // const foSelectElement  = document.getElementById("role");
+  // // @ts-ignore
+  // if(foSelectElement && foSelectElement.choices){
+  //   // @ts-ignore
+  //   foSelectElement.choices.clearStore();
+  //   listRole.forEach((option) => {
+  //     // @ts-ignore
+  //     foSelectElement.choices.setChoices(
+  //       [
+  //         {
+  //           value: option?.id,
+  //           label: option?.title,
+  //           selected: false,
+  //         },
+  //       ],
+  //       "value",
+  //       "label",
+  //       false
+  //     );
+  //   });
+
+  //   // Re-render or reset state if needed
+  //   // @ts-ignore
+  //   foSelectElement.handleDisabled();
+  //   // @ts-ignore
+  //   foSelectElement.handleError();
+  // }
 };
 
-const renderLecturerList = (data) => {
+const renderLecturerList = (data, listRole) => {
   const table = document.getElementById("dosen-list");
   render(
     table,
@@ -453,7 +569,7 @@ const renderLecturerList = (data) => {
                       <div data-dialog-close><iconify-icon icon="solar:close-circle-bold" height="22" class="text-white" noobserver></iconify-icon></div>
                     </div>
                     <div class="p-4 w-full flex gap-4 text-justify">
-                      <img src=${item?.profile_picture?.url} class="w-[150px]" alt="logo-perusahaan" />
+                      <img src=${item?.profile_picture?.url} class="w-[150px] h-[150px]" alt="logo-perusahaan" />
                       <div class="w-full">
                         <div class="pb-2 flex gap-28">
                           <div>
@@ -494,6 +610,20 @@ const renderLecturerList = (data) => {
                           <div class="font-bold">Kontak Darurat</div>
                           <div>${item?.emergency_contact ?? "-"}</div>
                         </div>
+                        <form id=${`form-lecturer-${item?.id || "default"}`}>
+                          <div class="mt-4">
+                            <div class="mb-2 text-lg font-bold">Role</div>
+                            <fo-select
+                              name="role_id"
+                              id=${`role-lecturer-${item?.id}`}
+                              value=${item?.roles[0]?.id}
+                              placeholder="Silahkan pilih disini"
+                            ></fo-select>
+                          </div>
+                          <div class="p-4 flex justify-end gap-2">
+                            <button type="submit" class="w-max flex gap-2 bg-orange-500 text-white px-4 py-2 rounded-md">SIMPAN</button>
+                          </div>
+                        </form>
                       </div>
                     </div>
                   </div>
@@ -505,4 +635,64 @@ const renderLecturerList = (data) => {
       )}
     `
   );
+
+  // **Menambahkan Event Listener untuk Setiap Form**
+  data.forEach((item) => {
+    const form = document.getElementById(`form-lecturer-${item?.id}`);
+    if (form instanceof HTMLFormElement) {
+      const newForm = form.cloneNode(true);
+      form.replaceWith(newForm);
+
+      newForm.addEventListener("submit", async (event) => {
+        event.preventDefault(); // Mencegah reload halaman
+        const formData = new FormData(form);
+        console.log({ formData });
+        formData.set("user_id", item?.id);
+
+        // Mengirim data ke server
+        try {
+          await API.postRolesByUserId(formData);
+          toast.success("Role berhasil diperbarui!");
+          micromodal.close("detail-lecturer-" + item?.id);
+          await loadTabContent(API.getListLecturer, renderContentDosen, renderLecturerList, "paginate-lecturer", listRole);
+        } catch (error) {
+          console.error("Error updating role:", error);
+          toast.error("Terjadi kesalahan. Coba lagi nanti.");
+        }
+      });
+    }
+  });
+
+  // **Inisialisasi Pilihan Role untuk Setiap `fo-select`**
+  data.forEach((item) => {
+    const foSelectElement = document.getElementById(`role-lecturer-${item?.id}`);
+    const defaultValue = foSelectElement.getAttribute("value");
+    if (defaultValue) {
+      //@ts-ignore
+      if (foSelectElement && foSelectElement.choices) {
+        //@ts-ignore
+        foSelectElement.choices.clearStore();
+
+        listRole.forEach((option) => {
+          //@ts-ignore
+          foSelectElement.choices.setChoices(
+            [
+              {
+                value: option?.id,
+                label: option?.title,
+                selected: defaultValue == option?.id,
+              },
+            ],
+            "value",
+            "label",
+            false
+          );
+        });
+        //@ts-ignore
+        foSelectElement.handleDisabled();
+        //@ts-ignore
+        foSelectElement.handleError();
+      }
+    }
+  });
 };

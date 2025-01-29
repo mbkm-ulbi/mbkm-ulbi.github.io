@@ -41,6 +41,7 @@ const renderTableRole = () =>{
     html`
        <div class="space-y-4">
         <div class="px-4 py-4 space-y-4 rounded-md shadow-md">
+         <p class="text-gray-700">Data Role</p>
           <div>
             <ui-table>
               <table>
@@ -48,15 +49,9 @@ const renderTableRole = () =>{
                   <tr>
                     <th>KODE</th>
                     <th>NAMA</th>
-                    <th>ACTION</th>
                   </tr>
                 </thead>
                 <tbody id="table-role">
-                  <tr>
-                    <td colspan="99" class="text-center">
-                      <div class="bg-gray-200 h-8 animate-pulse rounded"></div>
-                    </td>
-                  </tr>
                   <tr>
                     <td colspan="99" class="text-center">
                       <div class="bg-gray-200 h-8 animate-pulse rounded"></div>
@@ -88,7 +83,6 @@ const renderListRole = (data) =>{
             <tr>
                 <td>${item?.id}</td>
                 <td>${item?.title}</td>
-                <td></td>
             </tr>
             `
         })}
