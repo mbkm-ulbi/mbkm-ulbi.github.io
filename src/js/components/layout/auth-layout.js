@@ -45,7 +45,12 @@ class AuthLayout extends HTMLElement {
           icon: "solar:medal-star-bold",
           active: this.path.startsWith("/penilaian/"),
         },
-       
+        {
+          name: "Aktivitas",
+          href: `${slugUri}aktivitas/`,
+          icon: "solar:clipboard-list-bold",
+          active: this.path.startsWith("/aktivitas/"),
+        },
       ],
       userInfo: {}
     };

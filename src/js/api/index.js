@@ -73,6 +73,8 @@ export const getListLecturer = getWithToken('api/v1/users/lecturer')
 export const getListStudent = getWithToken('api/v1/users/student')
 export const getRoles = getWithToken('api/v1/roles')
 export const postRolesByUserId = postWithToken('api/v1/roles/assign')
+export const getMonthlyLogs = getWithToken('api/v1/apply-jobs/monthly-logs')
+export const postMonthlyLogs = postWithToken('api/v1/apply-jobs/monthly-logs')
 const API = {
     postLogin,
     postRegister,
@@ -91,7 +93,9 @@ const API = {
     getListLecturer,
     getRoles,
     getListStudent,
-    postRolesByUserId
+    postRolesByUserId,
+    getMonthlyLogs,
+    postMonthlyLogs
 }
 
 export default API

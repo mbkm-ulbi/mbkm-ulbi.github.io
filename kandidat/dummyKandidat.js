@@ -35,6 +35,17 @@ export const rekapLaporanDummy = async () => {
   };
 };
 
+export const rekapAktivitasDummy = async () => {
+  await timeout(300);
+
+  return {
+    total: 25,
+    sudahDinilai: 12,
+    belumDinilai: 12,
+    draft: 10,
+  };
+};
+
 export const listKandidatDummy = async () => {
   await timeout(300);
   return [
