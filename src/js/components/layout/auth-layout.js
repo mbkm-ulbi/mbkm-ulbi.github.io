@@ -85,26 +85,27 @@ class AuthLayout extends HTMLElement {
                     href: `${slugUri}master-data/role/`,
                     active: this.path.startsWith("/master-data/role/"),
                 },
-                {
-                    name: "Data Lowongan",
-                    href: `${slugUri}master-data/lowongan/`,
-                    active: this.path.startsWith("/master-data/lowongan/"),
-                },
-                {
-                    name: "Data Laporan",
-                    href: `${slugUri}master-data/laporan/`,
-                    active: this.path.startsWith("/master-data/laporan/"),
-                },
-                {
-                    name: "Data Penilaian",
-                    href: `${slugUri}master-data/penilaian/`,
-                    active: this.path.startsWith("/master-data/penilaian/"),
-                },
-                {
-                    name: "Data Artikel",
-                    href: `${slugUri}master-data/artikel/`,
-                    active: this.path.startsWith("/master-data/artikel/"),
-                }]
+                // {
+                //     name: "Data Lowongan",
+                //     href: `${slugUri}master-data/lowongan/`,
+                //     active: this.path.startsWith("/master-data/lowongan/"),
+                // },
+                // {
+                //     name: "Data Laporan",
+                //     href: `${slugUri}master-data/laporan/`,
+                //     active: this.path.startsWith("/master-data/laporan/"),
+                // },
+                // {
+                //     name: "Data Penilaian",
+                //     href: `${slugUri}master-data/penilaian/`,
+                //     active: this.path.startsWith("/master-data/penilaian/"),
+                // },
+                // {
+                //     name: "Data Artikel",
+                //     href: `${slugUri}master-data/artikel/`,
+                //     active: this.path.startsWith("/master-data/artikel/"),
+                // }
+              ]
             })
       this.state.listNavSidebar =  arr
     }

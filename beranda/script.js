@@ -450,7 +450,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     // Execute chart creation
     document.querySelectorAll(".chart").forEach(createDoughnutChart);
     createLineChart();
-    createPieChart();
+    // createPieChart();
   } else {
     const data = await getDataDashboardUser(auth.user.id);
     renderUser(data);

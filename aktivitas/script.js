@@ -60,8 +60,44 @@ const fetchTabelAktivitas = async (list) => {
             </td>
             <td class="flex space-x-4">
               <div>
-              
-              </div>
+              <a data-dialog-trigger=${`detail-aktivitas-` + item?.id}
+                class="px-2 py-2 rounded-lg text-sm hover:bg-orange-100"
+                ><iconify-icon icon="solar:eye-bold" class="text-orange-500" height="16"></iconify-icon
+              ></a>
+              <a
+                class="px-2 py-2 rounded-lg text-sm hover:bg-orange-100"
+                href=${`aktivitas/edit/index.html?id=${item?.id}`}>
+                <iconify-icon icon="solar:pen-bold" class="text-orange-500" height="16"></iconify-icon>
+              </a>
+              <ui-dialog name=${`detail-aktivitas-` + item?.id} className="w-[750px] h-auto p-0">
+                <div>
+                  <div class="w-full flex justify-between items-center bg-ulbiBlue p-4 rounded-t-md">
+                    <div class="text-lg text-white font-bold">Detail Aktivitas</div>
+                    <div data-dialog-close><iconify-icon icon="solar:close-circle-bold" height="22" class="text-white" noobserver></iconify-icon></div>
+                  </div>
+                  <div class="p-4 w-full flex gap-4 text-justify">
+                    <div class="w-full">
+                      <div class="pb-2 flex gap-4">
+                        <div class="font-bold">Tahun</div>
+                        <div>${item.year ?? "-"}</div>
+                      </div>
+                      <div class="pb-2 flex gap-4">
+                        <div class="font-bold">Bulan</div>
+                        <div>${moment(item.month, 'M').format('MMMM')}</div>
+                      </div>
+                      <div class="pb-2 flex gap-4">
+                        <div class="font-bold">Aktivitas</div>
+                        <div>${item.content}</div>
+                      </div>
+                      <div class="pb-2 flex gap-4">
+                        <div class="font-bold">Status</div>
+                        <div>${item.status}</div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </ui-dialog>
+            </div>
             </td>
           </tr>
         `;

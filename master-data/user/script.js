@@ -100,9 +100,10 @@ const renderContentMahasiswa = (total = 0) => {
             <div class="mb-2 font-semibold">Status</div>
             <fo-select>
               <option>Semua</option>
-              <option>Belum Dinilai</option>
-              <option>Draft</option>
-              <option>Sudah Dinilai</option>
+              <option>Aktif</option>
+              <option>Lulus</option>
+              <option>Drop Out</option>
+              <option>Mengundurkan Diri</option>
             </fo-select>
           </div>
         </div>
@@ -168,9 +169,8 @@ const renderContentDosen = (total = 0) => {
             <div class="mb-2 font-semibold">Status</div>
             <fo-select>
               <option>Semua</option>
-              <option>Belum Dinilai</option>
-              <option>Draft</option>
-              <option>Sudah Dinilai</option>
+              <option>Aktif</option>
+              <option>Tidak Aktif</option>
             </fo-select>
           </div>
         </div>
