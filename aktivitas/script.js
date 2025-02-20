@@ -270,6 +270,10 @@ const renderNotEligible = () => {
            <div class="w-full p-1 flex gap-1 justify-center items-center flex-col">
            <img src="src/images/document.svg" class="w-[40rem]"></img>
            <div class="text-md mb-10">Belum ada aktivitas yang diberikan</div>
+           <div class="flex justify-between items-center mb-4">
+              <h1 class="text-xl font-semibold"></h1>
+              <a class="bg-orange-500 text-white px-4 py-2 rounded-lg cursor-pointer" href="aktivitas/create">BUAT AKTIVITAS</a>
+            </div>
            </div>
           </div>
         </div>
