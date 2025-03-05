@@ -57,7 +57,7 @@ class FormTextarea extends HTMLElement {
             this.hasAttribute("error") && "border-red-500 text-red-900",
             this.getAttribute("className")
           )}
-        ></textarea>
+        >${this.getAttribute("value")}</textarea>
       `
     );
   }
