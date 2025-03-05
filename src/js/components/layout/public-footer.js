@@ -83,7 +83,7 @@ class PublicFooter extends HTMLElement {
               </a>
             </div>
           </div>
-          <div class="p-2 w-full flex bg-ulbiOrange text-white text-sm justify-center items-center whitespace-nowrap overflow-clip">
+          <div class="p-2 w-full flex bg-ulbiOrangeBeranda text-white text-sm justify-center items-center whitespace-nowrap overflow-clip">
             © 2024 ‧ Universitas Logistik dan Bisnis Internasional (ULBI). All rights reserved.
           </div>
         </footer>

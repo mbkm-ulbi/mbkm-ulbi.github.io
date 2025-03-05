@@ -4,9 +4,9 @@ import { getAuth, getUserInfo } from "../src/js/libraries/cookies.js";
 import API from "../src/js/api/index.js";
 import moment from 'https://cdn.jsdelivr.net/npm/moment@2.30.1/+esm'
 import { toast } from "../src/js/libraries/notify.js";
+import micromodal from "https://cdn.jsdelivr.net/npm/micromodal@0.4.10/+esm";
 
-
-const fetchAktivitas = async () => {
+const fetchRekapAktivitas = async () => {
   const rekap = await rekapAktivitasDummy();
 
   render(
@@ -39,6 +39,31 @@ const fetchAktivitas = async () => {
 };
 
 const fetchTabelAktivitas = async (list) => {
+  const auth = await getUserInfo();
+
+  const handleDisetujui = async (id) => {
+    await API.postMonthlyLogs(null, `/${id}/approve`)
+      .then((res) => {
+        toast.success("Berhasil menyetujui aktivitas");
+        micromodal.close(`detail-aktivitas-` + id);
+        fetchAktivitas();
+      })
+      .catch((err) => {
+        toast.error("Gagal menyetujui aktivitas");
+      });
+  };
+
+  const handleRevisi = async (id) => {
+    await API.postMonthlyLogs(null, `/${id}/revision`)
+      .then((res) => {
+        toast.success("Berhasil revisi aktivitas");
+        micromodal.close(`detail-aktivitas-` + id);
+        fetchAktivitas();
+      })
+      .catch((err) => {
+        toast.error("Gagal revisi aktivitas");
+      });
+  };
 
   render(
     document.getElementById("tabelAktivitas"),
@@ -46,15 +71,19 @@ const fetchTabelAktivitas = async (list) => {
       ${list.map((item) => {
         return html`
           <tr>
-            <td>${item.year}</td>
-            <td>${moment(item.month, 'M').format('MMMM')}</td>
+            ${(auth.role === "cdc" || auth.role === "superadmin" || auth.role === "prodi" || auth.role === "dosen" || auth.role === "mitra") ?
+              html`<td>${item?.apply_job?.users[0]?.name}</td>
+              <td>${item?.apply_job?.users[0]?.program_study}</td>` : ''
+              }
+            <td>${moment(item.start_date).format('DD/MM/YYYY')}</td>
+            <td>${moment(item.end_date).format('DD/MM/YYYY')}</td>
             <td>${item.content}</td>
             <td>
-              ${item.status === "Sudah Dilihat"
+              ${item.status === "Disetujui"
                 ? html`<ui-badge class="bg-green-600/25 text-green-600" dot>${item.status}</ui-badge>`
                 : item.status === "Draft"
                 ? html`<ui-badge class="bg-orange-600/25 text-orange-600" dot>${item.status}</ui-badge>`
-                : item.status === "Belum Dilihat"
+                : item.status === "Revisi"
                 ? html`<ui-badge class="bg-red-600/25 text-red-600" dot>${item.status}</ui-badge>`
                 : ""}
             </td>
@@ -64,39 +93,85 @@ const fetchTabelAktivitas = async (list) => {
                 class="px-2 py-2 rounded-lg text-sm hover:bg-orange-100"
                 ><iconify-icon icon="solar:eye-bold" class="text-orange-500" height="16"></iconify-icon
               ></a>
-              <a
+              ${(auth.role === "mahasiswa") ?
+              html`<a
                 class="px-2 py-2 rounded-lg text-sm hover:bg-orange-100"
                 href=${`aktivitas/edit/index.html?id=${item?.id}`}>
                 <iconify-icon icon="solar:pen-bold" class="text-orange-500" height="16"></iconify-icon>
-              </a>
+              </a>` : ''
+              }
               <ui-dialog name=${`detail-aktivitas-` + item?.id} className="w-[750px] h-auto p-0">
-                <div>
-                  <div class="w-full flex justify-between items-center bg-ulbiBlue p-4 rounded-t-md">
-                    <div class="text-lg text-white font-bold">Detail Aktivitas</div>
-                    <div data-dialog-close><iconify-icon icon="solar:close-circle-bold" height="22" class="text-white" noobserver></iconify-icon></div>
-                  </div>
-                  <div class="p-4 w-full flex gap-4 text-justify">
-                    <div class="w-full">
-                      <div class="pb-2 flex gap-4">
-                        <div class="font-bold">Tahun</div>
-                        <div>${item.year ?? "-"}</div>
-                      </div>
-                      <div class="pb-2 flex gap-4">
-                        <div class="font-bold">Bulan</div>
-                        <div>${moment(item.month, 'M').format('MMMM')}</div>
-                      </div>
-                      <div class="pb-2 flex gap-4">
-                        <div class="font-bold">Aktivitas</div>
-                        <div>${item.content}</div>
-                      </div>
-                      <div class="pb-2 flex gap-4">
-                        <div class="font-bold">Status</div>
-                        <div>${item.status}</div>
+                  <div>
+                    <div class="w-full flex justify-between items-center bg-ulbiBlue p-4 rounded-t-md">
+                      <div class="text-lg text-white font-bold">Detail Aktivitas</div>
+                      <div data-dialog-close><iconify-icon icon="solar:close-circle-bold" height="22" class="text-white" noobserver></iconify-icon></div>
+                    </div>
+                    <div class="p-4 w-full flex gap-4 text-justify">
+                      <img src=${item?.apply_job?.users[0]?.profile_picture?.url} class="w-[120px]" alt="kandidat-image" />
+                      <div class="w-full">
+                        <div class="pb-2 flex gap-28">
+                          <div>
+                            <div class="text-xs font-bold">Nama Lengkap</div>
+                            <div class="text-lg font-bold">${item?.apply_job?.users[0]?.name}</div>
+                          </div>
+                        </div>
+                        <div class="border-b border-dashed border-gray-300"></div>
+                        <div class="pb-2 flex gap-16">
+                          <div class="space-y-2">
+                            <div class="pt-2 flex gap-4 text-xs">
+                              <div class="font-bold space-y-2">
+                                <div>NIM</div>
+                                <div>Program Studi</div>
+                              </div>
+                              <div class="space-y-2">
+                                <div>${item?.apply_job?.users[0]?.nim}</div>
+                                <div>${item?.apply_job?.users[0]?.program_study}</div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
                       </div>
                     </div>
+
+                    <div class="p-4 text-lg font-bold">Aktivitas</div>
+                    <div class="px-4 flex gap-14">
+                      <div>
+                        <div class="pt-2 flex gap-16 text-xs">
+                          <div class="font-bold space-y-2">
+                            <div>Tanggal Mulai</div>
+                            <div>Tanggal Selesai</div>
+                            <div>Aktivitas</div>
+                            <div>Status</div>
+                          </div>
+                          <div class="space-y-2">
+                            <div>${moment(item.start_date).format('DD/MM/YYYY')}</div>
+                            <div>${moment(item.end_date).format('DD/MM/YYYY')}</div>
+                            <div>${item.content}</div>
+                            <div>${item.status === "Disetujui"
+                              ? html`<ui-badge class="bg-green-600/25 text-green-600" dot>${item.status}</ui-badge>`
+                              : item.status === "Draft"
+                              ? html`<ui-badge class="bg-orange-600/25 text-orange-600" dot>${item.status}</ui-badge>`
+                              : item.status === "Revisi"
+                              ? html`<ui-badge class="bg-red-600/25 text-red-600" dot>${item.status}</ui-badge>`
+                              : ""}
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <form id="lecturer-form">
+                      <div class="p-4 flex justify-end gap-2">
+                        ${item?.status == "Draft" && (auth.role === "cdc" || auth.role === "superadmin" || auth.role === "prodi" || auth.role === "dosen")
+                        ? html`<div class="border-t border-gray-300"></div>
+                            <div class="p-4 flex justify-between items-center">
+                              <ui-button color="red" className="px-4 mx-2" onclick=${() => handleRevisi(item?.id)}>REVISI</ui-button>
+                              <ui-button color="green" className="px-4 mx-2" onclick=${() => handleDisetujui(item?.id)}>SETUJUI</ui-button>
+                            </div>`
+                        : null}
+                      </div>
+                    </form>
                   </div>
-                </div>
-              </ui-dialog>
+                </ui-dialog>
             </div>
             </td>
           </tr>
@@ -152,15 +227,26 @@ const renderAktivitas = (total) =>{
               <table>
                 <thead>
                   <tr>
-                    <th>NAMA</th>
-                    <th>TIPE</th>
-                    <th>PERUSAHAAN</th>
-                    <th>POSISI</th>
-                    <th>PRODI</th>
-                    <th>ACTION</th>
-                  </tr>
+                  <th>NAMA</th>
+                  <th>PROGRAM STUDI</th>
+                  <th>TGL MULAI</th>
+                  <th>TGL SELESAI</th>
+                  <th>AKTIVITAS</th>
+                  <th>STATUS</th>
+                  <th>ACTION</th>
+                </tr>
                 </thead>
                 <tbody id="tabelAktivitas">
+                  <tr>
+                    <td colspan="99" class="text-center">
+                      <div class="bg-gray-200 h-8 animate-pulse rounded"></div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td colspan="99" class="text-center">
+                      <div class="bg-gray-200 h-8 animate-pulse rounded"></div>
+                    </td>
+                  </tr>
                   <tr>
                     <td colspan="99" class="text-center">
                       <div class="bg-gray-200 h-8 animate-pulse rounded"></div>
@@ -217,8 +303,8 @@ const renderAktivitasMahasiswa = async (data) =>{
           <table>
             <thead>
               <tr>
-                <th>TAHUN</th>
-                <th>BULAN</th>
+                <th>TGL MULAI</th>
+                <th>TGL SELESAI</th>
                 <th>AKTIVITAS</th>
                 <th>STATUS</th>
                 <th>ACTION</th>
@@ -281,24 +367,43 @@ const renderNotEligible = () => {
     `
   )
 }
+const fetchAktivitas = async () => {
+  const auth = await getUserInfo();
+
+  await API.getMonthlyLogs()
+  .then((res) => {
+    const dataAktivitas = res?.data?.data || [];
+    if (dataAktivitas.length > 0 && typeof dataAktivitas === "object") {
+      fetchTabelAktivitas(dataAktivitas);
+    }
+  })
+  .catch((err) => {
+    console.error(err);
+    toast.error("Gagal memuat data aktivitas");
+  });
+}
 document.addEventListener("DOMContentLoaded", async () => {
   const auth = await getUserInfo();
 
   if (auth.role === "cdc" || auth.role === "superadmin" || auth.role === "prodi" || auth.role === "dosen" || auth.role === "mitra") {
     let dataEvaluation = [];
     let total = 0
-    // Mendapatkan data awal pada halaman 1
-    // await API.getListEvaluations(`?page=1&per_page=10`)
-    //   .then((res) => {
-    //     dataEvaluation = res?.data?.data;
-    //     total = res?.data?.count;
-    //   })
-    //   .catch((err) => toast.error("Gagal memuat data aktivitas"));
+    await API.getMonthlyLogs()
+      .then((res) => {
+        const dataAktivitas = res?.data?.data || [];
+        if (dataAktivitas.length > 0 && typeof dataAktivitas === "object") {
+          renderAktivitas(dataAktivitas);
+          fetchTabelAktivitas(dataAktivitas);
+        }
+      })
+      .catch((err) => {
+        console.error(err);
+        toast.error("Gagal memuat data aktivitas");
+      });
 
     // Render awal
-    renderAktivitas(total);
-    fetchAktivitas();
-    fetchTabelAktivitas(dataEvaluation);
+    renderAktivitas(null);
+    // fetchRekapAktivitas();
 
     // Menangani pagination page change
     const pagination = document.querySelector("ui-pagination");
@@ -306,7 +411,7 @@ document.addEventListener("DOMContentLoaded", async () => {
       pagination.addEventListener("pagination-page-change", async (event) => {
         const { page } = event.detail; // Mendapatkan halaman baru dari event
         try {
-          const res = await API.getListEvaluations(`?page=${page}&per_page=10`);
+          const res = await API.getMonthlyLogs(`?page=${page}&per_page=10`);
           const newData = res?.data?.data || [];
           fetchTabelAktivitas(newData); // Memperbarui tabel dengan data baru
         } catch (error) {

@@ -10,7 +10,7 @@ export const formValidation = (form, data)=>{
     const alamat = data.get("alamat");
     const dhs = data.get("dhs");
     const cv = data.get("cv");
-    const suratLamaran = data.get("surat_lamaran");
+    // const suratLamaran = data.get("surat_lamaran");
 
     if(!email) {
         form.querySelectorAll("[name='email']").forEach((element) => element.setAttribute("error", "This field is required"));
@@ -32,10 +32,10 @@ export const formValidation = (form, data)=>{
         form.querySelectorAll("[name='cv']").forEach((element) => element.setAttribute("error", "This field is required"));
         error = true;
     }
-    if(!suratLamaran) {
-        form.querySelectorAll("[name='surat_lamaran']").forEach((element) => element.setAttribute("error", "This field is required"));
-        error = true;
-    }
+    // if(!suratLamaran) {
+    //     form.querySelectorAll("[name='surat_lamaran']").forEach((element) => element.setAttribute("error", "This field is required"));
+    //     error = true;
+    // }
 
     return !error;
 }

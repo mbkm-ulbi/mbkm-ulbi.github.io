@@ -17,7 +17,7 @@ class PublicHeader extends HTMLElement {
       this,
       html`
         <header>
-          <div class="p-2 w-full flex bg-ulbiOrange text-white text-sm gap-6 justify-center items-center whitespace-nowrap overflow-clip">
+          <div class="p-2 w-full flex bg-ulbiOrangeBeranda text-white text-sm gap-6 justify-center items-center whitespace-nowrap overflow-clip">
             <span>+62821 2000 2716</span>
             <span>+62813 1111 0194</span>
             <span>info@ulbi.ac.id</span>

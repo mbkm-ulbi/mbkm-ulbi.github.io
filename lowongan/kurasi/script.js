@@ -123,6 +123,16 @@ const fetchKandidat = async (kandidat, fetchCandidates) => {
                         ></fo-uploaded>
                         <fo-error name="fileUpload"></fo-error>
                       </div>
+                      <div class="w-full">
+                        <fo-label label="Surat Rekomendasi Prodi"></fo-label>
+                        <fo-uploaded
+                          ?disabled=${!item?.apply_job?.surat_rekomendasi_prodi?.url}
+                          fileurl=${item?.apply_job?.surat_rekomendasi_prodi ? item?.apply_job?.surat_rekomendasi_prodi?.url : ""}
+                          filename=${item?.apply_job?.surat_rekomendasi_prodi ? item?.apply_job?.surat_rekomendasi_prodi?.url : "File tidak ditemukan"}
+                          className="mb-2"
+                        ></fo-uploaded>
+                        <fo-error name="fileUpload"></fo-error>
+                      </div>
                     </div>
                     ${item?.apply_job?.status == "Melamar"
                       ? html`<div class="border-t border-gray-300"></div>

@@ -206,7 +206,7 @@ const renderEvaluationDetail = async (data) => {
                     </div>
                     <div class="flex gap-2 items-center">
                       <iconify-icon icon="solar:check-circle-bold" height="22" class="text-green-500" noobserver></iconify-icon>
-                      <div>Disetujui Oleh Dosen Wali</div>
+                      <div>Disetujui Oleh Dosen Pembimbing</div>
                     </div>
                     <div class="flex gap-2 items-center">
                       <iconify-icon icon="solar:check-circle-bold" height="22" class="text-green-500" noobserver></iconify-icon>
@@ -286,7 +286,7 @@ const renderEvaluationDetail = async (data) => {
                     `}
                 <div class="p-4 flex justify-between items-center bg-gray-200/50 font-bold border border-gray-300">
                   <div class="flex items-center font-semibold">
-                    <div class="w-60">Penilaian Dari Dosen</div>
+                    <div class="w-60">Penilaian Dari Dosen Pembimbing</div>
                     ${data.lecturer_grade || data.lecturer_grade_score? html`<div class="w-12">${data.lecturer_grade_score}</div>
                     <div class="flex gap-0 text-xs font-bold text-white text-center">
                       <div class="px-4 py-2 bg-blue-900 rounded-l-md">${data.lecturer_grade}</div>
@@ -332,7 +332,23 @@ const renderEvaluationDetail = async (data) => {
                     `}
                 <div class="p-4 flex justify-between items-center bg-gray-200/50 font-bold border border-gray-300">
                   <div class="flex items-center font-semibold">
-                    <div class="w-60">Penilaian Dari Prodi</div>
+                    <div class="w-60">Penilaian Dari Dosen Penguji</div>
+                    ${data.lecturer_grade || data.lecturer_grade_score? html`<div class="w-12">${data.lecturer_grade_score}</div>
+                    <div class="flex gap-0 text-xs font-bold text-white text-center">
+                      <div class="px-4 py-2 bg-blue-900 rounded-l-md">${data.lecturer_grade}</div>
+                      <div class="px-4 py-2 bg-red-600 rounded-r-md">-</div>
+                    </div>`:''}
+                    
+                  </div>
+                  ${data.lecturer_grade_date ? html`  <div class="flex gap-4 text-xs">
+                    <div><span class="font-bold">Dinilai oleh: </span>-</div>
+                    <div><span class="font-bold">Dinilai pada tanggal: </span>${moment(data?.lecturer_grade_date).format("DD MMMM YYYY")}</div>
+                  </div>`: ''}
+                
+                </div>
+                <div class="p-4 flex justify-between items-center bg-gray-200/50 font-bold border border-gray-300">
+                  <div class="flex items-center font-semibold">
+                    <div class="w-60">Nilai Akhir</div>
                     ${data.prodi_grade || data.prodi_grade_score ? html`<div class="w-12">${data.prodi_grade_score}</div>
                     <div class="flex gap-0 text-xs font-bold text-white text-center">
                       <div class="px-4 py-2 bg-blue-900 rounded-l-md">${data.prodi_grade}</div>

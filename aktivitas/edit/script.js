@@ -1,13 +1,29 @@
 // import { getListCompanies } from "../../src/js/api";
 
-import API, { postLogin } from "../../src/js/api/index.js";
+import API, { postLogin, getMonthlyLogById } from "../../src/js/api/index.js";
 import { slugUri } from "../../src/js/customs/settings.js";
 import { getAuth, getUserInfo } from "../../src/js/libraries/cookies.js";
+import { getTime, getUrlParam, isDeadlineExceeded } from "../../src/js/libraries/utilities.js";
 import { toast } from "../../src/js/libraries/notify.js";
 import { formValidation } from "./validation.js";
 import { html, render } from "https://cdn.jsdelivr.net/npm/uhtml@4.5.11/+esm";
 
 const renderSelectCompany = async () => {
+  const companySelect = document.getElementById("select-company");
+
+  render(
+    companySelect,
+    html`
+      <div>
+        <fo-label for="company" label="Perusahaan"></fo-label>
+        <fo-select id="company" name="company" placeholder="Silahkan pilih disini"> </fo-select>
+        <fo-error name="company"></fo-error>
+      </div>
+    `
+  );
+};
+
+const renderEditPage = async () => {
   const companySelect = document.getElementById("select-company");
 
   render(
@@ -30,6 +46,18 @@ document.addEventListener("DOMContentLoaded", async function () {
   }
   const foSelectElement = document.getElementById("company");
   let Options = [];
+
+  const urlParams = getUrlParam();
+  const id = urlParams.get("id");
+  let data = {};
+  await getMonthlyLogById(`/${id}`)
+    .then((res) => {
+      data = res.data.data;
+      console.log(data)
+    })
+    .catch((err) => {
+      toast.error("Gagal mengambil data aktivitas");
+    });
 
   const getListDropdown = async () => {
     await API.getListCompanies()
@@ -146,6 +174,7 @@ document.addEventListener("DOMContentLoaded", async function () {
       // const benefitString = benefits.join(", ").toString();
       // formData.append("benefits", benefitString); // Gabungkan manfaat dengan koma
       // Validasi form sebelum melanjutkan
+      formData.append('id');
       if (!formValidation(form, formData)) return;
       try {
         form.querySelectorAll("button, [type='submit']").forEach((element) => {
@@ -153,7 +182,7 @@ document.addEventListener("DOMContentLoaded", async function () {
             element.setAttribute("disabled", "true");
           }
         });
-        await API.postMonthlyLogs(formData)
+        await API.updateMonthlyLogs(formData)
           .then((res) => {
             toast.success("Berhasil membuat aktivitas");
             // const succesAlert = document.getElementById("launcher");

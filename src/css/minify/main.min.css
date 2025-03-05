@@ -2818,6 +2818,9 @@ video {
 .bg-ulbiOrange {
   background-color: hsl(var(--ulbi-orange));
 }
+.bg-ulbiOrangeBeranda {
+  background-color: #e84417;
+}
 
 .bg-white {
   --tw-bg-opacity: 1;

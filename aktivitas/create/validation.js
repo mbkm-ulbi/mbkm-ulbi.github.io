@@ -5,19 +5,19 @@
 export const formValidation = (form, data)=>{
     let error = false;
 
-    const year = data.get("year");
-    const month = data.get("month");
+    const start_date = data.get("start_date");
+    const end_date = data.get("end_date");
     const content = data.get("content");
     
-    if(!year) {
-        form.querySelectorAll("[name='year']").forEach((element) => element.setAttribute("error", "This field is required"));
-        console.log("error year");
+    if(!start_date) {
+        form.querySelectorAll("[name='start_date']").forEach((element) => element.setAttribute("error", "This field is required"));
+        console.log("error start_date");
         error = true;
     }
     
-    if(!month) {
-        form.querySelectorAll("[name='month']").forEach((element) => element.setAttribute("error", "This field is required"));
-        console.log("error month");
+    if(!end_date) {
+        form.querySelectorAll("[name='end_date']").forEach((element) => element.setAttribute("error", "This field is required"));
+        console.log("error end_date");
         error = true;
     }
 

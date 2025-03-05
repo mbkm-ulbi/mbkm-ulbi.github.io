@@ -163,7 +163,7 @@ const fetchTabelKandidat = async (list, fetchDataKandidat, setApplyJobId) => {
                     </div>
                     <form id="lecturer-form">
                       <div class="p-4">
-                        <div class="mb-2 text-lg font-bold">Dosen Pembimbing</div>
+                        <div class="mb-2 text-lg font-bold">Dosen Pembimbing${item?.responsible_lecturer_id}</div>
                         <fo-select value=${item?.responsible_lecturer_id} id="lecturer_id" name="lecturer_id" placeholder="Silahkan pilih disini"> </fo-select>
                         <fo-error name="lecturer_id"></fo-error>
                       </div>
@@ -543,7 +543,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     const getListDropdown = async () => {
       try {
-        const res = await API.getListLecturer(`?apply_job_id=${apply_job_id}`);
+        const res = await API.getListLecturer(`?apply_job_id=${apply_job_id}&per_page=100`);
         Options = res.data.data;
       } catch (err) {
         toast.error("Gagal mengambil data perusahaan");
@@ -556,18 +556,21 @@ document.addEventListener("DOMContentLoaded", async () => {
         foSelectElement.choices.clearStore();
         Options.forEach((option) => {
           // @ts-ignore
-          foSelectElement.choices.setChoices(
-            [
-              {
-                value: option?.id,
-                label: option?.name,
-                selected: option?.id == defaultValue,
-              },
-            ],
-            "value",
-            "label",
-            false
-          );
+          // console.log(option)
+          if(option){
+            foSelectElement.choices.setChoices(
+              [
+                {
+                  value: option?.id,
+                  label: option?.name,
+                  selected: option?.id == defaultValue,
+                },
+              ],
+              "value",
+              "label",
+              false
+            );
+          }
         });
 
         // Re-render or reset state if needed

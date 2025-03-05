@@ -117,6 +117,7 @@ if (form instanceof HTMLFormElement) {
     console.log("dhs", formData.get("dhs"));
     console.log("surat_lamaran", formData.get("surat_lamaran"));
     console.log("cv", formData.get("cv"));
+    console.log("surat_rekomendasi_prodi", formData.get("surat_rekomendasi_prodi"));
     // Validasi form sebelum melanjutkan
     if (!formValidation(form, formData)) return;
 
