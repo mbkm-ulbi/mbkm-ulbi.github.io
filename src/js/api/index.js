@@ -77,6 +77,8 @@ export const getMonthlyLogs = getWithToken('api/v1/apply-jobs/monthly-logs')
 export const getMonthlyLogById = getWithToken('api/v1/apply-jobs/monthly-logs')
 export const postMonthlyLogs = postWithToken('api/v1/apply-jobs/monthly-logs')
 export const updateMonthlyLogs = postWithToken('api/v1/apply-jobs/monthly-logs/update')
+export const getSettingBobotNilai = getWithToken('api/v1/settings/bobot-nilai')
+export const updateSettingBobotNilai = postWithToken('api/v1/settings/bobot-nilai')
 const API = {
     postLogin,
     postRegister,
@@ -99,7 +101,9 @@ const API = {
     getMonthlyLogs,
     getMonthlyLogById,
     postMonthlyLogs,
-    updateMonthlyLogs
+    updateMonthlyLogs,
+    getSettingBobotNilai,
+    updateSettingBobotNilai
 }
 
 export default API
