@@ -163,8 +163,8 @@ const fetchTabelKandidat = async (list, fetchDataKandidat, setApplyJobId) => {
                     </div>
                     <form id="lecturer-form">
                       <div class="p-4">
-                        <div class="mb-2 text-lg font-bold">Dosen Pembimbing${item?.responsible_lecturer_id}</div>
-                        <fo-select value=${item?.responsible_lecturer_id} id="lecturer_id" name="lecturer_id" placeholder="Silahkan pilih disini"> </fo-select>
+                        <div class="mb-2 text-lg font-bold">Dosen Pembimbing</div>
+                        <fo-select value=${item?.responsible_lecturer_id} id=${'lecturer_id_' + item?.id} name="lecturer_id" placeholder="Silahkan pilih disini"> </fo-select>
                         <fo-error name="lecturer_id"></fo-error>
                       </div>
                       <div class="p-4 flex justify-end gap-2">
@@ -537,19 +537,11 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     await fetchDataKandidat();
 
-    const foSelectElement = document.getElementById("lecturer_id");
-    const defaultValue = foSelectElement?.getAttribute("value");
-    let Options = [];
-
-    const getListDropdown = async () => {
-      try {
-        const res = await API.getListLecturer(`?apply_job_id=${apply_job_id}&per_page=100`);
-        Options = res.data.data;
-      } catch (err) {
-        toast.error("Gagal mengambil data perusahaan");
-        return;
-      }
-
+    function renderSelectDosen(elementId, Options){
+      const foSelectElement = document.getElementById(elementId);
+      const defaultValue = foSelectElement?.getAttribute("value");
+      console.log(defaultValue)
+      
       // @ts-ignore
       if (foSelectElement && foSelectElement.choices) {
         // @ts-ignore
@@ -579,6 +571,19 @@ document.addEventListener("DOMContentLoaded", async () => {
         // @ts-ignore
         foSelectElement.handleError();
       }
+    }
+
+    let lecturerList = [];
+    const getListDropdown = async () => {
+      try {
+        const res = await API.getListLecturer(`?apply_job_id=${apply_job_id}&per_page=100`);
+        lecturerList = res.data.data;
+      } catch (err) {
+        toast.error("Gagal mengambil data dosen");
+        return;
+      }
+
+      renderSelectDosen("lecturer_id_" + apply_job_id, lecturerList)
     };
 
     const form = document.getElementById("lecturer-form");
