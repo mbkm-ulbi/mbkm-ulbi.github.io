@@ -161,7 +161,7 @@ const fetchTabelKandidat = async (list, fetchDataKandidat, setApplyJobId) => {
                       <div class="font-bold">Alamat</div>
                       <div>${item?.jobs[0]?.location}</div>
                     </div>
-                    <form id="lecturer-form">
+                    <form id=${'lecturer_form_' + item?.id}>
                       <div class="p-4">
                         <div class="mb-2 text-lg font-bold">Dosen Pembimbing</div>
                         <fo-select value=${item?.responsible_lecturer_id} id=${'lecturer_id_' + item?.id} name="lecturer_id" placeholder="Silahkan pilih disini"> </fo-select>
@@ -537,8 +537,8 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     await fetchDataKandidat();
 
-    function renderSelectDosen(elementId, Options){
-      const foSelectElement = document.getElementById(elementId);
+    function renderSelectDosen(id, Options){
+      const foSelectElement = document.getElementById("lecturer_id_" + id);
       const defaultValue = foSelectElement?.getAttribute("value");
       console.log(defaultValue)
       
@@ -583,29 +583,40 @@ document.addEventListener("DOMContentLoaded", async () => {
         return;
       }
 
-      renderSelectDosen("lecturer_id_" + apply_job_id, lecturerList)
+      renderSelectDosen(apply_job_id, lecturerList)
+      initForm(apply_job_id)
     };
 
-    const form = document.getElementById("lecturer-form");
-    if (form instanceof HTMLFormElement) {
-      form.addEventListener("submit", async (event) => {
-        event.preventDefault();
-        const formData = new FormData(form);
-
-        try {
-          await API.postApply(formData, `/${apply_job_id}/set-lecturer`);
-          toast.success("Berhasil menambahkan dosen pembimbing");
-          await fetchDataKandidat(); // Memuat ulang data kandidat
-        } catch (err) {
-          toast.error("Gagal menambahkan dosen pembimbing");
-        } finally {
-          form.querySelectorAll("button, [type='submit']").forEach((element) => {
-            if (element instanceof HTMLButtonElement || element instanceof HTMLElement) {
-              element.removeAttribute("disabled");
+    let forms = [];
+    function initForm(id){
+      console.log(forms[id])
+      if(!forms[id]){
+        forms[id] = document.getElementById("lecturer_form_" + id);
+        const form = forms[id];
+        console.log(form)
+        console.log(form instanceof HTMLFormElement)
+        if (form instanceof HTMLFormElement) {
+          form.removeEventListener("submit", () => {});
+          form.addEventListener("submit", async (event) => {
+            event.preventDefault();
+            const formData = new FormData(form);
+    
+            try {
+              await API.postApply(formData, `/${apply_job_id}/set-lecturer`);
+              toast.success("Berhasil menambahkan dosen pembimbing");
+              await fetchDataKandidat(); // Memuat ulang data kandidat
+            } catch (err) {
+              toast.error("Gagal menambahkan dosen pembimbing");
+            } finally {
+              form.querySelectorAll("button, [type='submit']").forEach((element) => {
+                if (element instanceof HTMLButtonElement || element instanceof HTMLElement) {
+                  element.removeAttribute("disabled");
+                }
+              });
             }
           });
         }
-      });
+      }
     }
 
     // Event listener untuk pagination
