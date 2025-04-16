@@ -65,6 +65,28 @@ class AuthLayout extends HTMLElement {
 
   async connectedCallback() {
     const auth = await getUserInfo();
+    if (auth.role === "mahasiswa" && auth.user.status == 'Lulus') {
+      this.state.listNavSidebar =  [
+        {
+          name: "Beranda",
+          href: `${slugUri}beranda/`,
+          icon: "solar:home-smile-angle-bold",
+          active: this.path.startsWith("/beranda/"),
+        },
+        {
+          name: "Lowongan",
+          href: `${slugUri}lowongan/`,
+          icon: "solar:case-round-bold",
+          active: this.path.startsWith("/lowongan/"),
+        },
+        {
+          name: "Kandidat",
+          href: `${slugUri}kandidat/`,
+          icon: "solar:user-hands-bold",
+          active: this.path.startsWith("/kandidat/"),
+        },
+      ]
+    }
     if (auth.role === "superadmin") {
       //push new menu master data
       let arr = [...this.state.listNavSidebar]
