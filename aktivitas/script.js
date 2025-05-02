@@ -65,6 +65,17 @@ const fetchTabelAktivitas = async (list) => {
       });
   };
 
+  const handleFeedback = async (id) => {
+    await API.postMonthlyLogs(null, `/${id}/feedback`)
+      .then((res) => {
+        toast.success("Berhasil memberikan feedback aktivitas");
+        micromodal.close(`detail-aktivitas-` + id);
+        fetchAktivitas();
+      })
+      .catch((err) => {
+        toast.error("Gagal memberikan feedback aktivitas");
+      });
+  }
   render(
     document.getElementById("tabelAktivitas"),
     html`
@@ -164,6 +175,7 @@ const fetchTabelAktivitas = async (list) => {
                         ${item?.status == "Draft" && (auth.role === "cdc" || auth.role === "superadmin" || auth.role === "prodi" || auth.role === "dosen")
                         ? html`<div class="border-t border-gray-300"></div>
                             <div class="p-4 flex justify-between items-center">
+                              <ui-button color="orange" className="px-4 mx-2" onclick=${() => handleFeedback(item?.id)}>FEEDBACK</ui-button>
                               <ui-button color="red" className="px-4 mx-2" onclick=${() => handleRevisi(item?.id)}>REVISI</ui-button>
                               <ui-button color="green" className="px-4 mx-2" onclick=${() => handleDisetujui(item?.id)}>SETUJUI</ui-button>
                             </div>`
@@ -388,11 +400,12 @@ document.addEventListener("DOMContentLoaded", async () => {
   if (auth.role === "cdc" || auth.role === "superadmin" || auth.role === "prodi" || auth.role === "dosen" || auth.role === "mitra") {
     let dataEvaluation = [];
     let total = 0
-    await API.getMonthlyLogs()
+    await API.getMonthlyLogs(`?page=1&per_page=10`)
       .then((res) => {
         const dataAktivitas = res?.data?.data || [];
+        total = res?.data?.data?.length
         if (dataAktivitas.length > 0 && typeof dataAktivitas === "object") {
-          renderAktivitas(dataAktivitas);
+          renderAktivitas(total);
           fetchTabelAktivitas(dataAktivitas);
         }
       })
