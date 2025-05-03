@@ -69,21 +69,23 @@
             <div>
               <fo-label for="status" label="Status"></fo-label>
               <fo-select  id="status" name="status" placeholder="Silahkan pilih disini">
-                <option value="available">Tersedia</option>
-                <option value="not_avalilable">Tidak Tersedia</option>
+                <option value="Perlu Ditinjau">Perlu Ditinjau</option>
+                <option value="Tersedia">Tersedia</option>
+                <option value="Tidak Tersedia">Tidak Tersedia</option>
               </fo-select>
               <fo-error name="status"></fo-error>
             </div>
             <div>
-              <fo-label for="type" label="Tipe Lowongan"></fo-label>
-              <fo-select  id="vagancy_type" name="vagancy_type" placeholder="Silahkan pilih disini">
-                <option value="umum">Umum</option>
-                <option value="s1">S1</option>
-                <option value="s2">S2</option>
-                <option value="s3">S3</option>
-                <option value="d3">Diploma 3</option>
-                <option value="d4">Sarjana / Sarjana Terapan</option>
+              <fo-label for="vacancy_type" label="Tipe Lowongan"></fo-label>
+              <fo-select  id="vacancy_type" name="vacancy_type" placeholder="Silahkan pilih disini">
+                <option value="Umum">Umum</option>
+                <option value="S1">S1</option>
+                <option value="S2">S2</option>
+                <option value="S3">S3</option>
+                <option value="Diploma 3">Diploma 3</option>
+                <option value="Sarjana / Sarjana Terapan">Sarjana / Sarjana Terapan</option>
               </fo-select>
+              <fo-error name="vacancy_type"></fo-error>
             </div>
             <div>
               <fo-label for="deadline" label="Batas Akhir Pendaftaran">
