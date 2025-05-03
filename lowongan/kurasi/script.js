@@ -222,7 +222,7 @@ const renderDetailJobs = (item) => {
         <div class="space-y-4">
         <h1 class="font-bold text-sm">Tipe Lowongan</h1>
         <div class="p-6 mt-10">
-            <p class="text-base">belum masuk</p>
+            <p class="text-base">${item?.vacancy_type}</p>
         </div>
       </div>
       </div>
