@@ -177,7 +177,7 @@ const renderElement = (data) => {
             </div>
             <div class="mb-6">
               <h1 class="font-bold">Tipe Lowongan</h1>
-              <p class="text-base">belum masuk</p>
+              <p class="text-base">${data?.vacancy_type}</p>
             </div>
             <div class="mb-6">
               <h1 class="font-bold">Batas Akhir Pendaftaran</h1>

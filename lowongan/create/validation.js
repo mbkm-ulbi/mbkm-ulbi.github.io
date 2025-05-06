@@ -13,7 +13,7 @@ export const formValidation = (form, data)=>{
     const job_type = data.get("job_type");
     const benefit = data.get("benefits");
     const status = data.get("status");
-    const vagancy_type = data.get("vagancy_type");
+    const vacancy_type = data.get("vacancy_type");
     const deadline = data.get("deadline");
 
     if(!company) {
@@ -63,9 +63,9 @@ export const formValidation = (form, data)=>{
         error = true;
     }
 
-    if(!vagancy_type) {
-        form.querySelectorAll("[name='vagancy_type']").forEach((element) => element.setAttribute("error", "This field is required"));
-        console.log("error vagancy_type");
+    if(!vacancy_type) {
+        form.querySelectorAll("[name='vacancy_type']").forEach((element) => element.setAttribute("error", "This field is required"));
+        console.log("error vacancy_type");
         error = true;
     }
 
