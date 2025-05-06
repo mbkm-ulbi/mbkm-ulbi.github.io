@@ -12,7 +12,6 @@ const renderEvaluationDetail = async (data) => {
   const users = data?.apply_job?.users[0];
   const jobs = data?.apply_job?.jobs[0];
   const surat_lamaran = data?.apply_job?.surat_lamaran;
-
   const auth = await getUserInfo();
   const {role} = auth
   render(
@@ -233,11 +232,11 @@ const renderEvaluationDetail = async (data) => {
             </div>
             <div class="flex gap-8 items-center">
               <span class="w-32 text-xs font-bold">Perhitungan Nilai</span>
-              <div class="text-xs">100 + 70 + 10 /3 = 60</div>
+              <div class="text-xs">100 + 70 + 10 + 90 / 3 = X</div>
             </div>
             <div class="mb-4 w-full flex flex-col border border-gray-300 rounded-md">
             
-              <form id="evaluation-form">
+              <form id="company-evaluation-form">
               <div class="p-4 flex justify-between items-center bg-gray-200/50 font-bold border border-gray-300">
                   <div class="flex items-center font-semibold">
                     <div class="w-60">Penilaian Dari Perusahaan</div>
@@ -249,11 +248,13 @@ const renderEvaluationDetail = async (data) => {
                     
                   </div>
                   ${data.company_grade_date ? html`  <div class="flex gap-4 text-xs">
-                    <div><span class="font-bold">Dinilai oleh: </span>-</div>
+                    <div><span class="font-bold">Bobot Nilai: </span${data?.bobot_nilai?.bobot_nilai_perusahaan}</div>
+                    
                     <div><span class="font-bold">Dinilai pada tanggal: </span>${moment(data?.company_grade_date).format("DD MMMM YYYY")}</div>
                   </div>`: ''}
                 
-                </div>
+              </div>
+             
                 ${data.company_grade_description || role !== "mitra"
                   ? html`<div class="p-4 text-xs">
                       <p>
@@ -284,6 +285,8 @@ const renderEvaluationDetail = async (data) => {
                         <ui-button type="submit">Simpan</ui-button>
                       </div>
                     `}
+               </form>
+               <form id="lecturer-evaluation-form">
                 <div class="p-4 flex justify-between items-center bg-gray-200/50 font-bold border border-gray-300">
                   <div class="flex items-center font-semibold">
                     <div class="w-60">Penilaian Dari Dosen Pembimbing</div>
@@ -295,7 +298,8 @@ const renderEvaluationDetail = async (data) => {
                     
                   </div>
                   ${data.lecturer_grade_date ? html`  <div class="flex gap-4 text-xs">
-                    <div><span class="font-bold">Dinilai oleh: </span>-</div>
+                    <div><span class="font-bold">Bobot Nilai: </span>${data?.bobot_nilai?.bobot_nilai_pembimbing}</div>
+                    
                     <div><span class="font-bold">Dinilai pada tanggal: </span>${moment(data?.lecturer_grade_date).format("DD MMMM YYYY")}</div>
                   </div>`: ''}
                 
@@ -330,25 +334,61 @@ const renderEvaluationDetail = async (data) => {
                         <ui-button type="submit">Simpan</ui-button>
                       </div>
                     `}
+                </form>
+                <form id="examiner-evaluation-form">
                 <div class="p-4 flex justify-between items-center bg-gray-200/50 font-bold border border-gray-300">
                   <div class="flex items-center font-semibold">
                     <div class="w-60">Penilaian Dari Dosen Penguji</div>
-                    ${data.lecturer_grade || data.lecturer_grade_score? html`<div class="w-12">${data.lecturer_grade_score}</div>
+                    ${data.examiner_grade || data.examiner_grade_score? html`<div class="w-12">${data.examiner_grade_score}</div>
                     <div class="flex gap-0 text-xs font-bold text-white text-center">
-                      <div class="px-4 py-2 bg-blue-900 rounded-l-md">${data.lecturer_grade}</div>
+                      <div class="px-4 py-2 bg-blue-900 rounded-l-md">${data.examiner_grade}</div>
                       <div class="px-4 py-2 bg-red-600 rounded-r-md">-</div>
                     </div>`:''}
                     
                   </div>
-                  ${data.lecturer_grade_date ? html`  <div class="flex gap-4 text-xs">
-                    <div><span class="font-bold">Dinilai oleh: </span>-</div>
-                    <div><span class="font-bold">Dinilai pada tanggal: </span>${moment(data?.lecturer_grade_date).format("DD MMMM YYYY")}</div>
+                  ${data.examiner_grade_date ? html`  <div class="flex gap-4 text-xs">
+                    <div><span class="font-bold">Bobot Nilai: </span>${data?.bobot_nilai?.bobot_nilai_penguji}</div>
+                    
+                    <div><span class="font-bold">Dinilai pada tanggal: </span>${moment(data?.examiner_grade_date).format("DD MMMM YYYY")}</div>
                   </div>`: ''}
+                  
                 
                 </div>
+                ${data.examiner_grade_description || role !== "dosen"
+                  ? html`<div class="p-4 text-xs">
+                      <p>
+                        ${data.examiner_grade_description ? data.examiner_grade_description : "Belum ada penilaian dari dosen"}
+                      </p>
+                    </div>`
+                  : html`
+                      <div class="p-4 grid grid-cols-2 gap-x-6 gap-y-3 w-full">
+                        <div>
+                          <fo-label for="grade_score" label="Nilai Angka"></fo-label>
+                          <fo-input name="grade_score" placeholder="90" type="number"></fo-input>
+                          <fo-error name="grade_score"></fo-error>
+                        </div>
+                         <div>
+                          <fo-label for="grade" label="Nilai Huruf"></fo-label>
+                          <fo-input name="grade" placeholder="A" type="text"></fo-input>
+                          <fo-error name="grade"></fo-error>
+                        </div>
+                      </div>
+                      <div class="p-4 w-full">
+                        <div>
+                          <fo-label for="grade_description" label="Deskripsi"></fo-label>
+                          <textarea name="grade_description" class="w-full h-24 border border-gray-300 rounded-md p-2"></textarea>
+                          <fo-error name="grade_description"></fo-error>
+                        </div>
+                      </div>
+                      <div class="p-4 flex justify-end">
+                        <ui-button type="submit">Simpan</ui-button>
+                      </div>
+                    `}
+                </form>
+                <form id="prodi-evaluation-form">
                 <div class="p-4 flex justify-between items-center bg-gray-200/50 font-bold border border-gray-300">
                   <div class="flex items-center font-semibold">
-                    <div class="w-60">Nilai Akhir</div>
+                    <div class="w-60">Penilaian Dari Prodi</div>
                     ${data.prodi_grade || data.prodi_grade_score ? html`<div class="w-12">${data.prodi_grade_score}</div>
                     <div class="flex gap-0 text-xs font-bold text-white text-center">
                       <div class="px-4 py-2 bg-blue-900 rounded-l-md">${data.prodi_grade}</div>
@@ -357,7 +397,7 @@ const renderEvaluationDetail = async (data) => {
                     
                   </div>
                   ${data.prodi_grade_date ? html`  <div class="flex gap-4 text-xs">
-                    <div><span class="font-bold">Dinilai oleh: </span>-</div>
+                    
                     <div><span class="font-bold">Dinilai pada tanggal: </span>${moment(data?.prodi_grade_date).format("DD MMMM YYYY")}</div>
                   </div>`: ''}
                 
@@ -392,7 +432,8 @@ const renderEvaluationDetail = async (data) => {
                         <ui-button type="submit">Simpan</ui-button>
                       </div>
                     `}
-                    </form>
+                </form>
+              
             </div>
           </div>
         </div>
@@ -416,25 +457,25 @@ document.addEventListener("DOMContentLoaded", async () => {
       });
   }
   await getEvaluationDetail();
-
-    const form = document.getElementById("evaluation-form");
-    if (form instanceof HTMLFormElement) {
-        form.addEventListener("submit", async (event) => {
-            event.preventDefault();
-            const formData = new FormData(form);
-            formData.append("apply_job_id", evaluationId);
-            // if(!formValidation(form, formData)) return;
-            console.log(formData.get("grade"));
-            console.log(formData.get("grade_score"));
-            console.log(formData.get("grade_description"));
-            console.log(formData.get("apply_job_id"));
-
-            await API.createEvaluation(formData).then(async (res) => {
-                toast.success("Berhasil menambahkan penilaian");
-                await getEvaluationDetail();
-            }).catch((err) => {
-                toast.error("Gagal menambahkan penilaian");
-            });
-        });
+    let arrayRoleEvaluation = ['company', 'prodi', 'lecturer', 'examiner']
+    for (let index = 0; index < arrayRoleEvaluation.length; index++) {
+      const element = arrayRoleEvaluation[index];
+      const form = document.getElementById(element + "-evaluation-form");
+      if (form instanceof HTMLFormElement) {
+          form.addEventListener("submit", async (event) => {
+              event.preventDefault();
+              const formData = new FormData(form);
+              formData.append("apply_job_id", evaluationId);
+              formData.append("is_examiner", element === "examiner" ? "1" : "0");
+  
+              await API.createEvaluation(formData).then(async (res) => {
+                  toast.success("Berhasil menambahkan penilaian");
+                  await getEvaluationDetail();
+              }).catch((err) => {
+                  toast.error("Gagal menambahkan penilaian");
+              });
+          });
+      }
     }
+   
 });

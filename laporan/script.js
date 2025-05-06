@@ -432,9 +432,7 @@ document.addEventListener("DOMContentLoaded", async () => {
       try {
         const res = await API.getListCandidate(`/user/${auth.user.id}/last`);
         const dataLamaran = res.data.data || {};
-        console.log({ dataLamaran });
-
-        if (dataLamaran.length > 0 && typeof dataLamaran === "object") {
+        if (Object.keys(dataLamaran).length > 0 && typeof dataLamaran === "object") {
           apply_job_id = dataLamaran.id;
           renderLaporanMahasiswa(dataLamaran);
         } else {

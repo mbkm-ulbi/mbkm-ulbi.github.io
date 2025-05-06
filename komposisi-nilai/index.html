@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <base href="/" />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Komposisi Nilai" />
+    <title>Komposisi nilai</title>
+    <link rel="icon" href="favicon.ico" />
+    <link rel="stylesheet" href="src/css/style.css" />
+    <script src="src/js/guard-auth.js" type="module"></script>
+    <script src="src/js/bundle-auth.js" type="module" defer blocking="render" fetchpriority="high"></script>
+    <script src="komposisi-nilai/script.js" type="module" defer></script>
+  </head>
+
+  <body>
+    <auth-layout>
+      <!-- Content  -->
+       <form id="create-komposisi-nilai">
+        <div class="space-y-4">
+          <div class="p-4 flex flex-col gap-4 rounded-md shadow-md">
+            <div class="text-md font-bold">Komposisi Nilai</div>
+            <div class="border-t border-gray-300 border-dashed"></div>
+            <div id="select-company" class="flex flex-col gap-2"></div>
+            <div>
+              <fo-label for="bobot_nilai_perusahaan" label="Bobot Nilai Perusahaan"></fo-label>
+              <div class="grid grid-cols-3">
+                <fo-input type="number" id="bobot_nilai_perusahaan" name="bobot_nilai_perusahaan"></fo-input>
+                <fo-error name="bobot_nilai_perusahaan"></fo-error>
+              </div>
+            </div>
+            <div>
+              <fo-label for="bobot_nilai_pembimbing" label="Bobot Nilai Dosen Pembimbing"></fo-label>
+              <div class="grid grid-cols-3">
+                <fo-input type="number" id="bobot_nilai_pembimbing" name="bobot_nilai_pembimbing"></fo-input>
+                <fo-error name="bobot_nilai_pembimbing"></fo-error>
+              </div>
+            </div>
+            <div>
+              <fo-label for="bobot_nilai_penguji" label="Bobot Nilai Dosen Penguji"></fo-label>
+              <div class="grid grid-cols-3">
+                <fo-input type="number" id="bobot_nilai_penguji" name="bobot_nilai_penguji"></fo-input>
+                <fo-error name="bobot_nilai_penguji"></fo-error>
+              </div>
+            </div>
+            <div class="flex justify-between items-center">
+              <ui-button color="red" href="beranda/">BATAL</ui-button>
+              <ui-button variant="default" type="submit">KIRIM</ui-button>
+            </div>
+          </div>
+          
+        </div>
+       </form>
+     
+      <!-- End of content  -->
+    </auth-layout>
+  </body>
+</html>

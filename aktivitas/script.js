@@ -2,7 +2,7 @@ import { html, render } from "https://cdn.jsdelivr.net/npm/uhtml@4.5.11/+esm";
 import { listKandidatDummy, rekapAktivitasDummy } from "../kandidat/dummyKandidat.js";
 import { getAuth, getUserInfo } from "../src/js/libraries/cookies.js";
 import API from "../src/js/api/index.js";
-import moment from 'https://cdn.jsdelivr.net/npm/moment@2.30.1/+esm'
+import moment from "https://cdn.jsdelivr.net/npm/moment@2.30.1/+esm";
 import { toast } from "../src/js/libraries/notify.js";
 import micromodal from "https://cdn.jsdelivr.net/npm/micromodal@0.4.10/+esm";
 
@@ -40,7 +40,6 @@ const fetchRekapAktivitas = async () => {
 
 const fetchTabelAktivitas = async (list) => {
   const auth = await getUserInfo();
-
   const handleDisetujui = async (id) => {
     await API.postMonthlyLogs(null, `/${id}/approve`)
       .then((res) => {
@@ -54,40 +53,61 @@ const fetchTabelAktivitas = async (list) => {
   };
 
   const handleRevisi = async (id) => {
-    await API.postMonthlyLogs(null, `/${id}/revision`)
+    const approvebutton = document.getElementById(`approve-activity-${id}`);
+    approvebutton.style.display = 'none';
+    const revisionButton = document.getElementById(`revision-activity-${id}`);
+    revisionButton.style.display = 'none';
+    const feedbackActivity = document.getElementById(`feedback-activity-${id}`);
+    feedbackActivity.classList.remove('hidden')
+    const feedbackInput = document.getElementById(`feedback-input-${id}`);
+    feedbackInput.classList.remove('hidden')
+  };
+  const handleCancel = async (id) => {
+    const approvebutton = document.getElementById(`approve-activity-${id}`);
+    approvebutton.style.display = 'block';
+    const revisionButton = document.getElementById(`revision-activity-${id}`);
+    revisionButton.style.display = 'block';
+    const feedbackActivity = document.getElementById(`feedback-activity-${id}`);
+    feedbackActivity.classList.add('hidden')
+    const feedbackInput = document.getElementById(`feedback-input-${id}`);
+    feedbackInput.classList.add('hidden')
+  }
+
+  const handleSendRevisi = async (id) => {
+    const inputFeedbackValue = document.getElementById(`feedback-input-${id}`);
+    const body = {
+      //@ts-ignore
+     'feedback' : inputFeedbackValue?.value || ''
+    }
+
+    await API.postMonthlyLogs(body, `/${id}/revision`)
       .then((res) => {
+        const feedbackInput = document.getElementById(`feedback-input-${id}`);
+        feedbackInput.classList.add('hidden')
+
         toast.success("Berhasil revisi aktivitas");
+        
         micromodal.close(`detail-aktivitas-` + id);
         fetchAktivitas();
       })
       .catch((err) => {
         toast.error("Gagal revisi aktivitas");
       });
-  };
-
-  const handleFeedback = async (id) => {
-    await API.postMonthlyLogs(null, `/${id}/feedback`)
-      .then((res) => {
-        toast.success("Berhasil memberikan feedback aktivitas");
-        micromodal.close(`detail-aktivitas-` + id);
-        fetchAktivitas();
-      })
-      .catch((err) => {
-        toast.error("Gagal memberikan feedback aktivitas");
-      });
   }
+
   render(
     document.getElementById("tabelAktivitas"),
     html`
       ${list.map((item) => {
+      
         return html`
           <tr>
-            ${(auth.role === "cdc" || auth.role === "superadmin" || auth.role === "prodi" || auth.role === "dosen" || auth.role === "mitra") ?
-              html`<td>${item?.apply_job?.users[0]?.name}</td>
-              <td>${item?.apply_job?.users[0]?.program_study}</td>` : ''
-              }
-            <td>${moment(item.start_date).format('DD/MM/YYYY')}</td>
-            <td>${moment(item.end_date).format('DD/MM/YYYY')}</td>
+            ${auth.role === "cdc" || auth.role === "superadmin" || auth.role === "prodi" || auth.role === "dosen" || auth.role === "mitra"
+              ? html`<td>${item?.apply_job?.users[0]?.name}</td>
+                  <td>${item?.apply_job?.users[0]?.program_study}</td>`
+              : ""}
+            <td>${moment(item.start_date).format("DD/MM/YYYY")}</td>
+            <td>${moment(item.end_date).format("DD/MM/YYYY")}</td>
             <td>${item.content}</td>
             <td>
               ${item.status === "Disetujui"
@@ -100,18 +120,15 @@ const fetchTabelAktivitas = async (list) => {
             </td>
             <td class="flex space-x-4">
               <div>
-              <a data-dialog-trigger=${`detail-aktivitas-` + item?.id}
-                class="px-2 py-2 rounded-lg text-sm hover:bg-orange-100"
-                ><iconify-icon icon="solar:eye-bold" class="text-orange-500" height="16"></iconify-icon
-              ></a>
-              ${(auth.role === "mahasiswa") ?
-              html`<a
-                class="px-2 py-2 rounded-lg text-sm hover:bg-orange-100"
-                href=${`aktivitas/edit/index.html?id=${item?.id}`}>
-                <iconify-icon icon="solar:pen-bold" class="text-orange-500" height="16"></iconify-icon>
-              </a>` : ''
-              }
-              <ui-dialog name=${`detail-aktivitas-` + item?.id} className="w-[750px] h-auto p-0">
+                <a data-dialog-trigger=${`detail-aktivitas-` + item?.id} class="px-2 py-2 rounded-lg text-sm hover:bg-orange-100"
+                  ><iconify-icon icon="solar:eye-bold" class="text-orange-500" height="16"></iconify-icon
+                ></a>
+                ${auth.role === "mahasiswa"
+                  ? html`<a class="px-2 py-2 rounded-lg text-sm hover:bg-orange-100" href=${`aktivitas/edit/index.html?id=${item?.id}`}>
+                      <iconify-icon icon="solar:pen-bold" class="text-orange-500" height="16"></iconify-icon>
+                    </a>`
+                  : ""}
+                <ui-dialog name=${`detail-aktivitas-` + item?.id} className="w-[750px] h-auto p-0">
                   <div>
                     <div class="w-full flex justify-between items-center bg-ulbiBlue p-4 rounded-t-md">
                       <div class="text-lg text-white font-bold">Detail Aktivitas</div>
@@ -155,36 +172,42 @@ const fetchTabelAktivitas = async (list) => {
                             <div>Status</div>
                           </div>
                           <div class="space-y-2">
-                            <div>${moment(item.start_date).format('DD/MM/YYYY')}</div>
-                            <div>${moment(item.end_date).format('DD/MM/YYYY')}</div>
+                            <div>${moment(item.start_date).format("DD/MM/YYYY")}</div>
+                            <div>${moment(item.end_date).format("DD/MM/YYYY")}</div>
                             <div>${item.content}</div>
-                            <div>${item.status === "Disetujui"
-                              ? html`<ui-badge class="bg-green-600/25 text-green-600" dot>${item.status}</ui-badge>`
-                              : item.status === "Draft"
-                              ? html`<ui-badge class="bg-orange-600/25 text-orange-600" dot>${item.status}</ui-badge>`
-                              : item.status === "Revisi"
-                              ? html`<ui-badge class="bg-red-600/25 text-red-600" dot>${item.status}</ui-badge>`
-                              : ""}
+                            <div>
+                              ${item.status === "Disetujui"
+                                ? html`<ui-badge class="bg-green-600/25 text-green-600" dot>${item.status}</ui-badge>`
+                                : item.status === "Draft"
+                                ? html`<ui-badge class="bg-orange-600/25 text-orange-600" dot>${item.status}</ui-badge>`
+                                : item.status === "Revisi"
+                                ? html`<ui-badge class="bg-red-600/25 text-red-600" dot>${item.status}</ui-badge>`
+                                : ""}
                             </div>
                           </div>
                         </div>
                       </div>
                     </div>
                     <form id="lecturer-form">
+                      <textarea disabled=${item?.status !== "Revisi" ? false : true} value=${item?.feedback} id=${`feedback-input-${item?.id}`} rows="4" class=${`${item?.status !== "Revisi" ? 'hidden' : null} w-[95%] p-4 m-5 border border-gray-300 rounded-md`} placeholder="Berikan feedback untuk aktivitas ini"></textarea>
                       <div class="p-4 flex justify-end gap-2">
                         ${item?.status == "Draft" && (auth.role === "cdc" || auth.role === "superadmin" || auth.role === "prodi" || auth.role === "dosen")
-                        ? html`<div class="border-t border-gray-300"></div>
-                            <div class="p-4 flex justify-between items-center">
-                              <ui-button color="orange" className="px-4 mx-2" onclick=${() => handleFeedback(item?.id)}>FEEDBACK</ui-button>
-                              <ui-button color="red" className="px-4 mx-2" onclick=${() => handleRevisi(item?.id)}>REVISI</ui-button>
-                              <ui-button color="green" className="px-4 mx-2" onclick=${() => handleDisetujui(item?.id)}>SETUJUI</ui-button>
-                            </div>`
-                        : null}
+                          ? html`<div class="border-t border-gray-300"></div>
+                              <div class="p-4 flex justify-between items-center">
+                                <div id=${`feedback-activity-${item?.id}`} class="flex justify-between items-center hidden">
+                                <ui-button color="orange" className="px-4 mx-2 " onclick=${() => handleCancel(item?.id)}>BATAL</ui-button>
+                                <ui-button color="red" className="px-4 mx-2" onclick=${() => handleSendRevisi(item?.id)}>KIRIM REVISI</ui-button>
+                                </div>
+                                
+                                <ui-button color="red"  id=${`revision-activity-${item?.id}`} className="px-4 mx-2" onclick=${() => handleRevisi(item?.id)}>REVISI</ui-button>
+                                <ui-button color="green" className="px-4 mx-2" id=${`approve-activity-${item?.id}`} onclick=${() => handleDisetujui(item?.id)}>SETUJUI</ui-button>
+                              </div>`
+                          : null}
                       </div>
                     </form>
                   </div>
                 </ui-dialog>
-            </div>
+              </div>
             </td>
           </tr>
         `;
@@ -195,13 +218,12 @@ const fetchTabelAktivitas = async (list) => {
 
 //-----------------
 
-
-const renderAktivitas = (total) =>{
+const renderAktivitas = (total) => {
   const aktivitas = document.getElementById("content-aktivitas");
   render(
     aktivitas,
     html`
-       <div class="space-y-4">
+      <div class="space-y-4">
         <div class="px-4 py-4 space-y-4 rounded-md shadow-md">
           <div class="grid grid-cols-5 gap-2 text-xs">
             <div>
@@ -239,14 +261,14 @@ const renderAktivitas = (total) =>{
               <table>
                 <thead>
                   <tr>
-                  <th>NAMA</th>
-                  <th>PROGRAM STUDI</th>
-                  <th>TGL MULAI</th>
-                  <th>TGL SELESAI</th>
-                  <th>AKTIVITAS</th>
-                  <th>STATUS</th>
-                  <th>ACTION</th>
-                </tr>
+                    <th>NAMA</th>
+                    <th>PROGRAM STUDI</th>
+                    <th>TGL MULAI</th>
+                    <th>TGL SELESAI</th>
+                    <th>AKTIVITAS</th>
+                    <th>STATUS</th>
+                    <th>ACTION</th>
+                  </tr>
                 </thead>
                 <tbody id="tabelAktivitas">
                   <tr>
@@ -293,70 +315,70 @@ const renderAktivitas = (total) =>{
               </table>
             </ui-table>
           </div>
-          <div><ui-pagination data-pagination-count=${total} data-pagination-limit=${10} data-pagination-page=${1}/></div>
+          <div><ui-pagination data-pagination-count=${total} data-pagination-limit=${10} data-pagination-page=${1} /></div>
         </div>
       </div>
     `
-  )
-}
-const renderAktivitasMahasiswa = async (data) =>{
+  );
+};
+const renderAktivitasMahasiswa = async (data) => {
   const aktivitas = document.getElementById("content-aktivitas");
   render(
     aktivitas,
     html`
-    <div class="space-y-4">
-      <div class="px-4 py-4 space-y-4 rounded-md shadow-md">
-        <div class="flex justify-between items-center mb-4">
-              <h1 class="text-xl font-semibold"></h1>
-              <a class="bg-orange-500 text-white px-4 py-2 rounded-lg cursor-pointer" href="aktivitas/create">BUAT AKTIVITAS</a>
+      <div class="space-y-4">
+        <div class="px-4 py-4 space-y-4 rounded-md shadow-md">
+          <div class="flex justify-between items-center mb-4">
+            <h1 class="text-xl font-semibold"></h1>
+            <a class="bg-orange-500 text-white px-4 py-2 rounded-lg cursor-pointer" href="aktivitas/create">BUAT AKTIVITAS</a>
+          </div>
+          <div>
+            <ui-table>
+              <table>
+                <thead>
+                  <tr>
+                    <th>TGL MULAI</th>
+                    <th>TGL SELESAI</th>
+                    <th>AKTIVITAS</th>
+                    <th>STATUS</th>
+                    <th>ACTION</th>
+                  </tr>
+                </thead>
+                <tbody id="tabelAktivitas">
+                  <tr>
+                    <td colspan="99" class="text-center">
+                      <div class="bg-gray-200 h-8 animate-pulse rounded"></div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td colspan="99" class="text-center">
+                      <div class="bg-gray-200 h-8 animate-pulse rounded"></div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td colspan="99" class="text-center">
+                      <div class="bg-gray-200 h-8 animate-pulse rounded"></div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td colspan="99" class="text-center">
+                      <div class="bg-gray-200 h-8 animate-pulse rounded"></div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td colspan="99" class="text-center">
+                      <div class="bg-gray-200 h-8 animate-pulse rounded"></div>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </ui-table>
+          </div>
         </div>
-        <div>
-        <ui-table>
-          <table>
-            <thead>
-              <tr>
-                <th>TGL MULAI</th>
-                <th>TGL SELESAI</th>
-                <th>AKTIVITAS</th>
-                <th>STATUS</th>
-                <th>ACTION</th>
-              </tr>
-            </thead>
-            <tbody id="tabelAktivitas">
-              <tr>
-                <td colspan="99" class="text-center">
-                  <div class="bg-gray-200 h-8 animate-pulse rounded"></div>
-                </td>
-              </tr>
-              <tr>
-                <td colspan="99" class="text-center">
-                  <div class="bg-gray-200 h-8 animate-pulse rounded"></div>
-                </td>
-              </tr>
-              <tr>
-                <td colspan="99" class="text-center">
-                  <div class="bg-gray-200 h-8 animate-pulse rounded"></div>
-                </td>
-              </tr>
-              <tr>
-                <td colspan="99" class="text-center">
-                  <div class="bg-gray-200 h-8 animate-pulse rounded"></div>
-                </td>
-              </tr>
-              <tr>
-                <td colspan="99" class="text-center">
-                  <div class="bg-gray-200 h-8 animate-pulse rounded"></div>
-                </td>
-              </tr>
-            </tbody>
-          </table>
-        </ui-table>
       </div>
-    </div>
-  </div>
     `
-  )
-}
+  );
+};
 const renderNotEligible = () => {
   const contentLaporan = document.getElementById("content-aktivitas");
   render(
@@ -377,33 +399,33 @@ const renderNotEligible = () => {
         </div>
        </div>
     `
-  )
-}
+  );
+};
 const fetchAktivitas = async () => {
   const auth = await getUserInfo();
 
   await API.getMonthlyLogs()
-  .then((res) => {
-    const dataAktivitas = res?.data?.data || [];
-    if (dataAktivitas.length > 0 && typeof dataAktivitas === "object") {
-      fetchTabelAktivitas(dataAktivitas);
-    }
-  })
-  .catch((err) => {
-    console.error(err);
-    toast.error("Gagal memuat data aktivitas");
-  });
-}
+    .then((res) => {
+      const dataAktivitas = res?.data?.data || [];
+      if (dataAktivitas.length > 0 && typeof dataAktivitas === "object") {
+        fetchTabelAktivitas(dataAktivitas);
+      }
+    })
+    .catch((err) => {
+      console.error(err);
+      toast.error("Gagal memuat data aktivitas");
+    });
+};
 document.addEventListener("DOMContentLoaded", async () => {
   const auth = await getUserInfo();
 
   if (auth.role === "cdc" || auth.role === "superadmin" || auth.role === "prodi" || auth.role === "dosen" || auth.role === "mitra") {
     let dataEvaluation = [];
-    let total = 0
+    let total = 0;
     await API.getMonthlyLogs(`?page=1&per_page=10`)
       .then((res) => {
         const dataAktivitas = res?.data?.data || [];
-        total = res?.data?.data?.length
+        total = res?.data?.data?.length;
         if (dataAktivitas.length > 0 && typeof dataAktivitas === "object") {
           renderAktivitas(total);
           fetchTabelAktivitas(dataAktivitas);

@@ -79,6 +79,7 @@ const fetchTabelPenilaian = async (list) => {
 
 const renderPenilaian = (total) =>{
   const penilaian = document.getElementById("content-penilaian");
+  
   render(
     penilaian,
     html`
@@ -214,6 +215,8 @@ const renderPenilaianMahasiswa = async (data) =>{
   const jobs = data?.jobs[0];
   const reports = data?.reports?.file_laporan;
   const evaluations = data?.evaluations
+
+
   render(
     penilaian,
     html`
@@ -437,20 +440,23 @@ const renderPenilaianMahasiswa = async (data) =>{
             </div>
             <div class="flex gap-8 items-center">
               <span class="w-32 text-xs font-bold">Perhitungan Nilai</span>
-              <div class="text-xs">100 + 70 + 10 /3 = 60</div>
+              <div class="text-xs">100 + 70 + 10 + 90 /3 = X</div>
             </div>
             <div class="mb-4 w-full flex flex-col border border-gray-300 rounded-md">
               <div class="p-4 flex justify-between items-center bg-gray-200/50 font-bold border-b border-gray-300">
                 <div class="flex items-center font-semibold">
                   <div class="w-60">Penilaian Dari Perusahaan</div>
                   <div class="w-12">${evaluations?.company_grade_score || "-"}</div>
+                  
                   <div class="flex gap-0 text-xs font-bold text-white text-center">
                     <div class="px-4 py-2 bg-blue-900 rounded-l-md">${evaluations?.company_grade || "-"}</div>
                     <div class="px-4 py-2 bg-red-600 rounded-r-md">-</div>
                   </div>
+                  
                 </div>
                 <div class="flex gap-4 text-xs">
-                  <div><span class="font-bold">Dinilai oleh: </span>-</div>
+                  <div><span class="font-bold">Bobot Nilai: </span>${evaluations?.bobot_nilai?.bobot_nilai_perusahaan}</div>
+                  
                   <div><span class="font-bold">Dinilai pada tanggal: </span>${moment(evaluations?.company_grade_date).format("DD MMMM YYYY")}</div>
                 </div>
               </div>
@@ -469,7 +475,8 @@ const renderPenilaianMahasiswa = async (data) =>{
                   </div>
                 </div>
                 <div class="flex gap-4 text-xs">
-                  <div><span class="font-bold">Dinilai oleh: </span>-</div>
+                  <div><span class="font-bold">Bobot Nilai: </span>${evaluations?.bobot_nilai?.bobot_nilai_pembimbing}</div>
+                  
                   <div><span class="font-bold">Dinilai pada tanggal: </span>${moment(evaluations?.lecturer_grade_date).format("DD MMMM YYYY")}</div>
                 </div>
               </div>
@@ -480,6 +487,26 @@ const renderPenilaianMahasiswa = async (data) =>{
               </div>
                <div class="p-4 flex justify-between items-center bg-gray-200/50 font-bold border-b border-gray-300">
                 <div class="flex items-center font-semibold">
+                  <div class="w-60">Penilaian Dari Dosen Penguji</div>
+                  <div class="w-12">${evaluations?.examiner_grade_score || "-"}</div>
+                  <div class="flex gap-0 text-xs font-bold text-white text-center">
+                    <div class="px-4 py-2 bg-blue-900 rounded-l-md">${evaluations?.examiner_grade || "-"}</div>
+                    <div class="px-4 py-2 bg-red-600 rounded-r-md">-</div>
+                  </div>
+                </div>
+                <div class="flex gap-4 text-xs">
+                  <div><span class="font-bold">Bobot Nilai: </span>${evaluations?.bobot_nilai?.bobot_nilai_penguji}</div>
+                  
+                  <div><span class="font-bold">Dinilai pada tanggal: </span>${moment(evaluations?.examiner_grade_date).format("DD MMMM YYYY")}</div>
+                </div>
+              </div>
+              <div class="p-4 text-xs">
+                <p>
+                 ${evaluations?.examiner_grade_description || "-"}
+                </p>
+              </div>
+              <div class="p-4 flex justify-between items-center bg-gray-200/50 font-bold border-b border-gray-300">
+                <div class="flex items-center font-semibold">
                   <div class="w-60">Penilaian Dari Prodi</div>
                   <div class="w-12">${evaluations?.prodi_grade_score || "-"}</div>
                   <div class="flex gap-0 text-xs font-bold text-white text-center">
@@ -488,7 +515,8 @@ const renderPenilaianMahasiswa = async (data) =>{
                   </div>
                 </div>
                 <div class="flex gap-4 text-xs">
-                  <div><span class="font-bold">Dinilai oleh: </span>-</div>
+                  <div><span class="font-bold">Bobot Nilai: </span>80</div>
+                  
                   <div><span class="font-bold">Dinilai pada tanggal: </span>${moment(evaluations?.prodi_grade_date).format("DD MMMM YYYY")}</div>
                 </div>
               </div>
@@ -534,7 +562,9 @@ document.addEventListener("DOMContentLoaded", async () => {
         dataEvaluation = res?.data?.data;
         total = res?.data?.count;
       })
-      .catch((err) => toast.error("Gagal memuat data penilaian"));
+      .catch((err) =>{
+        console.error(err);
+         toast.error("Gagal memuat data penilaian")});
 
     // Render awal
     renderPenilaian(total);
@@ -560,7 +590,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     await API.getListCandidate(`/user/${auth.user.id}/last`)
       .then((res) => {
         const dataLamaran = res?.data?.data || {};
-        if (dataLamaran.length > 0 && typeof dataLamaran === "object") {
+        if (Object.keys(dataLamaran).length > 0 && typeof dataLamaran === "object") {
           renderPenilaianMahasiswa(dataLamaran);
         } else {
           renderNotEligible();

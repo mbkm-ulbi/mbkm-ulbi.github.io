@@ -131,6 +131,17 @@ class AuthLayout extends HTMLElement {
             })
       this.state.listNavSidebar =  arr
     }
+
+    if(auth.role === "prodi" || auth.role === "superadmin"){
+      let arr = [...this.state.listNavSidebar]
+      arr.push({
+        name: "Komposisi Nilai",
+        href: `${slugUri}komposisi-nilai/`,
+        icon: "fluent:calculator-multiple-16-filled",
+        active: this.path.startsWith("/komposisi-nilai/"),
+      },)
+      this.state.listNavSidebar =  arr
+    }
     console.log({wakww:auth})
     this.state.userInfo = auth
     this.renderTemplate();
