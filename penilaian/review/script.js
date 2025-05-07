@@ -388,10 +388,10 @@ const renderEvaluationDetail = async (data) => {
                 <form id="prodi-evaluation-form">
                 <div class="p-4 flex justify-between items-center bg-gray-200/50 font-bold border border-gray-300">
                   <div class="flex items-center font-semibold">
-                    <div class="w-60">Penilaian Dari Prodi</div>
-                    ${data.prodi_grade || data.prodi_grade_score ? html`<div class="w-12">${data.prodi_grade_score}</div>
+                    <div class="w-60">Nilai Akhir</div>
+                    ${data.nilai_akhir?.grade != '-' ? html`<div class="w-12">${data.nilai_akhir?.total_score}</div>
                     <div class="flex gap-0 text-xs font-bold text-white text-center">
-                      <div class="px-4 py-2 bg-blue-900 rounded-l-md">${data.prodi_grade}</div>
+                      <div class="px-4 py-2 bg-blue-900 rounded-l-md">${data.nilai_akhir?.grade}</div>
                       <div class="px-4 py-2 bg-red-600 rounded-r-md">-</div>
                     </div>`:''}
                     
@@ -402,13 +402,18 @@ const renderEvaluationDetail = async (data) => {
                   </div>`: ''}
                 
                 </div>
-                ${data.prodi_grade_description || role !== "prodi"
-                  ? html`<div class="p-4 text-xs">
-                      <p>
-                        ${data.prodi_grade_description ? data.prodi_grade_description : "Belum ada penilaian dari prodi"}
-                      </p>
-                    </div>`
+                ${true || data.prodi_grade_description || role !== "prodi"
+                  ? (data.nilai_akhir?.grade != '-' ? '' : html`<div class="p-4 text-xs">
+                        <p>
+                          Belum ada nilai akhir
+                        </p>
+                      </div>`)
                   : html`
+                      <div class="p-4 text-xs">
+                        <p>
+                          ${data.prodi_grade_description ? data.prodi_grade_description : "Belum ada penilaian dari prodi"}
+                        </p>
+                      </div>
                       <div class="p-4 grid grid-cols-2 gap-x-6 gap-y-3 w-full">
                         <div>
                           <fo-label for="grade_score" label="Nilai Angka"></fo-label>
