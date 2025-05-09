@@ -45,6 +45,10 @@ const renderEditPage = async () => {
           <fo-error name="end_date"></fo-error>
         </div>
       </div>
+        <div class="">
+        <fo-label for="hasil" label="Hasil"></fo-label>
+        <fo-textarea id="hasil" name="hasil" value="${data.hasil}"></fo-textarea>
+      </div>
       <div class="">
         <fo-label for="content" label="Deskripsi Aktivitas"></fo-label>
         <fo-textarea id="content" name="content" value="${data.content}"></fo-textarea>

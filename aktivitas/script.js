@@ -109,6 +109,7 @@ const fetchTabelAktivitas = async (list) => {
             <td>${moment(item.start_date).format("DD/MM/YYYY")}</td>
             <td>${moment(item.end_date).format("DD/MM/YYYY")}</td>
             <td>${item.content}</td>
+            <td>${item?.hasil ? item?.hasil : '-'}</td>
             <td>
               ${item.status === "Disetujui"
                 ? html`<ui-badge class="bg-green-600/25 text-green-600" dot>${item.status}</ui-badge>`
@@ -169,12 +170,14 @@ const fetchTabelAktivitas = async (list) => {
                             <div>Tanggal Mulai</div>
                             <div>Tanggal Selesai</div>
                             <div>Aktivitas</div>
+                            <div>Hasil</div>
                             <div>Status</div>
                           </div>
                           <div class="space-y-2">
                             <div>${moment(item.start_date).format("DD/MM/YYYY")}</div>
                             <div>${moment(item.end_date).format("DD/MM/YYYY")}</div>
                             <div>${item.content}</div>
+                            <div>${item?.hasil ? item?.hasil : '-'}</div>
                             <div>
                               ${item.status === "Disetujui"
                                 ? html`<ui-badge class="bg-green-600/25 text-green-600" dot>${item.status}</ui-badge>`
@@ -340,6 +343,7 @@ const renderAktivitasMahasiswa = async (data) => {
                     <th>TGL MULAI</th>
                     <th>TGL SELESAI</th>
                     <th>AKTIVITAS</th>
+                    <th>HASIL</th>
                     <th>STATUS</th>
                     <th>ACTION</th>
                   </tr>
@@ -351,6 +355,11 @@ const renderAktivitasMahasiswa = async (data) => {
                     </td>
                   </tr>
                   <tr>
+                    <td colspan="99" class="text-center">
+                      <div class="bg-gray-200 h-8 animate-pulse rounded"></div>
+                    </td>
+                  </tr>
+                   <tr>
                     <td colspan="99" class="text-center">
                       <div class="bg-gray-200 h-8 animate-pulse rounded"></div>
                     </td>
