@@ -176,7 +176,7 @@ const fetchTabelAktivitas = async (list) => {
                           <div class="space-y-2">
                             <div>${moment(item.start_date).format("DD/MM/YYYY")}</div>
                             <div>${moment(item.end_date).format("DD/MM/YYYY")}</div>
-                            <div>${item.content}</div>
+                            <div>${item.content ? item.content : '-'}</div>
                             <div>${item?.hasil ? item?.hasil : '-'}</div>
                             <div>
                               ${item.status === "Disetujui"
@@ -269,6 +269,7 @@ const renderAktivitas = (total) => {
                     <th>TGL MULAI</th>
                     <th>TGL SELESAI</th>
                     <th>AKTIVITAS</th>
+                    <th>HASIL</th>
                     <th>STATUS</th>
                     <th>ACTION</th>
                   </tr>
