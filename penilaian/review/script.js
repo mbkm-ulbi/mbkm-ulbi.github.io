@@ -232,7 +232,7 @@ const renderEvaluationDetail = async (data) => {
             </div>
             <div class="flex gap-8 items-center">
               <span class="w-32 text-xs font-bold">Perhitungan Nilai</span>
-              <div class="text-xs">100 + 70 + 10 + 90 / 3 = X</div>
+              <div class="text-xs">${data.nilai_akhir?.perhitungan_nilai_text}</div>
             </div>
             <div class="mb-4 w-full flex flex-col border border-gray-300 rounded-md">
             
