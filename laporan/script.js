@@ -360,12 +360,12 @@ const renderLaporanMahasiswa = async (dataLamaran) => {
             </div>
             <div class="flex gap-2 items-center">
               <iconify-icon
-                icon=${dataLamaran?.reports?.prodi_checked_id ? "solar:check-circle-bold" : "solar:danger-circle-bold"}
+                icon=${dataLamaran?.reports?.examiner_checked_id ? "solar:check-circle-bold" : "solar:danger-circle-bold"}
                 height="22"
-                class=${dataLamaran?.reports?.prodi_checked_id ? "text-green-500" : "text-red-500"}
+                class=${dataLamaran?.reports?.examiner_checked_id ? "text-green-500" : "text-red-500"}
                 noobserver
               ></iconify-icon>
-              <div>${dataLamaran?.reports?.prodi_checked_id ? "Selesai" : "Menunggu"} Diperiksa Oleh Prodi</div>
+              <div>${dataLamaran?.reports?.examiner_checked_id ? "Selesai" : "Menunggu"} Diperiksa Oleh Dosen Penguji</div>
             </div>
             ${dataLamaran?.reports ? "" : html`<ui-button class="me-5 mt-5 mb-5" color="orange" type="submit">KIRIM LAPORAN</ui-button>`}
           </div>

@@ -440,7 +440,7 @@ const renderPenilaianMahasiswa = async (data) =>{
             </div>
             <div class="flex gap-8 items-center">
               <span class="w-32 text-xs font-bold">Perhitungan Nilai</span>
-              <div class="text-xs">100 + 70 + 10 + 90 /3 = X</div>
+              <div class="text-xs">${evaluations?.nilai_akhir?.perhitungan_nilai_text}</div>
             </div>
             <div class="mb-4 w-full flex flex-col border border-gray-300 rounded-md">
               <div class="p-4 flex justify-between items-center bg-gray-200/50 font-bold border-b border-gray-300">
@@ -457,7 +457,7 @@ const renderPenilaianMahasiswa = async (data) =>{
                 <div class="flex gap-4 text-xs">
                   <div><span class="font-bold">Bobot Nilai: </span>${evaluations?.bobot_nilai?.bobot_nilai_perusahaan}</div>
                   
-                  <div><span class="font-bold">Dinilai pada tanggal: </span>${moment(evaluations?.company_grade_date).format("DD MMMM YYYY")}</div>
+                  <div><span class="font-bold">Dinilai pada tanggal: </span>${evaluations?.company_grade_date ? moment(evaluations?.company_grade_date).format("DD MMMM YYYY") : '-'}</div>
                 </div>
               </div>
               <div class="p-4 text-xs">
@@ -477,7 +477,7 @@ const renderPenilaianMahasiswa = async (data) =>{
                 <div class="flex gap-4 text-xs">
                   <div><span class="font-bold">Bobot Nilai: </span>${evaluations?.bobot_nilai?.bobot_nilai_pembimbing}</div>
                   
-                  <div><span class="font-bold">Dinilai pada tanggal: </span>${moment(evaluations?.lecturer_grade_date).format("DD MMMM YYYY")}</div>
+                  <div><span class="font-bold">Dinilai pada tanggal: </span>${evaluations?.lecturer_grade_date ? moment(evaluations?.lecturer_grade_date).format("DD MMMM YYYY") : '-'}</div>
                 </div>
               </div>
               <div class="p-4 text-xs">
@@ -497,7 +497,7 @@ const renderPenilaianMahasiswa = async (data) =>{
                 <div class="flex gap-4 text-xs">
                   <div><span class="font-bold">Bobot Nilai: </span>${evaluations?.bobot_nilai?.bobot_nilai_penguji}</div>
                   
-                  <div><span class="font-bold">Dinilai pada tanggal: </span>${moment(evaluations?.examiner_grade_date).format("DD MMMM YYYY")}</div>
+                  <div><span class="font-bold">Dinilai pada tanggal: </span>${evaluations?.examiner_grade_date ? moment(evaluations?.examiner_grade_date).format("DD MMMM YYYY") : '-'}</div>
                 </div>
               </div>
               <div class="p-4 text-xs">
@@ -507,23 +507,16 @@ const renderPenilaianMahasiswa = async (data) =>{
               </div>
               <div class="p-4 flex justify-between items-center bg-gray-200/50 font-bold border-b border-gray-300">
                 <div class="flex items-center font-semibold">
-                  <div class="w-60">Penilaian Dari Prodi</div>
-                  <div class="w-12">${evaluations?.prodi_grade_score || "-"}</div>
+                  <div class="w-60">Nilai Akhir</div>
+                  <div class="w-12">${evaluations?.nilai_akhir?.grade != '-' ? evaluations?.nilai_akhir?.total_score : "-"}</div>
                   <div class="flex gap-0 text-xs font-bold text-white text-center">
-                    <div class="px-4 py-2 bg-blue-900 rounded-l-md">${evaluations?.prodi_grade || "-"}</div>
+                    <div class="px-4 py-2 bg-blue-900 rounded-l-md">${evaluations?.nilai_akhir?.grade}</div>
                     <div class="px-4 py-2 bg-red-600 rounded-r-md">-</div>
                   </div>
                 </div>
                 <div class="flex gap-4 text-xs">
-                  <div><span class="font-bold">Bobot Nilai: </span>80</div>
-                  
-                  <div><span class="font-bold">Dinilai pada tanggal: </span>${moment(evaluations?.prodi_grade_date).format("DD MMMM YYYY")}</div>
+                
                 </div>
-              </div>
-              <div class="p-4 text-xs">
-                <p>
-                 ${evaluations?.prodi_grade_description || "-"}
-                </p>
               </div>
             </div>
           </div>

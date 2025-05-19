@@ -250,7 +250,7 @@ const renderEvaluationDetail = async (data) => {
                   ${data.company_grade_date ? html`  <div class="flex gap-4 text-xs">
                     <div><span class="font-bold">Bobot Nilai: </span${data?.bobot_nilai?.bobot_nilai_perusahaan}</div>
                     
-                    <div><span class="font-bold">Dinilai pada tanggal: </span>${moment(data?.company_grade_date).format("DD MMMM YYYY")}</div>
+                    <div><span class="font-bold">Dinilai pada tanggal: </span>${data?.company_grade_date ? moment(data?.company_grade_date).format("DD MMMM YYYY") : '-'}</div>
                   </div>`: ''}
                 
               </div>
@@ -300,7 +300,7 @@ const renderEvaluationDetail = async (data) => {
                   ${data.lecturer_grade_date ? html`  <div class="flex gap-4 text-xs">
                     <div><span class="font-bold">Bobot Nilai: </span>${data?.bobot_nilai?.bobot_nilai_pembimbing}</div>
                     
-                    <div><span class="font-bold">Dinilai pada tanggal: </span>${moment(data?.lecturer_grade_date).format("DD MMMM YYYY")}</div>
+                    <div><span class="font-bold">Dinilai pada tanggal: </span>${data?.lecturer_grade_date ? moment(data?.lecturer_grade_date).format("DD MMMM YYYY") : '-'}</div>
                   </div>`: ''}
                 
                 </div>
@@ -349,7 +349,7 @@ const renderEvaluationDetail = async (data) => {
                   ${data.examiner_grade_date ? html`  <div class="flex gap-4 text-xs">
                     <div><span class="font-bold">Bobot Nilai: </span>${data?.bobot_nilai?.bobot_nilai_penguji}</div>
                     
-                    <div><span class="font-bold">Dinilai pada tanggal: </span>${moment(data?.examiner_grade_date).format("DD MMMM YYYY")}</div>
+                    <div><span class="font-bold">Dinilai pada tanggal: </span>${data?.examiner_grade_date ? moment(data?.examiner_grade_date).format("DD MMMM YYYY") : '-'}</div>
                   </div>`: ''}
                   
                 

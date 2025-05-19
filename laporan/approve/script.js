@@ -153,14 +153,14 @@ const renderLaporanMahasiswa = async (dataLamaran,getReport) => {
             </div>
             <div class="flex gap-2 items-center">
               <iconify-icon
-                icon=${dataLamaran?.prodi_checked_id ? "solar:check-circle-bold" : "solar:danger-circle-bold"}
+                icon=${dataLamaran?.examiner_checked_id ? "solar:check-circle-bold" : "solar:danger-circle-bold"}
                 height="22"
-                class=${dataLamaran?.prodi_checked_id ? "text-green-500" : "text-red-500"}
+                class=${dataLamaran?.examiner_checked_id ? "text-green-500" : "text-red-500"}
                 noobserver
               ></iconify-icon>
-              <div>${dataLamaran?.prodi_checked_id ? "Selesai": "Menunggu"} Diperiksa Oleh Prodi</div>
+              <div>${dataLamaran?.examiner_checked_id ? "Selesai": "Menunggu"} Diperiksa Oleh Dosen Penguji</div>
             </div>
-            ${(role === "prodi" && !dataLamaran?.prodi_checked_id) || (role === "dosen" && !dataLamaran?.lecturer_checked_id) || (role === "mitra" && !dataLamaran?.company_checked_id)
+            ${(role === "prodi" && !dataLamaran?.prodi_checked_id) || (role === "dosen" && !dataLamaran?.lecturer_checked_id) || (role === "dosen" && !dataLamaran?.examiner_checked_id) || (role === "mitra" && !dataLamaran?.company_checked_id)
               ? html`<ui-button class="me-5 mt-5 mb-5" color="green" type="button" onclick=${() => handleApprove(dataLamaran?.apply_job_id)}
                   >Setujui Laporan</ui-button
                 >`
