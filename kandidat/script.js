@@ -167,6 +167,11 @@ const fetchTabelKandidat = async (list, fetchDataKandidat, setApplyJobId) => {
                         <fo-select value=${item?.responsible_lecturer_id} id=${'lecturer_id_' + item?.id} name="lecturer_id" placeholder="Silahkan pilih disini"> </fo-select>
                         <fo-error name="lecturer_id"></fo-error>
                       </div>
+                      <div class="p-4">
+                        <div class="mb-2 text-lg font-bold">Dosen Penguji</div>
+                        <fo-select value=${item?.examiner_lecturer_id} id=${'examiner_id_' + item?.id} name="examiner_id" placeholder="Silahkan pilih disini"> </fo-select>
+                        <fo-error name="examiner_id"></fo-error>
+                      </div>
                       <div class="p-4 flex justify-end gap-2">
                         <ui-button type="submit" variant="outline_orange" className="w-max flex gap-2">SIMPAN</ui-button>
                         ${item?.status === "Aktif"
@@ -537,11 +542,11 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     await fetchDataKandidat();
 
-    function renderSelectDosen(id, Options){
-      const foSelectElement = document.getElementById("lecturer_id_" + id);
+    function renderSelectDosen(elemId, Options){
+      const foSelectElement = document.getElementById(elemId);
       const defaultValue = foSelectElement?.getAttribute("value");
       console.log(defaultValue)
-      
+
       // @ts-ignore
       if (foSelectElement && foSelectElement.choices) {
         // @ts-ignore
@@ -583,7 +588,8 @@ document.addEventListener("DOMContentLoaded", async () => {
         return;
       }
 
-      renderSelectDosen(apply_job_id, lecturerList)
+      renderSelectDosen("lecturer_id_" + apply_job_id, lecturerList)
+      renderSelectDosen("examiner_id_" + apply_job_id, lecturerList)
       initForm(apply_job_id)
     };
 
