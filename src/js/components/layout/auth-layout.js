@@ -176,7 +176,7 @@ class AuthLayout extends HTMLElement {
           <div class="mt-6 border-t border-gray-200 border-dashed"></div>
         </div>
         <div class="px-6 flex items-center gap-2">
-          <img src="${this.state.userInfo?.user?.profile_picture?.url ? this.state.userInfo?.user?.profile_picture?.url : 'https://mbkm.ulbi.ac.id/src/images/avatar_7.png'}" alt="image" class="block rounded-full h-[48px] shrink-0" />
+          <img src="${this.state.userInfo?.user?.profile_picture?.url && false ? this.state.userInfo?.user?.profile_picture?.url : 'https://mbkm.ulbi.ac.id/src/images/avatar_7.png'}" alt="image" class="block rounded-full h-[48px] shrink-0" />
           <div>
             <div class="font-semibold whitespace-nowrap">${this.state.userInfo?.user?.name}</div>
             <div class="text-gray-500 text-xs mt-1 whitespace-nowrap">Role: ${this.state.userInfo?.role?.toUpperCase()}</div>
