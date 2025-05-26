@@ -45,7 +45,7 @@ const fetchKandidat = async (kandidat, fetchCandidates) => {
             <div class="flex justify-between w-full gap-3">
               <div class="flex justify-start items-center gap-3">
                 <div class="w-[48px] flex overflow-hidden rounded-full">
-                  <img class="object-center object-cover h-[50px]" src=${item?.profile_picture?.url ? item?.profile_picture?.url : 'https://i.pravatar.cc/100?u=' + item?.email} alt="image" />
+                  <img class="object-center object-cover h-[50px]" src=${item?.profile_picture?.url ? item?.profile_picture?.url : 'https://mbkm.ulbi.ac.id/src/images/avatar_7.png'} alt="image" />
                 </div>
                 <div>
                   <div class="font-semibold">${item.name}</div>

@@ -22,7 +22,7 @@ const renderEvaluationDetail = async (data) => {
           <div class="p-4 text-lg font-bold">Penilaian Kandidat</div>
           <div class="border-b border-gray-300"></div>
           <div class="p-4 flex gap-4">
-            <img src=${users?.profile_picture?.url ? users?.profile_picture?.url : 'https://i.pravatar.cc/100?u=' + users?.email} class="w-[150px]" alt="kandidat-image" />
+            <img src=${users?.profile_picture?.url ? users?.profile_picture?.url : 'https://mbkm.ulbi.ac.id/src/images/avatar_7.png'} class="w-[150px]" alt="image" />
             <div class="w-full">
               <div class="pb-2 flex gap-96">
                 <div>
