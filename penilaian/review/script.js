@@ -226,13 +226,13 @@ const renderEvaluationDetail = async (data) => {
             <div class="flex gap-8 items-center">
               <span class="w-32 text-xs font-bold">Nilai Akhir</span>
               <div class="flex gap-0 text-xs font-bold text-white text-center">
-                <div class="px-4 py-2 bg-blue-900 rounded-l-md">${data.grade}</div>
+                <div class="px-4 py-2 bg-blue-900 rounded-l-md">${data?.grade}</div>
                 <div class="px-4 py-2 bg-red-600 rounded-r-md">-</div>
               </div>
             </div>
             <div class="flex gap-8 items-center">
               <span class="w-32 text-xs font-bold">Perhitungan Nilai</span>
-              <div class="text-xs">${data.nilai_akhir?.perhitungan_nilai_text}</div>
+              <div class="text-xs">${data?.nilai_akhir?.perhitungan_nilai_text}</div>
             </div>
             <div class="mb-4 w-full flex flex-col border border-gray-300 rounded-md">
             
@@ -240,25 +240,25 @@ const renderEvaluationDetail = async (data) => {
               <div class="p-4 flex justify-between items-center bg-gray-200/50 font-bold border border-gray-300">
                   <div class="flex items-center font-semibold">
                     <div class="w-60">Penilaian Dari Perusahaan</div>
-                    ${data.company_grade || data.company_grade_score? html`<div class="w-12">${data.company_grade_score}</div>
+                    ${data?.company_grade || data?.company_grade_score? html`<div class="w-12">${data?.company_grade_score}</div>
                     <div class="flex gap-0 text-xs font-bold text-white text-center">
-                      <div class="px-4 py-2 bg-blue-900 rounded-l-md">${data.company_grade}</div>
+                      <div class="px-4 py-2 bg-blue-900 rounded-l-md">${data?.company_grade}</div>
                       <div class="px-4 py-2 bg-red-600 rounded-r-md">-</div>
                     </div>`:''}
                     
                   </div>
-                  ${data.company_grade_date ? html`  <div class="flex gap-4 text-xs">
-                    <div><span class="font-bold">Bobot Nilai: </span${data?.bobot_nilai?.bobot_nilai_perusahaan}</div>
+                  ${data?.company_grade_date ? html`  <div class="flex gap-4 text-xs">
+                    <div><span class="font-bold">Bobot Nilai: </span>${data?.bobot_nilai?.bobot_nilai_perusahaan}</div>
                     
                     <div><span class="font-bold">Dinilai pada tanggal: </span>${data?.company_grade_date ? moment(data?.company_grade_date).format("DD MMMM YYYY") : '-'}</div>
                   </div>`: ''}
                 
               </div>
              
-                ${data.company_grade_description || role !== "mitra"
+                ${data?.company_grade_description || role !== "mitra"
                   ? html`<div class="p-4 text-xs">
                       <p>
-                        ${data.company_grade_description ? data.company_grade_description : "Belum ada penilaian dari perusahaan"}
+                        ${data?.company_grade_description ? data?.company_grade_description : "Belum ada penilaian dari perusahaan"}
                       </p>
                     </div>`
                   : html`
@@ -290,24 +290,24 @@ const renderEvaluationDetail = async (data) => {
                 <div class="p-4 flex justify-between items-center bg-gray-200/50 font-bold border border-gray-300">
                   <div class="flex items-center font-semibold">
                     <div class="w-60">Penilaian Dari Dosen Pembimbing</div>
-                    ${data.lecturer_grade || data.lecturer_grade_score? html`<div class="w-12">${data.lecturer_grade_score}</div>
+                    ${data?.lecturer_grade || data?.lecturer_grade_score ? html`<div class="w-12">${data?.lecturer_grade_score}</div>
                     <div class="flex gap-0 text-xs font-bold text-white text-center">
-                      <div class="px-4 py-2 bg-blue-900 rounded-l-md">${data.lecturer_grade}</div>
+                      <div class="px-4 py-2 bg-blue-900 rounded-l-md">${data?.lecturer_grade}</div>
                       <div class="px-4 py-2 bg-red-600 rounded-r-md">-</div>
                     </div>`:''}
                     
                   </div>
-                  ${data.lecturer_grade_date ? html`  <div class="flex gap-4 text-xs">
+                  ${data?.lecturer_grade_date ? html`  <div class="flex gap-4 text-xs">
                     <div><span class="font-bold">Bobot Nilai: </span>${data?.bobot_nilai?.bobot_nilai_pembimbing}</div>
                     
                     <div><span class="font-bold">Dinilai pada tanggal: </span>${data?.lecturer_grade_date ? moment(data?.lecturer_grade_date).format("DD MMMM YYYY") : '-'}</div>
                   </div>`: ''}
                 
                 </div>
-                ${data.lecturer_grade_description || role !== "dosen"
+                ${data?.lecturer_grade_description || role !== "dosen"
                   ? html`<div class="p-4 text-xs">
                       <p>
-                        ${data.lecturer_grade_description ? data.lecturer_grade_description : "Belum ada penilaian dari dosen"}
+                        ${data?.lecturer_grade_description ? data?.lecturer_grade_description : "Belum ada penilaian dari dosen"}
                       </p>
                     </div>`
                   : html`
@@ -339,14 +339,14 @@ const renderEvaluationDetail = async (data) => {
                 <div class="p-4 flex justify-between items-center bg-gray-200/50 font-bold border border-gray-300">
                   <div class="flex items-center font-semibold">
                     <div class="w-60">Penilaian Dari Dosen Penguji</div>
-                    ${data.examiner_grade || data.examiner_grade_score? html`<div class="w-12">${data.examiner_grade_score}</div>
+                    ${data?.examiner_grade || data?.examiner_grade_score ? html`<div class="w-12">${data?.examiner_grade_score}</div>
                     <div class="flex gap-0 text-xs font-bold text-white text-center">
-                      <div class="px-4 py-2 bg-blue-900 rounded-l-md">${data.examiner_grade}</div>
+                      <div class="px-4 py-2 bg-blue-900 rounded-l-md">${data?.examiner_grade}</div>
                       <div class="px-4 py-2 bg-red-600 rounded-r-md">-</div>
                     </div>`:''}
                     
                   </div>
-                  ${data.examiner_grade_date ? html`  <div class="flex gap-4 text-xs">
+                  ${data?.examiner_grade_date ? html`  <div class="flex gap-4 text-xs">
                     <div><span class="font-bold">Bobot Nilai: </span>${data?.bobot_nilai?.bobot_nilai_penguji}</div>
                     
                     <div><span class="font-bold">Dinilai pada tanggal: </span>${data?.examiner_grade_date ? moment(data?.examiner_grade_date).format("DD MMMM YYYY") : '-'}</div>
@@ -354,10 +354,10 @@ const renderEvaluationDetail = async (data) => {
                   
                 
                 </div>
-                ${data.examiner_grade_description || role !== "dosen"
+                ${data?.examiner_grade_description || role !== "dosen"
                   ? html`<div class="p-4 text-xs">
                       <p>
-                        ${data.examiner_grade_description ? data.examiner_grade_description : "Belum ada penilaian dari dosen"}
+                        ${data?.examiner_grade_description ? data?.examiner_grade_description : "Belum ada penilaian dari dosen"}
                       </p>
                     </div>`
                   : html`
@@ -389,54 +389,19 @@ const renderEvaluationDetail = async (data) => {
                 <div class="p-4 flex justify-between items-center bg-gray-200/50 font-bold border border-gray-300">
                   <div class="flex items-center font-semibold">
                     <div class="w-60">Nilai Akhir</div>
-                    ${data.nilai_akhir?.grade != '-' ? html`<div class="w-12">${data.nilai_akhir?.total_score}</div>
+                    ${data?.nilai_akhir?.grade != '-' ? html`<div class="w-12">${data?.nilai_akhir?.total_score}</div>
                     <div class="flex gap-0 text-xs font-bold text-white text-center">
-                      <div class="px-4 py-2 bg-blue-900 rounded-l-md">${data.nilai_akhir?.grade}</div>
+                      <div class="px-4 py-2 bg-blue-900 rounded-l-md">${data?.nilai_akhir?.grade}</div>
                       <div class="px-4 py-2 bg-red-600 rounded-r-md">-</div>
                     </div>`:''}
                     
                   </div>
-                  ${data.prodi_grade_date ? html`  <div class="flex gap-4 text-xs">
+                  ${data?.prodi_grade_date ? html`  <div class="flex gap-4 text-xs">
                     
                     <div><span class="font-bold">Dinilai pada tanggal: </span>${moment(data?.prodi_grade_date).format("DD MMMM YYYY")}</div>
                   </div>`: ''}
                 
                 </div>
-                ${true || data.prodi_grade_description || role !== "prodi"
-                  ? (data.nilai_akhir?.grade != '-' ? '' : html`<div class="p-4 text-xs">
-                        <p>
-                          Belum ada nilai akhir
-                        </p>
-                      </div>`)
-                  : html`
-                      <div class="p-4 text-xs">
-                        <p>
-                          ${data.prodi_grade_description ? data.prodi_grade_description : "Belum ada penilaian dari prodi"}
-                        </p>
-                      </div>
-                      <div class="p-4 grid grid-cols-2 gap-x-6 gap-y-3 w-full">
-                        <div>
-                          <fo-label for="grade_score" label="Nilai Angka"></fo-label>
-                          <fo-input name="grade_score" placeholder="90" type="number"></fo-input>
-                          <fo-error name="grade_score"></fo-error>
-                        </div>
-                        <div>
-                          <fo-label for="grade" label="Nilai Huruf"></fo-label>
-                          <fo-input name="grade" placeholder="A" type="text"></fo-input>
-                          <fo-error name="grade"></fo-error>
-                        </div>
-                      </div>
-                      <div class="p-4 w-full">
-                        <div>
-                          <fo-label for="grade_description" label="Deskripsi"></fo-label>
-                          <textarea name="grade_description" class="w-full h-24 border border-gray-300 rounded-md p-2"></textarea>
-                          <fo-error name="grade_description"></fo-error>
-                        </div>
-                      </div>
-                      <div class="p-4 flex justify-end">
-                        <ui-button type="submit">Simpan</ui-button>
-                      </div>
-                    `}
                 </form>
               
             </div>
