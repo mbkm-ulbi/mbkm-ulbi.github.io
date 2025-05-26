@@ -258,7 +258,7 @@ const renderEvaluationDetail = async (data) => {
                 ${data?.company_grade_description || role !== "mitra"
                   ? html`<div class="p-4 text-xs">
                       <p>
-                        ${data?.company_grade_description ? data?.company_grade_description : "Belum ada penilaian dari perusahaan"}
+                        ${data?.company_grade_description ? data?.company_grade_description : "Belum ada penilaian dari Perusahaan"}
                       </p>
                     </div>`
                   : html`
@@ -307,7 +307,7 @@ const renderEvaluationDetail = async (data) => {
                 ${data?.lecturer_grade_description || role !== "dosen"
                   ? html`<div class="p-4 text-xs">
                       <p>
-                        ${data?.lecturer_grade_description ? data?.lecturer_grade_description : "Belum ada penilaian dari dosen"}
+                        ${data?.lecturer_grade_description ? data?.lecturer_grade_description : "Belum ada penilaian dari Dosen Pembimbing"}
                       </p>
                     </div>`
                   : html`
@@ -357,7 +357,7 @@ const renderEvaluationDetail = async (data) => {
                 ${data?.examiner_grade_description || role !== "dosen"
                   ? html`<div class="p-4 text-xs">
                       <p>
-                        ${data?.examiner_grade_description ? data?.examiner_grade_description : "Belum ada penilaian dari dosen"}
+                        ${data?.examiner_grade_description ? data?.examiner_grade_description : "Belum ada penilaian dari Dosen Penguji"}
                       </p>
                     </div>`
                   : html`
@@ -401,6 +401,13 @@ const renderEvaluationDetail = async (data) => {
                     <div><span class="font-bold">Dinilai pada tanggal: </span>${moment(data?.prodi_grade_date).format("DD MMMM YYYY")}</div>
                   </div>`: ''}
                 
+                </div>
+                ${!data?.nilai_akhir?.grade || data?.nilai_akhir?.grade == '-'
+                  ? html`<div class="p-4 text-xs">
+                      <p>
+                        Belum ada Nilai Akhir
+                      </p>
+                    </div>` : ''}
                 </div>
                 </form>
               
