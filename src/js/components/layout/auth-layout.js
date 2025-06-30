@@ -135,6 +135,12 @@ class AuthLayout extends HTMLElement {
     if(auth.role === "prodi" || auth.role === "superadmin"){
       let arr = [...this.state.listNavSidebar]
       arr.push({
+        name: "Konversi Nilai",
+        href: `${slugUri}konversi-nilai/`,
+        icon: "fluent:arrow-repeat-all-16-filled",
+        active: this.path.startsWith("/konversi-nilai/"),
+      },)
+      arr.push({
         name: "Komposisi Nilai",
         href: `${slugUri}komposisi-nilai/`,
         icon: "fluent:calculator-multiple-16-filled",

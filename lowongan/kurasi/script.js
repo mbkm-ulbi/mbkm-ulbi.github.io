@@ -82,10 +82,6 @@ const fetchKandidat = async (kandidat, fetchCandidates) => {
                         <div class="ml-4">${item.program_study ? item.program_study : "-"}</div>
                       </div>
                       <div>
-                        <div class="font-semibold">Semester</div>
-                        <div class="ml-4">Semester 3</div>
-                      </div>
-                      <div>
                         <div class="font-semibold">No. Telepon</div>
                         <div class="ml-4">${item.phone_number ? item.phone_number : "-"}</div>
                       </div>
