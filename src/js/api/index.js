@@ -79,6 +79,9 @@ export const postMonthlyLogs = postWithToken('api/v1/apply-jobs/monthly-logs')
 export const updateMonthlyLogs = postWithToken('api/v1/apply-jobs/monthly-logs/update')
 export const getSettingBobotNilai = getWithToken('api/v1/settings/bobot-nilai')
 export const updateSettingBobotNilai = postWithToken('api/v1/settings/bobot-nilai')
+export const getListKonversiNilai = getWithToken('api/v1/konversi-nilai')
+export const createKonversiNilai = postWithToken('api/v1/konversi-nilai')
+
 const API = {
     postLogin,
     postRegister,
@@ -103,7 +106,9 @@ const API = {
     postMonthlyLogs,
     updateMonthlyLogs,
     getSettingBobotNilai,
-    updateSettingBobotNilai
+    updateSettingBobotNilai,
+    getListKonversiNilai,
+    createKonversiNilai
 }
 
 export default API

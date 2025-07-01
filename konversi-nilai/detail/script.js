@@ -9,9 +9,9 @@ import { getUserInfo } from "../../src/js/libraries/cookies.js";
 
 const renderEvaluationDetail = async (data) => {
   const evaluationDetail = document.getElementById("content-evaluation");
-  const users = data?.apply_job?.users[0];
-  const jobs = data?.apply_job?.jobs[0];
-  const surat_lamaran = data?.apply_job?.surat_lamaran;
+  const users = data?.users[0];
+  const jobs = data?.jobs[0];
+  const surat_lamaran = data?.surat_lamaran;
   const auth = await getUserInfo();
   const {role} = auth
   render(
@@ -109,14 +109,90 @@ const renderEvaluationDetail = async (data) => {
 
           <div class="py-1 border-b border-dashed border-gray-300"></div>
           <div class="p-4 text-md font-bold">Detail Konversi Nilai</div>
-          <div class="px-4 flex gap-4">
-            
-
-            
+          <div class="p-4 text-md font-bold">
+          <ui-button type="button" variant="outline_orange" className="w-max flex gap-2" data-dialog-trigger=${`add-konversi-nilai`}>Tambah Konversi Nilai</ui-button>
           </div>
+          <div class="px-4 flex gap-4">            
+                <ui-dialog name=${`add-konversi-nilai`} className="w-[750px] h-auto p-0">
+                  <div>
+                    <div class="w-full flex justify-between items-center bg-ulbiBlue p-4 rounded-t-md">
+                      <div class="text-lg text-white font-bold">Tambah Konversi Nilai</div>
+                      <div data-dialog-close><iconify-icon icon="solar:close-circle-bold" height="22" class="text-white" noobserver></iconify-icon></div>
+                    </div>
+                    <div class="p-4 w-full gap-4 text-justify">
+                      
+                    <form id=${'konversi_nilai_form'}>
+                      <div class="p-4">
+                        <div class="mb-2 text-lg font-bold">Fakultas</div>
+                        <fo-select value=${''} id=${'lecturer_id_'} name="lecturer_id" placeholder="Silahkan pilih disini"> </fo-select>
+                        <fo-error name="lecturer_id"></fo-error>
+                      </div>
+                      <div class="p-4">
+                        <div class="mb-2 text-lg font-bold">Program Studi</div>
+                        <fo-select value=${''} id=${'examiner_id_'} name="examiner_id" placeholder="Silahkan pilih disini"> </fo-select>
+                        <fo-error name="examiner_id"></fo-error>
+                      </div>
+                      <div class="p-4">
+                        <div class="mb-2 text-lg font-bold">Mata Kuliah</div>
+                        <fo-select value=${''} id=${'examiner_id_'} name="examiner_id" placeholder="Silahkan pilih disini"> </fo-select>
+                        <fo-error name="examiner_id"></fo-error>
+                      </div>
+                      <div class="p-4">
+                        <div class="mb-2 text-lg font-bold">Grade</div>
+                        <fo-input type="text" id="konversi_nilai_grade" name="konversi_nilai_grade"></fo-input>
+                        <fo-error name="examiner_id"></fo-error>
+                      </div>
+                      <div class="p-4">
+                        <div class="mb-2 text-lg font-bold">Score</div>
+                        <fo-input type="number" id="konversi_nilai_score" name="konversi_nilai_score"></fo-input>
+                        <fo-error name="examiner_id"></fo-error>
+                      </div>
+                      <div class="p-4 flex justify-end gap-2">
+                        <ui-button type="submit" variant="outline_orange" className="w-max flex gap-2">SIMPAN</ui-button>
+                      </div>
+                    </form>
+                    </div>
+                  </div>
+                </ui-dialog>
+          </div>
+          <div class="px-4 gap-4">
+            <ui-table>
+              <table>
+                <thead>
+                  <tr>
+                    <th style="text-align:left">MATA KULIAH</th>
+                    <th style="text-align:left">GRADE</th>
+                    <th style="text-align:left">SCORE</th>
+                  </tr>
+                </thead>
+                <tbody id="tabelMataKuliah">
+                </tbody>
+              </table>
+            </ui-table>
+          </div>
+          <div class="px-4 gap-4"><br><br><br></div>
           
         </div>
       </div>
+    `
+  );
+};
+
+
+const fetchMataKuliah = async (list) => {
+  console.log(list)
+  render(
+    document.getElementById("tabelMataKuliah"),
+    html`
+      ${list.map((item) => {
+        return html`
+          <tr>
+            <td>${item.mata_kuliah?.nama}</td>
+            <td>${item.grade}</td>
+            <td>${item.score}</td>
+          </tr>
+        `;
+      })}
     `
   );
 };
@@ -125,36 +201,32 @@ document.addEventListener("DOMContentLoaded", async () => {
   const param = getUrlParam();
   const evaluationId = param.get("id");
   async function getEvaluationDetail() {
-    await API.getListEvaluations("/" + evaluationId)
+    await API.getListKonversiNilai("/" + evaluationId)
       .then((res) => {
         const data = res.data.data;
         renderEvaluationDetail(data);
+        setTimeout(function(){
+          fetchMataKuliah(data?.konversi_nilai);
+        }, 100)
       })
       .catch((err) => {
         console.log(err);
         toast.error("Gagal mengambil data penilaian");
       });
   }
+  const addKonversiNilai = async (id) => {
+    const form = document.getElementById("konversi_nilai_form");
+    const formData = new FormData(form);
+    await API.createKonversiNilai(formData, `/${id}/done`)
+      .then((res) => {
+        toast.success("Berhasil menambahkan konversi nilai");
+        getEvaluationDetail();
+      })
+      .catch((err) => {
+        toast.error("Gagal menyelesaikan magang");
+      });
+  };
+
   await getEvaluationDetail();
-    let arrayRoleEvaluation = ['company', 'prodi', 'lecturer', 'examiner']
-    for (let index = 0; index < arrayRoleEvaluation.length; index++) {
-      const element = arrayRoleEvaluation[index];
-      const form = document.getElementById(element + "-evaluation-form");
-      if (form instanceof HTMLFormElement) {
-          form.addEventListener("submit", async (event) => {
-              event.preventDefault();
-              const formData = new FormData(form);
-              formData.append("apply_job_id", evaluationId);
-              formData.append("is_examiner", element === "examiner" ? "1" : "0");
-  
-              await API.createEvaluation(formData).then(async (res) => {
-                  toast.success("Berhasil menambahkan penilaian");
-                  await getEvaluationDetail();
-              }).catch((err) => {
-                  toast.error("Gagal menambahkan penilaian");
-              });
-          });
-      }
-    }
    
 });

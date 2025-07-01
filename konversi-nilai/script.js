@@ -31,23 +31,19 @@ const fetchTabelPenilaian = async (list) => {
         return html`
           <tr>
             <td>${moment(item.created_at).format("DD MMMM YYYY hh:mm")}</td>
-            <td>${item.apply_job.users[0].name}</td>
-            <td>${item.apply_job?.jobs[0]?.job_type}</td>
-            <td>${item.apply_job?.jobs[0]?.company}</td>
-            <td>${item.apply_job?.jobs[0]?.title}</td>
-            <td>${item.apply_job.users[0].program_study}</td>
+            <td>${item.users[0].name}</td>
+            <td>${item.jobs[0]?.job_type}</td>
+            <td>${item.jobs[0]?.company}</td>
+            <td>${item.jobs[0]?.title}</td>
+            <td>${item.users[0].program_study}</td>
             <td>
-              ${item.status === "Sudah Dinilai"
-                ? html`<ui-badge class="bg-red-600/25 text-red-600" dot>Belum Ada Konversi</ui-badge>`
-                : item.status === "Draft"
-                ? html`<ui-badge class="bg-orange-600/25 text-orange-600" dot>${item.status}</ui-badge>`
-                : item.status === "Belum Dinilai"
-                ? html`<ui-badge class="bg-red-600/25 text-red-600" dot>${item.status}</ui-badge>`
-                : ""}
+              ${item.konversi_nilai.length > 0
+                ? html`<ui-badge class="bg-green-600/25 text-green-600" dot>Sudah Ada Konversi</ui-badge>`
+                : html`<ui-badge class="bg-red-600/25 text-red-600" dot>Belum Ada Konversi</ui-badge>`}
             </td>
             <td class="flex space-x-4">
               <div>
-                <a href=${"/konversi-nilai/detail/index.html?id="+item?.apply_job_id}><iconify-icon icon="solar:eye-bold" class="text-orange-500" height="16"></iconify-icon></a>
+                <a href=${"/konversi-nilai/detail/index.html?id="+item?.id}><iconify-icon icon="solar:eye-bold" class="text-orange-500" height="16"></iconify-icon></a>
               </div>
             </td>
           </tr>
@@ -532,7 +528,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     let dataEvaluation = [];
     let total = 0
     // Mendapatkan data awal pada halaman 1
-    await API.getListEvaluations(`?page=1&per_page=10`)
+    await API.getListKonversiNilai(`?page=1&per_page=10`)
       .then((res) => {
         dataEvaluation = res?.data?.data;
         total = res?.data?.count;

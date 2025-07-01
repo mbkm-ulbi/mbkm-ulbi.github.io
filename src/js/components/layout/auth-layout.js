@@ -51,6 +51,12 @@ class AuthLayout extends HTMLElement {
           icon: "solar:clipboard-list-bold",
           active: this.path.startsWith("/aktivitas/"),
         },
+        {
+          name: "Konversi Nilai",
+          href: `${slugUri}konversi-nilai/`,
+          icon: "fluent:arrow-repeat-all-16-filled",
+          active: this.path.startsWith("/konversi-nilai/"),
+        }
       ],
       userInfo: {}
     };
@@ -84,12 +90,6 @@ class AuthLayout extends HTMLElement {
           href: `${slugUri}kandidat/`,
           icon: "solar:user-hands-bold",
           active: this.path.startsWith("/kandidat/"),
-        },
-        {
-          name: "Konversi Nilai",
-          href: `${slugUri}konversi-nilai/`,
-          icon: "fluent:arrow-repeat-all-16-filled",
-          active: this.path.startsWith("/konversi-nilai/"),
         }
       ]
     }
