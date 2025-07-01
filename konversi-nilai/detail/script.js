@@ -117,38 +117,33 @@ const renderEvaluationDetail = async (data) => {
                   <div>
                     <div class="w-full flex justify-between items-center bg-ulbiBlue p-4 rounded-t-md">
                       <div class="text-lg text-white font-bold">Tambah Konversi Nilai</div>
-                      <div data-dialog-close><iconify-icon icon="solar:close-circle-bold" height="22" class="text-white" noobserver></iconify-icon></div>
+                      <div data-dialog-close id="btn_close_dialog"><iconify-icon icon="solar:close-circle-bold" height="22" class="text-white" noobserver></iconify-icon></div>
                     </div>
                     <div class="p-4 w-full gap-4 text-justify">
                       
                     <form id=${'konversi_nilai_form'}>
                       <div class="p-4">
-                        <div class="mb-2 text-lg font-bold">Fakultas</div>
-                        <fo-select value=${''} id=${'lecturer_id_'} name="lecturer_id" placeholder="Silahkan pilih disini"> </fo-select>
-                        <fo-error name="lecturer_id"></fo-error>
-                      </div>
-                      <div class="p-4">
                         <div class="mb-2 text-lg font-bold">Program Studi</div>
-                        <fo-select value=${''} id=${'examiner_id_'} name="examiner_id" placeholder="Silahkan pilih disini"> </fo-select>
+                        <fo-select value=${''} id="program_studi_id" name="program_studi_id" placeholder="Silahkan pilih disini" onchange="fetchMataKuliah()"> </fo-select>
                         <fo-error name="examiner_id"></fo-error>
                       </div>
                       <div class="p-4">
                         <div class="mb-2 text-lg font-bold">Mata Kuliah</div>
-                        <fo-select value=${''} id=${'examiner_id_'} name="examiner_id" placeholder="Silahkan pilih disini"> </fo-select>
+                        <fo-select value=${''} id="mata_kuliah_id" name="mata_kuliah_id" placeholder="Silahkan pilih disini"> </fo-select>
                         <fo-error name="examiner_id"></fo-error>
                       </div>
                       <div class="p-4">
                         <div class="mb-2 text-lg font-bold">Grade</div>
-                        <fo-input type="text" id="konversi_nilai_grade" name="konversi_nilai_grade"></fo-input>
+                        <fo-input type="text" id="konversi_nilai_grade" name="grade"></fo-input>
                         <fo-error name="examiner_id"></fo-error>
                       </div>
                       <div class="p-4">
                         <div class="mb-2 text-lg font-bold">Score</div>
-                        <fo-input type="number" id="konversi_nilai_score" name="konversi_nilai_score"></fo-input>
+                        <fo-input type="number" id="konversi_nilai_score" name="score"></fo-input>
                         <fo-error name="examiner_id"></fo-error>
                       </div>
                       <div class="p-4 flex justify-end gap-2">
-                        <ui-button type="submit" variant="outline_orange" className="w-max flex gap-2">SIMPAN</ui-button>
+                        <ui-button type="button" variant="outline_orange" className="w-max flex gap-2" onclick=${() => addKonversiNilai()}>SIMPAN</ui-button>
                       </div>
                     </form>
                     </div>
@@ -214,19 +209,90 @@ document.addEventListener("DOMContentLoaded", async () => {
         toast.error("Gagal mengambil data penilaian");
       });
   }
-  const addKonversiNilai = async (id) => {
+  
+  window.addKonversiNilai = async () => {
+    const id = param.get("id");
     const form = document.getElementById("konversi_nilai_form");
     const formData = new FormData(form);
-    await API.createKonversiNilai(formData, `/${id}/done`)
+    formData.append('apply_job_id', id);
+    const dialogElement = document.getElementById('btn_close_dialog');
+    await API.createKonversiNilai(formData, ``)
       .then((res) => {
         toast.success("Berhasil menambahkan konversi nilai");
         getEvaluationDetail();
+        dialogElement.click()
       })
       .catch((err) => {
-        toast.error("Gagal menyelesaikan magang");
+        toast.error("Gagal menambahkan konversi nilai");
       });
   };
 
+  let programStudiList = [];
+  let mataKuliahList = [];
+  const getListDropdown = async () => {
+    try {
+      const res = await API.getListProgramStudi(`?per_page=100`);
+      programStudiList = res.data.data;
+    } catch (err) {
+      toast.error("Gagal mengambil data program studi");
+      return;
+    }
+
+    renderSelectForm("program_studi_id", programStudiList, 'prodi')
+    
+  };
+
+  window.fetchMataKuliah = async () => {
+    try {
+      const prodiId = document.getElementsByName("program_studi_id")[1]?.value;
+      const res = await API.getListMataKuliah(`?prodi_id=${prodiId}&per_page=100`);
+      mataKuliahList = res.data.data;
+    } catch (err) {
+      toast.error("Gagal mengambil data mata kuliah");
+      return;
+    }
+
+    renderSelectForm("mata_kuliah_id", mataKuliahList, 'matkul')
+
+  }
+
+  function renderSelectForm(elemId, Options, type){
+    const foSelectElement = document.getElementById(elemId);
+    const defaultValue = foSelectElement?.getAttribute("value");
+    console.log(defaultValue)
+
+    // @ts-ignore
+    if (foSelectElement && foSelectElement.choices) {
+      // @ts-ignore
+      foSelectElement.choices.clearStore();
+      Options.forEach((option) => {
+        // @ts-ignore
+        // console.log(option)
+        if(option){
+          foSelectElement.choices.setChoices(
+            [
+              {
+                value: type == 'prodi' ? option?.kode_program_studi : option?.id,
+                label: type == 'prodi' ? option?.nama_program_studi : option?.nama,
+                selected: option?.id == defaultValue,
+              },
+            ],
+            "value",
+            "label",
+            false
+          );
+        }
+      });
+
+      // Re-render or reset state if needed
+      // @ts-ignore
+      foSelectElement.handleDisabled();
+      // @ts-ignore
+      foSelectElement.handleError();
+    }
+  }
+
   await getEvaluationDetail();
+  await getListDropdown();
    
 });

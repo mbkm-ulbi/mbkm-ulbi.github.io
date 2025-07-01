@@ -81,6 +81,8 @@ export const getSettingBobotNilai = getWithToken('api/v1/settings/bobot-nilai')
 export const updateSettingBobotNilai = postWithToken('api/v1/settings/bobot-nilai')
 export const getListKonversiNilai = getWithToken('api/v1/konversi-nilai')
 export const createKonversiNilai = postWithToken('api/v1/konversi-nilai')
+export const getListProgramStudi = getWithToken('api/v1/program-studi')
+export const getListMataKuliah = getWithToken('api/v1/mata-kuliah')
 
 const API = {
     postLogin,
@@ -108,7 +110,9 @@ const API = {
     getSettingBobotNilai,
     updateSettingBobotNilai,
     getListKonversiNilai,
-    createKonversiNilai
+    createKonversiNilai,
+    getListProgramStudi,
+    getListMataKuliah
 }
 
 export default API
