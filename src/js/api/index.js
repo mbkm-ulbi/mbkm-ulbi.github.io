@@ -3,7 +3,7 @@ import axios from 'https://cdn.jsdelivr.net/npm/axios@1.7.7/+esm'
 import { getAuth } from '../libraries/cookies.js';
 
 const getBaseUrl = (path) => {
-    return 'https://api-ulbi.karismatech.net'+"/"+path
+    return 'https://api.mbkm.ulbi.ac.id'+"/"+path
 }
 
 
